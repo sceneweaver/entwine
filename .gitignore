@@ -1,0 +1,44 @@
+# project-specific folders and files
+build/
+
+# installed packages (better: `npm install` / `bower install`)
+node_modules
+bower_components
+
+# Ignore all node_modules
+node_modules/*
+
+# ...except the symlink to ourselves.
+!node_modules/APP
+
+# NPM errors
+npm-debug.log
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sqlite
+
+# Vim swap files
+*.sw?
+
+# IDE files
+.idea
+.vscode
+
+# repos / submodules
+.git
+.svn
+
+# secrets
+secrets.json
+cert.pem
+key.pem
