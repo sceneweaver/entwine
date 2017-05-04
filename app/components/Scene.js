@@ -2,14 +2,11 @@ import React, { Component } from 'react'
 
 /* ----- COMPONENT ----- */
 
-export default class Scene extends Component {
+class Scene extends Component {
   render() {
     console.log(this.props)
     return (
       <div className="container">
-        <div className="row">
-          <h1>{this.props.title}</h1>
-        </div>
         <div className="row">
           <div className="col-md-4 textBlock">
             {this.props.text}
@@ -34,10 +31,11 @@ export default class Scene extends Component {
 
 /* ----- CONTAINER ----- */
 
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-// const mapStateToProps = store => ({
-//   title: store.story.title
-// })
+const mapStateToProps = store => ({
+  text: store.allState.currScene.text,
+  actors: store.allState.currScene.actors
+});
 
-// export default connect(mapStateToProps)(Story);
+export default connect(mapStateToProps)(Scene);

@@ -29,7 +29,7 @@ const Routes = ({ onStoryEnter }) => (
 
 /* -----------------    CONTAINER     ------------------ */
 
-import { setFakeState } from './reducers/story';
+import { setFakeState } from './reducers/allState';
 
 const mapProps = null;
 

@@ -28,6 +28,18 @@ const fakeData = {
       text: ['The rest of our story follows as so!'],
       position: 2,
       actors: []
+    }, {
+      id: 5,
+      text: ['More of our story appears here.', 'In two paragraphs.'],
+      position: 3,
+      actors: [
+        {
+          id: 3,
+          title: 'Dean Guo',
+          description: 'generally excellent',
+          image: 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/45.png'
+        }
+      ]
     }
   ]
 }
@@ -36,26 +48,50 @@ const fakeData = {
 
 const GET_STORY = 'GET_STORY';
 const SET_STORY = 'SET_STORY';
+const SET_SCENE = 'SET_SCENE';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 const getStory = story => ({ type: GET_STORY, story });
-const setStory = story => ({ type: SET_STORY, story });
+const setStory = story => ({
+  type: SET_STORY,
+  title: story.title,
+  scenes: story.scenes,
+  currScene: story.scenes[0]
+});
+export const setCurrScene = scene => ({
+  type: SET_SCENE,
+  currScene: scene
+})
 
 /* ------------       REDUCERS     ------------------ */
 
-export default function reducer(story = {
+export default function reducer(state = {
   title: '',
   scenes: [],
+  currScene: {
+    id: 0,
+    text: [],
+    position: 0,
+    actors: []
+  }
 }, action) {
+  const newState = Object.assign({}, state)
   switch (action.type) {
     case GET_STORY:
-      return action.story;
+      return action.state;
     case SET_STORY:
-      return action.story;
+      newState.title = action.title;
+      newState.scenes = action.scenes;
+      newState.currScene = action.currScene;
+      break;
+    case SET_SCENE:
+      newState.currScene = action.currScene;
+      break;
     default:
-      return story;
+      return newState;
   }
+  return newState;
 }
 
 /* ------------       DISPATCHERS     ------------------ */
