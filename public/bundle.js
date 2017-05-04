@@ -31355,6 +31355,10 @@ var _StoryDetail = __webpack_require__(165);
 
 var _StoryDetail2 = _interopRequireDefault(_StoryDetail);
 
+var _Editor = __webpack_require__(326);
+
+var _Editor2 = _interopRequireDefault(_Editor);
+
 var _users = __webpack_require__(32);
 
 var _stories = __webpack_require__(25);
@@ -31381,6 +31385,7 @@ var Routes = function Routes(_ref) {
       _react2.default.createElement(_reactRouter.Route, { path: 'users/:id', component: _UserDetail2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: 'stories', component: _StoryList2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: 'stories/:id', component: _StoryDetail2.default, onEnter: onStoryEnter }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'editor', component: _Editor2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: '*', component: _Home2.default })
     )
   );
@@ -50724,6 +50729,13 @@ _reactDom2.default.render(_react2.default.createElement(
   { store: _store2.default },
   _react2.default.createElement(_Routes2.default, null)
 ), document.getElementById('main'));
+
+/***/ }),
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /***/ })
 /******/ ]);
