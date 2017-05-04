@@ -1,16 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import StoryNav from './StoryNav.js'
-import Scene from './Scene.js'
+import StoryNav from './StoryNav.js';
+import Scene from './Scene.js';
 
-export default class Story extends Component {
+/* ----- COMPONENT ----- */
+
+class Story extends Component {
   render() {
-    console.log("this.props", this.props)
+    console.log("this.props @ Story component", this.props);
     return (
       <div>
+        <h1>{this.props.title}</h1>
         <StoryNav />
-        <Scene dummyScene={this.props.dummyScene} />
+        <Scene />
       </div>
     )
   }
 }
+
+/* ----- CONTAINER ----- */
+
+import { connect } from 'react-redux';
+
+const mapStateToProps = store => ({
+  title: store.story.title
+})
+
+export default connect(mapStateToProps)(Story);
