@@ -55,6 +55,7 @@
     "concurrently": "^3.1.0",
     "cookie-session": "^2.0.0-alpha.1",
     "enzyme": "^2.5.1",
+    "eslint-config-fullstack": "^2.8.1",
     "express": "^4.14.0",
     "finalhandler": "^1.0.0",
     "font-awesome": "^4.7.0",
