@@ -12,7 +12,7 @@ import StoryDetail from './components/Story/StoryDetail';
 import Editor from './components/Editor'
 import { fetchUsers } from './redux/users';
 import { fetchStories, fetchStory } from './redux/stories';
-import { retrieveLoggedInUser } from './redux/auth';
+// import { retrieveLoggedInUser } from './redux/auth';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -26,7 +26,6 @@ const Routes = ({ fetchInitialData, onStoryEnter }) => (
       <Route path="users/:id" component={UserDetail} />
       <Route path="stories" component={StoryList} />
       <Route path="stories/:id" component={StoryDetail} onEnter={onStoryEnter} />
-      <Route path="editor" component={Editor} />
       <Route path="*" component={Home} />
     </Route>
   </Router>
@@ -38,8 +37,8 @@ const mapProps = null;
 
 const mapDispatch = dispatch => ({
   fetchInitialData: () => {
-    dispatch(retrieveLoggedInUser());
-    dispatch(fetchUsers());
+    // dispatch(retrieveLoggedInUser());
+    // dispatch(fetchUsers());
     dispatch(fetchStories());
   },
   onStoryEnter: (nextRouterState) => {

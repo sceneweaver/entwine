@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { loginAndGoToUser } from '../redux/auth';
 
 /* -----------------    COMPONENT     ------------------ */
@@ -87,16 +86,11 @@ class Login extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
+import { login } from 'APP/app/reducers/auth'
+import { connect } from 'react-redux';
+
 const mapState = () => ({ message: 'Log in' });
 
-const mapDispatch = { login: loginAndGoToUser };
-// // equivalent to:
-// const mapDispatch = (dispatch) => {
-//   return {
-//     login: function (credentials) {
-//       dispatch(loginAndGoToUser(credentials));
-//     }
-//   };
-// };
+const mapDispatch = { login };
 
 export default connect(mapState, mapDispatch)(Login);
