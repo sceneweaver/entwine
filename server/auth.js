@@ -125,7 +125,7 @@ passport.use(new (require('passport-local').Strategy)(
 auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
+auth.post('/login/local', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login', failureFlash: true}))
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider

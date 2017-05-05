@@ -10,8 +10,8 @@ import UserDetail from './components/User/UserDetail';
 import StoryList from './components/Story/StoryList';
 import StoryDetail from './components/Story/StoryDetail';
 import Editor from './components/Editor'
-import { fetchUsers } from './redux/users';
-import { fetchStories, fetchStory } from './redux/stories';
+// import { fetchUsers } from './redux/users';
+import { fetchStories, fetchStory } from './reducers-auther/stories';
 // import { retrieveLoggedInUser } from './redux/auth';
 
 /* -----------------    COMPONENT     ------------------ */

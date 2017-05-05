@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import ContentEditable from 'react-contenteditable';
-import { updateStory } from '../../redux/stories';
+import { updateStory } from '../../reducers-auther/stories';
 import { Link } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */

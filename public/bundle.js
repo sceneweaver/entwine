@@ -3285,137 +3285,7 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateStory = exports.addStory = exports.removeStory = exports.fetchStory = exports.fetchStories = undefined;
-exports.default = reducer;
-
-var _axios = __webpack_require__(40);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _users = __webpack_require__(32);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-/* -----------------    ACTIONS     ------------------ */
-
-var INITIALIZE = 'INITIALIZE_STORIES';
-var CREATE = 'CREATE_STORY';
-var UPDATE = 'UPDATE_STORY';
-var REMOVE = 'REMOVE_STORY';
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-var init = function init(stories) {
-  return { type: INITIALIZE, stories: stories };
-};
-var create = function create(story) {
-  return { type: CREATE, story: story };
-};
-var remove = function remove(id) {
-  return { type: REMOVE, id: id };
-};
-var update = function update(story) {
-  return { type: UPDATE, story: story };
-};
-
-/* ------------       REDUCERS     ------------------ */
-
-function reducer() {
-  var stories = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-
-    case INITIALIZE:
-      return action.stories;
-
-    case CREATE:
-      return [action.story].concat(_toConsumableArray(stories));
-
-    case REMOVE:
-      return stories.filter(function (story) {
-        return story.id !== action.id;
-      });
-
-    case _users.REMOVE:
-      return stories.filter(function (story) {
-        return story.author_id !== action.id;
-      });
-
-    case UPDATE:
-      return stories.map(function (story) {
-        return action.story.id === story.id ? action.story : story;
-      });
-
-    default:
-      return stories;
-  }
-}
-
-/* ------------       DISPATCHERS     ------------------ */
-
-var fetchStories = exports.fetchStories = function fetchStories() {
-  return function (dispatch) {
-    _axios2.default.get('/api/stories').then(function (res) {
-      return dispatch(init(res.data));
-    }).catch(function (err) {
-      return console.error('Fetching stories unsuccessful', err);
-    });
-  };
-};
-
-var fetchStory = exports.fetchStory = function fetchStory(id) {
-  return function (dispatch) {
-    _axios2.default.get('/api/stories/' + id).then(function (res) {
-      return dispatch(update(res.data));
-    }).catch(function (err) {
-      return console.error('Fetching story unsuccessful', err);
-    });
-  };
-};
-
-// optimistic
-var removeStory = exports.removeStory = function removeStory(id) {
-  return function (dispatch) {
-    dispatch(remove(id));
-    _axios2.default.delete('/api/stories/' + id).catch(function (err) {
-      return console.error('Removing story: ' + id + ' unsuccessful', err);
-    });
-  };
-};
-
-var addStory = exports.addStory = function addStory(story) {
-  return function (dispatch) {
-    _axios2.default.post('/api/stories', story).then(function (res) {
-      return dispatch(create(res.data));
-    }).catch(function (err) {
-      return console.error('Creating story: ' + story + ' unsuccessful', err);
-    });
-  };
-};
-
-var updateStory = exports.updateStory = function updateStory(id, story) {
-  return function (dispatch) {
-    _axios2.default.put('/api/stories/' + id, story).then(function (res) {
-      return dispatch(update(res.data));
-    }).catch(function (err) {
-      return console.error('Updating story: ' + story + ' unsuccessful', err);
-    });
-  };
-};
-
-/***/ }),
+/* 25 */,
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4192,120 +4062,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateUser = exports.addUser = exports.removeUser = exports.fetchUsers = exports.create = exports.REMOVE = undefined;
-exports.default = reducer;
-
-var _axios = __webpack_require__(40);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-/* -----------------    ACTIONS     ------------------ */
-
-var INITIALIZE = 'INITIALIZE_USERS';
-var CREATE = 'CREATE_USER';
-var REMOVE = exports.REMOVE = 'REMOVE_USER';
-var UPDATE = 'UPDATE_USER';
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-var init = function init(users) {
-  return { type: INITIALIZE, users: users };
-};
-var create = exports.create = function create(user) {
-  return { type: CREATE, user: user };
-};
-var remove = function remove(id) {
-  return { type: REMOVE, id: id };
-};
-var update = function update(user) {
-  return { type: UPDATE, user: user };
-};
-
-/* ------------       REDUCER     ------------------ */
-
-function reducer() {
-  var users = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-
-    case INITIALIZE:
-      return action.users;
-
-    case CREATE:
-      return [action.user].concat(_toConsumableArray(users));
-
-    case REMOVE:
-      return users.filter(function (user) {
-        return user.id !== action.id;
-      });
-
-    case UPDATE:
-      return users.map(function (user) {
-        return action.user.id === user.id ? action.user : user;
-      });
-
-    default:
-      return users;
-  }
-}
-
-/* ------------       DISPATCHERS     ------------------ */
-
-var fetchUsers = exports.fetchUsers = function fetchUsers() {
-  return function (dispatch) {
-    _axios2.default.get('/api/users').then(function (res) {
-      return dispatch(init(res.data));
-    }).catch(function (err) {
-      return dispatch(init([]));
-    });
-  };
-};
-
-// optimistic
-var removeUser = exports.removeUser = function removeUser(id) {
-  return function (dispatch) {
-    dispatch(remove(id));
-    _axios2.default.delete('/api/users/' + id).catch(function (err) {
-      return console.error('Removing user: ' + id + ' unsuccesful', err);
-    });
-  };
-};
-
-var addUser = exports.addUser = function addUser(user) {
-  return function (dispatch) {
-    _axios2.default.post('/api/users', user).then(function (res) {
-      return dispatch(create(res.data));
-    }).catch(function (err) {
-      return console.error('Creating user: ' + user + ' unsuccesful', err);
-    });
-  };
-};
-
-var updateUser = exports.updateUser = function updateUser(id, user) {
-  return function (dispatch) {
-    _axios2.default.put('/api/users/' + id, user).then(function (res) {
-      return dispatch(update(res.data));
-    }).catch(function (err) {
-      return console.error('Updating user: ' + user + ' unsuccesful', err);
-    });
-  };
-};
-
-/***/ }),
+/* 32 */,
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9615,7 +9372,7 @@ var _reactRedux = __webpack_require__(12);
 
 var _reactRouter = __webpack_require__(15);
 
-var _stories = __webpack_require__(25);
+var _stories = __webpack_require__(337);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9733,9 +9490,9 @@ var _reactRouter = __webpack_require__(15);
 
 var _reactRedux = __webpack_require__(12);
 
-var _users = __webpack_require__(32);
+var _users = __webpack_require__(336);
 
-var _stories = __webpack_require__(25);
+var _stories = __webpack_require__(337);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31324,9 +31081,7 @@ var _Editor = __webpack_require__(159);
 
 var _Editor2 = _interopRequireDefault(_Editor);
 
-var _users = __webpack_require__(32);
-
-var _stories = __webpack_require__(25);
+var _stories = __webpack_require__(337);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31357,6 +31112,7 @@ var Routes = function Routes(_ref) {
 
 /* -----------------    CONTAINER     ------------------ */
 
+// import { fetchUsers } from './redux/users';
 var mapProps = null;
 
 var mapDispatch = function mapDispatch(dispatch) {
@@ -33067,7 +32823,7 @@ var _reactContenteditable = __webpack_require__(210);
 
 var _reactContenteditable2 = _interopRequireDefault(_reactContenteditable);
 
-var _stories = __webpack_require__(25);
+var _stories = __webpack_require__(337);
 
 var _reactRouter = __webpack_require__(15);
 
@@ -33266,7 +33022,7 @@ var _StoryItem = __webpack_require__(87);
 
 var _StoryItem2 = _interopRequireDefault(_StoryItem);
 
-var _stories = __webpack_require__(25);
+var _stories = __webpack_require__(337);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33530,7 +33286,7 @@ var _StoryItem = __webpack_require__(87);
 
 var _StoryItem2 = _interopRequireDefault(_StoryItem);
 
-var _stories = __webpack_require__(25);
+var _stories = __webpack_require__(337);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33670,7 +33426,7 @@ var _reactRouter = __webpack_require__(15);
 
 var _reactRedux = __webpack_require__(12);
 
-var _users = __webpack_require__(32);
+var _users = __webpack_require__(336);
 
 var _UserItem = __webpack_require__(88);
 
@@ -50719,6 +50475,260 @@ _reactDom2.default.render(_react2.default.createElement(
   { store: _store2.default },
   _react2.default.createElement(_Routes2.default, null)
 ), document.getElementById('main'));
+
+/***/ }),
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.updateUser = exports.addUser = exports.removeUser = exports.fetchUsers = exports.create = exports.REMOVE = undefined;
+exports.default = reducer;
+
+var _axios = __webpack_require__(40);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/* -----------------    ACTIONS     ------------------ */
+
+var INITIALIZE = 'INITIALIZE_USERS';
+var CREATE = 'CREATE_USER';
+var REMOVE = exports.REMOVE = 'REMOVE_USER';
+var UPDATE = 'UPDATE_USER';
+
+/* ------------   ACTION CREATORS     ------------------ */
+
+var init = function init(users) {
+  return { type: INITIALIZE, users: users };
+};
+var create = exports.create = function create(user) {
+  return { type: CREATE, user: user };
+};
+var remove = function remove(id) {
+  return { type: REMOVE, id: id };
+};
+var update = function update(user) {
+  return { type: UPDATE, user: user };
+};
+
+/* ------------       REDUCER     ------------------ */
+
+function reducer() {
+  var users = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+
+    case INITIALIZE:
+      return action.users;
+
+    case CREATE:
+      return [action.user].concat(_toConsumableArray(users));
+
+    case REMOVE:
+      return users.filter(function (user) {
+        return user.id !== action.id;
+      });
+
+    case UPDATE:
+      return users.map(function (user) {
+        return action.user.id === user.id ? action.user : user;
+      });
+
+    default:
+      return users;
+  }
+}
+
+/* ------------       DISPATCHERS     ------------------ */
+
+var fetchUsers = exports.fetchUsers = function fetchUsers() {
+  return function (dispatch) {
+    _axios2.default.get('/api/users').then(function (res) {
+      return dispatch(init(res.data));
+    }).catch(function (err) {
+      return dispatch(init([]));
+    });
+  };
+};
+
+// optimistic
+var removeUser = exports.removeUser = function removeUser(id) {
+  return function (dispatch) {
+    dispatch(remove(id));
+    _axios2.default.delete('/api/users/' + id).catch(function (err) {
+      return console.error('Removing user: ' + id + ' unsuccesful', err);
+    });
+  };
+};
+
+var addUser = exports.addUser = function addUser(user) {
+  return function (dispatch) {
+    _axios2.default.post('/api/users', user).then(function (res) {
+      return dispatch(create(res.data));
+    }).catch(function (err) {
+      return console.error('Creating user: ' + user + ' unsuccesful', err);
+    });
+  };
+};
+
+var updateUser = exports.updateUser = function updateUser(id, user) {
+  return function (dispatch) {
+    _axios2.default.put('/api/users/' + id, user).then(function (res) {
+      return dispatch(update(res.data));
+    }).catch(function (err) {
+      return console.error('Updating user: ' + user + ' unsuccesful', err);
+    });
+  };
+};
+
+/***/ }),
+/* 337 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.updateStory = exports.addStory = exports.removeStory = exports.fetchStory = exports.fetchStories = undefined;
+exports.default = reducer;
+
+var _axios = __webpack_require__(40);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _users = __webpack_require__(336);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/* -----------------    ACTIONS     ------------------ */
+
+var INITIALIZE = 'INITIALIZE_STORIES';
+var CREATE = 'CREATE_STORY';
+var UPDATE = 'UPDATE_STORY';
+var REMOVE = 'REMOVE_STORY';
+
+/* ------------   ACTION CREATORS     ------------------ */
+
+var init = function init(stories) {
+  return { type: INITIALIZE, stories: stories };
+};
+var create = function create(story) {
+  return { type: CREATE, story: story };
+};
+var remove = function remove(id) {
+  return { type: REMOVE, id: id };
+};
+var update = function update(story) {
+  return { type: UPDATE, story: story };
+};
+
+/* ------------       REDUCERS     ------------------ */
+
+function reducer() {
+  var stories = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+
+    case INITIALIZE:
+      return action.stories;
+
+    case CREATE:
+      return [action.story].concat(_toConsumableArray(stories));
+
+    case REMOVE:
+      return stories.filter(function (story) {
+        return story.id !== action.id;
+      });
+
+    case _users.REMOVE:
+      return stories.filter(function (story) {
+        return story.author_id !== action.id;
+      });
+
+    case UPDATE:
+      return stories.map(function (story) {
+        return action.story.id === story.id ? action.story : story;
+      });
+
+    default:
+      return stories;
+  }
+}
+
+/* ------------       DISPATCHERS     ------------------ */
+
+var fetchStories = exports.fetchStories = function fetchStories() {
+  return function (dispatch) {
+    _axios2.default.get('/api/stories').then(function (res) {
+      return dispatch(init(res.data));
+    }).catch(function (err) {
+      return console.error('Fetching stories unsuccessful', err);
+    });
+  };
+};
+
+var fetchStory = exports.fetchStory = function fetchStory(id) {
+  return function (dispatch) {
+    _axios2.default.get('/api/stories/' + id).then(function (res) {
+      return dispatch(update(res.data));
+    }).catch(function (err) {
+      return console.error('Fetching story unsuccessful', err);
+    });
+  };
+};
+
+// optimistic
+var removeStory = exports.removeStory = function removeStory(id) {
+  return function (dispatch) {
+    dispatch(remove(id));
+    _axios2.default.delete('/api/stories/' + id).catch(function (err) {
+      return console.error('Removing story: ' + id + ' unsuccessful', err);
+    });
+  };
+};
+
+var addStory = exports.addStory = function addStory(story) {
+  return function (dispatch) {
+    _axios2.default.post('/api/stories', story).then(function (res) {
+      return dispatch(create(res.data));
+    }).catch(function (err) {
+      return console.error('Creating story: ' + story + ' unsuccessful', err);
+    });
+  };
+};
+
+var updateStory = exports.updateStory = function updateStory(id, story) {
+  return function (dispatch) {
+    _axios2.default.put('/api/stories/' + id, story).then(function (res) {
+      return dispatch(update(res.data));
+    }).catch(function (err) {
+      return console.error('Updating story: ' + story + ' unsuccessful', err);
+    });
+  };
+};
 
 /***/ })
 /******/ ]);

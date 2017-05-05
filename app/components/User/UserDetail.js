@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import UserItem from './UserItem';
 import StoryItem from '../Story/StoryItem';
-import { addStory } from '../../redux/stories';
+import { addStory } from '../../reducers-auther/stories';
 
 /* -----------------    COMPONENT     ------------------ */
 

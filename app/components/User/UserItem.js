@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { removeUser } from '../../redux/users';
-import { removeStory } from '../../redux/stories';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -60,6 +57,10 @@ class UserItem extends React.Component {
 }
 
 /* -----------------    CONTAINER     ------------------ */
+
+import { connect } from 'react-redux';
+import { removeUser } from '../../reducers-auther/users';
+import { removeStory } from '../../reducers-auther/stories';
 
 const mapState = ({ stories, currentUser }) => ({ stories, currentUser });
 
