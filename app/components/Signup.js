@@ -1,6 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { signupAndGoToUser } from '../reducers/auth';
+import { browserHistory } from 'react-router'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -18,7 +17,24 @@ class Signup extends React.Component {
         <div className="buffer local">
           <form onSubmit={this.onSignupSubmit}>
             <div className="form-group">
-              <label>email</label>
+              <label>Username</label>
+              <input
+                name="username"
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                name="password"
+                type="password"
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Email</label>
               <input
                 name="email"
                 type="email"
@@ -27,10 +43,9 @@ class Signup extends React.Component {
               />
             </div>
             <div className="form-group">
-              <label>password</label>
+              <label>Display Name (optional)</label>
               <input
-                name="password"
-                type="password"
+                name="display_name"
                 className="form-control"
                 required
               />
@@ -79,25 +94,23 @@ class Signup extends React.Component {
   onSignupSubmit(event) {
     event.preventDefault();
     const credentials = {
+      username: event.target.username.value,
+      password: event.target.password.value,
       email: event.target.email.value,
-      password: event.target.password.value
+      display_name: event.target.display_name.value,
     };
     this.props.signup(credentials);
+    browserHistory.push('/');
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
+import { connect } from 'react-redux';
+import { signupAndGoToUser } from '../reducers/auth';
+
 const mapState = () => ({ message: 'Sign up' });
 
 const mapDispatch = { signup: signupAndGoToUser };
-// // equivalent to:
-// const mapDispatch = (dispatch) => {
-//   return {
-//     signup: function (credentials) {
-//       dispatch(signupAndGoToUser(credentials));
-//     }
-//   };
-// };
 
 export default connect(mapState, mapDispatch)(Signup);

@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
-import { logout as logOutUser } from '../reducers/auth';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -37,11 +35,11 @@ class Navbar extends React.Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/stories">All Stories</Link>
+                <Link to="/stories" activeClassName="active">All Stories</Link>
               </li>
-              {/*<li>
-                <Link to="/">Create Story</Link>
-              </li>*/}
+              <li>
+                <Link to="/editor">Create New Story</Link>
+              </li>
             </ul>
             { this.props.currentUser ? this.renderLogout() : this.renderLoginSignup() }
           </div>
@@ -64,14 +62,14 @@ class Navbar extends React.Component {
   }
 
   renderLogout() {
-    const name = this.props.currentUser.name || this.props.currentUser.email;
+    const name = this.props.currentUser.display_name || this.props.currentUser.email || 'OAuth User';
     return (
       <ul className="nav navbar-nav navbar-right">
         <li>
         <button
           className="navbar-btn btn btn-default"
           onClick={this.props.logout}>
-          logout {name}
+          Log Out {name}
         </button>
         </li>
       </ul>
@@ -81,13 +79,10 @@ class Navbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({currentUser}) => ({currentUser});
-// // equivalent to:
-// const mapState = state => {
-//   return {
-//     currentUser: state.currentUser
-//   };
-// };
+import { connect } from 'react-redux';
+import { logout as logOutUser } from '../reducers/auth';
+
+const mapState = ({ auth }) => ({ currentUser: auth });
 
 const mapDispatch = dispatch => ({
   logout: () => {

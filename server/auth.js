@@ -95,24 +95,24 @@ passport.deserializeUser(
 
 // require.('passport-local').Strategy => a function we can use as a constructor, that takes in a callback
 passport.use(new (require('passport-local').Strategy)(
-  (email, password, done) => {
-    debug('will authenticate user(email: "%s")', email)
+  (username, password, done) => {
+    debug('will authenticate user(username: "%s")', username)
     User.findOne({
-      where: {email},
+      where: {username},
       attributes: {include: ['password_digest']}
     })
       .then(user => {
         if (!user) {
-          debug('authenticate user(email: "%s") did fail: no such user', email)
+          debug('authenticate user(username: "%s") did fail: no such user', username)
           return done(null, false, { message: 'Login incorrect' })
         }
         return user.authenticate(password)
           .then(ok => {
             if (!ok) {
-              debug('authenticate user(email: "%s") did fail: bad password')
+              debug('authenticate user(username: "%s") did fail: bad password')
               return done(null, false, { message: 'Login incorrect' })
             }
-            debug('authenticate user(email: "%s") did ok: user.id=%d', email, user.id)
+            debug('authenticate user(username: "%s") did ok: user.id=%d', username, user.id)
             done(null, user)
           })
       })
@@ -136,6 +136,18 @@ auth.get('/login/:strategy', (req, res, next) =>
     // Specify other config here
   })(req, res, next)
 )
+
+auth.post('/signup', (req, res, next) => {
+  User.create(req.body)
+  .then(user => {
+    req.logIn(user, function (err) {
+          if (err) return next(err);
+          res.json(user);
+        });
+      })
+  .then(user => res.sendStatus(200))
+  .catch(next)
+});
 
 auth.post('/logout', (req, res) => {
   req.logout()
