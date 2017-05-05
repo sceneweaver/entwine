@@ -12,11 +12,12 @@ class Editor extends Component {
     super(props);
     this.state = {
       textBody: '',
-      nouns: []
+      nouns: [],
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
     this.onGenerateActors = this.onGenerateActors.bind(this);
+    this.handleActorsChange = this.handleActorsChange.bind(this);
   }
   onSubmit(event) {
     event.preventDefault();
@@ -25,23 +26,41 @@ class Editor extends Component {
       sceneText: this.state.textBody,
       actors: this.props.nouns
     })
-    .then(newStory => {
-      browserHistory.push(`/stories/${newStory.data.id}`)
-    })
+      .then(newStory => {
+        browserHistory.push(`/stories/${newStory.data.id}`)
+      })
   }
   onSceneTextChange(event) {
     this.setState({ textBody: event.target.value });
   }
   onGenerateActors(event) {
     event.preventDefault();
-    axios.post('/api/compromise/nouns', {text: this.state.textBody})
-    .then(nouns => {
-      this.setState({
-        nouns: nouns.data
+    axios.post('/api/compromise/nouns', { text: this.state.textBody })
+      .then(nouns => {
+        this.setState({
+          nouns: nouns.data
+        })
       })
+  }
+  handleActorsChange(event) {
+    const eventNameArray = event.target.name.split('-')
+      , noun = eventNameArray[0]
+      , type = eventNameArray[1]
+      , actors = this.state.nouns;
+    let index
+      , actor;
+    actors.forEach((a, i) => {
+      if (a.title === noun) {
+        index = i;
+        actor = a;
+      }
     })
+    actor[type] = event.target.value;
+    const newActors = actors.slice(0, index).concat(actor).concat(actors.slice(index + 1));
+    this.setState({ nouns: newActors });
   }
   render() {
+    console.log("this.state on Editor", this.state);
     return (
       <div id="storyEditor">
         <form onSubmit={this.onSubmit}>
@@ -86,7 +105,7 @@ class Editor extends Component {
                   Generate Actors
                 </button>
               </div>
-              <EditorActors actors={this.state.nouns} />
+              <EditorActors actors={this.state.nouns} handleFormChange={this.handleActorsChange} />
             </div>
           </div>
         </form>
