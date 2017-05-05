@@ -3,6 +3,7 @@ import { fetchNouns, setNouns } from '../reducers/analyze';
 import {addStory} from '../reducers/setText';
 import {browserHistory} from 'react-router';
 import Actors from './Actors';
+import axios from 'axios';
 /* ----- COMPONENT ----- */
 
 class Editor extends Component {
@@ -27,6 +28,7 @@ class Editor extends Component {
     // create and/or associate actors to scenes in the db
   onSubmit(event) {
     event.preventDefault();
+    console.log('here')
     axios.post('/api/stories', {title: event.target.title.value})
     .then(newStory => {
       return newStory.setScene({paragraphs: [this.state.textBody]})
@@ -40,7 +42,7 @@ class Editor extends Component {
   }
 
   onSceneTextChange (event) {
-    this.setState({textBody: event.target.fullStory.value});
+    this.setState({textBody: event.target.value});
   }
 
   onGenerateActors (event) {
@@ -57,6 +59,7 @@ class Editor extends Component {
             <textarea rows="100" cols="78" type="text" className="form-control" placeholder="Enter story here" name="fullStory" onChange={this.onSceneTextChange} />
           </div>
           <button className="btn btn-default" onClick={this.onGenerateActors} >Generate Actors</button>
+          <button type="submit">Submit Scene</button>
         </form>
         <Actors />
       </div>
@@ -70,7 +73,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (store, ownProps) => {
   return {
-    nouns: this.store.analyze.nouns,
+    nouns: store.analyze.nouns,
   };
 };
 
