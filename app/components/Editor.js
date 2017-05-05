@@ -4,6 +4,8 @@ import {addStory} from '../reducers/setText';
 import {browserHistory} from 'react-router';
 import Actors from './Actors';
 import axios from 'axios';
+import querystring from 'querystring';
+
 /* ----- COMPONENT ----- */
 
 class Editor extends Component {
@@ -16,20 +18,22 @@ class Editor extends Component {
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
     this.onGenerateActors = this.onGenerateActors.bind(this);
   }
+
+  // TO DO: figure out how to create multiple actors and do `setScenes` for each...
   onSubmit(event) {
     event.preventDefault();
-    console.log('here')
-    axios.post('/api/stories', {title: event.target.title.value})
+    axios.post('/api/stories', {title: event.target.storyTitle.value})
     .then(newStory => {
-      return newStory.setScene({paragraphs: [this.state.textBody]})
-      .then(newScene => {
-        return newScene.data
-      })
+      const storyId = newStory.data.id;
+      return axios.post(`/api/stories/${storyId}/scenes`, {paragraphs: this.state.textBody})
     })
     .then(newScene => {
-      newScene.setActors(this.props.nouns)
+      // unsure why a newScene isn't returned to this .then, but the log does say a post request to /api/stories/:storyId/scenes was successful...
+      const sceneId = newScene.data.id;
+      axios.post(`/api/actors/${sceneId}/bulk`, {actors: this.props.nouns})
     })
   }
+
   onSceneTextChange (event) {
     this.setState({textBody: event.target.value});
   }
