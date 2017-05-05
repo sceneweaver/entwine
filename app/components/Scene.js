@@ -2,22 +2,18 @@ import React, { Component } from 'react'
 
 /* ----- COMPONENT ----- */
 
-export default class Scene extends Component {
+class Scene extends Component {
   render() {
-    console.log(this.props.dummyScene.actors)
+    console.log(this.props)
     return (
       <div className="container">
         <div className="row">
-          <h1>{this.props.dummyScene.title}</h1>
-          <h2>{this.props.dummyScene.subhead}</h2>
-        </div>
-        <div className="row">
           <div className="col-md-4 textBlock">
-            {this.props.dummyScene.text}
+            {this.props.text}
           </div>
           <div className="col-md-8 actorsBlock">
-            {this.props.dummyScene.actors ?
-              this.props.dummyScene.actors.map(actor => (
+            {this.props.actors ?
+              this.props.actors.map(actor => (
                 <div key={actor.id}>
                   {/* TODO: will want to do this as bootstrap cards */}
                   <div><img src={actor.image} /></div>
@@ -35,15 +31,11 @@ export default class Scene extends Component {
 
 /* ----- CONTAINER ----- */
 
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-// const mapStateToProps = (store, ownProps) => {
-//   return {
-//     title: store.scene.title,
-//     subhead: store.scene.subhead,
-//     text: store.scene.text,
-//     actors: store.scene.actors
-//   }
-// }
+const mapStateToProps = store => ({
+  text: store.allState.currScene.text,
+  actors: store.allState.currScene.actors
+});
 
-// export default connect(mapStateToProps)(Scene)
+export default connect(mapStateToProps)(Scene);

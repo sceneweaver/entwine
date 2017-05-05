@@ -5,28 +5,22 @@ import Root from './components/Root';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import UserList from './components/User/UserList';
-import UserDetail from './components/User/UserDetail';
-import StoryList from './components/Story/StoryList';
-import StoryDetail from './components/Story/StoryDetail';
+
+
 import Editor from './components/Editor';
+import Story from './components/Story';
 import CheckActors from './components/CheckActors';
-import { fetchUsers } from './redux/users';
-import { fetchStories, fetchStory } from './redux/stories';
-import { retrieveLoggedInUser } from './redux/auth';
+
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Routes = ({ fetchInitialData, onStoryEnter }) => (
+const Routes = ({ onStoryEnter }) => (
   <Router history={browserHistory}>
-    <Route path="/" component={Root} onEnter={fetchInitialData}>
+    <Route path="/" component={Root} >
       <IndexRoute component={Home} />
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
-      <Route path="users" component={UserList} />
-      <Route path="users/:id" component={UserDetail} />
-      <Route path="stories" component={StoryList} />
-      <Route path="stories/:id" component={StoryDetail} onEnter={onStoryEnter} />
+      <Route path="stories/:storyId" component={Story} onEnter={onStoryEnter} />
       <Route path="editor" component={Editor} />
       <Route path="checkactors" component={CheckActors} />
       <Route path="*" component={Home} />
@@ -36,17 +30,18 @@ const Routes = ({ fetchInitialData, onStoryEnter }) => (
 
 /* -----------------    CONTAINER     ------------------ */
 
+import { setFakeState } from './reducers/allState';
+
 const mapProps = null;
 
 const mapDispatch = dispatch => ({
-  fetchInitialData: () => {
-    dispatch(retrieveLoggedInUser());
-    dispatch(fetchUsers());
-    dispatch(fetchStories());
-  },
-  onStoryEnter: (nextRouterState) => {
-    const storyId = nextRouterState.params.id;
-    dispatch(fetchStory(storyId));
+  // fetchInitialData: () => {
+  //   dispatch(retrieveLoggedInUser());
+  //   dispatch(fetchUsers());
+  //   dispatch(fetchStories());
+  // },
+  onStoryEnter: () => {
+    dispatch(setFakeState());
   }
 });
 
