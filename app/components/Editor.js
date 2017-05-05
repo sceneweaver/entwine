@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { fetchNouns, setNouns } from '../reducers/analyze';
-import {addStory} from '../reducers/setText';
-import {browserHistory} from 'react-router';
-import Actors from './Actors';
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 import querystring from 'querystring';
+
+import Actors from './Actors';
 
 /* ----- COMPONENT ----- */
 
@@ -18,41 +17,75 @@ class Editor extends Component {
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
     this.onGenerateActors = this.onGenerateActors.bind(this);
   }
-
-  // TO DO: figure out how to create multiple actors and do `setScenes` for each...
   onSubmit(event) {
     event.preventDefault();
-    axios.post('/api/stories', {title: event.target.storyTitle.value})
-    .then(newStory => {
-      const storyId = newStory.data.id;
-      return axios.post(`/api/stories/${storyId}/scenes`, {paragraphs: this.state.textBody})
-    })
-    .then(newScene => {
-      // unsure why a newScene isn't returned to this .then, but the log does say a post request to /api/stories/:storyId/scenes was successful...
-      const sceneId = newScene.data.id;
-      axios.post(`/api/actors/${sceneId}/bulk`, {actors: this.props.nouns})
-    })
+    axios.post('/api/stories', { title: event.target.storyTitle.value })
+      .then(newStory => {
+        const storyId = newStory.data.id;
+        return axios.post(`/api/stories/${storyId}/scenes`, { paragraphs: this.state.textBody })
+      })
+      .then(newScene => {
+        const sceneId = newScene.data.id;
+        axios.post(`/api/actors/${sceneId}/bulk`, { actors: this.props.nouns });
+      })
   }
-
-  onSceneTextChange (event) {
-    this.setState({textBody: event.target.value});
+  onSceneTextChange(event) {
+    this.setState({ textBody: event.target.value });
   }
-  onGenerateActors (event) {
+  onGenerateActors(event) {
     event.preventDefault();
+    console.log("this.state.textBody onGenerate", this.state.textBody);
     this.props.parseNouns(this.state.textBody);
   }
   render() {
     return (
-      <div className="storyInput">
+      <div id="storyEditor">
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <input type="text" placeholder="Enter Story Title Here" name="storyTitle"/>
-            <textarea rows="100" cols="78" type="text" className="form-control" placeholder="Enter story here" name="fullStory" onChange={this.onSceneTextChange} />
+          <div className="row titleRow">
+            <div className="col-md-9">
+              <input
+                name="storyTitle"
+                type="text"
+                placeholder="Story Title"
+                className="titleInput"
+              />
+            </div>
+            <div className="col-md-3">
+              <div className="buttonContainer">
+                <button
+                  className="btn btn-success"
+                  type="submit"
+                >
+                  Publish My Story
+                </button>
+              </div>
+            </div>
           </div>
-          <button className="btn btn-default" onClick={this.onGenerateActors} >Generate Actors</button>
-          <button type="submit">Submit Scene</button>
+          <div className="row">
+            <div className="form-group col-md-6">
+              <textarea
+                rows="10"
+                cols="78"
+                type="text"
+                className="form-control"
+                placeholder="Scene"
+                name="fullStory"
+                onChange={this.onSceneTextChange}
+              />
+            </div>
+            <div className="col-md-6">
+              <div className="buttonContainer flex-container">
+                <button
+                  className="btn btn-default"
+                  onClick={this.onGenerateActors}
+                >
+                  Generate Actors
+                </button>
+              </div>
+              <Actors />
+            </div>
+          </div>
         </form>
-        <Actors />
       </div>
     )
   }
@@ -60,22 +93,24 @@ class Editor extends Component {
 
 /* ----- CONTAINER ----- */
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { fetchNouns, setNouns } from '../reducers/analyze';
+import { addStory } from '../reducers/setText';
 
 const mapStateToProps = (store, ownProps) => {
   return {
-    nouns: store.analyze.nouns,
+    nouns: store.analyze.nouns
   };
 };
 
 function mapDispatchToProps(dispatch) {
-    return {
-      parseNouns: (input) => {
-        dispatch(fetchNouns(input));
-      },
-      setStory: (input) => {
-        dispatch(addStory(input));
-      }
+  return {
+    parseNouns: (input) => {
+      dispatch(fetchNouns(input));
+    },
+    setStory: (input) => {
+      dispatch(addStory(input));
+    }
   };
 }
 

@@ -11,12 +11,10 @@ class Story extends Component {
   }
   getNewScene(evt) {
     evt.preventDefault();
-    console.log("clicked button at position: ", evt.target.name);
     const newScene = this.props.scenes[evt.target.name - 1];
     this.props.setCurrScene(newScene);
   }
   render() {
-    console.log("this.props @ Story component", this.props);
     return (
       <div>
         <h1>{this.props.title}</h1>

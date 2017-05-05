@@ -1,4 +1,5 @@
 import axios from 'axios';
+import querystring from 'querystring';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -10,17 +11,16 @@ const getNouns = nouns => ({ type: GET_NOUNS, nouns })
 
 /* ------------       REDUCERS     ------------------ */
 
-export default function reducer (text = {
+export default function reducer (nouns = {
   nouns: []
 }, action) {
-  const newState = Object.assign({}, text)
-
+  const newState = Object.assign({}, nouns)
   switch (action.type) {
     case GET_NOUNS:
       newState.nouns = action.nouns;
       break;
     default:
-      return text;
+      return nouns;
   }
 
   return newState;
@@ -29,11 +29,11 @@ export default function reducer (text = {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchNouns = (text) => dispatch => {
-  axios.post(`/api/compromise/nouns`, {text})
+  return axios.post('/api/compromise/nouns', {text})
        .then(res => dispatch(getNouns(res.data)))
-       .catch(err => console.error(`Fetching story ${id} unsuccessful`, err));
+       .catch(err => console.error(err));
 };
 
 export const setNouns = (nounsArr) => dispatch => {
-    axios.post('api/actors/bulk', {nounsArr})
+  axios.post('api/actors/bulk', {nounsArr})
 }
