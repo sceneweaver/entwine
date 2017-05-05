@@ -15374,6 +15374,7 @@ var Editor = function (_Component) {
     _this.onGenerateActors = _this.onGenerateActors.bind(_this);
     return _this;
   }
+
   // TO DO: figure out how to create multiple actors and do `setScenes` for each...
 
 
@@ -15383,31 +15384,13 @@ var Editor = function (_Component) {
       var _this2 = this;
 
       event.preventDefault();
-      _axios2.default.post('/api/stories', _querystring2.default.stringify({
-        title: event.target.storyTitle.value
-      }), {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }).then(function (newStory) {
+      _axios2.default.post('/api/stories', { title: event.target.storyTitle.value }).then(function (newStory) {
         var storyId = newStory.data.id;
-        _axios2.default.post('/api/stories/' + storyId + '/scenes', _querystring2.default.stringify({
-          paragraphs: _this2.state.textBody
-        }), {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        });
+        return _axios2.default.post('/api/stories/' + storyId + '/scenes', { paragraphs: _this2.state.textBody });
       }).then(function (newScene) {
         // unsure why a newScene isn't returned to this .then, but the log does say a post request to /api/stories/:storyId/scenes was successful...
         var sceneId = newScene.data.id;
-        _axios2.default.post('/api/actors/' + storyId + '/bulk', _querystring2.default.stringify({
-          actors: _this2.props.nouns
-        }), {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        });
+        _axios2.default.post('/api/actors/' + sceneId + '/bulk', { actors: _this2.props.nouns });
       }).catch(console.error);
     }
   }, {

@@ -38,14 +38,7 @@ router.get('/:storyId', function (req, res, next) {
 });
 // create a story
 router.post('/', (req, res, next) => {
-  Story.create({
-    title: req.body.title,
-    // scenes: [{paragraphs: [req.body.textBody]}]
-  }, {
-    // include: [{
-    //   model: db.model('scenes'), as: 'scenes'
-    // }]
-  })
+  Story.create({title: req.body.title})
   .then(story => {
     res.status(201).json(story);
   })

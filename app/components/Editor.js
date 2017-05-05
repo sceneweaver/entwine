@@ -19,38 +19,19 @@ class Editor extends Component {
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
     this.onGenerateActors = this.onGenerateActors.bind(this);
   }
+
   // TO DO: figure out how to create multiple actors and do `setScenes` for each...
   onSubmit(event) {
     event.preventDefault();
-    axios.post('/api/stories', querystring.stringify({
-            title: event.target.storyTitle.value,
-            // textBody: this.state.textBody,
-            // actors: this.props.nouns
-    }), {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
+    axios.post('/api/stories', {title: event.target.storyTitle.value})
     .then(newStory => {
       const storyId = newStory.data.id;
-      axios.post(`/api/stories/${storyId}/scenes`, querystring.stringify({
-            paragraphs: this.state.textBody
-      }), {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
+      return axios.post(`/api/stories/${storyId}/scenes`, {paragraphs: this.state.textBody})
     })
     .then(newScene => {
       // unsure why a newScene isn't returned to this .then, but the log does say a post request to /api/stories/:storyId/scenes was successful...
       const sceneId = newScene.data.id;
-      axios.post(`/api/actors/${storyId}/bulk`, querystring.stringify({
-            actors: this.props.nouns
-      }), {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
+      axios.post(`/api/actors/${sceneId}/bulk`, {actors: this.props.nouns})
     })
     .catch(console.error)
   };
