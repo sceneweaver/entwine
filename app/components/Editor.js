@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { fetchNouns, setNouns } from '../reducers/analyze';
-import { addStory } from '../reducers/setText';
 import { browserHistory } from 'react-router';
-import Actors from './Actors';
 import axios from 'axios';
 import querystring from 'querystring';
+
+import Actors from './Actors';
 
 /* ----- COMPONENT ----- */
 
@@ -27,7 +26,7 @@ class Editor extends Component {
       })
       .then(newScene => {
         const sceneId = newScene.data.id;
-        axios.post(`/api/actors/${sceneId}/bulk`, { actors: this.props.nouns })
+        axios.post(`/api/actors/${sceneId}/bulk`, { actors: this.props.nouns });
       })
   }
   onSceneTextChange(event) {
@@ -35,6 +34,7 @@ class Editor extends Component {
   }
   onGenerateActors(event) {
     event.preventDefault();
+    console.log("this.state.textBody onGenerate", this.state.textBody);
     this.props.parseNouns(this.state.textBody);
   }
   render() {
@@ -53,10 +53,10 @@ class Editor extends Component {
             <div className="col-md-3">
               <div className="buttonContainer">
                 <button
-                  className="btn btn-default"
+                  className="btn btn-success"
                   type="submit"
                 >
-                  Publish
+                  Publish My Story
                 </button>
               </div>
             </div>
@@ -80,12 +80,12 @@ class Editor extends Component {
                   onClick={this.onGenerateActors}
                 >
                   Generate Actors
-              </button>
+                </button>
               </div>
+              <Actors />
             </div>
           </div>
         </form>
-        <Actors />
       </div>
     )
   }
@@ -93,11 +93,13 @@ class Editor extends Component {
 
 /* ----- CONTAINER ----- */
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { fetchNouns, setNouns } from '../reducers/analyze';
+import { addStory } from '../reducers/setText';
 
 const mapStateToProps = (store, ownProps) => {
   return {
-    nouns: store.analyze.nouns,
+    nouns: store.analyze.nouns
   };
 };
 
