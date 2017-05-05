@@ -22,18 +22,17 @@ class Editor extends Component {
   }
 
   render() {
-    {
-      this.props.nouns.forEach(noun => {
-        return (
-          <div>
-
-          </div>
-        )
-      })
-    }
     return (
-      <div className="storyInput">
-
+      <div>
+        {
+          this.props.nouns.forEach(noun => {
+            return (
+              <div>
+                <h4>{noun.title}</h4>
+              </div>
+            )
+          })
+        }
       </div>
     )
   }
