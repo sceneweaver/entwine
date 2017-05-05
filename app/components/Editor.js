@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 import querystring from 'querystring';
 
-import Actors from './Actors';
+import EditorActors from './EditorActors';
 
 /* ----- COMPONENT ----- */
 
@@ -11,7 +11,8 @@ class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      textBody: ''
+      textBody: '',
+      nouns: []
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
@@ -34,9 +35,15 @@ class Editor extends Component {
   }
   onGenerateActors(event) {
     event.preventDefault();
-    this.props.parseNouns(this.state.textBody);
+    axios.post('/api/compromise/nouns', {text: this.state.textBody})
+    .then(nouns => {
+      this.setState({
+        nouns: nouns.data
+      })
+    })
   }
   render() {
+    console.log("this.state", this.state);
     return (
       <div id="storyEditor">
         <form onSubmit={this.onSubmit}>
@@ -81,7 +88,7 @@ class Editor extends Component {
                   Generate Actors
                 </button>
               </div>
-              <Actors />
+              <EditorActors actors={this.state.nouns} />
             </div>
           </div>
         </form>
