@@ -32,16 +32,18 @@ class Editor extends Component {
       }
     })
     .then(newStory => {
-      const storyId = newStory.id;
+      const storyId = newStory.data.id;
       axios.post(`/api/stories/${storyId}/scenes`, querystring.stringify({
-            paragraphs: [this.state.textBody]
+            paragraphs: this.state.textBody
       }), {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })
+    })
     .then(newScene => {
-      const sceneId = newScene.id;
+      // unsure why a newScene isn't returned to this .then, but the log does say a post request to /api/stories/:storyId/scenes was successful...
+      const sceneId = newScene.data.id;
       axios.post(`/api/actors/${storyId}/bulk`, querystring.stringify({
             actors: this.props.nouns
       }), {
@@ -49,8 +51,10 @@ class Editor extends Component {
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })
+    })
     .catch(console.error)
-  });
+  };
+
 
   onSceneTextChange (event) {
     this.setState({textBody: event.target.value});

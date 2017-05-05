@@ -15312,10 +15312,169 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 /* 159 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-throw new Error("Module build failed: SyntaxError: Unexpected token, expected ; (55:28)\n\n\u001b[0m \u001b[90m 53 | \u001b[39m  })\u001b[33m;\u001b[39m\n \u001b[90m 54 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 55 | \u001b[39m  onSceneTextChange (event) {\n \u001b[90m    | \u001b[39m                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 56 | \u001b[39m    \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msetState({textBody\u001b[33m:\u001b[39m event\u001b[33m.\u001b[39mtarget\u001b[33m.\u001b[39mvalue})\u001b[33m;\u001b[39m\n \u001b[90m 57 | \u001b[39m  }\n \u001b[90m 58 | \u001b[39m\u001b[0m\n");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _analyze = __webpack_require__(85);
+
+var _setText = __webpack_require__(170);
+
+var _reactRouter = __webpack_require__(48);
+
+var _Actors = __webpack_require__(158);
+
+var _Actors2 = _interopRequireDefault(_Actors);
+
+var _axios = __webpack_require__(39);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _querystring = __webpack_require__(332);
+
+var _querystring2 = _interopRequireDefault(_querystring);
+
+var _reactRedux = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/* ----- COMPONENT ----- */
+
+var Editor = function (_Component) {
+  _inherits(Editor, _Component);
+
+  function Editor(props) {
+    _classCallCheck(this, Editor);
+
+    var _this = _possibleConstructorReturn(this, (Editor.__proto__ || Object.getPrototypeOf(Editor)).call(this, props));
+
+    _this.state = {
+      textBody: ''
+    };
+
+    _this.onSubmit = _this.onSubmit.bind(_this);
+    _this.onSceneTextChange = _this.onSceneTextChange.bind(_this);
+    _this.onGenerateActors = _this.onGenerateActors.bind(_this);
+    return _this;
+  }
+  // TO DO: figure out how to create multiple actors and do `setScenes` for each...
+
+
+  _createClass(Editor, [{
+    key: 'onSubmit',
+    value: function onSubmit(event) {
+      var _this2 = this;
+
+      event.preventDefault();
+      _axios2.default.post('/api/stories', _querystring2.default.stringify({
+        title: event.target.storyTitle.value
+      }), {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }).then(function (newStory) {
+        var storyId = newStory.data.id;
+        _axios2.default.post('/api/stories/' + storyId + '/scenes', _querystring2.default.stringify({
+          paragraphs: _this2.state.textBody
+        }), {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        });
+      }).then(function (newScene) {
+        // unsure why a newScene isn't returned to this .then, but the log does say a post request to /api/stories/:storyId/scenes was successful...
+        var sceneId = newScene.data.id;
+        _axios2.default.post('/api/actors/' + storyId + '/bulk', _querystring2.default.stringify({
+          actors: _this2.props.nouns
+        }), {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        });
+      }).catch(console.error);
+    }
+  }, {
+    key: 'onSceneTextChange',
+    value: function onSceneTextChange(event) {
+      this.setState({ textBody: event.target.value });
+    }
+  }, {
+    key: 'onGenerateActors',
+    value: function onGenerateActors(event) {
+      event.preventDefault();
+      this.props.parseNouns(this.state.textBody);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'storyInput' },
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.onSubmit },
+          _react2.default.createElement(
+            'div',
+            { className: 'form-group' },
+            _react2.default.createElement('input', { type: 'text', placeholder: 'Enter Story Title Here', name: 'storyTitle' }),
+            _react2.default.createElement('textarea', { rows: '100', cols: '78', type: 'text', className: 'form-control', placeholder: 'Enter story here', name: 'fullStory', onChange: this.onSceneTextChange })
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'btn btn-default', onClick: this.onGenerateActors },
+            'Generate Actors'
+          ),
+          _react2.default.createElement(
+            'button',
+            { type: 'submit' },
+            'Submit Scene'
+          )
+        ),
+        _react2.default.createElement(_Actors2.default, null)
+      );
+    }
+  }]);
+
+  return Editor;
+}(_react.Component);
+
+/* ----- CONTAINER ----- */
+
+var mapStateToProps = function mapStateToProps(store, ownProps) {
+  return {
+    nouns: store.analyze.nouns
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    parseNouns: function parseNouns(input) {
+      dispatch((0, _analyze.fetchNouns)(input));
+    },
+    setStory: function setStory(input) {
+      dispatch((0, _setText.addStory)(input));
+    }
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Editor);
 
 /***/ }),
 /* 160 */
@@ -16340,7 +16499,67 @@ var rootReducer = (0, _redux.combineReducers)({
 exports.default = rootReducer;
 
 /***/ }),
-/* 170 */,
+/* 170 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addScene = exports.addStory = undefined;
+exports.default = reducer;
+
+var _axios = __webpack_require__(39);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* -----------------    ACTIONS     ------------------ */
+
+var SET_SCENE = 'SET_SCENE';
+
+/* ------------   ACTION CREATORS     ------------------ */
+
+var setScene = function setScene(text) {
+  return { type: SET_SCENE, text: text };
+};
+
+/* ------------       REDUCERS     ------------------ */
+
+function reducer() {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var action = arguments[1];
+
+
+  switch (action.type) {
+    case SET_SCENE:
+      return action.text;
+    default:
+      return text;
+  }
+}
+
+/* ------------       DISPATCHERS     ------------------ */
+
+var addStory = exports.addStory = function addStory(title, scene) {
+  return _axios2.default.post('/api/stories', { title: title }).then(function (story) {});
+  //TODO: set story to state
+};
+
+var addScene = exports.addScene = function addScene(id) {
+  return function (dispatch) {
+    _axios2.default.post('/api/stories/' + id + '/nouns').then(function (res) {
+      return dispatch(setScene(res.data));
+    }).catch(function (err) {
+      return console.error('Fetching story ' + id + ' unsuccessful', err);
+    });
+  };
+};
+
+/***/ }),
 /* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33591,6 +33810,200 @@ module.exports = function(module) {
 	}
 	return module;
 };
+
+
+/***/ }),
+/* 330 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+// If obj.hasOwnProperty has been overridden, then calling
+// obj.hasOwnProperty(prop) will break.
+// See: https://github.com/joyent/node/issues/1707
+function hasOwnProperty(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
+module.exports = function(qs, sep, eq, options) {
+  sep = sep || '&';
+  eq = eq || '=';
+  var obj = {};
+
+  if (typeof qs !== 'string' || qs.length === 0) {
+    return obj;
+  }
+
+  var regexp = /\+/g;
+  qs = qs.split(sep);
+
+  var maxKeys = 1000;
+  if (options && typeof options.maxKeys === 'number') {
+    maxKeys = options.maxKeys;
+  }
+
+  var len = qs.length;
+  // maxKeys <= 0 means that we should not limit keys count
+  if (maxKeys > 0 && len > maxKeys) {
+    len = maxKeys;
+  }
+
+  for (var i = 0; i < len; ++i) {
+    var x = qs[i].replace(regexp, '%20'),
+        idx = x.indexOf(eq),
+        kstr, vstr, k, v;
+
+    if (idx >= 0) {
+      kstr = x.substr(0, idx);
+      vstr = x.substr(idx + 1);
+    } else {
+      kstr = x;
+      vstr = '';
+    }
+
+    k = decodeURIComponent(kstr);
+    v = decodeURIComponent(vstr);
+
+    if (!hasOwnProperty(obj, k)) {
+      obj[k] = v;
+    } else if (isArray(obj[k])) {
+      obj[k].push(v);
+    } else {
+      obj[k] = [obj[k], v];
+    }
+  }
+
+  return obj;
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+var stringifyPrimitive = function(v) {
+  switch (typeof v) {
+    case 'string':
+      return v;
+
+    case 'boolean':
+      return v ? 'true' : 'false';
+
+    case 'number':
+      return isFinite(v) ? v : '';
+
+    default:
+      return '';
+  }
+};
+
+module.exports = function(obj, sep, eq, name) {
+  sep = sep || '&';
+  eq = eq || '=';
+  if (obj === null) {
+    obj = undefined;
+  }
+
+  if (typeof obj === 'object') {
+    return map(objectKeys(obj), function(k) {
+      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+      if (isArray(obj[k])) {
+        return map(obj[k], function(v) {
+          return ks + encodeURIComponent(stringifyPrimitive(v));
+        }).join(sep);
+      } else {
+        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
+      }
+    }).join(sep);
+
+  }
+
+  if (!name) return '';
+  return encodeURIComponent(stringifyPrimitive(name)) + eq +
+         encodeURIComponent(stringifyPrimitive(obj));
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+function map (xs, f) {
+  if (xs.map) return xs.map(f);
+  var res = [];
+  for (var i = 0; i < xs.length; i++) {
+    res.push(f(xs[i], i));
+  }
+  return res;
+}
+
+var objectKeys = Object.keys || function (obj) {
+  var res = [];
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
+  }
+  return res;
+};
+
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.decode = exports.parse = __webpack_require__(330);
+exports.encode = exports.stringify = __webpack_require__(331);
 
 
 /***/ })
