@@ -26,7 +26,6 @@ class Editor extends Component {
       actors: this.props.nouns
     })
     .then(newStory => {
-      console.log(newStory)
       browserHistory.push(`/stories/${newStory.data.id}`)
     })
   }
@@ -43,7 +42,6 @@ class Editor extends Component {
     })
   }
   render() {
-    console.log("this.state", this.state);
     return (
       <div id="storyEditor">
         <form onSubmit={this.onSubmit}>
