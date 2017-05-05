@@ -32,11 +32,6 @@ import { setFakeState, fetchStory } from './reducers/allState';
 const mapProps = null;
 
 const mapDispatch = dispatch => ({
-  // fetchInitialData: () => {
-  //   dispatch(retrieveLoggedInUser());
-  //   dispatch(fetchUsers());
-  //   dispatch(fetchStories());
-  // },
   onFakeStoryEnter: () => {
     dispatch(setFakeState());
   },

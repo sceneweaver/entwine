@@ -24,17 +24,10 @@ class Editor extends Component {
       sceneText: this.state.textBody,
       actors: this.props.nouns
     })
-      .then(newStory => {
-        console.log(newStory);
-        // const storyId = newStory.data.id;
-        // return axios.post(`/api/stories/${storyId}/scenes`, { paragraphs: this.state.textBody })
-      })
-      // .then(newScene => {
-      //   const sceneId = newScene.data.id;
-      //   this.props.setCurrScene(newScene);
-      //   return axios.post(`/api/actors/${sceneId}/bulk`, { actors: this.props.nouns })
-      // })
-      // .then(() => browserHistory.push('/stories/1'))
+    .then(newStory => {
+      console.log(newStory)
+      browserHistory.push(`/stories/${newStory.data.id}`)
+    })
   }
   onSceneTextChange(event) {
     this.setState({ textBody: event.target.value });

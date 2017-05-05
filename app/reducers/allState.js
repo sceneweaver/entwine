@@ -70,7 +70,7 @@ export default function reducer(state = {
   scenes: [],
   currScene: {
     id: 0,
-    text: [],
+    paragraphs: [],
     position: 0,
     actors: []
   }
