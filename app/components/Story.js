@@ -7,15 +7,20 @@ import Scene from './Scene.js';
 class Story extends Component {
   constructor() {
     super()
-    this.getNewScene = this.getNewScene.bind(this)
+    this.getNewScene = this.getNewScene.bind(this);
+  }
+  getNewScene(evt) {
+    evt.preventDefault();
+    console.log("clicked button at position: ", evt.target.name);
+    const newScene = this.props.scenes[evt.target.name - 1];
+    this.props.setCurrScene(newScene);
   }
   render() {
     console.log("this.props @ Story component", this.props);
     return (
       <div>
         <h1>{this.props.title}</h1>
-        <Scene />
-        <div>
+        <div className="navButtons">
           {
             this.props.scenes ? this.props.scenes.map(scene => (
               <div className="buttonContainer" key={scene.id}>
@@ -30,14 +35,9 @@ class Story extends Component {
             )) : null
           }
         </div>
+        <Scene />
       </div>
-    )
-  }
-  getNewScene(evt) {
-    evt.preventDefault()
-    console.log("clicked button at position: ", evt.target.name)
-    const newScene = this.props.scenes[evt.target.name - 1];
-    this.props.setCurrScene(newScene);
+    );
   }
 }
 

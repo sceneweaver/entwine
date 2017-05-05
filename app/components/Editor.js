@@ -14,7 +14,6 @@ class Editor extends Component {
     this.state = {
       textBody: ''
     }
-
     this.onSubmit = this.onSubmit.bind(this);
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
     this.onGenerateActors = this.onGenerateActors.bind(this);
@@ -33,19 +32,15 @@ class Editor extends Component {
       const sceneId = newScene.data.id;
       axios.post(`/api/actors/${sceneId}/bulk`, {actors: this.props.nouns})
     })
-    .catch(console.error)
-  };
-
+  }
 
   onSceneTextChange (event) {
     this.setState({textBody: event.target.value});
   }
-
   onGenerateActors (event) {
     event.preventDefault();
     this.props.parseNouns(this.state.textBody);
   }
-
   render() {
     return (
       <div className="storyInput">

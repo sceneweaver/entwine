@@ -5,6 +5,10 @@ build/
 node_modules
 bower_components
 
+# webpack bundles, which should be created on use
+bundle.js
+bundle.js.map
+
 # Ignore all node_modules
 node_modules/*
 
