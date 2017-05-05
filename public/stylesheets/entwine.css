@@ -10,3 +10,19 @@
 .search-box {
   background-color: floralwhite;
 }
+
+#storyEditor {
+  margin: 0px 30px
+}
+
+.titleRow {
+  margin-bottom: 20px;
+}
+
+.titleInput {
+  font-size: 30px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+}
+
+/* TODO: set up SASS */

@@ -39,27 +39,42 @@ class Editor extends Component {
   }
   render() {
     return (
-      <div className="storyEditor">
+      <div id="storyEditor">
         <form onSubmit={this.onSubmit}>
+          <div className="row titleRow">
+            <div className="col-md-9">
+              <input
+                name="storyTitle"
+                type="text"
+                placeholder="Title"
+                className="titleInput"
+              />
+            </div>
+            <div className="col-md-3">
+              <div className="buttonContainer">
+                <button
+                  className="btn btn-default"
+                  type="submit"
+                >
+                  Publish
+                </button>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="form-group col-md-6">
-              <input
-                type="text"
-                placeholder="Enter Story Title Here"
-                name="storyTitle"
-              />
               <textarea
                 rows="10"
                 cols="78"
                 type="text"
                 className="form-control"
-                placeholder="Enter story here"
+                placeholder="Scene"
                 name="fullStory"
                 onChange={this.onSceneTextChange}
               />
             </div>
             <div className="col-md-6">
-              <div className="buttonContainer">
+              <div className="buttonContainer flex-container">
                 <button
                   className="btn btn-default"
                   onClick={this.onGenerateActors}
@@ -67,16 +82,6 @@ class Editor extends Component {
                   Generate Actors
               </button>
               </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="buttonContainer">
-              <button
-                className="btn btn-default"
-                type="submit"
-              >
-                Publish
-            </button>
             </div>
           </div>
         </form>
