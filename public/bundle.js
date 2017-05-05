@@ -33491,15 +33491,11 @@ var fakeData = {
 
 /* -----------------    ACTIONS     ------------------ */
 
-var GET_STORY = 'GET_STORY';
 var SET_STORY = 'SET_STORY';
 var SET_SCENE = 'SET_SCENE';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-var getStory = function getStory(story) {
-  return { type: GET_STORY, story: story };
-};
 var setStory = function setStory(story) {
   return {
     type: SET_STORY,
@@ -33508,6 +33504,7 @@ var setStory = function setStory(story) {
     currScene: story.scenes[0]
   };
 };
+
 var setCurrScene = exports.setCurrScene = function setCurrScene(scene) {
   return {
     type: SET_SCENE,
@@ -33532,8 +33529,6 @@ function reducer() {
 
   var newState = Object.assign({}, state);
   switch (action.type) {
-    case GET_STORY:
-      return action.state;
     case SET_STORY:
       newState.title = action.title;
       newState.scenes = action.scenes;
@@ -33553,7 +33548,7 @@ function reducer() {
 var fetchStory = exports.fetchStory = function fetchStory(id) {
   return function (dispatch) {
     _axios2.default.get('/api/stories/' + id).then(function (res) {
-      return dispatch(getStory(res.data));
+      return dispatch(setStory(res.data));
     }).catch(function (err) {
       return console.error('Fetching story ' + id + ' unsuccessful', err);
     });
