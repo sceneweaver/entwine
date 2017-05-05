@@ -6,21 +6,19 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
 
-
 import Editor from './components/Editor';
 import Story from './components/Story';
-import Actors from './components/Actors';
-
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Routes = ({ onStoryEnter }) => (
+const Routes = ({ onFakeStoryEnter, onRealStoryEnter }) => (
   <Router history={browserHistory}>
     <Route path="/" component={Root} >
       <IndexRoute component={Home} />
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
-      <Route path="stories/:storyId" component={Story} onEnter={onStoryEnter} />
+      <Route path="stories/fakeStory" component={Story} onEnter={onFakeStoryEnter} />
+      <Route path="stories/:storyId" component={Story} onEnter={onRealStoryEnter} />
       <Route path="editor" component={Editor} />
       <Route path="*" component={Home} />
     </Route>
@@ -29,7 +27,7 @@ const Routes = ({ onStoryEnter }) => (
 
 /* -----------------    CONTAINER     ------------------ */
 
-import { setFakeState } from './reducers/allState';
+import { setFakeState, fetchStory } from './reducers/allState';
 
 const mapProps = null;
 
@@ -39,8 +37,12 @@ const mapDispatch = dispatch => ({
   //   dispatch(fetchUsers());
   //   dispatch(fetchStories());
   // },
-  onStoryEnter: () => {
+  onFakeStoryEnter: () => {
     dispatch(setFakeState());
+  },
+  onRealStoryEnter: (nextRouterState) => {
+    const storyId = nextRouterState.params.storyId
+    dispatch(fetchStory(storyId));
   }
 });
 

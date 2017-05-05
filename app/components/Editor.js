@@ -12,20 +12,10 @@ class Editor extends Component {
     this.state = {
       textBody: ''
     }
-
     this.onSubmit = this.onSubmit.bind(this);
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
     this.onGenerateActors = this.onGenerateActors.bind(this);
   }
-
-    // vvv ******** these need to be chained?
-    // parse text for actors
-    // add actors to store
-    // create story in db
-    // create scene in db
-
-    // vvv ********** does this happen here or the next page?
-    // create and/or associate actors to scenes in the db
   onSubmit(event) {
     event.preventDefault();
     console.log('here')
@@ -40,16 +30,13 @@ class Editor extends Component {
       newScene.setActors(this.props.nouns)
     })
   }
-
   onSceneTextChange (event) {
     this.setState({textBody: event.target.value});
   }
-
   onGenerateActors (event) {
     event.preventDefault();
     this.props.parseNouns(this.state.textBody);
   }
-
   render() {
     return (
       <div className="storyInput">
