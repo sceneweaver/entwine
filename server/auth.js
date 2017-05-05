@@ -102,7 +102,9 @@ passport.use(new (require('passport-local').Strategy)(
       attributes: {include: ['password_digest']}
     })
       .then(user => {
+        console.log('user going into passport-local', user)
         if (!user) {
+          console.log('user going into passport-local', user)
           debug('authenticate user(email: "%s") did fail: no such user', email)
           return done(null, false, { message: 'Login incorrect' })
         }

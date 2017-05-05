@@ -1,6 +1,4 @@
 import React from 'react';
-import { loginAndGoToUser } from '../redux/auth';
-
 /* -----------------    COMPONENT     ------------------ */
 
 class Login extends React.Component {
@@ -80,6 +78,7 @@ class Login extends React.Component {
       email: event.target.email.value,
       password: event.target.password.value
     };
+    console.log("credentials being sent to reducer", credentials)
     this.props.login(credentials);
   }
 }

@@ -6460,144 +6460,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.logout = exports.retrieveLoggedInUser = exports.signupAndGoToUser = exports.signup = exports.loginAndGoToUser = exports.login = undefined;
-exports.default = reducer;
-
-var _axios = __webpack_require__(40);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _users = __webpack_require__(32);
-
-var _reactRouter = __webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* ------------------    ACTIONS    --------------------- */
-
-var SET = 'SET_CURRENT_USER';
-var REMOVE = 'REMOVE_CURRENT_USER';
-
-/* --------------    ACTION CREATORS    ----------------- */
-
-var set = function set(user) {
-  return { type: SET, user: user };
-};
-var remove = function remove() {
-  return { type: REMOVE };
-};
-
-/* ------------------    REDUCER    --------------------- */
-
-function reducer() {
-  var currentUser = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments[1];
-
-  switch (action.type) {
-
-    case SET:
-      return action.user;
-
-    case REMOVE:
-      return null;
-
-    default:
-      return currentUser;
-  }
-}
-
-/* ------------       DISPATCHERS     ------------------ */
-
-/**
- * Dispatchers are just async action creators.
- * Action creators are supposed to emit actions.
- * Actions will be reduced to produce a new state.
- *
- * However, thunks can also do side effects, such as route to another location.
- * This could get fairly elaborate, by taking arguments as to where to go, or
- * whether to change routes at all. But we illustrate a simple case with some
- * composed dispatchers which also route to a specific page.
- *
- * If we wanted the calling code (component) to handle the result instead, we
- * would use the "simple" dispatcher and chain off the returned promise.
- * Components should probably know nothing about side effects, however.
- */
-
-var resToData = function resToData(res) {
-  return res.data;
-};
-
-// a "simple" dispatcher which uses API, changes state, and returns a promise.
-var login = exports.login = function login(credentials) {
-  return function (dispatch) {
-    return _axios2.default.put('/api/auth/me', credentials).then(resToData).then(function (user) {
-      dispatch(set(user));
-      return user;
-    });
-  };
-};
-
-// a "composed" dispatcher which uses the "simple" one, then routes to a page.
-var loginAndGoToUser = exports.loginAndGoToUser = function loginAndGoToUser(credentials) {
-  return function (dispatch) {
-    dispatch(login(credentials)).then(function (user) {
-      return _reactRouter.browserHistory.push('/users/' + user.id);
-    }).catch(function (err) {
-      return console.error('Problem logging in:', err);
-    });
-  };
-};
-
-var signup = exports.signup = function signup(credentials) {
-  return function (dispatch) {
-    return _axios2.default.post('/api/auth/me', credentials).then(resToData).then(function (user) {
-      dispatch((0, _users.create)(user)); // so new user appears in our master list
-      dispatch(set(user)); // set current user
-      return user;
-    });
-  };
-};
-
-var signupAndGoToUser = exports.signupAndGoToUser = function signupAndGoToUser(credentials) {
-  return function (dispatch) {
-    dispatch(signup(credentials)).then(function (user) {
-      return _reactRouter.browserHistory.push('/users/' + user.id);
-    }).catch(function (err) {
-      return console.error('Problem signing up:', err);
-    });
-  };
-};
-
-var retrieveLoggedInUser = exports.retrieveLoggedInUser = function retrieveLoggedInUser() {
-  return function (dispatch) {
-    _axios2.default.get('/api/auth/me').then(function (res) {
-      return dispatch(set(res.data));
-    }).catch(function (err) {
-      return console.error('Problem fetching current user', err);
-    });
-  };
-};
-
-// optimistic
-var logout = exports.logout = function logout() {
-  return function (dispatch) {
-    dispatch(remove());
-    _axios2.default.delete('/api/auth/me').catch(function (err) {
-      return console.error('logout unsuccessful', err);
-    });
-  };
-};
-
-/***/ }),
+/* 52 */,
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32555,9 +32418,7 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _auth = __webpack_require__(52);
-
-var _auth2 = __webpack_require__(41);
+var _auth = __webpack_require__(41);
 
 var _reactRedux = __webpack_require__(12);
 
@@ -32584,123 +32445,123 @@ var Login = function (_React$Component) {
   }
 
   _createClass(Login, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       var message = this.props.message;
 
       return _react2.default.createElement(
-        'div',
-        { className: 'signin-container' },
+        "div",
+        { className: "signin-container" },
         _react2.default.createElement(
-          'div',
-          { className: 'buffer local' },
+          "div",
+          { className: "buffer local" },
           _react2.default.createElement(
-            'form',
+            "form",
             { onSubmit: this.onLoginSubmit },
             _react2.default.createElement(
-              'div',
-              { className: 'form-group' },
+              "div",
+              { className: "form-group" },
               _react2.default.createElement(
-                'label',
+                "label",
                 null,
-                'email'
+                "email"
               ),
-              _react2.default.createElement('input', {
-                name: 'email',
-                type: 'email',
-                className: 'form-control',
+              _react2.default.createElement("input", {
+                name: "email",
+                type: "email",
+                className: "form-control",
                 required: true
               })
             ),
             _react2.default.createElement(
-              'div',
-              { className: 'form-group' },
+              "div",
+              { className: "form-group" },
               _react2.default.createElement(
-                'label',
+                "label",
                 null,
-                'password'
+                "password"
               ),
-              _react2.default.createElement('input', {
-                name: 'password',
-                type: 'password',
-                className: 'form-control',
+              _react2.default.createElement("input", {
+                name: "password",
+                type: "password",
+                className: "form-control",
                 required: true
               })
             ),
             _react2.default.createElement(
-              'button',
-              { type: 'submit', className: 'btn btn-block btn-primary' },
+              "button",
+              { type: "submit", className: "btn btn-block btn-primary" },
               message
             )
           )
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'or buffer' },
+          "div",
+          { className: "or buffer" },
           _react2.default.createElement(
-            'div',
-            { className: 'back-line' },
+            "div",
+            { className: "back-line" },
             _react2.default.createElement(
-              'span',
+              "span",
               null,
-              'OR'
+              "OR"
             )
           )
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'buffer oauth' },
+          "div",
+          { className: "buffer oauth" },
           _react2.default.createElement(
-            'p',
+            "p",
             null,
             _react2.default.createElement(
-              'a',
+              "a",
               {
-                target: '_self',
-                href: '/api/auth/google',
-                className: 'btn btn-social btn-google' },
-              _react2.default.createElement('i', { className: 'fa fa-google' }),
+                target: "_self",
+                href: "/api/auth/google",
+                className: "btn btn-social btn-google" },
+              _react2.default.createElement("i", { className: "fa fa-google" }),
               _react2.default.createElement(
-                'span',
+                "span",
                 null,
                 message,
-                ' with Google'
+                " with Google"
               )
             )
           ),
           _react2.default.createElement(
-            'p',
+            "p",
             null,
             _react2.default.createElement(
-              'a',
+              "a",
               {
-                target: '_self',
-                href: '/api/auth/github',
-                className: 'btn btn-social btn-github' },
-              _react2.default.createElement('i', { className: 'fa fa-github' }),
+                target: "_self",
+                href: "/api/auth/github",
+                className: "btn btn-social btn-github" },
+              _react2.default.createElement("i", { className: "fa fa-github" }),
               _react2.default.createElement(
-                'span',
+                "span",
                 null,
                 message,
-                ' with GitHub'
+                " with GitHub"
               )
             )
           ),
           _react2.default.createElement(
-            'p',
+            "p",
             null,
             _react2.default.createElement(
-              'a',
+              "a",
               {
-                target: '_self',
-                href: '/api/auth/twitter',
-                className: 'btn btn-social btn-twitter' },
-              _react2.default.createElement('i', { className: 'fa fa-twitter' }),
+                target: "_self",
+                href: "/api/auth/twitter",
+                className: "btn btn-social btn-twitter" },
+              _react2.default.createElement("i", { className: "fa fa-twitter" }),
               _react2.default.createElement(
-                'span',
+                "span",
                 null,
                 message,
-                ' with Twitter'
+                " with Twitter"
               )
             )
           )
@@ -32708,13 +32569,14 @@ var Login = function (_React$Component) {
       );
     }
   }, {
-    key: 'onLoginSubmit',
+    key: "onLoginSubmit",
     value: function onLoginSubmit(event) {
       event.preventDefault();
       var credentials = {
         email: event.target.email.value,
         password: event.target.password.value
       };
+      console.log("credentials being sent to reducer", credentials);
       this.props.login(credentials);
     }
   }]);
@@ -32728,7 +32590,7 @@ var mapState = function mapState() {
   return { message: 'Log in' };
 };
 
-var mapDispatch = { login: _auth2.login };
+var mapDispatch = { login: _auth.login };
 
 exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(Login);
 
