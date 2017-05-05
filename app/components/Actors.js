@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 class Actors extends Component {
   render() {
     return (
-      <div className="actors">
+      <div className="editor-actors">
         {
           this.props.nouns.map(noun => {
             return (

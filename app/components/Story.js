@@ -16,8 +16,10 @@ class Story extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>{this.props.title}</h1>
+      <div className="container">
+        <div className="row">
+          <h1 className="col-md-6 col-md-offset-3 article-font">{this.props.title}</h1>
+        </div>
         <div className="navButtons">
           {
             this.props.scenes ? this.props.scenes.map(scene => (

@@ -50,7 +50,7 @@ class Editor extends Component {
               />
             </div>
             <div className="col-md-3">
-              <div className="buttonContainer">
+              <div className="publish">
                 <button
                   className="btn btn-success"
                   type="submit"
@@ -73,7 +73,7 @@ class Editor extends Component {
               />
             </div>
             <div className="col-md-6">
-              <div className="buttonContainer flex-container">
+              <div className="generate-actors flex-container editor-actors">
                 <button
                   className="btn btn-default"
                   onClick={this.onGenerateActors}
