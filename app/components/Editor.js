@@ -3,7 +3,8 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 import querystring from 'querystring';
 
-import EditorActors from './EditorActors';
+import EditorScene from './EditorScene';
+
 
 /* ----- COMPONENT ----- */
 
@@ -84,30 +85,12 @@ class Editor extends Component {
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="form-group col-md-6">
-              <textarea
-                rows="10"
-                cols="78"
-                type="text"
-                className="form-control"
-                placeholder="Scene"
-                name="fullStory"
-                onChange={this.onSceneTextChange}
-              />
-            </div>
-            <div className="col-md-6">
-              <div className="generate-actors flex-container editor-actors">
-                <button
-                  className="btn btn-default"
-                  onClick={this.onGenerateActors}
-                >
-                  Generate Actors
-                </button>
-              </div>
-              <EditorActors actors={this.state.nouns} handleFormChange={this.handleActorsChange} />
-            </div>
-          </div>
+          <EditorScene
+            onSceneTextChange={this.onSceneTextChange}
+            onGenerateActors={this.onGenerateActors}
+            nouns={this.state.nouns}
+            handleActorsChange={this.handleActorsChange}
+           />
         </form>
       </div>
     )

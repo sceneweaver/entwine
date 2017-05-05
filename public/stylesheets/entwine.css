@@ -25,6 +25,10 @@
   border-bottom: solid 2px #c9c9c9;
 }
 
+.borderlessInput {
+  border: none
+}
+
 .publish {
   display: flex;
   justify-content: flex-end;
@@ -54,4 +58,5 @@
   display: flex;
   justify-content: flex-start;
 }
-/* TODO: set up SASS */
+
+
