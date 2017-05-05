@@ -25,4 +25,33 @@
   border-bottom: solid 2px #c9c9c9;
 }
 
+.publish {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editor-actors {
+  /*background-color: lightgrey;*/
+}
+
+.article-font {
+  font-family: 'Libre Baskerville', serif;
+}
+
+.actors-heading {
+  margin: 0px;
+
+}
+
+.article-text {
+  margin-bottom: 2.625rem;
+  margin-top: 0;
+  line-height: 2.875rem;
+  font-size: 16px;
+}
+
+.generate-actors {
+  display: flex;
+  justify-content: flex-start;
+}
 /* TODO: set up SASS */
