@@ -53,10 +53,19 @@ router.get('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   Actor.create(req.body)
   .then(actor => {
-    res.status(201).json(scene);
+    actor.setScene()
+    res.status(201).json(actor);
   })
   .catch(next);
 })
+//bulk create actors
+router.post('/bulk', (req, res, next) => {
+  Actor.bulkCreate(req.body)
+  .then(() => {
+    res.sendStatus(201);
+  })
+  .catch(next);
+});
 // edit an actor
 router.put('/:id', (req, res, next) => {
   req.actor.update(req.body)

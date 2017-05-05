@@ -5,12 +5,12 @@ import Root from './components/Root';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
-// import { fetchUsers } from './redux/users';
-// import { fetchStories, fetchStory } from './redux/stories';
-// import { retrieveLoggedInUser } from './redux/auth';
+
 
 import Editor from './components/Editor';
 import Story from './components/Story';
+import CheckActors from './components/CheckActors';
+
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -22,6 +22,7 @@ const Routes = ({ onStoryEnter }) => (
       <Route path="signup" component={Signup} />
       <Route path="stories/:storyId" component={Story} onEnter={onStoryEnter} />
       <Route path="editor" component={Editor} />
+      <Route path="checkactors" component={CheckActors} />
       <Route path="*" component={Home} />
     </Route>
   </Router>
