@@ -46,7 +46,7 @@ class Editor extends Component {
               <input
                 name="storyTitle"
                 type="text"
-                placeholder="Title"
+                placeholder="Story Title"
                 className="titleInput"
               />
             </div>
