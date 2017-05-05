@@ -9,7 +9,7 @@ class Scene extends Component {
           <div className="col-md-1">
 
           </div>
-          <div className="col-md-6 col-md-offset-2 article-text article-font">
+          <div className="col-md-8 col-md-offset-1 article-text article-font">
             <p> {this.props.text} </p>
           </div>
           <div className="col-md-2 pull-right actorsBlock">

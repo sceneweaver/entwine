@@ -18,7 +18,7 @@ class Story extends Component {
     return (
       <div className="container">
         <div className="row">
-          <h1 className="col-md-6 col-md-offset-3 article-font">{this.props.title}</h1>
+          <h1 className="col-md-7 col-md-offset-2 article-font">{this.props.title}</h1>
         </div>
         <div className="navButtons">
           {
