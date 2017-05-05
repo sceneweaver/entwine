@@ -24,7 +24,7 @@ class Editor extends Component {
     axios.post('/api/stories', {
       title: event.target.storyTitle.value,
       sceneText: this.state.textBody,
-      actors: this.props.nouns
+      actors: this.state.nouns
     })
       .then(newStory => {
         browserHistory.push(`/stories/${newStory.data.id}`)
