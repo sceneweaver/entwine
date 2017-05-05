@@ -16053,6 +16053,14 @@ var Story = function (_Component) {
   }
 
   _createClass(Story, [{
+    key: 'getNewScene',
+    value: function getNewScene(evt) {
+      evt.preventDefault();
+      console.log("clicked button at position: ", evt.target.name);
+      var newScene = this.props.scenes[evt.target.name - 1];
+      this.props.setCurrScene(newScene);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -16066,10 +16074,9 @@ var Story = function (_Component) {
           null,
           this.props.title
         ),
-        _react2.default.createElement(_Scene2.default, null),
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'navButtons' },
           this.props.scenes ? this.props.scenes.map(function (scene) {
             return _react2.default.createElement(
               'div',
@@ -16086,16 +16093,9 @@ var Story = function (_Component) {
               )
             );
           }) : null
-        )
+        ),
+        _react2.default.createElement(_Scene2.default, null)
       );
-    }
-  }, {
-    key: 'getNewScene',
-    value: function getNewScene(evt) {
-      evt.preventDefault();
-      console.log("clicked button at position: ", evt.target.name);
-      var newScene = this.props.scenes[evt.target.name - 1];
-      this.props.setCurrScene(newScene);
     }
   }]);
 
