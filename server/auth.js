@@ -140,7 +140,6 @@ auth.get('/login/:strategy', (req, res, next) =>
 auth.post('/signup', (req, res, next) => {
   User.create(req.body)
   .then(user => {
-    console.log("signed up user", user)
     req.logIn(user, function (err) {
           if (err) return next(err);
           res.json(user);
