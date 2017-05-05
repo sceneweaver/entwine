@@ -19,7 +19,12 @@ router.post('/nouns', (req, res, next) => {
   });
   for (const word in obj) {
     if (obj[word] > 2) {
-      results.push({title: word});
+      results.push({
+        title: word,
+        description: null,
+        image: null,
+        link: null
+      });
     }
   }
   res.send(results)
