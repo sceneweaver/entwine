@@ -17,25 +17,24 @@ class Signup extends React.Component {
         <div className="buffer local">
           <form onSubmit={this.onSignupSubmit}>
             <div className="form-group">
-              <label>First Name</label>
+              <label>Username</label>
               <input
-                name="first_name"
-                type="first_name"
+                name="username"
                 className="form-control"
                 required
               />
             </div>
             <div className="form-group">
-              <label>Last Name</label>
+              <label>Password</label>
               <input
-                name="last_name"
-                type="last_name"
+                name="password"
+                type="password"
                 className="form-control"
                 required
               />
             </div>
             <div className="form-group">
-              <label>email</label>
+              <label>Email</label>
               <input
                 name="email"
                 type="email"
@@ -44,10 +43,9 @@ class Signup extends React.Component {
               />
             </div>
             <div className="form-group">
-              <label>password</label>
+              <label>Display Name (optional)</label>
               <input
-                name="password"
-                type="password"
+                name="display_name"
                 className="form-control"
                 required
               />
@@ -96,10 +94,10 @@ class Signup extends React.Component {
   onSignupSubmit(event) {
     event.preventDefault();
     const credentials = {
-      first_name: event.target.first_name.value,
-      last_name: event.target.last_name.value,
-      email: event.target.email.value,
+      username: event.target.username.value,
       password: event.target.password.value,
+      email: event.target.email.value,
+      display_name: event.target.display_name.value,
     };
     this.props.signup(credentials);
     browserHistory.push('/');

@@ -16,16 +16,16 @@ class Login extends React.Component {
         <div className="buffer local">
           <form onSubmit={this.onLoginSubmit}>
             <div className="form-group">
-              <label>email</label>
+              <label>Username</label>
               <input
-                name="email"
-                type="email"
+                name="username"
+                type="username"
                 className="form-control"
                 required
               />
             </div>
             <div className="form-group">
-                <label>password</label>
+                <label>Password</label>
                 <input
                   name="password"
                   type="password"
@@ -76,7 +76,7 @@ class Login extends React.Component {
 
   onLoginSubmit(event) {
     event.preventDefault();
-    this.props.login(event.target.email.value, event.target.password.value);
+    this.props.login(event.target.username.value, event.target.password.value);
     browserHistory.push('/')
   }
 }

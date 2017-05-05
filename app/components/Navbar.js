@@ -37,9 +37,9 @@ class Navbar extends React.Component {
               <li>
                 <Link to="/stories" activeClassName="active">All Stories</Link>
               </li>
-              {/*<li>
-                <Link to="/">Create Story</Link>
-              </li>*/}
+              <li>
+                <Link to="/editor">Create New Story</Link>
+              </li>
             </ul>
             { this.props.currentUser ? this.renderLogout() : this.renderLoginSignup() }
           </div>
@@ -62,7 +62,7 @@ class Navbar extends React.Component {
   }
 
   renderLogout() {
-    const name = this.props.currentUser.first_name || this.props.currentUser.email || 'OAuth User';
+    const name = this.props.currentUser.display_name || this.props.currentUser.email || 'OAuth User';
     return (
       <ul className="nav navbar-nav navbar-right">
         <li>
