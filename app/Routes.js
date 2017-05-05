@@ -9,7 +9,7 @@ import Signup from './components/Signup';
 
 import Editor from './components/Editor';
 import Story from './components/Story';
-import CheckActors from './components/CheckActors';
+import Actors from './components/Actors';
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -22,7 +22,6 @@ const Routes = ({ onStoryEnter }) => (
       <Route path="signup" component={Signup} />
       <Route path="stories/:storyId" component={Story} onEnter={onStoryEnter} />
       <Route path="editor" component={Editor} />
-      <Route path="checkactors" component={CheckActors} />
       <Route path="*" component={Home} />
     </Route>
   </Router>

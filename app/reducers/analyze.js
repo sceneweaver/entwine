@@ -13,7 +13,7 @@ const getNouns = nouns => ({ type: GET_NOUNS, nouns })
 export default function reducer (text = {
   nouns: []
 }, action) {
-  const newState = Object.assign({}, state)
+  const newState = Object.assign({}, text)
 
   switch (action.type) {
     case GET_NOUNS:
@@ -29,7 +29,7 @@ export default function reducer (text = {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchNouns = (text) => dispatch => {
-  axios.post(`/api/nouns`, {text})
+  axios.post(`/api/compromise/nouns`, {text})
        .then(res => dispatch(getNouns(res.data)))
        .catch(err => console.error(`Fetching story ${id} unsuccessful`, err));
 };

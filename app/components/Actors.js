@@ -3,7 +3,7 @@ import { setNouns } from '../reducers/analyze'
 import {browserHistory} from 'react-router'
 /* ----- COMPONENT ----- */
 
-class Editor extends Component {
+class Actors extends Component {
   constructor(props) {
     super(props)
     this.onSubmit = this.onSubmit.bind(this)
@@ -17,23 +17,20 @@ class Editor extends Component {
 
   addNounsToDB() {
     const nounsArr = this.props.nouns;
-
-
   }
 
   render() {
-    {
-      this.props.nouns.forEach(noun => {
-        return (
-          <div>
-
-          </div>
-        )
-      })
-    }
     return (
-      <div className="storyInput">
-
+      <div>
+        {
+          this.props.nouns.map(noun => {
+            return (
+              <div>
+                <h4>{noun.title}</h4>
+              </div>
+            )
+          })
+        }
       </div>
     )
   }
@@ -45,7 +42,7 @@ import { connect } from 'react-redux'
 
 function mapStateToProps (store, ownProps) {
   return {
-    nouns: this.store.analyze.nouns
+    nouns: store.analyze.nouns
   };
 };
 
@@ -57,6 +54,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
+export default connect(mapStateToProps, mapDispatchToProps)(Actors);
 
 

@@ -10,19 +10,18 @@ module.exports = router;
 
 router.post('/nouns', (req, res, next) => {
   const text = req.body.text;
-  const parsedText = nlp(text).nouns();
+  const parsedText = nlp(text).nouns().out('array');
   let obj = {};
   let results =[];
-  parsedText.out('array')
-  .forEach(word => {
+  parsedText.forEach(word => {
     if (obj[word]) obj[word]++;
     else (obj[word] = 1);
   });
   for (const word in obj) {
-    if (obj[word] > 1) {
-      results.push({name: word});
+    if (obj[word] > 2) {
+      results.push({title: word});
     }
   }
-  res.send(results);
+  res.send(results)
+  .catch(next);
 })
-.catch(next);
