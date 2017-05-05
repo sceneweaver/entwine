@@ -78,13 +78,15 @@ class Login extends React.Component {
       email: event.target.email.value,
       password: event.target.password.value
     };
-    console.log("credentials being sent to reducer", credentials)
-    this.props.login(credentials);
+    console.log("credentials being sent to reducer", event.target.email.value, event.target.password.value)
+    this.props.login(event.target.email.value, event.target.password.value);
+    browserHistory.push('/')
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
+import { browserHistory } from 'react-router'
 import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux';
 

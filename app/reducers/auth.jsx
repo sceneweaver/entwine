@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
     case AUTHENTICATED:
       return action.user;
     case CREATE:
-      return [action.user, ...users];
+      return action.user;
     case SET:
       return action.user;
   }
@@ -38,11 +38,12 @@ const reducer = (state = initialState, action) => {
 import axios from 'axios';
 
 // Logging in
-export const login = (username, password) => dispatch =>
-  axios
-    .post('/api/auth/login/local', { username, password })
+export const login = (username, password) => dispatch => {
+  console.log("passing username and password into login dispatcher", username, password)
+  return axios.post('/api/auth/login/local', { username, password })
     .then(() => dispatch(whoami()))
     .catch(() => dispatch(whoami()));
+}
 
 // Logging out
 export const logout = () => dispatch =>

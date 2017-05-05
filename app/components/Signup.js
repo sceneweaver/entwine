@@ -101,6 +101,7 @@ class Signup extends React.Component {
       password: event.target.password.value,
     };
     this.props.signup(credentials);
+    browserHistory.push('/')
   }
 }
 
@@ -108,6 +109,7 @@ class Signup extends React.Component {
 
 const mapState = () => ({ message: 'Sign up' });
 
+import { browserHistory } from 'react-router'
 import { connect } from 'react-redux';
 import { signupAndGoToUser } from '../reducers/auth';
 

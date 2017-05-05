@@ -97,14 +97,17 @@ passport.deserializeUser(
 passport.use(new (require('passport-local').Strategy)(
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
+    console.log("passport-local stuff getting passed in", email, password)
     User.findOne({
-      where: {email},
+      where: {
+        email: "omri@zeke.zeke"
+      },
       attributes: {include: ['password_digest']}
     })
       .then(user => {
-        console.log('user going into passport-local', user)
+        console.log('is user received back from postgres in passport-local?', user)
         if (!user) {
-          console.log('user going into passport-local', user)
+          console.log('user not found in passport-local', user)
           debug('authenticate user(email: "%s") did fail: no such user', email)
           return done(null, false, { message: 'Login incorrect' })
         }
@@ -124,8 +127,13 @@ passport.use(new (require('passport-local').Strategy)(
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
+auth.use('/login/local', (req, res, next) => {
+  console.log("we are in the auth backend at login local")
+  next();
+})
+
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login', failureFlash: true}))
+auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
