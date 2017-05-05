@@ -19,17 +19,22 @@ class Editor extends Component {
   }
   onSubmit(event) {
     event.preventDefault();
-    axios.post('/api/stories', { title: event.target.storyTitle.value })
+    axios.post('/api/stories', {
+      title: event.target.storyTitle.value,
+      sceneText: this.state.textBody,
+      actors: this.props.nouns
+    })
       .then(newStory => {
-        const storyId = newStory.data.id;
-        return axios.post(`/api/stories/${storyId}/scenes`, { paragraphs: this.state.textBody })
+        console.log(newStory);
+        // const storyId = newStory.data.id;
+        // return axios.post(`/api/stories/${storyId}/scenes`, { paragraphs: this.state.textBody })
       })
-      .then(newScene => {
-        const sceneId = newScene.data.id;
-        this.props.setCurrScene(newScene);
-        axios.post(`/api/actors/${sceneId}/bulk`, { actors: this.props.nouns })
-      })
-      .then(() => browserHistory.push('/stories/1'))
+      // .then(newScene => {
+      //   const sceneId = newScene.data.id;
+      //   this.props.setCurrScene(newScene);
+      //   return axios.post(`/api/actors/${sceneId}/bulk`, { actors: this.props.nouns })
+      // })
+      // .then(() => browserHistory.push('/stories/1'))
   }
   onSceneTextChange(event) {
     this.setState({ textBody: event.target.value });
