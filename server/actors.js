@@ -3,7 +3,8 @@
 const router = require('express').Router()
     , HttpError = require('./utils/HttpError')
     , db = require('APP/db')
-    , Actor = db.model('actors');
+    , Actor = db.model('actors')
+    , Scene = db.model('scenes');
 
 module.exports = router;
 
@@ -60,11 +61,18 @@ router.post('/', (req, res, next) => {
 })
 //bulk create actors
 router.post('/:sceneId/bulk', (req, res, next) => {
-  Actor.bulkCreate(req.body)
-  .then(() => {
-    res.sendStatus(201);
+  req.body.actors.forEach(actor => {
+    Actor.create({
+      title: actor.title,
+      description: actor.description,
+      image: actor.image,
+      link: actor.link,
+    })
+    .then(actor => {
+      actor.setScene(req.params.sceneId)
+    })
   })
-  .catch(next);
+  res.sendStatus(201);
 });
 // edit an actor
 router.put('/:id', (req, res, next) => {

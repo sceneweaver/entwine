@@ -17,10 +17,15 @@ router.post('/nouns', (req, res, next) => {
     if (obj[word]) obj[word]++;
     else (obj[word] = 1);
   });
-  for (let word in obj) {
-    if (obj[word] >= 2) {
-      results.push({ title: word });
+  for (const word in obj) {
+    if (obj[word] > 2) {
+      results.push({
+        title: word,
+        description: null,
+        image: null,
+        link: null
+      });
     }
   }
-  res.send(results)
+  res.send(results);
 })
