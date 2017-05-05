@@ -1,6 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { signupAndGoToUser } from '../reducers/auth';
+import { browserHistory } from 'react-router'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -17,6 +16,24 @@ class Signup extends React.Component {
       <div className="signin-container">
         <div className="buffer local">
           <form onSubmit={this.onSignupSubmit}>
+            <div className="form-group">
+              <label>First Name</label>
+              <input
+                name="first_name"
+                type="first_name"
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Last Name</label>
+              <input
+                name="last_name"
+                type="last_name"
+                className="form-control"
+                required
+              />
+            </div>
             <div className="form-group">
               <label>email</label>
               <input
@@ -79,25 +96,23 @@ class Signup extends React.Component {
   onSignupSubmit(event) {
     event.preventDefault();
     const credentials = {
+      first_name: event.target.first_name.value,
+      last_name: event.target.last_name.value,
       email: event.target.email.value,
-      password: event.target.password.value
+      password: event.target.password.value,
     };
     this.props.signup(credentials);
+    browserHistory.push('/');
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
+import { connect } from 'react-redux';
+import { signupAndGoToUser } from '../reducers/auth';
+
 const mapState = () => ({ message: 'Sign up' });
 
 const mapDispatch = { signup: signupAndGoToUser };
-// // equivalent to:
-// const mapDispatch = (dispatch) => {
-//   return {
-//     signup: function (credentials) {
-//       dispatch(signupAndGoToUser(credentials));
-//     }
-//   };
-// };
 
 export default connect(mapState, mapDispatch)(Signup);

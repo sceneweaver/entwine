@@ -5,7 +5,8 @@ const bcrypt = require('bcryptjs')
     , {STRING, VIRTUAL} = require('sequelize')
 
 module.exports = db => db.define('users', {
-  name: STRING,
+  first_name: STRING,
+  last_name: STRING,
   email: {
     type: STRING,
     validate: {
