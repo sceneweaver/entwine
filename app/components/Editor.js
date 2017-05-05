@@ -4,6 +4,8 @@ import {addStory} from '../reducers/setText';
 import {browserHistory} from 'react-router';
 import Actors from './Actors';
 import axios from 'axios';
+import querystring from 'querystring';
+
 /* ----- COMPONENT ----- */
 
 class Editor extends Component {
@@ -17,29 +19,38 @@ class Editor extends Component {
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
     this.onGenerateActors = this.onGenerateActors.bind(this);
   }
-
-    // vvv ******** these need to be chained?
-    // parse text for actors
-    // add actors to store
-    // create story in db
-    // create scene in db
-
-    // vvv ********** does this happen here or the next page?
-    // create and/or associate actors to scenes in the db
+  // TO DO: figure out how to create multiple actors and do `setScenes` for each...
   onSubmit(event) {
     event.preventDefault();
-    console.log('here')
-    axios.post('/api/stories', {title: event.target.title.value})
+    axios.post('/api/stories', querystring.stringify({
+            title: event.target.storyTitle.value,
+            // textBody: this.state.textBody,
+            // actors: this.props.nouns
+    }), {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    })
     .then(newStory => {
-      return newStory.setScene({paragraphs: [this.state.textBody]})
-      .then(newScene => {
-        return newScene.data
+      const storyId = newStory.id;
+      axios.post(`/api/stories/${storyId}/scenes`, querystring.stringify({
+            paragraphs: [this.state.textBody]
+      }), {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
       })
-    })
     .then(newScene => {
-      newScene.setActors(this.props.nouns)
-    })
-  }
+      const sceneId = newScene.id;
+      axios.post(`/api/actors/${storyId}/bulk`, querystring.stringify({
+            actors: this.props.nouns
+      }), {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
+    .catch(console.error)
+  });
 
   onSceneTextChange (event) {
     this.setState({textBody: event.target.value});

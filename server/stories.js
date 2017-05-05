@@ -37,18 +37,22 @@ router.get('/:storyId', function (req, res, next) {
   .catch(next);
 });
 // create a story
-router.post('/', gatekeeper.assertAdminOrAuthor, function (req, res, next) {
-  Story.create(req.body)
-  .then(function (story) {
-    return story.reload(Story.options.scopes.populated());
+router.post('/', (req, res, next) => {
+  Story.create({
+    title: req.body.title,
+    // scenes: [{paragraphs: [req.body.textBody]}]
+  }, {
+    // include: [{
+    //   model: db.model('scenes'), as: 'scenes'
+    // }]
   })
-  .then(function (storyIncludingAuthor) {
-    res.status(201).json(storyIncludingAuthor);
+  .then(story => {
+    res.status(201).json(story);
   })
   .catch(next);
 });
 // edit a story
-router.put('/:id', gatekeeper.assertAdminOrAuthor, function (req, res, next) {
+router.put('/:id', function (req, res, next) {
   if (!req.user.isAdmin) delete req.body.author_id;
   req.story.update(req.body)
   .then(function (story) {
@@ -60,7 +64,7 @@ router.put('/:id', gatekeeper.assertAdminOrAuthor, function (req, res, next) {
   .catch(next);
 });
 // delete a story
-router.delete('/:id', gatekeeper.assertAdminOrAuthor, function (req, res, next) {
+router.delete('/:id', function (req, res, next) {
   req.story.destroy()
   .then(function () {
     res.status(204).end();

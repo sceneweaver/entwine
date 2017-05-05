@@ -59,7 +59,7 @@ router.post('/', (req, res, next) => {
   .catch(next);
 })
 //bulk create actors
-router.post('/bulk', (req, res, next) => {
+router.post('/:sceneId/bulk', (req, res, next) => {
   Actor.bulkCreate(req.body)
   .then(() => {
     res.sendStatus(201);
