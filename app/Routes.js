@@ -11,14 +11,14 @@ import Story from './components/Story';
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Routes = ({ onFakeStoryEnter, onRealStoryEnter }) => (
+const Routes = (props) => (
   <Router history={browserHistory}>
     <Route path="/" component={Root} >
       <IndexRoute component={Home} />
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
-      <Route path="stories/fakeStory" component={Story} onEnter={onFakeStoryEnter} />
-      <Route path="stories/:storyId" component={Story} onEnter={onRealStoryEnter} />
+      <Route path="stories/fakeStory" component={Story} onEnter={props.onFakeStoryEnter} />
+      <Route path="stories/:storyId" component={Story} onEnter={props.onRealStoryEnter} />
       <Route path="editor" component={Editor} />
       <Route path="*" component={Home} />
     </Route>

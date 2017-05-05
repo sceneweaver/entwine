@@ -9,7 +9,7 @@ class Actors extends Component {
         {
           this.props.nouns.map(noun => {
             return (
-              <div>
+              <div key={noun.title}>
                 <h4>{noun.title}</h4>
               </div>
             )

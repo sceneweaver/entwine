@@ -30,11 +30,7 @@ router.get('/', function (req, res, next) {
 });
 // view one story by id; should get included scenes via eager loading (see defaultScope on model)
 router.get('/:storyId', function (req, res, next) {
-  req.story.reload(Story.options.scopes.populated())
-  .then(function (story) {
-    res.json(story);
-  })
-  .catch(next);
+  res.json(req.story)
 });
 // create a story
 router.post('/', (req, res, next) => {

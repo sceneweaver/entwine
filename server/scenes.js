@@ -31,9 +31,10 @@ router.get('/:sceneId', (req, res, next) => {
 });
 // create a scene
 router.post('/', (req, res, next) => {
-  Scene.create({paragraphs: [req.body.paragraphs]})
+  Scene.create({ paragraphs: [req.body.paragraphs] })
   .then(scene => {
-    res.status(201).json(scene);
+    return scene.setStory(req.params.storyId)
+    .then(newScene => res.status(201).json(newScene))
   })
   .catch(next);
 });
