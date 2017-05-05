@@ -19,8 +19,8 @@ router.post('/nouns', (req, res, next) => {
     else (obj[word] = 1);
   });
   for (const word in obj) {
-    if (obj[word] > 2 || word.includes(' ')) {
-      results.push(word);
+    if (obj[word] > 1) {
+      results.push({name: word});
     }
   }
   res.send(results);

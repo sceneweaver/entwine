@@ -22,9 +22,11 @@ export default function reducer (text = '', action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const addStory = (title) => {
+export const addStory = (title, scene, ) => {
   return axios.post('/api/stories', {title})
-    .then()
+  .then(story => {
+
+  })
   //TODO: set story to state
 };
 
