@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 
 class Scene extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className="container">
         <div className="row">
@@ -34,7 +33,7 @@ class Scene extends Component {
 import { connect } from 'react-redux';
 
 const mapStateToProps = store => ({
-  text: store.allState.currScene.text,
+  text: store.allState.currScene.paragraphs[0],
   actors: store.allState.currScene.actors
 });
 

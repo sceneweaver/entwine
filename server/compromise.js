@@ -18,7 +18,7 @@ router.post('/nouns', (req, res, next) => {
     else (obj[word] = 1);
   });
   for (const word in obj) {
-    if (obj[word] > 2) {
+    if (obj[word] >= 2) {
       results.push({
         title: word,
         description: null,

@@ -19,22 +19,21 @@ class Editor extends Component {
   }
   onSubmit(event) {
     event.preventDefault();
-    axios.post('/api/stories', { title: event.target.storyTitle.value })
-      .then(newStory => {
-        const storyId = newStory.data.id;
-        return axios.post(`/api/stories/${storyId}/scenes`, { paragraphs: this.state.textBody })
-      })
-      .then(newScene => {
-        const sceneId = newScene.data.id;
-        axios.post(`/api/actors/${sceneId}/bulk`, { actors: this.props.nouns });
-      })
+    axios.post('/api/stories', {
+      title: event.target.storyTitle.value,
+      sceneText: this.state.textBody,
+      actors: this.props.nouns
+    })
+    .then(newStory => {
+      console.log(newStory)
+      browserHistory.push(`/stories/${newStory.data.id}`)
+    })
   }
   onSceneTextChange(event) {
     this.setState({ textBody: event.target.value });
   }
   onGenerateActors(event) {
     event.preventDefault();
-    console.log("this.state.textBody onGenerate", this.state.textBody);
     this.props.parseNouns(this.state.textBody);
   }
   render() {
@@ -94,6 +93,7 @@ class Editor extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
+import { setCurrScene } from '../reducers/allState';
 import { fetchNouns, setNouns } from '../reducers/analyze';
 import { addStory } from '../reducers/setText';
 
@@ -110,6 +110,9 @@ function mapDispatchToProps(dispatch) {
     },
     setStory: (input) => {
       dispatch(addStory(input));
+    },
+    setCurrScene: (scene) => {
+      dispatch(setCurrScene(scene))
     }
   };
 }

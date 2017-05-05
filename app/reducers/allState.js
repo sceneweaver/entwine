@@ -70,7 +70,7 @@ export default function reducer(state = {
   scenes: [],
   currScene: {
     id: 0,
-    text: [],
+    paragraphs: [],
     position: 0,
     actors: []
   }
@@ -95,11 +95,15 @@ export default function reducer(state = {
 
 export const fetchStory = (id) => dispatch => {
   axios.get(`/api/stories/${id}`)
-    .then(res => dispatch(setStory(res.data)))
+    .then(res => {
+      console.log("fetchStory res", res);
+      dispatch(setStory(res.data))
+    })
     .catch(err => console.error(`Fetching story ${id} unsuccessful`, err));
 };
 
 export const setFakeState = () => dispatch => {
   dispatch(setStory(fakeData))
 };
+
 
