@@ -45,8 +45,6 @@ class Editor extends Component {
     const position = event.target.name;
     axios.post('/api/compromise/nouns', { text: this.state.scenes[position-1].paragraphs[0] })
       .then(nouns => {
-        console.log("nouns", nouns)
-        console.log("position", position)
         const newScenes = this.state.scenes;
         newScenes[position-1].actors = nouns.data;
         this.setState({ scenes: newScenes });
