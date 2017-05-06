@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
-import querystring from 'querystring';
 
 import EditorScene from './EditorScene';
 
-
 /* ----- COMPONENT ----- */
 
-class Editor extends Component {
+export default class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +22,59 @@ class Editor extends Component {
     this.onGenerateActors = this.onGenerateActors.bind(this);
     this.handleActorsChange = this.handleActorsChange.bind(this);
     this.addScene = this.addScene.bind(this);
+  }
+  render() {
+    return (
+      <div id="storyEditor">
+        <form onSubmit={this.onSubmit}>
+          <div className="row titleRow">
+            <div className="col-md-6">
+              <input
+                name="storyTitle"
+                type="text"
+                placeholder="Story Title"
+                className="titleInput"
+              />
+            </div>
+            <div className="col-md-3">
+              <div className="addScene">
+                <button
+                  className="btn btn-success"
+                  onClick={this.addScene}
+                >
+                  Add Scene
+                </button>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="publish">
+                <button
+                  className="btn btn-success"
+                  type="submit"
+                >
+                  Publish My Story
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {
+            this.state.scenes.length ? (this.state.scenes.map(scene => (
+              <EditorScene
+                key={scene.position}
+                position={scene.position}
+                actors={scene.actors}
+                onSceneTextChange={this.onSceneTextChange}
+                onGenerateActors={this.onGenerateActors}
+                handleActorsChange={this.handleActorsChange}
+              />
+            )))
+              : null
+          }
+
+        </form>
+      </div>
+    )
   }
   onSubmit(event) {
     event.preventDefault();
@@ -89,86 +140,4 @@ class Editor extends Component {
       scenes: newScenes
     })
   }
-  render() {
-    return (
-      <div id="storyEditor">
-        <form onSubmit={this.onSubmit}>
-          <div className="row titleRow">
-            <div className="col-md-6">
-              <input
-                name="storyTitle"
-                type="text"
-                placeholder="Story Title"
-                className="titleInput"
-              />
-            </div>
-            <div className="col-md-3">
-              <div className="addScene">
-                <button
-                  className="btn btn-success"
-                  onClick={this.addScene}
-                >
-                  Add Scene
-                </button>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="publish">
-                <button
-                  className="btn btn-success"
-                  type="submit"
-                >
-                  Publish My Story
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {
-            this.state.scenes.length ? (this.state.scenes.map(scene => (
-              <EditorScene
-                key={scene.position}
-                position={scene.position}
-                actors={scene.actors}
-                onSceneTextChange={this.onSceneTextChange}
-                onGenerateActors={this.onGenerateActors}
-                handleActorsChange={this.handleActorsChange}
-              />
-            )))
-              : null
-          }
-
-        </form>
-      </div>
-    )
-  }
 }
-
-/* ----- CONTAINER ----- */
-
-import { connect } from 'react-redux';
-import { setCurrScene } from '../reducers/allState';
-import { fetchNouns, setNouns } from '../reducers/analyze';
-import { addStory } from '../reducers/setText';
-
-const mapStateToProps = (store, ownProps) => {
-  return {
-    nouns: store.analyze.nouns
-  };
-};
-
-function mapDispatchToProps(dispatch) {
-  return {
-    parseNouns: (input) => {
-      dispatch(fetchNouns(input));
-    },
-    setStory: (input) => {
-      dispatch(addStory(input));
-    },
-    setCurrScene: (scene) => {
-      dispatch(setCurrScene(scene))
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
