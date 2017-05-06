@@ -12,8 +12,12 @@ class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      textBody: '',
-      nouns: [],
+      scenes: [{
+        position: 1,
+        title: '',
+        paragraphs: [''],
+        actors: []
+      }],
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
@@ -24,44 +28,50 @@ class Editor extends Component {
     event.preventDefault();
     axios.post('/api/stories', {
       title: event.target.storyTitle.value,
-      sceneText: this.state.textBody,
-      actors: this.state.nouns
+      scenes: []
     })
       .then(newStory => {
         browserHistory.push(`/stories/${newStory.data.id}`)
       })
   }
   onSceneTextChange(event) {
-    this.setState({ textBody: event.target.value });
+    const position = event.target.name
+        , newScenes = this.state.scenes;
+    newScenes[position - 1].paragraphs[0] = event.target.value;
+    this.setState({ scenes: newScenes });
   }
   onGenerateActors(event) {
     event.preventDefault();
-    axios.post('/api/compromise/nouns', { text: this.state.textBody })
+    const position = event.target.name;
+    axios.post('/api/compromise/nouns', { text: this.state.scenes[position-1].paragraphs[0] })
       .then(nouns => {
-        this.setState({
-          nouns: nouns.data
-        })
+        console.log("nouns", nouns)
+        console.log("position", position)
+        const newScenes = this.state.scenes;
+        newScenes[position-1].actors = nouns.data;
+        this.setState({ scenes: newScenes });
       })
   }
   handleActorsChange(event) {
     const eventNameArray = event.target.name.split('-')
-      , noun = eventNameArray[0]
-      , type = eventNameArray[1]
-      , actors = this.state.nouns;
+      , scene = eventNameArray[0] - 1
+      , changedActorTitle = eventNameArray[1]
+      , type = eventNameArray[2]
+      , actors = this.state.scenes[scene].actors
+      , newScenes = this.state.scenes;
     let index
       , actor;
     actors.forEach((a, i) => {
-      if (a.title === noun) {
+      if (a.title === changedActorTitle) {
         index = i;
         actor = a;
       }
     })
     actor[type] = event.target.value;
-    const newActors = actors.slice(0, index).concat(actor).concat(actors.slice(index + 1));
-    this.setState({ nouns: newActors });
+    newScenes[scene].actors = actors.slice(0, index).concat(actor).concat(actors.slice(index + 1));
+    this.setState({ scenes: newScenes });
   }
   render() {
-    console.log("this.state on Editor", this.state);
     return (
       <div id="storyEditor">
         <form onSubmit={this.onSubmit}>
@@ -85,12 +95,20 @@ class Editor extends Component {
               </div>
             </div>
           </div>
-          <EditorScene
-            onSceneTextChange={this.onSceneTextChange}
-            onGenerateActors={this.onGenerateActors}
-            nouns={this.state.nouns}
-            handleActorsChange={this.handleActorsChange}
-           />
+
+          {
+            this.state.scenes.length ? (this.state.scenes.map(scene => (
+              <EditorScene
+                position={scene.position}
+                actors={scene.actors}
+                onSceneTextChange={this.onSceneTextChange}
+                onGenerateActors={this.onGenerateActors}
+                handleActorsChange={this.handleActorsChange}
+              />
+            )))
+             : null
+          }
+
         </form>
       </div>
     )

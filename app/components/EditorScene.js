@@ -13,7 +13,7 @@ export default class EditorScene extends Component {
             type="text"
             className="form-control"
             placeholder="Scene"
-            name="fullStory"
+            name={`${this.props.position}`}
             onChange={this.props.onSceneTextChange}
           />
         </div>
@@ -21,13 +21,15 @@ export default class EditorScene extends Component {
           <div className="generate-actors flex-container editor-actors">
             <button
               className="btn btn-default"
+              name={`${this.props.position}`}
               onClick={this.props.onGenerateActors}
             >
               Generate Actors
-                </button>
+            </button>
           </div>
           <EditorActors
-            actors={this.props.nouns}
+            actors={this.props.actors}
+            position={this.props.position}
             handleFormChange={this.props.handleActorsChange}
           />
         </div>
