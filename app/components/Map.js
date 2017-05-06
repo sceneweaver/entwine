@@ -7,7 +7,7 @@ let googleMapsClient = require('@google/maps').createClient({
   key: secrets.googlemaps
 });
 
-googleMapsClient.geocode({
+googleMapsClient.geocode({ // this is for testing purposes - shows how the geocode method works
   address: 'Los Angeles'
 }, function(err, response) {
   if (!err) {
@@ -37,7 +37,7 @@ class Test extends Component {
       if (!err) {
         let coords = response.json.results[0].geometry.location;
         // mapbox and google maps lat lng seem to be flipped
-        this.setState({coords: 'hallo'});
+        this.setState({coords: "why isn't this working?"});
         console.log('these are the response and coords', response, coords, coords.lat)
         console.log("hi", this.state.coords)
       }
@@ -67,7 +67,7 @@ class Test extends Component {
               </div>
               <button type="submit" className="btn btn-block btn-primary">Find Location</button>
             </form>
-             <h4> The coordinates we want for our map are: {this.state.coords.length > 0 ? this.state.coords : 'Search for a coordinate first'} </h4>
+             <h4> <b> Coords for our map: </b> {this.state.coords ? this.state.coords : 'Search for a coordinate first'} </h4>
           </div>
           <div className="col-md-9">
            <ReactMapboxGl
