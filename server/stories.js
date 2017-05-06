@@ -38,13 +38,7 @@ router.get('/:storyId', function (req, res, next) {
 router.post('/', (req, res, next) => {
   Story.create({
     title: req.body.title,
-    scenes: [
-      {
-        paragraphs: [req.body.sceneText],
-        position: 1,
-        actors: req.body.actors
-      }
-    ]
+    scenes: req.body.scenes
   }, {
       include: [{
         model: Scene,
