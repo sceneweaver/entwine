@@ -33,7 +33,6 @@ router.get('/:sceneId', (req, res, next) => {
 router.post('/', (req, res, next) => {
   Scene.create({ paragraphs: [req.body.paragraphs] })
   .then(scene => {
-    console.log(req.params.storyId)
     return scene.setStory(req.params.storyId)
     .then(newScene => res.status(201).json(newScene))
   })

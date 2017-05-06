@@ -23,12 +23,13 @@ class Editor extends Component {
     this.onSceneTextChange = this.onSceneTextChange.bind(this);
     this.onGenerateActors = this.onGenerateActors.bind(this);
     this.handleActorsChange = this.handleActorsChange.bind(this);
+    this.addScene = this.addScene.bind(this);
   }
   onSubmit(event) {
     event.preventDefault();
     axios.post('/api/stories', {
       title: event.target.storyTitle.value,
-      scenes: []
+      scenes: this.state.scenes
     })
       .then(newStory => {
         browserHistory.push(`/stories/${newStory.data.id}`)
@@ -36,18 +37,22 @@ class Editor extends Component {
   }
   onSceneTextChange(event) {
     const position = event.target.name
-        , newScenes = this.state.scenes;
+      , newScenes = this.state.scenes;
     newScenes[position - 1].paragraphs[0] = event.target.value;
-    this.setState({ scenes: newScenes });
+    this.setState({
+      scenes: newScenes
+    });
   }
   onGenerateActors(event) {
     event.preventDefault();
     const position = event.target.name;
-    axios.post('/api/compromise/nouns', { text: this.state.scenes[position-1].paragraphs[0] })
+    axios.post('/api/compromise/nouns', { text: this.state.scenes[position - 1].paragraphs[0] })
       .then(nouns => {
         const newScenes = this.state.scenes;
-        newScenes[position-1].actors = nouns.data;
-        this.setState({ scenes: newScenes });
+        newScenes[position - 1].actors = nouns.data;
+        this.setState({
+          scenes: newScenes
+        });
       })
   }
   handleActorsChange(event) {
@@ -67,20 +72,45 @@ class Editor extends Component {
     })
     actor[type] = event.target.value;
     newScenes[scene].actors = actors.slice(0, index).concat(actor).concat(actors.slice(index + 1));
-    this.setState({ scenes: newScenes });
+    this.setState({
+      scenes: newScenes
+    });
+  }
+  addScene(event) {
+    event.preventDefault()
+    const newScenes = this.state.scenes;
+    newScenes.push({
+      position: this.state.scenes.length + 1,
+      title: '',
+      paragraphs: [''],
+      actors: []
+    })
+    this.setState({
+      scenes: newScenes
+    })
   }
   render() {
     return (
       <div id="storyEditor">
         <form onSubmit={this.onSubmit}>
           <div className="row titleRow">
-            <div className="col-md-9">
+            <div className="col-md-6">
               <input
                 name="storyTitle"
                 type="text"
                 placeholder="Story Title"
                 className="titleInput"
               />
+            </div>
+            <div className="col-md-3">
+              <div className="addScene">
+                <button
+                  className="btn btn-success"
+                  onClick={this.addScene}
+                >
+                  Add Scene
+                </button>
+              </div>
             </div>
             <div className="col-md-3">
               <div className="publish">
@@ -97,6 +127,7 @@ class Editor extends Component {
           {
             this.state.scenes.length ? (this.state.scenes.map(scene => (
               <EditorScene
+                key={scene.position}
                 position={scene.position}
                 actors={scene.actors}
                 onSceneTextChange={this.onSceneTextChange}
@@ -104,7 +135,7 @@ class Editor extends Component {
                 handleActorsChange={this.handleActorsChange}
               />
             )))
-             : null
+              : null
           }
 
         </form>
