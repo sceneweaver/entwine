@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 import EditorScene from './EditorScene';
+import findPronouns from '../../server/utils/findPronouns';
 
 /* ----- COMPONENT ----- */
 
@@ -97,14 +98,20 @@ export default class Editor extends Component {
   onGenerateActors(event) {
     event.preventDefault();
     const position = event.target.name;
-    axios.post('/api/compromise/nouns', { text: this.state.scenes[position - 1].paragraphs[0] })
-      .then(nouns => {
-        const newScenes = this.state.scenes;
-        newScenes[position - 1].actors = nouns.data;
-        this.setState({
-          scenes: newScenes
-        });
-      })
+    const textBody = this.state.scenes[position - 1].paragraphs[0];
+    const updatedScenes = this.state.scenes;
+    updatedScenes[position -1].actors = findPronouns(textBody);
+    this.setState({
+      scenes: updatedScenes
+    });
+    // axios.post('/api/compromise/nouns', { text: this.state.scenes[position - 1].paragraphs[0] })
+    //   .then(nouns => {
+    //     const newScenes = this.state.scenes;
+    //     newScenes[position - 1].actors = nouns.data;
+    //     this.setState({
+    //       scenes: newScenes
+    //     });
+    //   })
   }
   handleActorsChange(event) {
     const eventNameArray = event.target.name.split('-')
