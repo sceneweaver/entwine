@@ -35,6 +35,11 @@ class EditorActors extends Component {
                     defaultValue={actor.link}
                     onChange={this.props.onActorsChange}
                   />
+                  <button
+                    name={`${this.props.position}-${index}`}
+                    onClick={this.props.onDeleteActor}
+                  >X
+                  </button>
                 </form>
               </div>
             )
@@ -48,7 +53,7 @@ class EditorActors extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor } from '../reducers/editor'
+import { changeActor, deleteActor } from '../reducers/editor'
 
 const mapStateToProps = (store, ownProps) => ({
   actors: store.editor.scenes[ownProps.position - 1].actors,
@@ -64,6 +69,13 @@ const mapDispatchToProps = dispatch => ({
       , field = eventNameArray[2]
       , input = event.target.value;
     dispatch(changeActor(position, actorIndex, field, input));
+  },
+  onDeleteActor(event) {
+    event.preventDefault();
+    const eventNameArray = event.target.name.split('-')
+        , position = eventNameArray[0]
+        , actorIndex = eventNameArray[1];
+    dispatch(deleteActor(position, actorIndex));
   }
 });
 
