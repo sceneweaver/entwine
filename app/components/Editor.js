@@ -1,33 +1,18 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
-import axios from 'axios';
 
 import EditorScene from './EditorScene';
 import findProperNouns from '../../server/utils/findProperNouns';
 
 /* ----- COMPONENT ----- */
 
-export default class Editor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      scenes: [{
-        position: 1,
-        title: '',
-        paragraphs: [''],
-        actors: []
-      }],
-    }
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onSceneTextChange = this.onSceneTextChange.bind(this);
-    this.onGenerateActors = this.onGenerateActors.bind(this);
-    this.handleActorsChange = this.handleActorsChange.bind(this);
-    this.addScene = this.addScene.bind(this);
+class Editor extends Component {
+  constructor() {
+    super();
   }
   render() {
     return (
       <div id="storyEditor">
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.props.onSubmitStory}>
           <div className="row titleRow">
             <div className="col-md-6">
               <input
@@ -41,7 +26,7 @@ export default class Editor extends Component {
               <div className="addScene">
                 <button
                   className="btn btn-success"
-                  onClick={this.addScene}
+                  onClick={this.props.onAddScene}
                 >
                   Add Scene
                 </button>
@@ -60,14 +45,10 @@ export default class Editor extends Component {
           </div>
 
           {
-            this.state.scenes.length ? (this.state.scenes.map(scene => (
+            this.props.scenes.length ? (this.props.scenes.map(scene => (
               <EditorScene
                 key={scene.position}
                 position={scene.position}
-                actors={scene.actors}
-                onSceneTextChange={this.onSceneTextChange}
-                onGenerateActors={this.onGenerateActors}
-                handleActorsChange={this.handleActorsChange}
               />
             )))
               : null
@@ -77,74 +58,26 @@ export default class Editor extends Component {
       </div>
     )
   }
-  onSubmit(event) {
-    event.preventDefault();
-    axios.post('/api/stories', {
-      title: event.target.storyTitle.value,
-      scenes: this.state.scenes
-    })
-      .then(newStory => {
-        browserHistory.push(`/stories/${newStory.data.id}`)
-      })
-  }
-  onSceneTextChange(event) {
-    const position = event.target.name
-      , newScenes = this.state.scenes;
-    newScenes[position - 1].paragraphs[0] = event.target.value;
-    this.setState({
-      scenes: newScenes
-    });
-  }
-  onGenerateActors(event) {
-    event.preventDefault();
-    const position = event.target.name;
-    const textBody = this.state.scenes[position - 1].paragraphs[0];
-    const updatedScenes = this.state.scenes;
-    updatedScenes[position -1].actors = findProperNouns(textBody);
-    this.setState({
-      scenes: updatedScenes
-    });
-    // axios.post('/api/compromise/nouns', { text: this.state.scenes[position - 1].paragraphs[0] })
-    //   .then(nouns => {
-    //     const newScenes = this.state.scenes;
-    //     newScenes[position - 1].actors = nouns.data;
-    //     this.setState({
-    //       scenes: newScenes
-    //     });
-    //   })
-  }
-  handleActorsChange(event) {
-    const eventNameArray = event.target.name.split('-')
-      , scene = eventNameArray[0] - 1
-      , changedActorTitle = eventNameArray[1]
-      , type = eventNameArray[2]
-      , actors = this.state.scenes[scene].actors
-      , newScenes = this.state.scenes;
-    let index
-      , actor;
-    actors.forEach((a, i) => {
-      if (a.title === changedActorTitle) {
-        index = i;
-        actor = a;
-      }
-    })
-    actor[type] = event.target.value;
-    newScenes[scene].actors = actors.splice(index, 0, actor);
-    this.setState({
-      scenes: newScenes
-    });
-  }
-  addScene(event) {
-    event.preventDefault()
-    const newScenes = this.state.scenes;
-    newScenes.push({
-      position: this.state.scenes.length + 1,
-      title: '',
-      paragraphs: [''],
-      actors: []
-    })
-    this.setState({
-      scenes: newScenes
-    })
-  }
 }
+
+/* ----- CONTAINER ----- */
+
+import { connect } from 'react-redux';
+import { addScene, submitStory } from '../reducers/editor'
+
+const mapStateToProps = store => ({
+  scenes: store.editor.scenes
+});
+
+const mapDispatchToProps = dispatch => ({
+  onAddScene(event) {
+    event.preventDefault();
+    dispatch(addScene());
+  },
+  onSubmitStory(event) {
+    event.preventDefault();
+    dispatch(submitStory(event.target.storyTitle.value));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);
