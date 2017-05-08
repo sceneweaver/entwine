@@ -54,8 +54,6 @@ export const deleteActor = (position, actorIndex) => ({
 })
 
 
-
-
 /* ------------       REDUCERS     ------------------ */
 
 export default function reducer(state = {
@@ -71,21 +69,18 @@ export default function reducer(state = {
   switch (action.type) {
 
     case ADD_SCENE:
-      newState.scenes.push({
+      newState.scenes = [...newState.scenes, {
         position: state.scenes.length + 1,
         title: '',
         paragraphs: [''],
-        actors: [{
-          title: '',
-          description: '',
-          link: '',
-          image: ''
-        }]
-      });
+        actors: []
+      }]
       break;
 
     case DELETE_SCENE:
-      newState.scenes.splice(position - 1, 1);
+      let firstHalfOfScene = newState.scenes.slice(0, position - 1)
+        , secondHalfOfScene = newState.scenes.slice(position);
+      newState.scenes = [...firstHalfOfScene, ...secondHalfOfScene];
       break;
 
     case SET_NOUNS:
@@ -101,16 +96,18 @@ export default function reducer(state = {
       break;
 
     case ADD_ACTOR:
-      newState.scenes[action.position - 1].actors.push({
+      newState.scenes[action.position - 1].actors = [...newState.scenes[action.position - 1].actors, {
         title: '',
         description: '',
         link: '',
         image: ''
-      })
+      }]
       break;
 
     case DELETE_ACTOR:
-      newState.scenes[action.position - 1].actors.splice(action.actorIndex, 1);
+      let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, action.actorIndex)
+        , secondHalfOfActors = newState.scenes[action.position - 1].actors.slice(+action.actorIndex + 1);
+      newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
 
     default:
