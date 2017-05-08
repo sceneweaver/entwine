@@ -42,6 +42,13 @@ class EditorScene extends Component {
             >
               Generate Actors
             </button>
+            <button
+              className="btn btn-default"
+              name={this.props.position}
+              onClick={this.props.onGenerateMaps}
+            >
+              Generate Map
+            </button>
           </div>
         </div>
         <div className="col-md-5">
@@ -52,7 +59,7 @@ class EditorScene extends Component {
             null}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -85,6 +92,10 @@ const mapDispatchToProps = dispatch => ({
   onDeleteScene(event) {
     event.preventDefault();
     dispatch(deleteScene(+event.target.name))
+  },
+  onGenerateMaps(event) {
+    event.preventDefault();
+
   }
 });
 

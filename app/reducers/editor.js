@@ -162,3 +162,9 @@ export const submitStory = title => (dispatch, getState) => {
       browserHistory.push(`/stories/${newStory.data.id}`)
     })
 }
+
+export const generateMapLocations = position => (dispatch, getState) => {
+  const textBody = getState().editor.scenes[position - 1].paragraphs[0]
+  finProperNouns(textBody)
+}
+}
