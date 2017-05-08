@@ -15,42 +15,40 @@ class EditorActors extends Component {
             Add an Actor
         </button>
         </div>
-        <div className="actors">
+        <div className="card-group">
           {this.props.actors.length ? (
             this.props.actors.map((actor, index) => {
               return (
-                <div key={actor.title}>
-                  <div className="media-left media-middle icon-container">
-                    <img className="media-object img-circle" src={actor.image} />
+                <div key={actor.title} className="card">
+                  <img className="card-img-top" src={actor.image} alt="Actor image" />
+                  <div className="card-block">
+                      <label>Name:</label>
+                      <input
+                        className="actorFormField"
+                        name={`${this.props.position}-${index}-title`}
+                        defaultValue={actor.title}
+                        onChange={this.props.onActorsChange}
+                      />
+                      <button
+                        name={`${this.props.position}-${index}`}
+                        onClick={this.props.onDeleteActor}
+                      >X
+                      </button><br />
+                      <label>Description:</label>
+                      <input
+                        className="actorFormField"
+                        name={`${this.props.position}-${index}-description`}
+                        defaultValue={actor.description}
+                        onChange={this.props.onActorsChange}
+                      /><br />
+                      <label>Link:</label>
+                      <input
+                        className="actorFormField"
+                        name={`${this.props.position}-${index}-link`}
+                        defaultValue={actor.link}
+                        onChange={this.props.onActorsChange}
+                      />
                   </div>
-                  <form key={index}>
-                    <label>Title:</label>
-                    <input
-                      className="borderlessInput"
-                      name={`${this.props.position}-${index}-title`}
-                      defaultValue={actor.title}
-                      onChange={this.props.onActorsChange}
-                    />
-                    <label>Description:</label>
-                    <input
-                      className="borderlessInput"
-                      name={`${this.props.position}-${index}-description`}
-                      defaultValue={actor.description}
-                      onChange={this.props.onActorsChange}
-                    />
-                    <label>Link:</label>
-                    <input
-                      className="borderlessInput"
-                      name={`${this.props.position}-${index}-link`}
-                      defaultValue={actor.link}
-                      onChange={this.props.onActorsChange}
-                    />
-                    <button
-                      name={`${this.props.position}-${index}`}
-                      onClick={this.props.onDeleteActor}
-                    >X
-                  </button>
-                  </form>
                 </div>
               )
             })) : (<p>No actors yet</p>)
