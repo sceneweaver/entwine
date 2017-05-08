@@ -42,10 +42,10 @@ const pronounParser = str => {
   return pronounObj;
 }
 
-// convert obj of words to array by rate of occurence
+// convert obj of words to array by rate of occurrence
 const sortWords = objOfWords => {
   const hash = {};
-  let arrayOfOccurences = [];
+  let arrayOfOccurrences = [];
   let arrayOfWords = [];
   for (const word in objOfWords) {
     if (hash[objOfWords[word]]) {
@@ -65,10 +65,10 @@ const sortWords = objOfWords => {
     }
   }
   for (const num in hash) {
-    arrayOfOccurences.push(+num);
+    arrayOfOccurrences.push(+num);
   }
-  arrayOfOccurences = arrayOfOccurences.sort((a, b) => b - a);
-  arrayOfOccurences.forEach(key => {
+  arrayOfOccurrences = arrayOfOccurrences.sort((a, b) => b - a);
+  arrayOfOccurrences.forEach(key => {
     arrayOfWords = arrayOfWords.concat(hash[key]);
   })
   return arrayOfWords;
