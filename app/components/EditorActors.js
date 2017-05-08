@@ -40,13 +40,6 @@ class EditorActors extends Component {
                         name={`${this.props.position}-${index}-description`}
                         defaultValue={actor.description}
                         onChange={this.props.onActorsChange}
-                      /><br />
-                      <label>Link:</label>
-                      <input
-                        className="actorFormField"
-                        name={`${this.props.position}-${index}-link`}
-                        defaultValue={actor.link}
-                        onChange={this.props.onActorsChange}
                       />
                   </div>
                 </div>
