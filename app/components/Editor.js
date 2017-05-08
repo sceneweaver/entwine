@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import EditorScene from './EditorScene';
-import findPronouns from '../../server/utils/findPronouns';
+import findProperNouns from '../../server/utils/findProperNouns';
 
 /* ----- COMPONENT ----- */
 
