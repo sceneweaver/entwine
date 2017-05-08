@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import EditorActors from './EditorActors';
 
-export default class EditorScene extends Component {
+class EditorScene extends Component {
   render() {
     return (
       <div className="row">
@@ -13,7 +13,7 @@ export default class EditorScene extends Component {
             type="text"
             className="form-control"
             placeholder="Scene"
-            name={`${this.props.position}`}
+            name={this.props.position}
             onChange={this.props.onSceneTextChange}
           />
         </div>
@@ -21,19 +21,40 @@ export default class EditorScene extends Component {
           <div className="generate-actors flex-container editor-actors">
             <button
               className="btn btn-default"
-              name={`${this.props.position}`}
+              name={this.props.position}
               onClick={this.props.onGenerateActors}
             >
               Generate Actors
             </button>
           </div>
           <EditorActors
-            actors={this.props.actors}
             position={this.props.position}
-            handleFormChange={this.props.handleActorsChange}
           />
         </div>
       </div>
     )
   }
 }
+
+/* ----- CONTAINER ----- */
+
+import { connect } from 'react-redux';
+import { generateActors, setSceneText } from '../reducers/editor'
+
+const mapStateToProps = (store, ownProps) => ({
+  position: ownProps.position
+});
+
+const mapDispatchToProps = dispatch => ({
+  onGenerateActors(event) {
+    event.preventDefault();
+    dispatch(generateActors(event.target.name));
+  },
+  onSceneTextChange(event) {
+    const position = event.target.name
+        , input = event.target.value;
+    dispatch(setSceneText(position, input))
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditorScene);

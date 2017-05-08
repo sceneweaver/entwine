@@ -44,11 +44,11 @@ class Story extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { setCurrScene } from '../reducers/allState'
+import { setCurrScene } from '../reducers/displayState'
 
 const mapStateToProps = store => ({
-  title: store.allState.title,
-  scenes: store.allState.scenes
+  title: store.displayState.title,
+  scenes: store.displayState.scenes
 });
 
 const mapDispatchToProps = dispatch => ({

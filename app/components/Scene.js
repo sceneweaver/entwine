@@ -35,8 +35,8 @@ class Scene extends Component {
 import { connect } from 'react-redux';
 
 const mapStateToProps = store => ({
-  text: store.allState.currScene.paragraphs[0],
-  actors: store.allState.currScene.actors
+  text: store.displayState.currScene.paragraphs[0],
+  actors: store.displayState.currScene.actors
 });
 
 export default connect(mapStateToProps)(Scene);

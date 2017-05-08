@@ -2,8 +2,10 @@ import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
   auth: require('./auth').default,
-  allState: require('./allState').default,
-  analyze: require('./analyze').default
+  displayState: require('./displayState').default,
+  analyze: require('./analyze').default,
+  editor: require('./editor').default
 });
 
 export default rootReducer;
+
