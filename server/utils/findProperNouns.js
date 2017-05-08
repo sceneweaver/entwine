@@ -94,17 +94,7 @@ const convertHashToOrderedArr = hash => {
   return arrayOfWords;
 };
 
-const getWikiData = arr => {
-  return arr.map(actorObj => {
-    actorObj.description = wiki().page(actorObj.title)
-    .then(page => page.summary())
-    .then(data => data.slice(0, 250));
-    return actorObj;
-  });
-};
-
 export default function findProperNouns(text) {
-  let arr = convertHashToOrderedArr(sortObjByOccurrence(arrToObj(removeWords(removePunctuation(filterWords(removeAbbr(splitStr(text))))))));
-  return getWikiData(arr);
+  return convertHashToOrderedArr(sortObjByOccurrence(arrToObj(removeWords(removePunctuation(filterWords(removeAbbr(splitStr(text))))))));
 }
 
