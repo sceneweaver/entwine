@@ -1,5 +1,7 @@
 /* -----------------    ACTIONS     ------------------ */
 
+const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
+
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
@@ -12,6 +14,12 @@ const DELETE_ACTOR = 'DELETE_ACTOR';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
+
+export const toggleActors = (position, displayActors) => ({
+  type: TOGGLE_ACTORS,
+  position,
+  displayActors
+})
 
 export const addScene = () => ({
   type: ADD_SCENE,
@@ -59,6 +67,7 @@ export const deleteActor = (position, actorIndex) => ({
 export default function reducer(state = {
   title: '',
   scenes: [{
+    displayActors: false,
     position: 1,
     title: '',
     paragraphs: [''],
@@ -68,8 +77,13 @@ export default function reducer(state = {
   const newState = Object.assign({}, state)
   switch (action.type) {
 
+    case TOGGLE_ACTORS:
+      newState.scenes[action.position - 1].displayActors = action.displayActors;
+      break;
+
     case ADD_SCENE:
       newState.scenes = [...newState.scenes, {
+        displayActors: false,
         position: state.scenes.length + 1,
         title: '',
         paragraphs: [''],
