@@ -5,6 +5,7 @@ import Root from './components/Root';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import MapTest from './components/Map';
 
 import Editor from './components/Editor';
 import Story from './components/Story';
@@ -20,6 +21,7 @@ const Routes = (props) => (
       <Route path="stories/fakeStory" component={Story} onEnter={props.onFakeStoryEnter} />
       <Route path="stories/:storyId" component={Story} onEnter={props.onRealStoryEnter} />
       <Route path="editor" component={Editor} />
+      <Route path="maptest" component={MapTest} />
       <Route path="*" component={Home} />
     </Route>
   </Router>
