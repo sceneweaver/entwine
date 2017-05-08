@@ -18,22 +18,22 @@ class EditorActors extends Component {
                   <input
                     className="borderlessInput"
                     name={`${this.props.position}-${actor.title}-title`}
-                    value={actor.title}
-                    onChange={this.props.handleActorsChange}
+                    defaultValue={actor.title}
+                    onChange={this.props.onActorsChange}
                   />
                   <label>Description:</label>
                   <input
                     className="borderlessInput"
                     name={`${this.props.position}-${actor.title}-description`}
-                    value={actor.description}
-                    onChange={this.props.handleActorsChange}
+                    defaultValue={actor.description}
+                    onChange={this.props.onActorsChange}
                   />
                   <label>Link:</label>
                   <input
                     className="borderlessInput"
                     name={`${this.props.position}-${actor.title}-link`}
-                    value={actor.link}
-                    onChange={this.props.handleActorsChange}
+                    defaultValue={actor.link}
+                    onChange={this.props.onActorsChange}
                   />
                 </form>
               </div>
@@ -48,7 +48,7 @@ class EditorActors extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { handleActorsChange } from '../reducers/editor'
+import { handleActorChange } from '../reducers/editor'
 
 const mapStateToProps = (store, ownProps) => ({
   actors: store.editor.scenes[ownProps.position - 1].actors,
@@ -56,13 +56,15 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleActorsChange(event) {
+  onActorsChange(event) {
+    event.preventDefault();
     const eventNameArray = event.target.name.split('-')
-      , scene = eventNameArray[0] - 1
+      , position = eventNameArray[0]
       , changedActorTitle = eventNameArray[1]
       , type = eventNameArray[2]
       , input = event.target.value;
-    dispatch(handleActorsChange(scene, changedActorTitle, type, input));
+    console.log(input);
+    dispatch(handleActorChange(position, changedActorTitle, type, input));
   }
 });
 

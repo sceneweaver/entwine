@@ -12,7 +12,7 @@ class Editor extends Component {
   render() {
     return (
       <div id="storyEditor">
-        <form onSubmit={this.props.submitStory}>
+        <form onSubmit={this.props.onSubmitStory}>
           <div className="row titleRow">
             <div className="col-md-6">
               <input
@@ -26,7 +26,7 @@ class Editor extends Component {
               <div className="addScene">
                 <button
                   className="btn btn-success"
-                  onClick={this.props.addScene}
+                  onClick={this.props.onAddScene}
                 >
                   Add Scene
                 </button>
@@ -70,13 +70,13 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addScene(event) {
+  onAddScene(event) {
     event.preventDefault();
     dispatch(addScene());
   },
-  submitStory(event) {
+  onSubmitStory(event) {
     event.preventDefault();
-    dispatch(event.target.storyTitle.value);
+    dispatch(submitStory(event.target.storyTitle.value));
   }
 });
 

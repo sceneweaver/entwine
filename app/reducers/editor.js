@@ -12,9 +12,9 @@ export const addScene = () => ({
   type: ADD_SCENE,
 })
 
-const changeActor = (scene, actor, index) => ({
+const changeActor = (position, actor, index) => ({
   type: CHANGE_ACTOR,
-  scene,
+  position,
   actor,
   index
 })
@@ -54,7 +54,7 @@ export default function reducer(state = {
       });
       break;
     case CHANGE_ACTOR:
-      newState.scenes[action.scene].actors = state.scenes[scene].actors.splice(action.index, 0, action.actor);
+      newState.scenes[action.position-1].actors.splice(action.index, 1, action.actor);
       break;
     case SET_NOUNS:
       newState.scenes[action.position-1].actors = action.nouns
@@ -74,8 +74,8 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import findPronouns from '../../server/utils/findPronouns'
 
-export const handleActorChange = (scene, changedActorTitle, type, input) => (dispatch, getState) => {
-  const actors = getState().editor.scenes[scene].actors;
+export const handleActorChange = (position, changedActorTitle, type, input) => (dispatch, getState) => {
+  const actors = getState().editor.scenes[position - 1].actors;
   let index
     , actor;
   actors.forEach((a, i) => {
@@ -85,7 +85,7 @@ export const handleActorChange = (scene, changedActorTitle, type, input) => (dis
     }
   })
   actor[type] = input;
-  dispatch(changeActor(scene, actor, index));
+  dispatch(changeActor(position, actor, index));
 }
 
 export const generateActors = position => (dispatch, getState) => {
