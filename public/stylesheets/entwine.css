@@ -25,6 +25,16 @@
   border-bottom: solid 2px #c9c9c9;
 }
 
+#actorsComponent {
+  padding: 10px;
+  background-color: lightseagreen;
+}
+
+#actorsBox {
+  background-color: rgba(188,231,229, 1);
+  padding: 10px;
+}
+
 .actorFormField {
   border: none;
   margin: 10px;

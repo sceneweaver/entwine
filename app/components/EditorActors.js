@@ -5,23 +5,26 @@ import React, { Component } from 'react'
 class EditorActors extends Component {
   render() {
     return (
-      <div>
+      <div id="actorsComponent">
         <div className="buttonContainer">
           <button
             name={this.props.position}
             onClick={this.props.onAddActor}
             className="btn btn-default"
           >
-            Add an Actor
+            Add New Actor
         </button>
         </div>
-        <div className="card-group">
+        <div id="actorsBox">
           {this.props.actors.length ? (
             this.props.actors.map((actor, index) => {
+              const key = index;
               return (
-                <div key={actor.title} className="card">
-                  <img className="card-img-top" src={actor.image} alt="Actor image" />
-                  <div className="card-block">
+                <div key={key} className="media">
+                  <div className="media-left">
+                    <img className="media-object img-circle" src={actor.image} alt="Actor image" />
+                  </div>
+                  <div className="media-body">
                       <label>Name:</label>
                       <input
                         className="actorFormField"
@@ -30,6 +33,7 @@ class EditorActors extends Component {
                         onChange={this.props.onActorsChange}
                       />
                       <button
+                        className="btn btn-default"
                         name={`${this.props.position}-${index}`}
                         onClick={this.props.onDeleteActor}
                       >X

@@ -40,7 +40,7 @@ class EditorScene extends Component {
               name={this.props.position}
               onClick={this.props.onGenerateActors}
             >
-              Generate Actors
+              Show Actors
             </button>
           </div>
         </div>

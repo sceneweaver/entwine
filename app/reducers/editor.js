@@ -124,12 +124,12 @@ export default function reducer (state = {
       break;
 
     case ADD_ACTOR:
-      newState.scenes[action.position - 1].actors = [...newState.scenes[action.position - 1].actors, {
+      newState.scenes[action.position - 1].actors = newState.scenes[action.position - 1].actors.concat({
         title: '',
         description: '',
         link: '',
         image: ''
-      }]
+      });
       break;
 
     case DELETE_ACTOR:
