@@ -78,9 +78,9 @@ export default function reducer(state = {
       break;
 
     case DELETE_SCENE:
-      let firstHalfOfScene = newState.scenes.slice(0, position - 1)
-        , secondHalfOfScene = newState.scenes.slice(position);
-      newState.scenes = [...firstHalfOfScene, ...secondHalfOfScene];
+      let firstHalfOfScenes = newState.scenes.slice(0, action.position - 1)
+        , secondHalfOfScenes = newState.scenes.slice(action.position);
+      newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
 
     case SET_NOUNS:

@@ -17,7 +17,7 @@ class EditorScene extends Component {
             onChange={this.props.onSceneTextChange}
           />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-5">
           <div className="generate-actors flex-container editor-actors">
             <button
               className="btn btn-default"
@@ -31,6 +31,15 @@ class EditorScene extends Component {
             position={this.props.position}
           />
         </div>
+        <div className="col-md-1">
+          <button
+            className="btn btn-default"
+            name={this.props.position}
+            onClick={this.props.onDeleteScene}
+          >
+            Delete Scene
+          </button>
+        </div>
       </div>
     )
   }
@@ -39,7 +48,7 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { generateActors, setSceneText } from '../reducers/editor'
+import { generateActors, setSceneText, deleteScene } from '../reducers/editor'
 
 const mapStateToProps = (store, ownProps) => ({
   position: ownProps.position
@@ -51,9 +60,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(generateActors(+event.target.name));
   },
   onSceneTextChange(event) {
-    const position = event.target.name
-        , input = event.target.value;
-    dispatch(setSceneText(position, input))
+    event.preventDefault();
+    dispatch(setSceneText(event.target.name, event.target.value))
+  },
+  onDeleteScene(event) {
+    event.preventDefault();
+    dispatch(deleteScene(event.target.name))
   }
 });
 
