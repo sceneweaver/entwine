@@ -17,7 +17,7 @@ const pronounParser = str => {
       && prevWord[prevWord.length - 1] !== '?' // excludes first word of a sentence
       && prevWord[prevWord.length - 2] !== '.' // excludes first word of a sentence if previous sentence ended in close quote
   })
-  .map(word => word.replace(/'s/, '')) // remove 's from end of words
+  .map(word => word.replace(/'s/g, '')) // remove 's from end of words
   .map(word =>  word.replace(/\W+/g, "")); // remove any non letter characters (i.e. extraneous quotes)
   // remove any date words
   arr = arr.filter(word => {
