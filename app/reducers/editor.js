@@ -1,13 +1,14 @@
 /* -----------------    ACTIONS     ------------------ */
 
-const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
-
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
 const SET_SCENE_TEXT = 'SET_SCENE_TEXT';
-const SET_NOUNS = 'SET_NOUNS';
+const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
+const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
+
+const SET_ACTORS = 'SET_ACTORS';
 const CHANGE_ACTOR = 'CHANGE_ACTOR';
 const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
@@ -30,14 +31,20 @@ export const deleteScene = (position) => ({
   position
 })
 
+export const setSceneTitle = (position, input) => ({
+  type: SET_SCENE_TITLE,
+  position,
+  input
+})
+
 export const setSceneText = (position, input) => ({
   type: SET_SCENE_TEXT,
   position,
   input
 })
 
-const setNouns = (position, nouns) => ({
-  type: SET_NOUNS,
+const setActors = (position, nouns) => ({
+  type: SET_ACTORS,
   position,
   nouns
 })
@@ -97,12 +104,16 @@ export default function reducer(state = {
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
 
-    case SET_NOUNS:
+    case SET_ACTORS:
       newState.scenes[action.position - 1].actors = action.nouns
       break;
 
     case SET_SCENE_TEXT:
       newState.scenes[action.position - 1].paragraphs[0] = action.input;
+      break;
+
+    case SET_SCENE_TITLE:
+      newState.scenes[action.position - 1].title = action.input;
       break;
 
     case CHANGE_ACTOR:
@@ -139,7 +150,7 @@ import findPronouns from '../../server/utils/findPronouns'
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
     , nounArray = findPronouns(textBody);
-  dispatch(setNouns(position, nounArray));
+  dispatch(setActors(position, nounArray));
 }
 
 export const submitStory = title => (dispatch, getState) => {
