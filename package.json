@@ -86,7 +86,8 @@
     "sanitize-html": "^1.14.1",
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "wikijs": "^3.0.5"
   },
   "devDependencies": {
     "babel": "^6.5.2",
