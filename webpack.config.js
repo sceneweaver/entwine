@@ -35,6 +35,17 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-2']
         }
       }]
+    },{
+      test: /\.svg$/,
+      loaders: [
+        'babel-loader',
+        {
+          loader: 'react-svg-loader',
+          query: {
+            jsx: true
+          }
+        },
+      ]
     }]
   },
   plugins: devMode

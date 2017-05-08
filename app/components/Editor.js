@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
+// import Quill from './QuillEditor'
 
 import EditorScene from './EditorScene';
 import findPronouns from '../../server/utils/findPronouns';
