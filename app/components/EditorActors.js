@@ -4,50 +4,50 @@ import React, { Component } from 'react'
 
 class EditorActors extends Component {
   render() {
+    console.log("this.props.actors", this.props.actors);
     return (
-      <div>
+      <div id="actorsComponent">
         <div className="buttonContainer">
           <button
             name={this.props.position}
             onClick={this.props.onAddActor}
             className="btn btn-default"
           >
-            Add an Actor
+            Add New Actor
         </button>
         </div>
-        <div className="card-group">
+        <div id="actorsBox">
           {this.props.actors.length ? (
             this.props.actors.map((actor, index) => {
+              const key = index;
               return (
-                <div key={actor.title} className="card">
-                  <img className="card-img-top" src={actor.image} alt="Actor image" />
-                  <div className="card-block">
-                      <label>Name:</label>
-                      <input
-                        className="actorFormField"
-                        name={`${this.props.position}-${index}-title`}
-                        defaultValue={actor.title}
-                        onChange={this.props.onActorsChange}
-                      />
-                      <button
-                        name={`${this.props.position}-${index}`}
-                        onClick={this.props.onDeleteActor}
-                      >X
-                      </button><br />
-                      <label>Description:</label>
-                      <input
-                        className="actorFormField"
-                        name={`${this.props.position}-${index}-description`}
-                        defaultValue={actor.description}
-                        onChange={this.props.onActorsChange}
-                      /><br />
-                      <label>Link:</label>
-                      <input
-                        className="actorFormField"
-                        name={`${this.props.position}-${index}-link`}
-                        defaultValue={actor.link}
-                        onChange={this.props.onActorsChange}
-                      />
+                <div key={actor.title + key} className="actor-item">
+                  <div className="actor-image">
+                    <img className="img-circle" src={actor.image} alt="Actor image." />
+                  </div>
+                  <div className="actor-info">
+                    <label>Name:</label>
+                    <input
+                      className="actorFormField"
+                      name={`${this.props.position}-${index}-title`}
+                      defaultValue={actor.title}
+                      onChange={this.props.onActorsChange}
+                    /><br />
+                    <label>Description:</label>
+                    <input
+                      className="actorFormField"
+                      name={`${this.props.position}-${index}-description`}
+                      defaultValue={actor.description}
+                      onChange={this.props.onActorsChange}
+                    />
+                  </div>
+                  <div className="actor-delete">
+                    <button
+                      className="btn btn-default"
+                      name={`${this.props.position}-${index}`}
+                      onClick={this.props.onDeleteActor}
+                    >X
+                      </button>
                   </div>
                 </div>
               )

@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
-import ReactMapboxGl, { Layer, Feature, Marker } from "react-mapbox-gl";
-import secrets from '../../secrets.json'
+import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
+import secrets from '../../secrets.json';
 
 let googleMapsClient = require('@google/maps').createClient({
   key: secrets.googlemaps
@@ -45,20 +45,24 @@ class Test extends Component {
     }, (err, response) => {
       if (!err) {
         let results = response.json.results[0]
-        let coords = results.geometry.location;
-        let style, zoom;
+          , coords = results.geometry.location
+          , style, zoom;
 
         // if location type includes park or natural_feature, use 'outdoors' map
         // https://developers.google.com/places/supported_types
-        if (results.types.includes('natural_feature') || results.types.includes('park')) { style = 'outdoors'; zoom = 5}
-        else style = 'light'
+        if (results.types.includes('natural_feature') || results.types.includes('park')) {
+          style = 'outdoors';
+          zoom = 5;
+        } else {
+          style = 'light';
+        }
 
         // if location type includes
-        if (results.types.includes('country')) zoom = 3
-        else if (results.types.includes('administrative_area_level_1')) zoom = 5
-        else if (results.types.includes('administrative_area_level_2')) zoom = 7
-        else if (results.types.includes('administrative_area_level_3')) zoom = 8
-        else zoom = 13
+        if (results.types.includes('country')) zoom = 3;
+        else if (results.types.includes('administrative_area_level_1')) zoom = 5;
+        else if (results.types.includes('administrative_area_level_2')) zoom = 7;
+        else if (results.types.includes('administrative_area_level_3')) zoom = 8;
+        else zoom = 13;
 
         // google gives an object {lat: x, lng: y} -> reactmapboxgl takes it in the form of [lng, lat]
         this.setState({
@@ -74,24 +78,27 @@ class Test extends Component {
 
   onFindCoordsClick(event) {
     event.preventDefault();
-    console.log(event.target.location.value)
     this.findCoordinates(event.target.location.value);
   }
 
   changeMapboxStyle(event) {
-    this.setState({mapboxStyle: event.target.value})
+    event.preventDefault();
+    this.setState({ mapboxStyle: event.target.value })
   }
 
   changeMapboxZoom(event) {
-    this.setState({mapboxZoom: event.target.value})
+    event.preventDefault();
+    this.setState({ mapboxZoom: event.target.value })
   }
 
   changeMapboxAnimationMethod(event) {
-    this.setState({mapboxAnimationMethod: event.target.value})
+    event.preventDefault();
+    this.setState({ mapboxAnimationMethod: event.target.value })
   }
 
   toggleMapboxInteractivity(event) {
-    this.setState({mapboxInteractivity: event.target.value})
+    event.preventDefault();
+    this.setState({ mapboxInteractivity: event.target.value })
   }
 
   render() {
@@ -111,9 +118,9 @@ class Test extends Component {
               </div>
               <button type="submit" className="btn btn-block btn-primary">Find Location</button>
             </form>
-             <h5> <b> Coordinates: </b> {this.state.locationTypes.length > 0 ? this.state.coords.join(', ') : 'Search for a location first!'} </h5>
-             <h5> <b> Formatted Address: </b> {this.state.locationTypes.length > 0 ? this.state.locationAddress : 'Search for a location first!'} </h5>
-             <h5> <b> Location Tags: </b> {this.state.locationTypes.length > 0 ? this.state.locationTypes.join(', ') : 'Search for a location first!'} </h5>
+            <h5> <b> Coordinates: </b> {this.state.locationTypes.length > 0 ? this.state.coords.join(', ') : 'Search for a location first!'} </h5>
+            <h5> <b> Formatted Address: </b> {this.state.locationTypes.length > 0 ? this.state.locationAddress : 'Search for a location first!'} </h5>
+            <h5> <b> Location Tags: </b> {this.state.locationTypes.length > 0 ? this.state.locationTypes.join(', ') : 'Search for a location first!'} </h5>
 
             <b> Map Style: &nbsp; </b>
             <select value={this.state.mapboxStyle} onChange={this.changeMapboxStyle}>
@@ -153,34 +160,34 @@ class Test extends Component {
 
           </div>
           <div className="col-md-8">
-          {
-          this.state.locationTypes.length > 0 ?
-          <ReactMapboxGl
-              style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
-              accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-              zoom={[this.state.mapboxZoom]}
-              pitch={this.state.mapboxPitch}
-              center={this.state.coords}
-              movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
-              interactive={this.state.mapboxInteractivity} // if false, map cannot be manipulated
-              containerStyle={{
-                height: "500px",
-                width: "auto"
-              }}>
-                <Layer
-                  type="symbol"
-                  id="marker"
-                  layout={{ "icon-image": "marker-15" }}>
-                  <Feature coordinates={this.state.coords}/>
-                </Layer>
-                { this.state.locationTypes.length > 0 ?
-                  <Marker
-                  coordinates={this.state.coords}
-                  anchor="bottom">
-                 </Marker> : null
-                }
-            </ReactMapboxGl> : <div style={{backgroundColor: 'lightgrey', height: 500, width: 'auto', justifyContent: 'center', alignItems: 'center', display: 'flex', fontSize: 20}}> <span>Waiting for location input...</span> </div>
-          }
+            {
+              this.state.locationTypes.length > 0 ?
+                <ReactMapboxGl
+                  style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
+                  accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
+                  zoom={[this.state.mapboxZoom]}
+                  pitch={this.state.mapboxPitch}
+                  center={this.state.coords}
+                  movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
+                  interactive={this.state.mapboxInteractivity} // if false, map cannot be manipulated
+                  containerStyle={{
+                    height: "500px",
+                    width: "auto"
+                  }}>
+                  <Layer
+                    type="symbol"
+                    id="marker"
+                    layout={{ "icon-image": "marker-15" }}>
+                    <Feature coordinates={this.state.coords} />
+                  </Layer>
+                  {this.state.locationTypes.length > 0 ?
+                    <Marker
+                      coordinates={this.state.coords}
+                      anchor="bottom">
+                    </Marker> : null
+                  }
+                </ReactMapboxGl> : <div style={{ backgroundColor: 'lightgrey', height: 500, width: 'auto', justifyContent: 'center', alignItems: 'center', display: 'flex', fontSize: 20 }}> <span>Waiting for location input...</span> </div>
+            }
           </div>
         </div>
       </div>

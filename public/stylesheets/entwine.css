@@ -25,10 +25,31 @@
   border-bottom: solid 2px #c9c9c9;
 }
 
+// EditorActors styling
+
+#actorsComponent {
+  padding: 10px;
+  background-color: lightseagreen;
+}
+
+#actorsBox {
+  background-color: rgba(188,231,229, 1);
+  padding: 10px;
+}
+
+.actor-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .actorFormField {
   border: none;
-  margin: 10px;
+  margin: 0px 20px;
 }
+
+//
 
 .publish {
   display: flex;

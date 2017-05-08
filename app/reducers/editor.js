@@ -81,7 +81,7 @@ export default function reducer(state = {
     actors: []
   }],
 }, action) {
-  const newState = Object.assign({}, state)
+  const newState = Object.assign({}, state);
   switch (action.type) {
 
     case TOGGLE_ACTORS:
@@ -100,12 +100,15 @@ export default function reducer(state = {
 
     case DELETE_SCENE:
       let firstHalfOfScenes = newState.scenes.slice(0, action.position - 1)
-        , secondHalfOfScenes = newState.scenes.slice(action.position);
+        , secondHalfOfScenes = newState.scenes.slice(action.position).map(scene => {
+          scene.position--;
+          return scene;
+        });
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
 
     case SET_ACTORS:
-      newState.scenes[action.position - 1].actors = action.nouns
+      newState.scenes[action.position - 1].actors = action.nouns;
       break;
 
     case SET_SCENE_TEXT:
@@ -121,16 +124,16 @@ export default function reducer(state = {
       break;
 
     case ADD_ACTOR:
-      newState.scenes[action.position - 1].actors = [...newState.scenes[action.position - 1].actors, {
+      newState.scenes[action.position - 1].actors = newState.scenes[action.position - 1].actors.concat({
         title: '',
         description: '',
         link: '',
         image: ''
-      }]
+      });
       break;
 
     case DELETE_ACTOR:
-      let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, action.actorIndex)
+      let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, +action.actorIndex)
         , secondHalfOfActors = newState.scenes[action.position - 1].actors.slice(+action.actorIndex + 1);
       newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
