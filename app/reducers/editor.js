@@ -145,7 +145,7 @@ export default function reducer(state = {
 
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import findPronouns from '../../server/utils/findPronouns'
+import findProperNouns from '../../server/utils/findProperNouns'
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
