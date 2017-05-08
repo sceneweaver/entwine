@@ -71,7 +71,7 @@ export const deleteActor = (position, actorIndex) => ({
 
 /* ------------       REDUCERS     ------------------ */
 
-export default function reducer (state = {
+export default function reducer(state = {
   title: '',
   scenes: [{
     displayActors: false,
@@ -104,7 +104,7 @@ export default function reducer (state = {
           scene.position--;
           return scene;
         });
-      newState.scenes = [...firstHalfOfScenes].concat([ ...secondHalfOfScenes]);
+      newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
 
     case SET_ACTORS:
@@ -133,7 +133,7 @@ export default function reducer (state = {
       break;
 
     case DELETE_ACTOR:
-      let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, action.actorIndex)
+      let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, +action.actorIndex)
         , secondHalfOfActors = newState.scenes[action.position - 1].actors.slice(+action.actorIndex + 1);
       newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;

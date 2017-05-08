@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 
 class EditorActors extends Component {
   render() {
+    console.log("this.props.actors", this.props.actors);
     return (
       <div id="actorsComponent">
         <div className="buttonContainer">
@@ -20,31 +21,33 @@ class EditorActors extends Component {
             this.props.actors.map((actor, index) => {
               const key = index;
               return (
-                <div key={key} className="media">
-                  <div className="media-left">
-                    <img className="media-object img-circle" src={actor.image} alt="Actor image" />
+                <div key={actor.title + key} className="actor-item">
+                  <div className="actor-image">
+                    <img className="img-circle" src={actor.image} alt="Actor image." />
                   </div>
-                  <div className="media-body">
-                      <label>Name:</label>
-                      <input
-                        className="actorFormField"
-                        name={`${this.props.position}-${index}-title`}
-                        defaultValue={actor.title}
-                        onChange={this.props.onActorsChange}
-                      />
-                      <button
-                        className="btn btn-default"
-                        name={`${this.props.position}-${index}`}
-                        onClick={this.props.onDeleteActor}
-                      >X
-                      </button><br />
-                      <label>Description:</label>
-                      <input
-                        className="actorFormField"
-                        name={`${this.props.position}-${index}-description`}
-                        defaultValue={actor.description}
-                        onChange={this.props.onActorsChange}
-                      />
+                  <div className="actor-info">
+                    <label>Name:</label>
+                    <input
+                      className="actorFormField"
+                      name={`${this.props.position}-${index}-title`}
+                      defaultValue={actor.title}
+                      onChange={this.props.onActorsChange}
+                    /><br />
+                    <label>Description:</label>
+                    <input
+                      className="actorFormField"
+                      name={`${this.props.position}-${index}-description`}
+                      defaultValue={actor.description}
+                      onChange={this.props.onActorsChange}
+                    />
+                  </div>
+                  <div className="actor-delete">
+                    <button
+                      className="btn btn-default"
+                      name={`${this.props.position}-${index}`}
+                      onClick={this.props.onDeleteActor}
+                    >X
+                      </button>
                   </div>
                 </div>
               )
