@@ -122,7 +122,7 @@ export default class Editor extends Component {
       }
     })
     actor[type] = event.target.value;
-    newScenes[scene].actors = actors.slice(0, index).concat(actor).concat(actors.slice(index + 1));
+    newScenes[scene].actors = actors.splice(index, 0, actor);
     this.setState({
       scenes: newScenes
     });
