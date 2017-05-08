@@ -51,7 +51,7 @@ import { connect } from 'react-redux';
 import { handleActorsChange } from '../reducers/editor'
 
 const mapStateToProps = (store, ownProps) => ({
-  actors: store.editor.scenes[ownProps.position].actors,
+  actors: store.editor.scenes[ownProps.position - 1].actors,
   position: ownProps.position
 });
 
