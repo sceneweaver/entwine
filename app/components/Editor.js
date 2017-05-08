@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
-// import Quill from './QuillEditor'
+// import QuillEditor from './QuillEditor'
 
 import EditorScene from './EditorScene';
 import findPronouns from '../../server/utils/findPronouns';
+
+import Quill from 'quill/core';
+
+import Toolbar from 'quill/modules/toolbar';
+import Snow from 'quill/themes/snow';
+
+import Bold from 'quill/formats/bold';
+import Italic from 'quill/formats/italic';
+import Header from 'quill/formats/header';
+
+
+Quill.register({
+  'modules/toolbar': Toolbar,
+  'themes/snow': Snow,
+  'formats/bold': Bold,
+  'formats/italic': Italic,
+  'formats/header': Header
+});
 
 /* ----- COMPONENT ----- */
 
@@ -28,6 +46,7 @@ export default class Editor extends Component {
   render() {
     return (
       <div id="storyEditor">
+      {Quill}
         <form onSubmit={this.onSubmit}>
           <div className="row titleRow">
             <div className="col-md-6">

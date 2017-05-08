@@ -2,6 +2,7 @@
 
 const LiveReloadPlugin = require('webpack-livereload-plugin')
     , devMode = require('.').isDevelopment
+    , path = require('path')
 
 /**
  * Fast source maps rebuild quickly during development, but only give a link
@@ -23,7 +24,11 @@ module.exports = {
     ? 'cheap-module-eval-source-map'
     : 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '*']
+    alias: {
+      'parchment': path.resolve(__dirname, 'node_modules/parchment/src/parchment.ts'),
+      'quill$': path.resolve(__dirname, 'node_modules/quill/quill.js'),
+    },
+    extensions: ['.js', '.jsx', '.json', '*', 'ts', '.svg']
   },
   module: {
     rules: [{
@@ -35,20 +40,82 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-2']
         }
       }]
-    },{
+    }, {
+      test: /\.ts$/,
+      use: [{
+        loader: 'ts-loader',
+        options: {
+          compilerOptions: {
+            declaration: false,
+            target: 'es5',
+            module: 'commonjs'
+          },
+          transpileOnly: true
+        }
+      }]
+    }, {
       test: /\.svg$/,
-      loaders: [
-        'babel-loader',
-        {
-          loader: 'react-svg-loader',
-          query: {
-            jsx: true
-          }
-        },
-      ]
+      use: [{
+        loader: 'html-loader',
+        options: {
+          minimize: true
+        }
+      }]
     }]
   },
   plugins: devMode
     ? [new LiveReloadPlugin({appendScriptTag: true})]
     : []
 }
+
+
+
+// //***QUILL WEBPACK */
+// var path = require('path');
+
+// module.exports = {
+//   entry: "./app.js",
+//   output: {
+//     path: __dirname + "/dist",
+//     filename: "bundle.js"
+//   },
+//   resolve: {
+//     alias: {
+//       'parchment': path.resolve(__dirname, 'node_modules/parchment/src/parchment.ts'),
+//       'quill$': path.resolve(__dirname, 'node_modules/quill/quill.js'),
+//     },
+//     extensions: ['.js', '.ts', '.svg']
+//   },
+//   module: {
+//     rules: [{
+//       test: /\.js$/,
+//       use: [{
+//         loader: 'babel-loader',
+//         options: {
+//           presets: ['es2015']
+//         }
+//       }],
+//     }, {
+//       test: /\.ts$/,
+//       use: [{
+//         loader: 'ts-loader',
+//         options: {
+//           compilerOptions: {
+//             declaration: false,
+//             target: 'es5',
+//             module: 'commonjs'
+//           },
+//           transpileOnly: true
+//         }
+//       }]
+//     }, {
+//       test: /\.svg$/,
+//       use: [{
+//         loader: 'html-loader',
+//         options: {
+//           minimize: true
+//         }
+//       }]
+//     }]
+//   }
+// }
