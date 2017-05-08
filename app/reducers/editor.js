@@ -71,7 +71,7 @@ export const deleteActor = (position, actorIndex) => ({
 
 /* ------------       REDUCERS     ------------------ */
 
-export default function reducer(state = {
+export default function reducer (state = {
   title: '',
   scenes: [{
     displayActors: false,
@@ -81,7 +81,7 @@ export default function reducer(state = {
     actors: []
   }],
 }, action) {
-  const newState = Object.assign({}, state)
+  const newState = Object.assign({}, state);
   switch (action.type) {
 
     case TOGGLE_ACTORS:
@@ -100,12 +100,15 @@ export default function reducer(state = {
 
     case DELETE_SCENE:
       let firstHalfOfScenes = newState.scenes.slice(0, action.position - 1)
-        , secondHalfOfScenes = newState.scenes.slice(action.position);
-      newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
+        , secondHalfOfScenes = newState.scenes.slice(action.position).map(scene => {
+          scene.position--;
+          return scene;
+        });
+      newState.scenes = [...firstHalfOfScenes].concat([ ...secondHalfOfScenes]);
       break;
 
     case SET_ACTORS:
-      newState.scenes[action.position - 1].actors = action.nouns
+      newState.scenes[action.position - 1].actors = action.nouns;
       break;
 
     case SET_SCENE_TEXT:
