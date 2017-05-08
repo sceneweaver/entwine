@@ -12,11 +12,12 @@ export const addScene = () => ({
   type: ADD_SCENE,
 })
 
-const changeActor = (position, actor, index) => ({
+export const changeActor = (position, actorIndex, field, input) => ({
   type: CHANGE_ACTOR,
   position,
-  actor,
-  index
+  actorIndex,
+  field,
+  input
 })
 
 const setNouns = (position, nouns) => ({
@@ -46,15 +47,20 @@ export default function reducer(state = {
   const newState = Object.assign({}, state)
   switch (action.type) {
     case ADD_SCENE:
-      newState.scenes = state.scenes.push({
+      newState.scenes.push({
         position: state.scenes.length + 1,
         title: '',
         paragraphs: [''],
-        actors: []
+        actors: [{
+          title: '',
+          description: '',
+          link: '',
+          image: ''
+        }]
       });
       break;
     case CHANGE_ACTOR:
-      newState.scenes[action.position-1].actors.splice(action.index, 1, action.actor);
+      newState.scenes[action.position-1].actors[action.actorIndex][action.field] = action.input;
       break;
     case SET_NOUNS:
       newState.scenes[action.position-1].actors = action.nouns
@@ -73,20 +79,6 @@ export default function reducer(state = {
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import findPronouns from '../../server/utils/findPronouns'
-
-export const handleActorChange = (position, changedActorTitle, type, input) => (dispatch, getState) => {
-  const actors = getState().editor.scenes[position - 1].actors;
-  let index
-    , actor;
-  actors.forEach((a, i) => {
-    if (a.title === changedActorTitle) {
-      index = i;
-      actor = a;
-    }
-  })
-  actor[type] = input;
-  dispatch(changeActor(position, actor, index));
-}
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]

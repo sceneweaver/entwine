@@ -7,31 +7,31 @@ class EditorActors extends Component {
     return (
       <div className="actors">
         {this.props.actors.length ? (
-          this.props.actors.map(actor => {
+          this.props.actors.map((actor, index) => {
             return (
               <div key={actor.title}>
                 <div className="media-left media-middle icon-container">
                   <img className="media-object img-circle" src={actor.image} />
                 </div>
-                <form key={actor.title}>
+                <form key={index}>
                   <label>Title:</label>
                   <input
                     className="borderlessInput"
-                    name={`${this.props.position}-${actor.title}-title`}
+                    name={`${this.props.position}-${index}-title`}
                     defaultValue={actor.title}
                     onChange={this.props.onActorsChange}
                   />
                   <label>Description:</label>
                   <input
                     className="borderlessInput"
-                    name={`${this.props.position}-${actor.title}-description`}
+                    name={`${this.props.position}-${index}-description`}
                     defaultValue={actor.description}
                     onChange={this.props.onActorsChange}
                   />
                   <label>Link:</label>
                   <input
                     className="borderlessInput"
-                    name={`${this.props.position}-${actor.title}-link`}
+                    name={`${this.props.position}-${index}-link`}
                     defaultValue={actor.link}
                     onChange={this.props.onActorsChange}
                   />
@@ -48,7 +48,7 @@ class EditorActors extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { handleActorChange } from '../reducers/editor'
+import { changeActor } from '../reducers/editor'
 
 const mapStateToProps = (store, ownProps) => ({
   actors: store.editor.scenes[ownProps.position - 1].actors,
@@ -60,11 +60,10 @@ const mapDispatchToProps = dispatch => ({
     event.preventDefault();
     const eventNameArray = event.target.name.split('-')
       , position = eventNameArray[0]
-      , changedActorTitle = eventNameArray[1]
-      , type = eventNameArray[2]
+      , actorIndex = eventNameArray[1]
+      , field = eventNameArray[2]
       , input = event.target.value;
-    console.log(input);
-    dispatch(handleActorChange(position, changedActorTitle, type, input));
+    dispatch(changeActor(position, actorIndex, field, input));
   }
 });
 
