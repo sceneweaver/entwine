@@ -1,5 +1,3 @@
-import wiki from 'wikijs';
-
 // remove new lines and spaces
 const splitStr = str => {
   let arr = str.split('\n').join(' ');

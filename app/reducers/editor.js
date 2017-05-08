@@ -13,6 +13,10 @@ const CHANGE_ACTOR = 'CHANGE_ACTOR';
 const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
+const FETCH_ACTOR_DESC = 'FETCH_ACTOR_DESC';
+const FETCH_ACTOR_IMAGE = 'FETCH_ACTOR_IMAGE';
+const FETCH_ACTOR_LINK = 'FETCH_ACTOR_LINK';
+
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -66,6 +70,13 @@ export const deleteActor = (position, actorIndex) => ({
   type: DELETE_ACTOR,
   position,
   actorIndex
+})
+
+export const fetchActorDesc = (position, actorIndex, actorDesc) => ({
+  type: FETCH_ACTOR_DESC,
+  position,
+  actorIndex,
+  actorDesc
 })
 
 
@@ -138,6 +149,10 @@ export default function reducer(state = {
       newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
 
+    case FETCH_ACTOR_DESC:
+      newState.scenes[action.position - 1].actors[action.actorIndex].description = action.actorDesc;
+      break;
+
     default:
       return newState;
   }
@@ -148,7 +163,8 @@ export default function reducer(state = {
 
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import findProperNouns from '../../server/utils/findProperNouns'
+import findProperNouns from '../../server/utils/findProperNouns';
+import wiki from 'wikijs';
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
@@ -164,4 +180,14 @@ export const submitStory = title => (dispatch, getState) => {
     .then(newStory => {
       browserHistory.push(`/stories/${newStory.data.id}`)
     })
+}
+
+export const getActorDescriptions = position => (dispatch, getState) => {
+  let actors = getState().editor.scenes[position - 1].actors;
+  actors.forEach((actor, index) => {
+    let updatedDescription = wiki().page(actor.title)
+    .then(page => page.summary())
+    .then(data => data.slice(0, 250));
+    dispatch(fetchActorDesc(position, index, updatedDescription))
+  })
 }
