@@ -6,7 +6,7 @@ export default class EditorScene extends Component {
   render() {
     return (
       <div className="row">
-        <div className="form-group col-md-6">
+        <div id="text-editor" className="form-group col-md-6">
           <textarea
             rows="10"
             cols="78"

@@ -1,4 +1,4 @@
-import Quill from 'quill/core';
+import Quill from 'quill';
 
 import Toolbar from 'quill/modules/toolbar';
 import Snow from 'quill/themes/snow';
