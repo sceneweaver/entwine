@@ -41,7 +41,7 @@ class Navbar extends React.Component {
                 <Link to="/editor">Create New Story</Link>
               </li>
               <li>
-                <Link to="/test">Map Testing</Link>
+                <Link to="/maptest">Map Testing</Link>
               </li>
             </ul>
             { this.props.currentUser ? this.renderLogout() : this.renderLoginSignup() }
