@@ -75,7 +75,7 @@ import { browserHistory } from 'react-router';
 import findPronouns from '../../server/utils/findPronouns'
 
 export const handleActorChange = (scene, changedActorTitle, type, input) => (dispatch, getState) => {
-  const actors = getState().scenes[scene].actors;
+  const actors = getState().editor.scenes[scene].actors;
   let index
     , actor;
   actors.forEach((a, i) => {
@@ -89,7 +89,7 @@ export const handleActorChange = (scene, changedActorTitle, type, input) => (dis
 }
 
 export const generateActors = position => (dispatch, getState) => {
-  const textBody = getState().scenes[position - 1].paragraphs[0]
+  const textBody = getState().editor.scenes[position - 1].paragraphs[0]
       , nounArray = findPronouns(textBody);
   dispatch(setNouns(position, nounArray));
 }
@@ -97,7 +97,7 @@ export const generateActors = position => (dispatch, getState) => {
 export const submitStory = title => (dispatch, getState) => {
   return axios.post('/api/stories', {
     title,
-    scenes: getState().scenes
+    scenes: getState().editor.scenes
   })
   .then(newStory => {
     browserHistory.push(`/stories/${newStory.data.id}`)

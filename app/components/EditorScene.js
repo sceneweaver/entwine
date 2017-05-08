@@ -48,7 +48,7 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   onGenerateActors(event) {
     event.preventDefault();
-    dispatch(generateActors(event.target.name));
+    dispatch(generateActors(+event.target.name));
   },
   onSceneTextChange(event) {
     const position = event.target.name
