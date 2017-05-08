@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 import EditorScene from './EditorScene';
-import findPronouns from '../../server/utils/findPronouns';
+import findProperNouns from '../../server/utils/findProperNouns';
 
 /* ----- COMPONENT ----- */
 
@@ -100,7 +100,7 @@ export default class Editor extends Component {
     const position = event.target.name;
     const textBody = this.state.scenes[position - 1].paragraphs[0];
     const updatedScenes = this.state.scenes;
-    updatedScenes[position -1].actors = findPronouns(textBody);
+    updatedScenes[position -1].actors = findProperNouns(textBody);
     this.setState({
       scenes: updatedScenes
     });

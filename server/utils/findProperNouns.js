@@ -1,10 +1,18 @@
-export default function findPronouns(text) {
+export default function findProperNouns(text) {
   return sortWords(pronounParser(text));
 }
 
 // this function will return an array of pronouns from a string of text
 const pronounParser = str => {
-  let arr = str.split(' ').filter(word => word); // convert string to array of words; only include words (no empty strings)
+  let arr = str.split('\n').join(' '); // elliminate new paragraphs
+  arr = arr.split(' ');
+  arr = arr.filter(word => {
+    return word // convert string to array of words; only include words (no empty strings)
+      && word !== 'Mr.'
+      && word !== 'Ms.'
+      && word !== 'Mrs.'
+      && (word.length > 2 || word[word.length - 1] !== '.'); // removes middle initials as to not confuse them with the end of a sentence
+  });
   arr = arr.filter((word, i, a) => {
     let prevWord = a[i - 1];
     return word
@@ -28,12 +36,10 @@ const pronounParser = str => {
   let i = 0;
   while (i < arr.length) {
     if (/^[A-Z]/.test(arr[i])) { // check if word is capitalized
-      let newWord;
-      if (/^[A-Z]/.test(arr[i + 1])) { // if next word is capitalized too, combine them
-        newWord = `${arr[i]} ${arr[i + 1]}`;
+      let newWord = `${arr[i]}`;
+      while (/^[A-Z]/.test(arr[i + 1])) { // if next word is capitalized too, combine them
+        newWord += ` ${arr[i + 1]}`;
         i++;
-      } else {
-        newWord = `${arr[i]}`; // else only add the word itself
       }
       pronounObj[newWord] ? pronounObj[newWord]++ : pronounObj[newWord] = 1; // count the number of occurences
     }
