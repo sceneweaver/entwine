@@ -149,7 +149,7 @@ import findProperNouns from '../../server/utils/findProperNouns'
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
-    , nounArray = findPronouns(textBody);
+    , nounArray = findProperNouns(textBody);
   dispatch(setActors(position, nounArray));
 }
 
