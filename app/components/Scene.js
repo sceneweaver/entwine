@@ -3,6 +3,11 @@ import React, { Component } from 'react'
 /* ----- COMPONENT ----- */
 
 class Scene extends Component {
+
+  setInnerHTML(text){
+    return {__html: text}
+  }
+
   render() {
     return (
         <div className="row">
@@ -10,7 +15,7 @@ class Scene extends Component {
 
           </div>
           <div className="col-md-8 col-md-offset-1 article-text article-font">
-            <p> {this.props.text} </p>
+            <div dangerouslySetInnerHTML={this.setInnerHTML(this.props.text)} />
           </div>
           <div className="col-md-2 pull-right actorsBlock">
             {this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null}

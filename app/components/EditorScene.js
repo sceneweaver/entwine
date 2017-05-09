@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 import {
-  CompositeDecorator,
-  ContentBlock,
-  ContentState,
   Editor,
   EditorState,
   RichUtils
