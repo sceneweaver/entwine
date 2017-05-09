@@ -19,7 +19,7 @@ class EditorActors extends Component {
           { this.props.actors.length ? (
             this.props.actors.map((actor, index) => {
               return (
-                <div key={} className="actor-item">
+                <div key={actor.title + index} className="actor-item">
                   <div className="actor-image">
                     <img className="img-circle" src={actor.image} alt="Actor image." />
                   </div>
