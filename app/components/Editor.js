@@ -16,7 +16,7 @@ class Editor extends Component {
               placeholder="Story Title"
               className="titleInput"
               onChange={this.props.onStoryTitleChange}
-              defaultValue={this.props.storyTitle}
+              value={this.props.storyTitle}
             />
           </div>
           <div className="col-md-3">
@@ -42,10 +42,10 @@ class Editor extends Component {
         </div>
 
         {
-          this.props.scenes.length ? (this.props.scenes.map((scene, index) => (
+          this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
             <EditorScene
+              position={scene.position}
               key={scene.position}
-              position={index}
             />
           )))
             : null
@@ -62,8 +62,8 @@ import { connect } from 'react-redux';
 import { addScene, changeStoryTitle, submitStory } from '../reducers/editor';
 
 const mapStateToProps = store => ({
+  editor: store.editor,
   storyTitle: store.editor.title,
-  scenes: store.editor.scenes
 });
 
 const mapDispatchToProps = dispatch => ({
