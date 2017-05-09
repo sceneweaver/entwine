@@ -14,8 +14,6 @@ const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
 const FETCH_ACTOR_DESC = 'FETCH_ACTOR_DESC';
-const FETCH_ACTOR_IMAGE = 'FETCH_ACTOR_IMAGE';
-const FETCH_ACTOR_LINK = 'FETCH_ACTOR_LINK';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -72,12 +70,6 @@ export const deleteActor = (position, actorIndex) => ({
   actorIndex
 })
 
-export const fetchActorDesc = (position, actorIndex, actorDesc) => ({
-  type: FETCH_ACTOR_DESC,
-  position,
-  actorIndex,
-  actorDesc
-})
 
 
 /* ------------       REDUCERS     ------------------ */
@@ -166,25 +158,43 @@ import { browserHistory } from 'react-router';
 import findProperNouns from '../../server/utils/findProperNouns';
 import wiki from 'wikijs';
 
-const getWikiDesc = title => {
-  return wiki().page(title)
-  .then(page => page.summary());
-}
+const getWikiDesc = (array, title, position, index) => {
+  return dispatch => {
+    return wiki().page(title)
+    .then(page => page.summary())
+    .then(info => {
+      info = info.slice(0, 250);
+      array[index].description = info;
+      return array;
+    })
+    .then(updatedArray => {
+      dispatch(setActors(position, updatedArray));
+    });
+  };
+};
+
+const getWikiImage = (array, title, position, index) => {
+  return dispatch => {
+    return wiki().page(title)
+    .then(page => page.mainImage())
+    .then(image => {
+      console.log(image)
+      array[index].image = image;
+      return array;
+    })
+    .then(updatedArray => {
+      dispatch(setActors(position, updatedArray));
+    });
+  };
+};
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
     , actorsArray = findProperNouns(textBody);
-  // dispatch(setActors(position, actorsArray));
-  // let actors = getState().editor.scenes[position - 1].actors;
-  let updatedArray = actorsArray.map((actor, index) => {
-    return dispatch(getWikiDesc(actor.title))
-    // let updatedDescription = wiki().page(actor.title)
-    // .then(page => page.summary())
-    // .then(data => data.slice(0, 250));
-      // fetchActorDesc(position, index, updatedDescription)
-    // );
+  actorsArray.forEach((actor, index, array) => {
+    dispatch(getWikiDesc(array, actor.title, position, index));
+    dispatch(getWikiImage(array, actor.title, position, index));
   });
-    dispatch(setActors(position, updatedArray))
 };
 
 export const submitStory = title => (dispatch, getState) => {
