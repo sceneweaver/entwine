@@ -101,7 +101,6 @@ export const deleteActor = (position, actorIndex) => ({
 })
 
 
-
 /* ------------       REDUCERS     ------------------ */
 
 export default function reducer(state = {
@@ -173,12 +172,45 @@ export default function reducer(state = {
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import findProperNouns from '../../server/utils/findProperNouns';
+import wiki from 'wikijs';
+
+const getWikiDesc = (array, title, position, index) => {
+  return dispatch => {
+    return wiki().page(title)
+    .then(page => page.summary())
+    .then(info => {
+      info = info.slice(0, 250);
+      array[index].description = info;
+      return array;
+    })
+    .then(updatedArray => {
+      dispatch(setActors(position, updatedArray));
+    });
+  };
+};
+
+const getWikiImage = (array, title, position, index) => {
+  return dispatch => {
+    return wiki().page(title)
+    .then(page => page.mainImage())
+    .then(image => {
+      array[index].image = image;
+      return array;
+    })
+    .then(updatedArray => {
+      dispatch(setActors(position, updatedArray));
+    });
+  };
+};
 
 export const generateActors = position => (dispatch, getState) => {
-  const textBody = getState().editor.scenes[position].paragraphs[0]
-    , nounArray = findProperNouns(textBody);
-  dispatch(setActors(position, nounArray));
-}
+  const textBody = getState().editor.scenes[position - 1].paragraphs[0]
+    , actorsArray = findProperNouns(textBody);
+  actorsArray.forEach((actor, index, array) => {
+    dispatch(getWikiDesc(array, actor.title, position, index));
+    dispatch(getWikiImage(array, actor.title, position, index));
+  });
+};
 
 export const submitStory = title => (dispatch, getState) => {
   return axios.post('/api/stories', {
@@ -187,5 +219,6 @@ export const submitStory = title => (dispatch, getState) => {
   })
     .then(newStory => {
       browserHistory.push(`/stories/${newStory.data.id}`)
-    })
-}
+    });
+};
+
