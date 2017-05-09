@@ -43,6 +43,7 @@ class Editor extends Component {
               </div>
             </div>
           </div>
+        </form>
 
           {
             this.props.scenes.length ? (this.props.scenes.map(scene => (
@@ -54,7 +55,6 @@ class Editor extends Component {
               : null
           }
 
-        </form>
       </div>
     )
   }
