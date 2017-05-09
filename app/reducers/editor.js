@@ -139,8 +139,6 @@ export default function reducer(state = {
           scene.position--;
           return scene;
         });
-      console.log("firstHalfOfScenes", firstHalfOfScenes);
-      console.log("secondHalfOfScenes", secondHalfOfScenes);
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
 

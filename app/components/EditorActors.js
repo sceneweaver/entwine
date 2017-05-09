@@ -5,7 +5,6 @@ import store from '../store';
 
 class EditorActors extends Component {
   render() {
-    console.log("this.props.position", this.props.position);
     return (
       <div className="actors-module">
         <div className="flexcontainer-module-header">

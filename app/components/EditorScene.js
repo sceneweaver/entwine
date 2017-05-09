@@ -4,7 +4,6 @@ import EditorActors from './EditorActors';
 
 class EditorScene extends Component {
   render() {
-    console.log("editorscene props", this.props);
     return (
       <div className="row">
         <div className="col-md-1">
@@ -73,7 +72,6 @@ const mapStateToProps = (store, ownProps) => ({
   position: ownProps.position,
   title: store.editor.scenes[ownProps.position].title,
   text: store.editor.scenes[ownProps.position].paragraphs[0],
-  //position is not right here for text
   displayActors: store.editor.scenes[ownProps.position].displayActors
 });
 
