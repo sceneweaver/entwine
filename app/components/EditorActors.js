@@ -13,7 +13,7 @@ class EditorActors extends Component {
           </div>
           <div className="button-container flex-self-right">
             <button
-              onClick={this.props.onRefreshActor.bind(this, event, this.props.position)}
+              onClick={this.props.onRefreshActors.bind(this, event, this.props.position)}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-refresh" />
@@ -88,6 +88,10 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  onRefreshActors(event, position) {
+    event.preventDefault();
+    dispatch(generateActors(position));
+  },
   onActorsChange(event) {
     event.preventDefault();
     const eventNameArray = event.target.name.split('-')
@@ -119,10 +123,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       .then(image => {
         dispatch(changeActor(position, actorIndex, 'image', image));
       });
-  },
-  onRefreshActor(event, position) {
-    event.preventDefault();
-    dispatch(generateActors(position));
   }
 });
 

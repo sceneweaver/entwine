@@ -17,8 +17,7 @@ class EditorScene extends Component {
         <div className="form-group col-md-5">
           <input
             placeholder="Scene Title"
-            name={this.props.position}
-            onChange={this.props.onSceneTitleChange}
+            onChange={this.props.onSceneTitleChange.bind(this, event, this.props.position)}
             value={this.props.title}
           />
           <textarea
@@ -37,8 +36,7 @@ class EditorScene extends Component {
             <div className="row">
               <button
                 className="btn btn-default"
-                name={this.props.position}
-                onClick={this.props.onGenerateActors}
+                onClick={this.props.onShowActors.bind(this, event, this.props.position)}
               >
                 Show Actors
             </button>
@@ -69,7 +67,7 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { toggleActors, generateActors, setSceneText, setSceneTitle, deleteScene } from '../reducers/editor'
+import { toggleActors, setSceneText, setSceneTitle, deleteScene } from '../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
@@ -80,14 +78,13 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onGenerateActors(event) {
+  onShowActors(event, position) {
     event.preventDefault();
-    dispatch(toggleActors(+event.target.name, true));
-    dispatch(generateActors(+event.target.name));
+    dispatch(toggleActors(+position, true));
   },
-  onSceneTitleChange(event) {
+  onSceneTitleChange(event, position) {
     event.preventDefault();
-    dispatch(setSceneTitle(+event.target.name, event.target.value));
+    dispatch(setSceneTitle(+position, event.target.value));
   },
   onSceneTextChange(event) {
     event.preventDefault();
@@ -95,7 +92,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onDeleteScene(event, position) {
     event.preventDefault();
-    dispatch(deleteScene(position))
+    dispatch(deleteScene(+position));
   },
   onGenerateMaps(event) {
     event.preventDefault();
