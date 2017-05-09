@@ -18,6 +18,9 @@ module.exports = {
     path: __dirname,
     filename: './public/bundle.js'
   },
+  externals: {
+    'isomorphic-fetch': 'fetch'
+  },
   context: __dirname,
   devtool: devMode && USE_FAST_SOURCE_MAPS
     ? 'cheap-module-eval-source-map'

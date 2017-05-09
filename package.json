@@ -62,6 +62,7 @@
     "homedir": "^0.6.0",
     "jquery": "^3.2.1",
     "mapbox-gl": "^0.37.0",
+    "node-ddg-api": "^0.1.4",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-github2": "^0.1.10",
@@ -86,7 +87,8 @@
     "sanitize-html": "^1.14.1",
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "wikijs": "^3.0.5"
   },
   "devDependencies": {
     "babel": "^6.5.2",
