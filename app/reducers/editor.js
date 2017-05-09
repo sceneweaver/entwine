@@ -139,8 +139,6 @@ export default function reducer(state = {
           scene.position--;
           return scene;
         });
-      console.log("firstHalfOfScenes", firstHalfOfScenes);
-      console.log("secondHalfOfScenes", secondHalfOfScenes);
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
 
@@ -217,7 +215,7 @@ const getWikiImage = (array, title, position, index) => {
 };
 
 export const generateActors = position => (dispatch, getState) => {
-  const textBody = getState().editor.scenes[position - 1].paragraphs[0]
+  const textBody = getState().editor.scenes[position].paragraphs[0]
     , actorsArray = findProperNouns(textBody);
   actorsArray.forEach((actor, index, array) => {
     dispatch(getWikiDesc(array, actor.title, position, index));
