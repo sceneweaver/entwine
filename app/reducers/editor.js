@@ -167,13 +167,3 @@ export const submitStory = title => (dispatch, getState) => {
       browserHistory.push(`/stories/${newStory.data.id}`)
     })
 }
-
-export const getActorDescriptions = position => (dispatch, getState) => {
-  let actors = getState().editor.scenes[position - 1].actors;
-  actors.forEach((actor, index) => {
-    let updatedDescription = wiki().page(actor.title)
-    .then(page => page.summary())
-    .then(data => data.slice(0, 250));
-    dispatch(fetchActorDesc(position, index, updatedDescription))
-  })
-}
