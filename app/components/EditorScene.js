@@ -52,11 +52,10 @@ class EditorScene extends Component {
 
   onSaveClick() {
     const content = this.state.editorState.getCurrentContent();
-    console.log('coverted from raw...', stateToHTML(content))
+    console.log('converted from raw...', stateToHTML(content))
   }
 
   render() {
-    console.log("editorscene props", this.props);
     return (
       <div className="row">
         <div className="col-md-1">
@@ -92,7 +91,6 @@ class EditorScene extends Component {
 
           <div className="editor-container">
             <Editor
-              // placeholder="Text goes here"
               editorState={this.state.editorState}
               handleKeyCommand={this.handleKeyCommand}
               onChange={this.onChange}
@@ -150,7 +148,6 @@ const mapStateToProps = (store, ownProps) => ({
   position: ownProps.position,
   title: store.editor.scenes[ownProps.position].title,
   text: store.editor.scenes[ownProps.position].paragraphs[0],
-  //position is not right here for text
   displayActors: store.editor.scenes[ownProps.position].displayActors
 });
 
