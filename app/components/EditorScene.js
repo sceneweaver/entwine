@@ -33,21 +33,25 @@ class EditorScene extends Component {
           />
         </div>
         <div className="col-md-1">
-          <div className="generate-actors flex-container editor-actors">
-            <button
-              className="btn btn-default"
-              name={this.props.position}
-              onClick={this.props.onGenerateActors}
-            >
-              Show Actors
+          <div className="generate-actors flexcontainer-vertical editor-actors">
+            <div className="row">
+              <button
+                className="btn btn-default"
+                name={this.props.position}
+                onClick={this.props.onGenerateActors}
+              >
+                Show Actors
             </button>
-            <button
-              className="btn btn-default"
-              name={this.props.position}
-              onClick={this.props.onGenerateMaps}
-            >
-              Generate Map
+            </div>
+            <div className="row">
+              <button
+                className="btn btn-default"
+                name={this.props.position}
+                onClick={this.props.onGenerateMaps}
+              >
+                Generate Map
             </button>
+            </div>
           </div>
         </div>
         <div className="col-md-5">

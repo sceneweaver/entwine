@@ -19,25 +19,21 @@ class Editor extends Component {
               value={this.props.storyTitle}
             />
           </div>
-          <div className="col-md-3">
-            <div className="addScene">
-              <button
-                className="btn btn-success"
-                onClick={this.props.onAddScene}
-              >
-                Add Scene
+          <div className="col-md-3 addScene">
+            <button
+              className="btn btn-success"
+              onClick={this.props.onAddScene}
+            >
+              Add Scene
                 </button>
-            </div>
           </div>
-          <div className="col-md-3">
-            <div className="publish">
-              <button
-                className="btn btn-success"
-                onClick={this.props.onSubmitStory}
-              >
-                Publish My Story
-                </button>
-            </div>
+          <div className="col-md-3 publish">
+            <button
+              className="btn btn-success"
+              onClick={this.props.onSubmitStory}
+            >
+              Publish My Story
+            </button>
           </div>
         </div>
 
@@ -52,7 +48,7 @@ class Editor extends Component {
         }
 
       </div>
-    )
+    );
   }
 }
 
@@ -60,6 +56,7 @@ class Editor extends Component {
 
 import { connect } from 'react-redux';
 import { addScene, changeStoryTitle, submitStory } from '../reducers/editor';
+import store from '../store';
 
 const mapStateToProps = store => ({
   editor: store.editor,
@@ -77,7 +74,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onSubmitStory(event) {
     event.preventDefault();
-    dispatch(submitStory(event.target.storyTitle.value));
+    dispatch(submitStory());
   }
 });
 

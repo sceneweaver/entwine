@@ -15,15 +15,17 @@ module.exports = db => db.define('actors', {
   },
   image: {
     type: STRING,
-    validate: {
-      isUrl: true
-    }
+    defaultValue: '',
+    // validate: {
+    //   isUrl: true
+    // }
   },
   link: {
     type: STRING,
-    validate: {
-      isUrl: true
-    }
+    defaultValue: '',
+    // validate: {
+    //   isUrl: true
+    // }
   }
 });
 
