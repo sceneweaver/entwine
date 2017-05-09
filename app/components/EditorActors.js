@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 
 class EditorActors extends Component {
   render() {
-    console.log("this.props.actors", this.props.actors);
     return (
       <div id="actorsComponent">
         <div className="buttonContainer">

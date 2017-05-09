@@ -166,11 +166,26 @@ import { browserHistory } from 'react-router';
 import findProperNouns from '../../server/utils/findProperNouns';
 import wiki from 'wikijs';
 
+const getWikiDesc = title => {
+  return wiki().page(title)
+  .then(page => page.summary());
+}
+
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
-    , nounArray = findProperNouns(textBody);
-  dispatch(setActors(position, nounArray));
-}
+    , actorsArray = findProperNouns(textBody);
+  // dispatch(setActors(position, actorsArray));
+  // let actors = getState().editor.scenes[position - 1].actors;
+  let updatedArray = actorsArray.map((actor, index) => {
+    return dispatch(getWikiDesc(actor.title))
+    // let updatedDescription = wiki().page(actor.title)
+    // .then(page => page.summary())
+    // .then(data => data.slice(0, 250));
+      // fetchActorDesc(position, index, updatedDescription)
+    // );
+  });
+    dispatch(setActors(position, updatedArray))
+};
 
 export const submitStory = title => (dispatch, getState) => {
   return axios.post('/api/stories', {
@@ -182,12 +197,4 @@ export const submitStory = title => (dispatch, getState) => {
     })
 }
 
-export const getActorDescriptions = position => (dispatch, getState) => {
-  let actors = getState().editor.scenes[position - 1].actors;
-  actors.forEach((actor, index) => {
-    let updatedDescription = wiki().page(actor.title)
-    .then(page => page.summary())
-    .then(data => data.slice(0, 250));
-    dispatch(fetchActorDesc(position, index, updatedDescription))
-  })
-}
+
