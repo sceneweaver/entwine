@@ -4,9 +4,8 @@ import React, { Component } from 'react'
 
 class EditorActors extends Component {
   render() {
-    console.log("this.props.actors", this.props.actors);
     return (
-      <div id="actorsComponent">
+      <div className="actors-module">
         <div className="buttonContainer">
           <button
             name={this.props.position}
@@ -14,14 +13,13 @@ class EditorActors extends Component {
             className="btn btn-default"
           >
             Add New Actor
-        </button>
+          </button>
         </div>
-        <div id="actorsBox">
-          {this.props.actors.length ? (
+        <div className="actors-box">
+          { this.props.actors.length ? (
             this.props.actors.map((actor, index) => {
-              const key = index;
               return (
-                <div key={actor.title + key} className="actor-item">
+                <div key={} className="actor-item">
                   <div className="actor-image">
                     <img className="img-circle" src={actor.image} alt="Actor image." />
                   </div>
@@ -50,19 +48,19 @@ class EditorActors extends Component {
                       </button>
                   </div>
                 </div>
-              )
+              );
             })) : (<p>No actors yet</p>)
           }
         </div>
       </div>
-    )
+    );
   }
 }
 
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor, addActor } from '../reducers/editor'
+import { changeActor, deleteActor, addActor } from '../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
   actors: store.editor.scenes[ownProps.position - 1].actors,
