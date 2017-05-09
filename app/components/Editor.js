@@ -39,8 +39,7 @@ class Editor extends Component {
                 </button>
             </div>
           </div>
-        </form>
-
+      
         {
           this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
             <EditorScene
