@@ -25,6 +25,14 @@
   border-bottom: solid 2px #c9c9c9;
 }
 
+/* ----- EditorScene Styling ----- */
+
+.flexcontainer-vertical {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 /* ----- EditorActors Styling ----- */
 
 .actors-module {

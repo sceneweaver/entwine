@@ -223,20 +223,19 @@ export const generateActors = position => (dispatch, getState) => {
   });
 };
 
-export const submitStory = title => (dispatch, getState) => {
+export const submitStory = () => (dispatch, getState) => {
   return axios.post('/api/stories', {
-    title,
+    title: getState().editor.title,
     scenes: getState().editor.scenes
   })
     .then(newStory => {
-      browserHistory.push(`/stories/${newStory.data.id}`)
-
-    })
-}
+      browserHistory.push(`/stories/${newStory.data.id}`);
+    });
+};
 
 export const generateMapLocations = (position, nounsArr) => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
-    , nounArr = findProperNouns(textBody);
+    , nounsArr = findProperNouns(textBody);
   return axios.post('/compromise/places', {nounsArr})
     .then(res => dispatch(setLocations(position, res.data)))
-}
+};
