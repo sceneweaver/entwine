@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 
 class EditorActors extends Component {
   render() {
-    console.log("this.props.position", this.props.position)
+    console.log("this.props.position", this.props.position);
     return (
       <div className="actors-module">
         <div className="flexcontainer-module-header">
@@ -20,8 +20,7 @@ class EditorActors extends Component {
               <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
-              name={this.props.position}
-              onClick={this.props.onAddActor.bind(this)}
+              onClick={this.props.onAddActor.bind(this, event, this.props.position)}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-plus" />
@@ -90,10 +89,8 @@ const mapDispatchToProps = dispatch => ({
       , input = event.target.value;
     dispatch(changeActor(position, actorIndex, field, input));
   },
-  onAddActor (event) {
+  onAddActor (event, position) {
     event.preventDefault();
-    const position = event.target.name;
-    console.log(position);
     dispatch(addActor(position));
   },
   onDeleteActor(event) {
