@@ -1,5 +1,33 @@
+import _ from 'lodash';
+
+/* -----------------    CLASSES     ------------------ */
+
+class Actor {
+  constructor() {
+    this.title = '';
+    this.description = '';
+    this.image = '';
+    this.link = '';
+  }
+}
+
+class Scene {
+  constructor() {
+    this.displayActors = false;
+    this.title = '';
+    this.position = 0;
+    this.paragraphs = [''];
+    this.actors = [new Actor()];
+    this.locations = [];
+  }
+  getPosition(index) {
+    this.position = index;
+  }
+}
+
 /* -----------------    ACTIONS     ------------------ */
 
+const SET_STORY_TITLE = 'SET_STORY_TITLE';
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
@@ -22,6 +50,11 @@ export const toggleActors = (position, displayActors) => ({
   type: TOGGLE_ACTORS,
   position,
   displayActors
+})
+
+export const changeStoryTitle = input => ({
+  type: SET_STORY_TITLE,
+  input
 })
 
 export const addScene = () => ({
@@ -81,67 +114,60 @@ export const setLocations = (position, locations) => ({
 
 export default function reducer(state = {
   title: '',
-  scenes: [{
-    displayActors: false,
-    position: 1,
-    title: '',
-    paragraphs: [''],
-    actors: []
-  }],
+  scenes: [new Scene()],
 }, action) {
-  const newState = Object.assign({}, state)
+  const newState = _.merge({}, state);
   switch (action.type) {
 
+    case SET_STORY_TITLE:
+      newState.title = action.input;
+      break;
+
     case TOGGLE_ACTORS:
-      newState.scenes[action.position - 1].displayActors = action.displayActors;
+      newState.scenes[action.position].displayActors = action.displayActors;
       break;
 
     case ADD_SCENE:
-      newState.scenes = [...newState.scenes, {
-        displayActors: false,
-        position: state.scenes.length + 1,
-        title: '',
-        paragraphs: [''],
-        actors: [],
-        locations: []
-      }]
+      const newScene = new Scene();
+      newScene.getPosition(newState.scenes.length);
+      newState.scenes = [...newState.scenes, newScene];
       break;
 
     case DELETE_SCENE:
-      let firstHalfOfScenes = newState.scenes.slice(0, action.position - 1)
-        , secondHalfOfScenes = newState.scenes.slice(action.position);
+      let firstHalfOfScenes = newState.scenes.slice(0, +action.position)
+        , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
+          scene.position--;
+          return scene;
+        });
+      console.log("firstHalfOfScenes", firstHalfOfScenes);
+      console.log("secondHalfOfScenes", secondHalfOfScenes);
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
 
     case SET_ACTORS:
-      newState.scenes[action.position - 1].actors = action.nouns
+      newState.scenes[action.position].actors = action.nouns;
       break;
 
     case SET_SCENE_TEXT:
-      newState.scenes[action.position - 1].paragraphs[0] = action.input;
+      newState.scenes[action.position].paragraphs[0] = action.input;
       break;
 
     case SET_SCENE_TITLE:
-      newState.scenes[action.position - 1].title = action.input;
+      newState.scenes[action.position].title = action.input;
       break;
 
     case CHANGE_ACTOR:
-      newState.scenes[action.position - 1].actors[action.actorIndex][action.field] = action.input;
+      newState.scenes[action.position].actors[action.actorIndex][action.field] = action.input;
       break;
 
     case ADD_ACTOR:
-      newState.scenes[action.position - 1].actors = [...newState.scenes[action.position - 1].actors, {
-        title: '',
-        description: '',
-        link: '',
-        image: ''
-      }]
+      newState.scenes[action.position].actors = newState.scenes[action.position].actors.concat([new Actor()]);
       break;
 
     case DELETE_ACTOR:
-      let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, action.actorIndex)
-        , secondHalfOfActors = newState.scenes[action.position - 1].actors.slice(+action.actorIndex + 1);
-      newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
+      let firstHalfOfActors = newState.scenes[action.position].actors.slice(0, +action.actorIndex)
+        , secondHalfOfActors = newState.scenes[action.position].actors.slice(+action.actorIndex + 1);
+      newState.scenes[action.position].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
 
     case SET_LOCATIONS:
@@ -159,13 +185,45 @@ export default function reducer(state = {
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import findProperNouns from '../../server/utils/findProperNouns'
-import findPlaces from '../../server/utils/findPlaces'
+import wiki from 'wikijs';
+
+const getWikiDesc = (array, title, position, index) => {
+  return dispatch => {
+    return wiki().page(title)
+    .then(page => page.summary())
+    .then(info => {
+      info = info.slice(0, 250);
+      array[index].description = info;
+      return array;
+    })
+    .then(updatedArray => {
+      dispatch(setActors(position, updatedArray));
+    });
+  };
+};
+
+const getWikiImage = (array, title, position, index) => {
+  return dispatch => {
+    return wiki().page(title)
+    .then(page => page.mainImage())
+    .then(image => {
+      array[index].image = image;
+      return array;
+    })
+    .then(updatedArray => {
+      dispatch(setActors(position, updatedArray));
+    });
+  };
+};
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
-    , nounArray = findProperNouns(textBody);
-  dispatch(setActors(position, nounArray));
-}
+    , actorsArray = findProperNouns(textBody);
+  actorsArray.forEach((actor, index, array) => {
+    dispatch(getWikiDesc(array, actor.title, position, index));
+    dispatch(getWikiImage(array, actor.title, position, index));
+  });
+};
 
 export const submitStory = title => (dispatch, getState) => {
   return axios.post('/api/stories', {
@@ -174,6 +232,7 @@ export const submitStory = title => (dispatch, getState) => {
   })
     .then(newStory => {
       browserHistory.push(`/stories/${newStory.data.id}`)
+
     })
 }
 

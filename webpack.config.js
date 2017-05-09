@@ -42,5 +42,8 @@ module.exports = {
   },
   plugins: devMode
     ? [new LiveReloadPlugin({appendScriptTag: true})]
-    : []
-}
+    : [],
+  externals: {
+    'isomorphic-fetch': 'fetch'
+  }
+};
