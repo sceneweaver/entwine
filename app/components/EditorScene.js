@@ -100,7 +100,6 @@ class EditorScene extends Component {
               editorState={this.state.editorState}
               handleKeyCommand={this.handleKeyCommand}
               onChange={this.onChange}
-              onTab={this.onTab}
             />
           </div>
 
