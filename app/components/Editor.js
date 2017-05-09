@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 
 import EditorScene from './EditorScene';
-import findProperNouns from '../../server/utils/findProperNouns';
 
 /* ----- COMPONENT ----- */
 
 class Editor extends Component {
-  constructor() {
-    super();
-  }
   render() {
     return (
       <div id="storyEditor">
