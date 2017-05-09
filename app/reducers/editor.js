@@ -13,10 +13,6 @@ const CHANGE_ACTOR = 'CHANGE_ACTOR';
 const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
-const FETCH_ACTOR_DESC = 'FETCH_ACTOR_DESC';
-const FETCH_ACTOR_IMAGE = 'FETCH_ACTOR_IMAGE';
-const FETCH_ACTOR_LINK = 'FETCH_ACTOR_LINK';
-
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -72,12 +68,6 @@ export const deleteActor = (position, actorIndex) => ({
   actorIndex
 })
 
-export const fetchActorDesc = (position, actorIndex, actorDesc) => ({
-  type: FETCH_ACTOR_DESC,
-  position,
-  actorIndex,
-  actorDesc
-})
 
 
 /* ------------       REDUCERS     ------------------ */
@@ -147,10 +137,6 @@ export default function reducer(state = {
       let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, +action.actorIndex)
         , secondHalfOfActors = newState.scenes[action.position - 1].actors.slice(+action.actorIndex + 1);
       newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
-      break;
-
-    case FETCH_ACTOR_DESC:
-      newState.scenes[action.position - 1].actors[action.actorIndex].description = action.actorDesc;
       break;
 
     default:
