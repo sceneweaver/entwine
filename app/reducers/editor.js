@@ -13,6 +13,8 @@ const CHANGE_ACTOR = 'CHANGE_ACTOR';
 const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
+const SET_LOCATIONS = 'SET_LOCATIONS'
+
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -68,6 +70,12 @@ export const deleteActor = (position, actorIndex) => ({
   actorIndex
 })
 
+export const setLocations = (position, locations) => ({
+  type: SET_LOCATIONS,
+  position,
+  locations
+})
+
 
 /* ------------       REDUCERS     ------------------ */
 
@@ -94,7 +102,8 @@ export default function reducer(state = {
         position: state.scenes.length + 1,
         title: '',
         paragraphs: [''],
-        actors: []
+        actors: [],
+        locations: []
       }]
       break;
 
@@ -135,6 +144,10 @@ export default function reducer(state = {
       newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
 
+    case SET_LOCATIONS:
+      newState.scenes[action.position - 1].locations = action.locations;
+      break;
+
     default:
       return newState;
   }
@@ -164,7 +177,9 @@ export const submitStory = title => (dispatch, getState) => {
     })
 }
 
-export const generateMapLocations = position => (dispatch, getState) => {
+export const generateMapLocations = (position, nounsArr) => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
-
+    , nounArr = findProperNouns(textBody);
+  return axios.post('/compromise/places', {nounsArr})
+    .then(res => dispatch(setLocations(position, res.data)))
 }
