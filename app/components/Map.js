@@ -7,6 +7,8 @@ let googleMapsClient = require('@google/maps').createClient({
   key: secrets.googlemaps
 });
 
+import marked from 'marked'
+
 // googleMapsClient.geocode({ // this is for testing and demo purposes - shows how the geocode method works
 //   address: 'Los Angeles'
 // }, function(err, response) {
@@ -25,7 +27,7 @@ class Test extends Component {
       coords: [],
       locationTypes: [],
       locationAddress: '',
-      mapboxStyle: 'light',
+      mapboxStyle: '*light',
       mapboxZoom: 13,
       mapboxPitch: 30,
       mapboxInteractivity: true,
@@ -48,6 +50,7 @@ class Test extends Component {
         let coords = results.geometry.location;
         let style, zoom;
 
+        console.log(marked(this.state.mapboxStyle))
         // if location type includes park or natural_feature, use 'outdoors' map
         // https://developers.google.com/places/supported_types
         if (results.types.includes('natural_feature') || results.types.includes('park')) { style = 'outdoors'; zoom = 5}

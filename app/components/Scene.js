@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
+import marked from 'marked'
 
 /* ----- COMPONENT ----- */
 
 class Scene extends Component {
   render() {
+    const text = this.props.text;
+    let markedText;
+    text ? markedText = marked(text) : null
     return (
         <div className="row">
           <div className="col-md-1">
 
           </div>
           <div className="col-md-8 col-md-offset-1 article-text article-font">
-            <p> {this.props.text} </p>
+            <p> {markedText ? markedText : null} </p>
           </div>
           <div className="col-md-2 pull-right actorsBlock">
             {this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null}

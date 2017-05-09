@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Editor as DraftEditor, EditorState, RichUtils} from 'draft-js';
 
 import EditorScene from './EditorScene';
 import findProperNouns from '../../server/utils/findProperNouns';
@@ -9,6 +10,20 @@ class Editor extends Component {
   constructor() {
     super();
   }
+
+  //  handleKeyCommand(command) {
+  //   const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+  //   if (newState) {
+  //     this.onChange(newState);
+  //     return 'handled';
+  //   }
+  //   return 'not-handled';
+  // }
+
+  // _onBoldClick() {
+  //   this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+  // }
+
   render() {
     return (
       <div id="storyEditor">
@@ -43,7 +58,7 @@ class Editor extends Component {
               </div>
             </div>
           </div>
-
+        </form>
           {
             this.props.scenes.length ? (this.props.scenes.map(scene => (
               <EditorScene
@@ -54,7 +69,6 @@ class Editor extends Component {
               : null
           }
 
-        </form>
       </div>
     )
   }
