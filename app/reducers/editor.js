@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /* -----------------    ACTIONS     ------------------ */
 
 const ADD_SCENE = 'ADD_SCENE';
@@ -79,10 +81,15 @@ export default function reducer(state = {
     position: 1,
     title: '',
     paragraphs: [''],
-    actors: []
+    actors: [{
+      title: '',
+      description: '',
+      link: '',
+      image: ''
+    }]
   }],
 }, action) {
-  const newState = Object.assign({}, state);
+  const newState = _.merge({}, state);
   switch (action.type) {
 
     case TOGGLE_ACTORS:

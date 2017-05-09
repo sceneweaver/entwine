@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 
 class EditorActors extends Component {
   render() {
+    console.log("this.props.position", this.props.position)
     return (
       <div className="actors-module">
         <div className="flexcontainer-module-header">
@@ -76,7 +77,7 @@ import { changeActor, deleteActor, addActor, generateActors } from '../reducers/
 
 const mapStateToProps = (store, ownProps) => ({
   actors: store.editor.scenes[ownProps.position].actors,
-  position: ownProps.position
+  position: ownProps.position.toString()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -91,7 +92,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onAddActor (event) {
     event.preventDefault();
-    dispatch(addActor(+event.target.name));
+    const position = event.target.name;
+    console.log(position);
+    dispatch(addActor(position));
   },
   onDeleteActor(event) {
     event.preventDefault();
