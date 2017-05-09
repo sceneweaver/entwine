@@ -86,7 +86,7 @@ export default function reducer(state = {
   switch (action.type) {
 
     case TOGGLE_ACTORS:
-      newState.scenes[action.position - 1].displayActors = action.displayActors;
+      newState.scenes[action.position].displayActors = action.displayActors;
       break;
 
     case ADD_SCENE:
@@ -100,7 +100,7 @@ export default function reducer(state = {
       break;
 
     case DELETE_SCENE:
-      let firstHalfOfScenes = newState.scenes.slice(0, action.position - 1)
+      let firstHalfOfScenes = newState.scenes.slice(0, action.position)
         , secondHalfOfScenes = newState.scenes.slice(action.position).map(scene => {
           scene.position--;
           return scene;
@@ -109,34 +109,43 @@ export default function reducer(state = {
       break;
 
     case SET_ACTORS:
-      newState.scenes[action.position - 1].actors = action.nouns;
+      newState.scenes[action.position].actors = action.nouns;
       break;
 
     case SET_SCENE_TEXT:
-      newState.scenes[action.position - 1].paragraphs[0] = action.input;
+      newState.scenes[action.position].paragraphs[0] = action.input;
       break;
 
     case SET_SCENE_TITLE:
-      newState.scenes[action.position - 1].title = action.input;
+      newState.scenes[action.position].title = action.input;
       break;
 
     case CHANGE_ACTOR:
-      newState.scenes[action.position - 1].actors[action.actorIndex][action.field] = action.input;
+      newState.scenes[action.position].actors[action.actorIndex][action.field] = action.input;
       break;
 
     case ADD_ACTOR:
-      newState.scenes[action.position - 1].actors = newState.scenes[action.position - 1].actors.concat({
-        title: '',
-        description: '',
-        link: '',
-        image: ''
-      });
+      if (!newState.scenes[action.position].actors.length) {
+        newState.scenes[action.position].actors = [{
+          title: '',
+          description: '',
+          link: '',
+          image: ''
+        }];
+      } else {
+        newState.scenes[action.position].actors = newState.scenes[action.position].actors.concat({
+          title: '',
+          description: '',
+          link: '',
+          image: ''
+        });
+      }
       break;
 
     case DELETE_ACTOR:
-      let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, +action.actorIndex)
-        , secondHalfOfActors = newState.scenes[action.position - 1].actors.slice(+action.actorIndex + 1);
-      newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
+      let firstHalfOfActors = newState.scenes[action.position].actors.slice(0, +action.actorIndex)
+        , secondHalfOfActors = newState.scenes[action.position].actors.slice(+action.actorIndex + 1);
+      newState.scenes[action.position].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
 
     default:
@@ -150,10 +159,9 @@ export default function reducer(state = {
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import findProperNouns from '../../server/utils/findProperNouns';
-import wiki from 'wikijs';
 
 export const generateActors = position => (dispatch, getState) => {
-  const textBody = getState().editor.scenes[position - 1].paragraphs[0]
+  const textBody = getState().editor.scenes[position].paragraphs[0]
     , nounArray = findProperNouns(textBody);
   dispatch(setActors(position, nounArray));
 }

@@ -45,10 +45,10 @@ class Editor extends Component {
           </div>
 
           {
-            this.props.scenes.length ? (this.props.scenes.map(scene => (
+            this.props.scenes.length ? (this.props.scenes.map((scene, index) => (
               <EditorScene
                 key={scene.position}
-                position={scene.position}
+                position={index}
               />
             )))
               : null

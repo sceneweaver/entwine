@@ -63,9 +63,9 @@ import { toggleActors, generateActors, setSceneText, setSceneTitle, deleteScene 
 
 const mapStateToProps = (store, ownProps) => ({
   position: ownProps.position,
-  title: store.editor.scenes[ownProps.position - 1] && store.editor.scenes[ownProps.position - 1].title,
-  text: store.editor.scenes[ownProps.position - 1] && store.editor.scenes[ownProps.position - 1].paragraphs[0],
-  displayActors: store.editor.scenes[ownProps.position - 1] && store.editor.scenes[ownProps.position - 1].displayActors
+  title: store.editor.scenes[ownProps.position] && store.editor.scenes[ownProps.position].title,
+  text: store.editor.scenes[ownProps.position] && store.editor.scenes[ownProps.position].paragraphs[0],
+  displayActors: store.editor.scenes[ownProps.position] && store.editor.scenes[ownProps.position].displayActors
 });
 
 const mapDispatchToProps = dispatch => ({
