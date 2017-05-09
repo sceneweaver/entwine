@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import store from '../store';
 
 /* ----- COMPONENT ----- */
 
@@ -13,8 +14,7 @@ class EditorActors extends Component {
           </div>
           <div className="button-container flex-self-right">
             <button
-              name={this.props.position}
-              onClick={this.props.onRefreshActors.bind(this)}
+              onClick={this.props.onRefreshActor.bind(this, event, this.props.position)}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-refresh" />
@@ -24,7 +24,7 @@ class EditorActors extends Component {
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-plus" />
-          </button>
+            </button>
           </div>
         </div>
         <div className="actors-box">
@@ -33,7 +33,7 @@ class EditorActors extends Component {
               return (
                 <div key={actor.title + index} className="actor-item">
                   <div className="actor-image">
-                    <img className="img-circle" src={actor.image} alt="Actor image." />
+                    <img className="img-circle" src={store.getState().editor.scenes[this.props.position].actors[index].image} alt="Actor image." />
                   </div>
                   <div className="actor-info">
                     <label>Name:</label>
@@ -66,7 +66,7 @@ class EditorActors extends Component {
                       onClick={this.props.onRegenActor}
                     >GRAB IMAGE
                       </button>
-                    </div>
+                  </div>
                 </div>
               );
             })) : (<p>No actors yet</p>)
@@ -82,11 +82,10 @@ class EditorActors extends Component {
 import { connect } from 'react-redux';
 import { changeActor, deleteActor, addActor, generateActors } from '../reducers/editor';
 import wiki from 'wikijs';
-import store from '../store';
 
 const mapStateToProps = (store, ownProps) => ({
   actors: store.editor.scenes[ownProps.position].actors,
-  position: ownProps.position.toString()
+  position: ownProps.position
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -99,7 +98,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       , input = event.target.value;
     dispatch(changeActor(position, actorIndex, field, input));
   },
-  onAddActor (event, position) {
+  onAddActor(event, position) {
     event.preventDefault();
     dispatch(addActor(position));
   },
@@ -115,12 +114,16 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     const eventNameArray = event.target.name.split('-')
       , position = eventNameArray[0]
       , actorIndex = eventNameArray[1]
-      , title = store.getState().editor.scenes[position - 1].actors[actorIndex].title;
+      , title = store.getState().editor.scenes[position].actors[actorIndex].title;
     return wiki().page(title)
-    .then(page => page.mainImage())
-    .then(image => {
-      dispatch(changeActor(position, actorIndex, 'image', image));
-    });
+      .then(page => page.mainImage())
+      .then(image => {
+        dispatch(changeActor(position, actorIndex, 'image', image));
+      });
+  },
+  onRefreshActor(event, position) {
+    event.preventDefault();
+    dispatch(generateActors(position));
   }
 });
 
