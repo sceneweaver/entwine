@@ -13,7 +13,7 @@ class EditorActors extends Component {
           </div>
           <div className="button-container flex-self-right">
             <button
-              onClick={this.props.onRefreshActor.bind(this, event, this.props.position)}
+              onClick={this.props.onRefreshActors.bind(this, event, this.props.position)}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-refresh" />
@@ -88,7 +88,7 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onRefreshActor(event, position) {
+  onRefreshActors(event, position) {
     event.preventDefault();
     dispatch(generateActors(position));
   },
