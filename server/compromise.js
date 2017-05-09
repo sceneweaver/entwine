@@ -29,3 +29,26 @@ router.post('/nouns', (req, res, next) => {
   }
   res.send(results);
 })
+
+router.post('/places', (req, res, next) => {
+  const nouns = req.body.nounsArr.toString();
+  let obj = {};
+  let results = [];
+
+  const places = nlp(nouns).places().out('array');
+
+  places.forEach(place => {
+    results.push()
+  })
+  for (const word in obj) {
+    if (obj[word] >= 2) {
+      results.push({
+        title: word,
+        description: null,
+        image: null,
+        link: null
+      });
+    }
+  }
+  res.send(results);
+})

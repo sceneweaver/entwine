@@ -166,5 +166,8 @@ export const submitStory = title => (dispatch, getState) => {
 
 export const generateMapLocations = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
+    , nounArr = findProperNouns(textBody);
+
+
 
 }
