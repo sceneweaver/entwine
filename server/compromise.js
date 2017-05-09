@@ -38,17 +38,11 @@ router.post('/places', (req, res, next) => {
   const places = nlp(nouns).places().out('array');
 
   places.forEach(place => {
-    results.push()
+    results.push({
+      name: place,
+      latitude: "",
+      longitude: ""
+    })
   })
-  for (const word in obj) {
-    if (obj[word] >= 2) {
-      results.push({
-        title: word,
-        description: null,
-        image: null,
-        link: null
-      });
-    }
-  }
   res.send(results);
 })
