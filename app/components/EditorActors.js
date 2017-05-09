@@ -88,6 +88,10 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  onRefreshActor(event, position) {
+    event.preventDefault();
+    dispatch(generateActors(position));
+  },
   onActorsChange(event) {
     event.preventDefault();
     const eventNameArray = event.target.name.split('-')
@@ -119,10 +123,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       .then(image => {
         dispatch(changeActor(position, actorIndex, 'image', image));
       });
-  },
-  onRefreshActor(event, position) {
-    event.preventDefault();
-    dispatch(generateActors(position));
   }
 });
 
