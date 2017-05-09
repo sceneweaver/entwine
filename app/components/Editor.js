@@ -1,60 +1,56 @@
 import React, { Component } from 'react';
 
 import EditorScene from './EditorScene';
-import findProperNouns from '../../server/utils/findProperNouns';
 
 /* ----- COMPONENT ----- */
 
 class Editor extends Component {
-  constructor() {
-    super();
-  }
   render() {
     return (
       <div id="storyEditor">
-        <form onSubmit={this.props.onSubmitStory}>
-          <div className="row titleRow">
-            <div className="col-md-6">
-              <input
-                name="storyTitle"
-                type="text"
-                placeholder="Story Title"
-                className="titleInput"
-              />
-            </div>
-            <div className="col-md-3">
-              <div className="addScene">
-                <button
-                  className="btn btn-success"
-                  onClick={this.props.onAddScene}
-                >
-                  Add Scene
+        <div className="row titleRow">
+          <div className="col-md-6">
+            <input
+              name="storyTitle"
+              type="text"
+              placeholder="Story Title"
+              className="titleInput"
+              onChange={this.props.onStoryTitleChange}
+              value={this.props.storyTitle}
+            />
+          </div>
+          <div className="col-md-3">
+            <div className="addScene">
+              <button
+                className="btn btn-success"
+                onClick={this.props.onAddScene}
+              >
+                Add Scene
                 </button>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="publish">
-                <button
-                  className="btn btn-success"
-                  type="submit"
-                >
-                  Publish My Story
-                </button>
-              </div>
             </div>
           </div>
+          <div className="col-md-3">
+            <div className="publish">
+              <button
+                className="btn btn-success"
+                onClick={this.props.onSubmitStory}
+              >
+                Publish My Story
+                </button>
+            </div>
+          </div>
+        </div>
 
-          {
-            this.props.scenes.length ? (this.props.scenes.map(scene => (
-              <EditorScene
-                key={scene.position}
-                position={scene.position}
-              />
-            )))
-              : null
-          }
+        {
+          this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
+            <EditorScene
+              position={scene.position}
+              key={scene.position}
+            />
+          )))
+            : null
+        }
 
-        </form>
       </div>
     )
   }
@@ -63,16 +59,21 @@ class Editor extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addScene, submitStory } from '../reducers/editor'
+import { addScene, changeStoryTitle, submitStory } from '../reducers/editor';
 
 const mapStateToProps = store => ({
-  scenes: store.editor.scenes
+  editor: store.editor,
+  storyTitle: store.editor.title,
 });
 
 const mapDispatchToProps = dispatch => ({
   onAddScene(event) {
     event.preventDefault();
     dispatch(addScene());
+  },
+  onStoryTitleChange(event) {
+    event.preventDefault();
+    dispatch(changeStoryTitle(event.target.value));
   },
   onSubmitStory(event) {
     event.preventDefault();

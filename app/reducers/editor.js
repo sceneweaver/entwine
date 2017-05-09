@@ -1,5 +1,32 @@
+import _ from 'lodash';
+
+/* -----------------    CLASSES     ------------------ */
+
+class Actor {
+  constructor() {
+    this.title = '';
+    this.description = '';
+    this.image = '';
+    this.link = '';
+  }
+}
+
+class Scene {
+  constructor() {
+    this.displayActors = false;
+    this.title = '';
+    this.position = 0;
+    this.paragraphs = [''];
+    this.actors = [new Actor()];
+  }
+  getPosition(index) {
+    this.position = index;
+  }
+}
+
 /* -----------------    ACTIONS     ------------------ */
 
+const SET_STORY_TITLE = 'SET_STORY_TITLE';
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
@@ -13,8 +40,6 @@ const CHANGE_ACTOR = 'CHANGE_ACTOR';
 const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
-const UPDATE_ACTOR_IMAGE = 'UPDATE_ACTOR_IMAGE';
-
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -22,6 +47,11 @@ export const toggleActors = (position, displayActors) => ({
   type: TOGGLE_ACTORS,
   position,
   displayActors
+})
+
+export const changeStoryTitle = input => ({
+  type: SET_STORY_TITLE,
+  input
 })
 
 export const addScene = () => ({
@@ -71,75 +101,64 @@ export const deleteActor = (position, actorIndex) => ({
 })
 
 
-
-
 /* ------------       REDUCERS     ------------------ */
 
 export default function reducer(state = {
   title: '',
-  scenes: [{
-    displayActors: false,
-    position: 1,
-    title: '',
-    paragraphs: [''],
-    actors: []
-  }],
+  scenes: [new Scene()],
 }, action) {
-  const newState = Object.assign({}, state);
+  const newState = _.merge({}, state);
   switch (action.type) {
 
+    case SET_STORY_TITLE:
+      newState.title = action.input;
+      break;
+
     case TOGGLE_ACTORS:
-      newState.scenes[action.position - 1].displayActors = action.displayActors;
+      newState.scenes[action.position].displayActors = action.displayActors;
       break;
 
     case ADD_SCENE:
-      newState.scenes = [...newState.scenes, {
-        displayActors: false,
-        position: state.scenes.length + 1,
-        title: '',
-        paragraphs: [''],
-        actors: []
-      }]
+      const newScene = new Scene();
+      newScene.getPosition(newState.scenes.length);
+      newState.scenes = [...newState.scenes, newScene];
       break;
 
     case DELETE_SCENE:
-      let firstHalfOfScenes = newState.scenes.slice(0, action.position - 1)
-        , secondHalfOfScenes = newState.scenes.slice(action.position).map(scene => {
+      let firstHalfOfScenes = newState.scenes.slice(0, +action.position)
+        , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
           scene.position--;
           return scene;
         });
+      console.log("firstHalfOfScenes", firstHalfOfScenes);
+      console.log("secondHalfOfScenes", secondHalfOfScenes);
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
 
     case SET_ACTORS:
-      newState.scenes[action.position - 1].actors = action.nouns;
+      newState.scenes[action.position].actors = action.nouns;
       break;
 
     case SET_SCENE_TEXT:
-      newState.scenes[action.position - 1].paragraphs[0] = action.input;
+      newState.scenes[action.position].paragraphs[0] = action.input;
       break;
 
     case SET_SCENE_TITLE:
-      newState.scenes[action.position - 1].title = action.input;
+      newState.scenes[action.position].title = action.input;
       break;
 
     case CHANGE_ACTOR:
-      newState.scenes[action.position - 1].actors[action.actorIndex][action.field] = action.input;
+      newState.scenes[action.position].actors[action.actorIndex][action.field] = action.input;
       break;
 
     case ADD_ACTOR:
-      newState.scenes[action.position - 1].actors = newState.scenes[action.position - 1].actors.concat({
-        title: '',
-        description: '',
-        link: '',
-        image: ''
-      });
+      newState.scenes[action.position].actors = newState.scenes[action.position].actors.concat([new Actor()]);
       break;
 
     case DELETE_ACTOR:
-      let firstHalfOfActors = newState.scenes[action.position - 1].actors.slice(0, +action.actorIndex)
-        , secondHalfOfActors = newState.scenes[action.position - 1].actors.slice(+action.actorIndex + 1);
-      newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
+      let firstHalfOfActors = newState.scenes[action.position].actors.slice(0, +action.actorIndex)
+        , secondHalfOfActors = newState.scenes[action.position].actors.slice(+action.actorIndex + 1);
+      newState.scenes[action.position].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
 
     default:
@@ -202,5 +221,4 @@ export const submitStory = title => (dispatch, getState) => {
       browserHistory.push(`/stories/${newStory.data.id}`)
     });
 };
-
 
