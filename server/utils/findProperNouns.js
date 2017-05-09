@@ -26,6 +26,7 @@ const filterWords = arr => {
       && prevWord[prevWord.length - 1] !== '!' // excludes first word of a sentence
       && prevWord[prevWord.length - 1] !== '?' // excludes first word of a sentence
       && prevWord[prevWord.length - 2] !== '.' // excludes first word of a sentence if previous sentence ended in close quote
+      && prevWord[prevWord.length - 1] !== ':';
   });
 };
 

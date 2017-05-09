@@ -35,6 +35,16 @@
   padding: 15px;
 }
 
+.flexcontainer-module-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flex-self-right {
+  align-self: flex-end;
+}
+
 .actors-box {
   background-color: rgba(165,224,221, 1);
   border-radius: 20px;

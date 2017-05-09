@@ -56,13 +56,13 @@ class EditorScene extends Component {
   }
 
   render() {
+    console.log("editorscene props", this.props);
     return (
       <div className="row">
         <div className="col-md-1">
           <button
             className="btn btn-default"
-            name={this.props.position}
-            onClick={this.props.onDeleteScene}
+            onClick={this.props.onDeleteScene.bind(this, event, this.props.position)}
           >
              <i className="fa fa-trash"></i> &nbsp; Delete
           </button>
@@ -71,14 +71,13 @@ class EditorScene extends Component {
 
         </div>
         <div className="form-group col-md-5">
-
           <div className="editor-row">
             <input
               className="editor-scene-title"
               placeholder="Scene Title"
               name={this.props.position}
               onChange={this.props.onSceneTitleChange}
-              defaultValue={this.props.title}
+              value={this.props.title}
             />
 
             <div className="editor-right-align">
@@ -107,7 +106,7 @@ class EditorScene extends Component {
             className="form-control"
             placeholder="Scene Text"
             name={this.props.position}
-            defaultValue={this.props.text}
+            value={this.props.text}
             onChange={this.props.onSceneTextChange}
           />
         </div>
@@ -120,6 +119,13 @@ class EditorScene extends Component {
             >
               Show Actors
             </button>
+            <button
+              className="btn btn-default"
+              name={this.props.position}
+              onClick={this.props.onGenerateMaps}
+            >
+              Generate Map
+            </button>
           </div>
         </div>
         <div className="col-md-5">
@@ -130,7 +136,7 @@ class EditorScene extends Component {
             null}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -140,10 +146,12 @@ import { connect } from 'react-redux';
 import { toggleActors, generateActors, setSceneText, setSceneTitle, deleteScene } from '../reducers/editor'
 
 const mapStateToProps = (store, ownProps) => ({
+  editor: store.editor,
   position: ownProps.position,
-  title: store.editor.scenes[ownProps.position - 1] && store.editor.scenes[ownProps.position - 1].title,
-  text: store.editor.scenes[ownProps.position - 1] && store.editor.scenes[ownProps.position - 1].paragraphs[0],
-  displayActors: store.editor.scenes[ownProps.position - 1] && store.editor.scenes[ownProps.position - 1].displayActors
+  title: store.editor.scenes[ownProps.position].title,
+  text: store.editor.scenes[ownProps.position].paragraphs[0],
+  //position is not right here for text
+  displayActors: store.editor.scenes[ownProps.position].displayActors
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -154,15 +162,18 @@ const mapDispatchToProps = dispatch => ({
   },
   onSceneTitleChange(event) {
     event.preventDefault();
-    dispatch(setSceneTitle(+event.target.name, event.target.value))
+    dispatch(setSceneTitle(+event.target.name, event.target.value));
   },
   onSceneTextChange(event) {
     event.preventDefault();
-    dispatch(setSceneText(+event.target.name, event.target.value))
+    dispatch(setSceneText(+event.target.name, event.target.value));
   },
-  onDeleteScene(event) {
+  onDeleteScene(event, position) {
     event.preventDefault();
-    dispatch(deleteScene(+event.target.name))
+    dispatch(deleteScene(position))
+  },
+  onGenerateMaps(event) {
+    event.preventDefault();
   }
 });
 
