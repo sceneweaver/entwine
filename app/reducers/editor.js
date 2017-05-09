@@ -13,7 +13,7 @@ const CHANGE_ACTOR = 'CHANGE_ACTOR';
 const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
-const FETCH_ACTOR_DESC = 'FETCH_ACTOR_DESC';
+const UPDATE_ACTOR_IMAGE = 'UPDATE_ACTOR_IMAGE';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -69,6 +69,7 @@ export const deleteActor = (position, actorIndex) => ({
   position,
   actorIndex
 })
+
 
 
 
@@ -141,10 +142,6 @@ export default function reducer(state = {
       newState.scenes[action.position - 1].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
 
-    case FETCH_ACTOR_DESC:
-      newState.scenes[action.position - 1].actors[action.actorIndex].description = action.actorDesc;
-      break;
-
     default:
       return newState;
   }
@@ -178,7 +175,6 @@ const getWikiImage = (array, title, position, index) => {
     return wiki().page(title)
     .then(page => page.mainImage())
     .then(image => {
-      console.log(image)
       array[index].image = image;
       return array;
     })
@@ -204,7 +200,7 @@ export const submitStory = title => (dispatch, getState) => {
   })
     .then(newStory => {
       browserHistory.push(`/stories/${newStory.data.id}`)
-    })
-}
+    });
+};
 
 

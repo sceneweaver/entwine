@@ -48,6 +48,14 @@ class EditorActors extends Component {
                     >X
                       </button>
                   </div>
+                  <div className="actor-gen-info">
+                    <button
+                      className="btn btn-default"
+                      name={`${this.props.position}-${index}`}
+                      onClick={this.props.onRegenActor}
+                    >GRAB IMAGE
+                      </button>
+                    </div>
                 </div>
               )
             })) : (<p>No actors yet</p>)
@@ -61,14 +69,16 @@ class EditorActors extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor, addActor } from '../reducers/editor'
+import { changeActor, deleteActor, addActor } from '../reducers/editor';
+import wiki from 'wikijs';
+import store from '../store';
 
 const mapStateToProps = (store, ownProps) => ({
   actors: store.editor.scenes[ownProps.position - 1].actors,
   position: ownProps.position
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   onActorsChange(event) {
     event.preventDefault();
     const eventNameArray = event.target.name.split('-')
@@ -88,6 +98,18 @@ const mapDispatchToProps = dispatch => ({
       , position = eventNameArray[0]
       , actorIndex = eventNameArray[1];
     dispatch(deleteActor(position, actorIndex));
+  },
+  onRegenActor(event) {
+    event.preventDefault();
+    const eventNameArray = event.target.name.split('-')
+      , position = eventNameArray[0]
+      , actorIndex = eventNameArray[1]
+      , title = store.getState().editor.scenes[position - 1].actors[actorIndex].title;
+    return wiki().page(title)
+    .then(page => page.mainImage())
+    .then(image => {
+      dispatch(changeActor(position, actorIndex, 'image', image));
+    });
   }
 });
 
