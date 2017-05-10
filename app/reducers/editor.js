@@ -10,6 +10,7 @@ const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
 const SET_SCENE_TEXT = 'SET_SCENE_TEXT';
+const SET_SCENE_HTML = 'SET_SCENE_HTML';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
 const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
@@ -52,6 +53,12 @@ export const setSceneTitle = (position, input) => ({
 
 export const setSceneText = (position, input) => ({
   type: SET_SCENE_TEXT,
+  position,
+  input
+})
+
+export const setSceneHTML = (position, input) => ({
+  type: SET_SCENE_HTML,
   position,
   input
 })
@@ -102,7 +109,7 @@ export default function reducer (state = {
       break;
 
     case TOGGLE_ACTORS:
-      newState.scenes[action.position].displayActors = action.displayActors;
+      newState.scenes[action.position].whichModule = 'actors';
       break;
 
     case ADD_SCENE:
@@ -128,6 +135,10 @@ export default function reducer (state = {
       newState.scenes[action.position].paragraphs[0] = action.input;
       break;
 
+    case SET_SCENE_HTML:
+      newState.scenes[action.position].paragraphsHTML[0] = action.input;
+      break;
+
     case SET_SCENE_TITLE:
       newState.scenes[action.position].title = action.input;
       break;
@@ -151,7 +162,8 @@ export default function reducer (state = {
       break;
 
     case SET_LOCATIONS:
-      newState.scenes[action.position - 1].locations = action.locations;
+      newState.scenes[action.position].locations = action.locations;
+      newState.scenes[action.position].whichModule = 'maps';
       break;
 
     default:
@@ -182,9 +194,9 @@ export const submitStory = () => (dispatch, getState) => {
     });
 };
 
-export const generateMapLocations = (position, nounsArr) => (dispatch, getState) => {
-  const textBody = getState().editor.scenes[position - 1].paragraphs[0]
+export const generateMapLocations = position => (dispatch, getState) => {
+  const textBody = getState().editor.scenes[position].paragraphs[0]
     , nounsArr = findProperNouns(textBody);
-  return axios.post('/compromise/places', { nounsArr })
+  return axios.post('/api/compromise/places', {textBody})
     .then(res => dispatch(setLocations(position, res.data)))
 };

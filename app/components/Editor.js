@@ -35,8 +35,7 @@ class Editor extends Component {
               Publish My Story
             </button>
           </div>
-        </div>
-
+      </div>
         {
           this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
             <EditorScene
@@ -46,7 +45,6 @@ class Editor extends Component {
           )))
             : null
         }
-
       </div>
     );
   }
@@ -56,7 +54,6 @@ class Editor extends Component {
 
 import { connect } from 'react-redux';
 import { addScene, changeStoryTitle, submitStory } from '../reducers/editor';
-import store from '../store';
 
 const mapStateToProps = store => ({
   editor: store.editor,
