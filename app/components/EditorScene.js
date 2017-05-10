@@ -17,7 +17,7 @@ class EditorScene extends Component {
         <div className="form-group col-md-5">
           <input
             placeholder="Scene Title"
-            onChange={this.props.onSceneTitleChange.bind(this, event)}
+            onChange={this.props.onSceneTitleChange}
             value={this.props.title}
           />
           <textarea
