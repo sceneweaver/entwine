@@ -53,11 +53,9 @@ class EditorScene extends Component {
           </div>
         </div>
         <div className="col-md-5">
-          {this.props.displayActors ?
-            <EditorActors
-              position={this.props.position}
-            /> :
-            null}
+          {
+            this.props.whichModule ? <this.props.whichModule position={this.props.position} /> :  null
+          }
         </div>
       </div>
     );
@@ -77,26 +75,26 @@ const mapStateToProps = (store, ownProps) => ({
   displayActors: store.editor.scenes[ownProps.position].displayActors
 });
 
-const mapDispatchToProps = dispatch => ({
-  onShowActors(event, position) {
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onShowActors(event) {
     event.preventDefault();
-    dispatch(toggleActors(+position, true));
+    dispatch(toggleActors(ownProps.position, true));
   },
-  onSceneTitleChange(event, position) {
+  onSceneTitleChange(event) {
     event.preventDefault();
-    dispatch(setSceneTitle(+position, event.target.value));
+    dispatch(setSceneTitle(ownProps.position, event.target.value));
   },
   onSceneTextChange(event) {
     event.preventDefault();
     dispatch(setSceneText(+event.target.name, event.target.value));
   },
-  onDeleteScene(event, position) {
+  onDeleteScene(event) {
     event.preventDefault();
-    dispatch(deleteScene(+position));
+    dispatch(deleteScene(ownProps.position));
   },
-  onGenerateMaps(event, position) {
+  onGenerateMaps(event) {
     event.preventDefault();
-    dispatch(generateMapLocations(+position));
+    dispatch(generateMapLocations(ownProps.position));
   }
 });
 

@@ -13,6 +13,7 @@ class Actor {
 
 class Scene {
   constructor() {
+    this.whichModule = null;
     this.displayActors = false;
     this.title = '';
     this.position = 0;
@@ -125,6 +126,7 @@ export default function reducer(state = {
 
     case TOGGLE_ACTORS:
       newState.scenes[action.position].displayActors = action.displayActors;
+      newState.scenes[action.position].whichModule = "EditorActors"
       break;
 
     case ADD_SCENE:
