@@ -1,6 +1,6 @@
 import Actor from './actors-constructor';
 
-export class Scene {
+export default class Scene {
   constructor() {
     this.displayActors = false;
     this.title = '';

@@ -1,6 +1,6 @@
 import wiki from 'wikijs';
 
-export class Actor {
+export default class Actor {
   constructor() {
     this.name = '';
     this.description = '';
@@ -22,16 +22,3 @@ export class Actor {
       });
   }
 }
-
-
-
-
-/* findProperNouns refactor
-
-const filteredWordsArray = splitStr(textBody).filter(removeAbbr).filter(filterWords).map(removePunctuation).filter(removeDates)
-    , nounObj = arrToObj(filteredWordsArray);
-
-return sortObjByOccurrence(nounObj)
-.then(sortedObj => convertHashToOrderedArr(sortedObj))
-
-*/
