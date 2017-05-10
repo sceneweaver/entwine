@@ -18,13 +18,12 @@ class Scene extends Component {
             <div dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)} />
           </div>
           <div className="col-md-2 pull-right actorsBlock">
-            {this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null}
-            {this.props.actors ?
+            { this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null }
+            { this.props.actors ?
               this.props.actors.map(actor => (
-                <div key={actor.id}>
-                  {/* TODO: will want to do this as bootstrap cards */}
-                  <div><img src={actor.image} /></div>
-                  <h5 className="article-font">{actor.title}</h5>
+                <div key={actor.name}>
+                  <img className="img-responsive img-circle actors-display" src={actor.image} />
+                  <h5 className="article-font">{actor.name}</h5>
                   <p>{actor.description}</p>
                 </div>
               ))

@@ -27,7 +27,7 @@ class Editor extends Component {
               Add Scene
                 </button>
           </div>
-          <div className="col-md-3 publish">
+          <div className="col-md-3 publish-button">
             <button
               className="btn btn-success"
               onClick={this.props.onSubmitStory}
