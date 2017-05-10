@@ -8,11 +8,18 @@ class EditorActorItem extends Component {
     const index = this.props.index;
     return (<div className="actor-item">
 
-      <div className="actor-delete">
+      <div className="actor-buttons btn-group-vertical">
         <button
           className="btn btn-default"
           onClick={this.props.onDeleteActor.bind(this, index)}
-        >X
+        >
+          <span className="glyphicon glyphicon-trash" ></span>
+        </button>
+        <button
+          className="btn btn-default"
+          onClick={this.props.onGrabImage.bind(this, index)}
+        >
+          <span className="glyphicon glyphicon-refresh"></span>
         </button>
       </div>
 
@@ -33,19 +40,9 @@ class EditorActorItem extends Component {
         />
       </div>
 
-      {actor.image ?
-        <div className="actor-image">
+      { actor.image ?
           <div className="img-circle" style={{ backgroundImage: `url(${actor.image})` }} />
-          <div className="actor-gen-info">
-            <button
-              className="btn btn-default"
-              onClick={this.props.onGrabImage.bind(this, index)}
-            >
-              GRAB IMAGE
-                      </button>
-          </div>
-        </div>
-        : null}
+        : <p>No image</p> }
 
     </div>);
   }

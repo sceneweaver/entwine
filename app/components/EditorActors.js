@@ -12,16 +12,16 @@ class EditorActors extends Component {
           <div className="module-header">
             <h3>Actors</h3>
           </div>
-          <div className="button-container flex-self-right">
+          <div className="btn-group flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
-              className="btn btn-default"
+              className="btn btn-success"
             >
               <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
               onClick={this.props.onAddActor}
-              className="btn btn-default"
+              className="btn btn-success"
             >
               <span className="glyphicon glyphicon-plus" />
             </button>

@@ -11,6 +11,8 @@
   background-color: floralwhite;
 }
 
+/* ----- Editor Styling ----- */
+
 #storyEditor {
   margin: 0px 30px
 }
@@ -23,6 +25,11 @@
   font-size: 30px;
   border: none;
   border-bottom: solid 2px #c9c9c9;
+}
+
+.publish-button {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* ----- EditorScene Styling ----- */
@@ -60,6 +67,13 @@
   border-radius: 20px;
 }
 
+.generate-actors {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* ----- EditorActorItem Styling ----- */
+
 .actor-item {
   display: flex;
   flex-direction: row;
@@ -75,10 +89,21 @@
   margin: 0px 20px;
 }
 
-.publish {
-  display: flex;
-  justify-content: flex-end;
+.img-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
+
+/* ----- Scene Styling ----- */
 
 .article-font {
   font-family: 'Libre Baskerville', serif;
@@ -94,26 +119,3 @@
   line-height: 2.875rem;
   font-size: 16px;
 }
-
-.generate-actors {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.img-circle {
-  height: 100px;
-  padding-top: 100%;
-  border-radius: 50%;
-  background-position-y: center;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0 auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-/* ----- Scene Styling ----- */
-
