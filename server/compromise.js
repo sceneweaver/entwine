@@ -31,12 +31,18 @@ router.post('/nouns', (req, res, next) => {
 })
 
 router.post('/places', (req, res, next) => {
-  const nouns = req.body.nounsArr.toString();
-  let obj = {};
+  // let arr = [];
+
+  // req.body.nounsArr.forEach(noun => {
+  //   arr.push(noun.title)
+  // })
+
   let results = [];
+  // let nounsStr = arr.join(" ");
+  // console.log("nO ", nounsStr)
 
-  const places = nlp(nouns).places().out('array');
-
+  const places = nlp(req.body.textBody).places().out('array');
+  console.log("PLACES", places)
   places.forEach(place => {
     results.push({
       name: place,
