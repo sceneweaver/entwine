@@ -60,7 +60,7 @@
 .actor-item {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -97,14 +97,18 @@
 }
 
 .img-circle {
-  width: 100px;
-  height: auto;
-  display: block;
+  height: 100px;
+  padding-top: 100%;
   border-radius: 50%;
   background-position-y: center;
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 /* ----- Scene Styling ----- */
