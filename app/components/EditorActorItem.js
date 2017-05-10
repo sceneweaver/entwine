@@ -8,6 +8,31 @@ class EditorActorItem extends Component {
     const index = this.props.index;
     return (<div className="actor-item">
 
+      <div className="actor-delete">
+        <button
+          className="btn btn-default"
+          onClick={this.props.onDeleteActor.bind(this, index)}
+        >X
+        </button>
+      </div>
+
+      <div className="actor-info">
+        <label>Name:</label>
+        <input
+          type="text"
+          className="actor-form-field"
+          value={actor.name}
+          onChange={this.props.onActorsChange.bind(this, index, 'name')}
+        /><br />
+        <label>Description:</label>
+        <input
+          type="text"
+          className="actor-form-field"
+          value={actor.description}
+          onChange={this.props.onActorsChange.bind(this, index, 'description')}
+        />
+      </div>
+
       {actor.image ?
         <div className="actor-image">
           <div className="img-circle" style={{ backgroundImage: `url(${actor.image})` }} />
@@ -21,31 +46,6 @@ class EditorActorItem extends Component {
           </div>
         </div>
         : null}
-
-      <div className="actor-info">
-        <label>Name:</label>
-        <input
-          type="text"
-          name="actor-name-field"
-          value={actor.name}
-          onChange={this.props.onActorsChange.bind(this, index, 'name')}
-        /><br />
-        <label>Description:</label>
-        <input
-          type="text"
-          name="actor-description-field"
-          value={actor.description}
-          onChange={this.props.onActorsChange.bind(this, index, 'description')}
-        />
-      </div>
-
-      <div className="actor-delete">
-        <button
-          className="btn btn-default"
-          onClick={this.props.onDeleteActor.bind(this, index)}
-        >X
-        </button>
-      </div>
 
     </div>);
   }

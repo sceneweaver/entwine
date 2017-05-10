@@ -10,7 +10,7 @@ class EditorActors extends Component {
       <div className="actors-module">
         <div className="flexcontainer-module-header">
           <div className="module-header">
-            <h4>Actors</h4>
+            <h3>Actors</h3>
           </div>
           <div className="button-container flex-self-right">
             <button
