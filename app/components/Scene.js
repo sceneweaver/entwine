@@ -4,8 +4,8 @@ import React, { Component } from 'react'
 
 class Scene extends Component {
 
-  setInnerHTML(text){
-    return {__html: text}
+  setInnerHTML(html){
+    return {__html: html}
   }
 
   render() {
@@ -15,7 +15,7 @@ class Scene extends Component {
 
           </div>
           <div className="col-md-8 col-md-offset-1 article-text article-font">
-            <div dangerouslySetInnerHTML={this.setInnerHTML(this.props.text)} />
+            <div dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)} />
           </div>
           <div className="col-md-2 pull-right actorsBlock">
             {this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null}
@@ -40,7 +40,7 @@ class Scene extends Component {
 import { connect } from 'react-redux';
 
 const mapStateToProps = store => ({
-  text: store.displayState.currScene.paragraphs[0],
+  html: store.displayState.currScene.paragraphsHTML[0],
   actors: store.displayState.currScene.actors
 });
 

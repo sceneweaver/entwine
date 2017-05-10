@@ -6,6 +6,7 @@ export default class Scene {
     this.title = '';
     this.position = 0;
     this.paragraphs = [''];
+    this.paragraphsHTML = [''];
     this.actors = [new Actor()];
     this.locations = [];
   }
