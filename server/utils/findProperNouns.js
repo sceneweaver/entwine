@@ -63,14 +63,14 @@ const sortObjByOccurrence = obj => {
   for (const word in obj) {
     if (hash[obj[word]]) {
       hash[obj[word]].push({
-        title: word,
+        name: word,
         description: '',
         image: '',
         link: ''
       });
     } else {
       hash[obj[word]] = [{
-        title: word,
+        name: word,
         description: '',
         image: '',
         link: ''

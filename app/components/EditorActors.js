@@ -13,7 +13,7 @@ class EditorActors extends Component {
           </div>
           <div className="button-container flex-self-right">
             <button
-              onClick={this.props.onRefreshActors.bind(this, event, this.props.position)}
+              onClick={this.props.onRefreshActors.bind(this, this.props.position)}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-refresh" />
@@ -29,25 +29,25 @@ class EditorActors extends Component {
         <div className="actors-box">
           {this.props.actors.length ? (
             this.props.actors.map((actor, index) => {
+              console.log(actor);
               return (
-                <div key={actor.title + index} className="actor-item">
-                  <div className="actor-image">
-                    <img className="img-circle" src={store.getState().editor.scenes[this.props.position].actors[index].image} alt="Actor image." />
-                  </div>
+                <div key={index} className="actor-item">
+                 { this.props.actors[index].image ?
+                   <div className="actor-image">
+                    <img className="img-circle" src={this.props.actors[index].image} alt="Actor image." />
+                  </div> : null}
                   <div className="actor-info">
                     <label>Name:</label>
                     <input
-                      className="actorFormField"
-                      name={`${this.props.position}-${index}-title`}
-                      defaultValue={actor.title}
-                      onChange={this.props.onActorsChange.bind(this)}
+                      name="actor-name-field"
+                      value={actor.name}
+                      onChange={this.props.onActorsChange.bind(this, event, this.props.position, index, 'name')}
                     /><br />
                     <label>Description:</label>
                     <input
-                      className="actorFormField"
-                      name={`${this.props.position}-${index}-description`}
-                      defaultValue={actor.description}
-                      onChange={this.props.onActorsChange.bind(this)}
+                      name="actor-description-field"
+                      value={actor.description}
+                      onChange={this.props.onActorsChange.bind(this, event, this.props.position, index, 'description')}
                     />
                   </div>
                   <div className="actor-delete">
@@ -61,9 +61,9 @@ class EditorActors extends Component {
                   <div className="actor-gen-info">
                     <button
                       className="btn btn-default"
-                      name={`${this.props.position}-${index}`}
-                      onClick={this.props.onRegenActor}
-                    >GRAB IMAGE
+                      onClick={this.props.onGrabImage.bind(this, this.props.position, index)}
+                    >
+                      GRAB IMAGE
                       </button>
                   </div>
                 </div>
@@ -88,20 +88,20 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onRefreshActors(event, position) {
-    event.preventDefault();
+  onRefreshActors(position) {
     dispatch(generateActors(position));
   },
-  onActorsChange(event) {
+  onActorsChange(event, position, actorIndex, field) {
+    const keyChange = [].slice.call(arguments)[4]
+        , newInput = keyChange.target.value;
     event.preventDefault();
-    const eventNameArray = event.target.name.split('-')
-      , position = eventNameArray[0]
-      , actorIndex = eventNameArray[1]
-      , field = eventNameArray[2]
-      , input = event.target.value;
-    dispatch(changeActor(position, actorIndex, field, input));
+    keyChange.preventDefault();
+    event.stopPropagation();
+    keyChange.stopPropagation();
+    dispatch(changeActor(position, actorIndex, field, newInput));
   },
   onAddActor(event, position) {
+    console.log(event);
     event.preventDefault();
     dispatch(addActor(position));
   },
@@ -112,13 +112,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       , actorIndex = eventNameArray[1];
     dispatch(deleteActor(position, actorIndex));
   },
-  onRegenActor(event) {
+  onGrabImage(position, actorIndex) {
+    const event = [].slice.call(arguments)[3];
     event.preventDefault();
-    const eventNameArray = event.target.name.split('-')
-      , position = eventNameArray[0]
-      , actorIndex = eventNameArray[1]
-      , title = store.getState().editor.scenes[position].actors[actorIndex].title;
-    return wiki().page(title)
+    event.stopPropagation();
+    const name = store.getState().editor.scenes[position].actors[actorIndex].name;
+    return wiki().page(name)
       .then(page => page.mainImage())
       .then(image => {
         dispatch(changeActor(position, actorIndex, 'image', image));

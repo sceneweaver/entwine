@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 class Actor {
   constructor() {
-    this.title = '';
+    this.name = '';
     this.description = '';
     this.image = '';
     this.link = '';
@@ -17,7 +17,12 @@ class Scene {
     this.title = '';
     this.position = 0;
     this.paragraphs = [''];
-    this.actors = [new Actor()];
+    this.actors = [{
+      name: '',
+      description: '',
+      image: '',
+      link: ''
+    }];
     this.locations = [];
   }
   getPosition(index) {
@@ -41,7 +46,7 @@ const CHANGE_ACTOR = 'CHANGE_ACTOR';
 const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
-const SET_LOCATIONS = 'SET_LOCATIONS'
+const SET_LOCATIONS = 'SET_LOCATIONS';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -78,10 +83,10 @@ export const setSceneText = (position, input) => ({
   input
 })
 
-const setActors = (position, nouns) => ({
+const setActors = (position, actors) => ({
   type: SET_ACTORS,
   position,
-  nouns
+  actors
 })
 
 export const changeActor = (position, actorIndex, field, input) => ({
@@ -134,7 +139,7 @@ export default function reducer(state = {
       break;
 
     case DELETE_SCENE:
-      let firstHalfOfScenes = newState.scenes.slice(0, +action.position)
+      const firstHalfOfScenes = newState.scenes.slice(0, +action.position)
         , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
           scene.position--;
           return scene;
@@ -143,7 +148,8 @@ export default function reducer(state = {
       break;
 
     case SET_ACTORS:
-      newState.scenes[action.position].actors = action.nouns;
+      console.log(action.actors);
+      newState.scenes[action.position].actors = action.actors;
       break;
 
     case SET_SCENE_TEXT:
@@ -155,7 +161,11 @@ export default function reducer(state = {
       break;
 
     case CHANGE_ACTOR:
-      newState.scenes[action.position].actors[action.actorIndex][action.field] = action.input;
+      const newActor = newState.scenes[action.position].actors[action.actorIndex];
+      newActor[action.field] = action.input;
+      const firstHalfOfChanges = newState.scenes[action.position].actors.slice(0, action.actorIndex)
+          , secondHalfOfChanges = newState.scenes[action.position].actors.slice(action.actorIndex + 1);
+      newState.scenes[action.position].actors = [...firstHalfOfChanges, newActor, ...secondHalfOfChanges];
       break;
 
     case ADD_ACTOR:
@@ -163,7 +173,7 @@ export default function reducer(state = {
       break;
 
     case DELETE_ACTOR:
-      let firstHalfOfActors = newState.scenes[action.position].actors.slice(0, +action.actorIndex)
+      const firstHalfOfActors = newState.scenes[action.position].actors.slice(0, +action.actorIndex)
         , secondHalfOfActors = newState.scenes[action.position].actors.slice(+action.actorIndex + 1);
       newState.scenes[action.position].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
@@ -188,38 +198,39 @@ import wiki from 'wikijs';
 const getWikiDesc = (array, title, position, index) => {
   return dispatch => {
     return wiki().page(title)
-    .then(page => page.summary())
-    .then(info => {
-      info = info.slice(0, 250);
-      array[index].description = info;
-      return array;
-    })
-    .then(updatedArray => {
-      dispatch(setActors(position, updatedArray));
-    });
+      .then(page => page.summary())
+      .then(info => {
+        info = info.slice(0, 250);
+        array[index].description = info;
+        return array;
+      })
+      .then(updatedArray => {
+        dispatch(setActors(position, updatedArray));
+      });
   };
 };
 
 const getWikiImage = (array, title, position, index) => {
   return dispatch => {
     return wiki().page(title)
-    .then(page => page.mainImage())
-    .then(image => {
-      array[index].image = image;
-      return array;
-    })
-    .then(updatedArray => {
-      dispatch(setActors(position, updatedArray));
-    });
+      .then(page => page.mainImage())
+      .then(image => {
+        array[index].image = image;
+        return array;
+      })
+      .then(updatedArray => {
+        dispatch(setActors(position, updatedArray));
+      });
   };
 };
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0]
     , actorsArray = findProperNouns(textBody);
+  console.log(actorsArray);
   actorsArray.forEach((actor, index, array) => {
-    dispatch(getWikiDesc(array, actor.title, position, index));
-    dispatch(getWikiImage(array, actor.title, position, index));
+    dispatch(getWikiDesc(array, actor.name, position, index));
+    dispatch(getWikiImage(array, actor.name, position, index));
   });
 };
 
@@ -236,6 +247,6 @@ export const submitStory = () => (dispatch, getState) => {
 export const generateMapLocations = (position, nounsArr) => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
     , nounsArr = findProperNouns(textBody);
-  return axios.post('/compromise/places', {nounsArr})
+  return axios.post('/compromise/places', { nounsArr })
     .then(res => dispatch(setLocations(position, res.data)))
 };
