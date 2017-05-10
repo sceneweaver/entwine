@@ -8,6 +8,8 @@ import {
 
 import {stateToHTML} from 'draft-js-export-html';
 import EditorActors from './EditorActors';
+import EditorMaps from './EditorMaps';
+
 
 class EditorScene extends Component {
    constructor(props) {
@@ -117,11 +119,13 @@ class EditorScene extends Component {
           </div>
         </div>
         <div className="col-md-5">
-          {this.props.displayActors ?
-            <EditorActors
-              position={this.props.position}
-            /> :
-            null}
+          {
+            this.props.whichModule === 'maps'
+            ? <EditorMaps position={this.props.position} />
+            : this.props.whichModule === 'actors'
+            ? <EditorActors position={this.props.position} />
+            : null
+          }
         </div>
       </div>
     );
@@ -131,14 +135,15 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { toggleActors, setSceneText, setSceneHTML, setSceneTitle, deleteScene } from '../reducers/editor';
+import { toggleActors, setSceneText, setSceneHTML, setSceneTitle, deleteScene, generateMapLocations } from '../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
   position: ownProps.position,
   title: store.editor.scenes[ownProps.position].title,
   text: store.editor.scenes[ownProps.position].paragraphs[0],
-  displayActors: store.editor.scenes[ownProps.position].displayActors
+  displayActors: store.editor.scenes[ownProps.position].displayActors,
+  whichModule: store.editor.scenes[ownProps.position].whichModule
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -164,6 +169,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onGenerateMaps(event) {
     event.preventDefault();
+    dispatch(generateMapLocations(ownProps.position));
   }
 });
 

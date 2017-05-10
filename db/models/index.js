@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // Require our models. Running each module registers the model into sequelize
 // so any other part of the application could call sequelize.model('User')
@@ -19,7 +19,7 @@ const app = require('APP')
       Scene: require('./scene'),
       Story: require('./story'),
     }
-    , {mapValues} = require('lodash')
+    , {mapValues} = require('lodash');
 
 module.exports = db => {
   // Create actual model classes by calling each meta model with the
@@ -50,9 +50,9 @@ module.exports = db => {
         // Metamodel::associations(self: Model, others: {[name: String]: Model}) -> ()
         //
         // Associate self with others.
-        associations.call(metaModels[name], models[name], models)
+        associations.call(metaModels[name], models[name], models);
       }
-    })
+    });
 
-  return models
-}
+  return models;
+};
