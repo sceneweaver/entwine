@@ -21,7 +21,6 @@ const filterWords = arr => {
     return i !== 0 // exclude the first word (will always be capitalized)
       && /^[a-zA-Z]/.test(arr[i]) // exclude anything that does not start with a letter
       && !word.includes('—') // excludes any two words that have been joined by an em-dash
-      && !word.includes('-') // excludes and two words that have been joined by a hyphen
       && prevWord[prevWord.length - 1] !== '.' // excludes first word of a sentence
       && prevWord[prevWord.length - 1] !== '!' // excludes first word of a sentence
       && prevWord[prevWord.length - 1] !== '?' // excludes first word of a sentence
@@ -30,9 +29,8 @@ const filterWords = arr => {
   });
 };
 
-const removePunctuation = arr => {
+const removeApostrophes = arr => {
   return arr.map(word => word.replace(/'s/g, '')) // remove 's from end of words
-            .map(word =>  word.replace(/\W+/g, '')); // remove any non letter characters (i.e. extraneous quotes)
 };
 // remove any date words
 const removeWords = arr => {
@@ -46,7 +44,7 @@ const arrToObj = arr => {
   while (i < arr.length) {
     if (/^[A-Z]/.test(arr[i])) { // check if word is capitalized
       let newWord = `${arr[i]}`;
-      while (/^[A-Z]/.test(arr[i + 1])) { // if next word is capitalized too, combine them
+      while (/^[A-Z]/.test(arr[i + 1]) && newWord[newWord.length - 1] !== ',') { // if next word is capitalized too, combine them. Will not combine proper nouns separated by a comma
         newWord += ` ${arr[i + 1]}`;
         i++;
       }
@@ -93,7 +91,16 @@ const convertHashToOrderedArr = hash => {
   return arrayOfWords;
 };
 
+const removePunctuation = arr => {
+  const newArr = arr.map(obj => {
+    const title = obj.title.replace(/[",.!?*]+/g, '');
+    obj.title = title;
+    return obj;
+  }); // remove punctuation from strings
+  return newArr;
+}
+
 export default function findProperNouns(text) {
-  return convertHashToOrderedArr(sortObjByOccurrence(arrToObj(removeWords(removePunctuation(filterWords(removeAbbr(splitStr(text))))))));
+  return removePunctuation(convertHashToOrderedArr(sortObjByOccurrence(arrToObj(removeWords(removeApostrophes(filterWords(removeAbbr(splitStr(text)))))))));
 }
 
