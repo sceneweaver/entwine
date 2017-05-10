@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import wiki from 'wikijs';
 import Actor from '../../server/utils/actors-constructor';
 import Scene from '../../server/utils/scenes-constructor';
 
