@@ -5,27 +5,18 @@ const { STRING, TEXT } = require('sequelize');
 module.exports = db => db.define('actors', {
   name: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    allowNull: false
   },
   description: {
     type: TEXT
   },
   image: {
     type: STRING,
-    defaultValue: '',
-    // validate: {
-    //   isUrl: true
-    // }
+    defaultValue: ''
   },
   link: {
     type: STRING,
-    defaultValue: '',
-    // validate: {
-    //   isUrl: true
-    // }
+    defaultValue: ''
   }
 });
 
