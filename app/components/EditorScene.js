@@ -45,7 +45,7 @@ class EditorScene extends Component {
               <button
                 className="btn btn-default"
                 name={this.props.position}
-                onClick={this.props.onGenerateMaps}
+                onClick={this.props.onGenerateMaps.bind(this, event, this.props.position)}
               >
                 Generate Map
             </button>
@@ -67,7 +67,9 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { toggleActors, setSceneText, setSceneTitle, deleteScene } from '../reducers/editor';
+import { toggleActors, generateActors, setSceneText, setSceneTitle, deleteScene, generateMapLocations } from '../reducers/editor'
+
+
 
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
@@ -94,8 +96,9 @@ const mapDispatchToProps = dispatch => ({
     event.preventDefault();
     dispatch(deleteScene(+position));
   },
-  onGenerateMaps(event) {
+  onGenerateMaps(event, position) {
     event.preventDefault();
+    dispatch(generateMapLocations(+position));
   }
 });
 
