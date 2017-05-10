@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ViewActors from './ViewActors';
 
 /* ----- COMPONENT ----- */
 
@@ -12,7 +13,6 @@ class Scene extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-
           <div className="col-md-4">
             <div className="article-titles article-font col-md-offset-1">
               <h3>{this.props.storyTitle}</h3>
@@ -23,23 +23,10 @@ class Scene extends Component {
               dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
             />
           </div>
-
-          <div className="col-md-8 pull-right actorsBlock">
-            {this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null}
-            {this.props.actors ?
-              this.props.actors.map(actor => (
-                <div key={actor.name}>
-                  <img className="img-responsive img-circle actors-display" src={actor.image} />
-                  <h5 className="article-font">{actor.name}</h5>
-                  <p>{actor.description}</p>
-                </div>
-              ))
-              : null}
+          <div className="col-md-5">
+            <ViewActors />
           </div>
-
         </div>
-
-
       </div>
     )
   }
