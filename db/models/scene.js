@@ -15,9 +15,8 @@ module.exports = db => db.define('scenes', {
       this.setDataValue('paragraphs', sanitizedParagraphs);
     }
   },
-  position: { //TODO: research best way to set up a DB that tracks the ORDER of associated scenes in a story
-    type: INTEGER,
-    defaultValue: 1
+  position: {
+    type: INTEGER
   }
 }, {
   defaultScope: {
@@ -29,5 +28,5 @@ module.exports = db => db.define('scenes', {
 
 module.exports.associations = (Scene, {Story, Actor}) => {
   Scene.belongsTo(Story);
-  Scene.belongsToMany(Actor, { through: 'ScenesActors' })
-}
+  Scene.belongsToMany(Actor, { through: 'ScenesActors' });
+};
