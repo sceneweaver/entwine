@@ -56,15 +56,14 @@ class EditorActors extends Component {
                   <div className="actor-delete">
                     <button
                       className="btn btn-default"
-                      name={`${this.props.position}-${index}`}
-                      onClick={this.props.onDeleteActor.bind(this)}
+                      onClick={this.props.onDeleteActor.bind(this, index)}
                     >X
                       </button>
                   </div>
                   <div className="actor-gen-info">
                     <button
                       className="btn btn-default"
-                      onClick={this.props.onGrabImage.bind(this, this.props.position, index)}
+                      onClick={this.props.onGrabImage.bind(this, index)}
                     >
                       GRAB IMAGE
                       </button>
@@ -94,8 +93,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onRefreshActors(event) {
     event.preventDefault();
     event.stopPropagation();
-    const position = ownProps.position;
-    dispatch(generateActors(position));
+    dispatch(generateActors(ownProps.position));
   },
   onActorsChange(actorIndex, field, event) {
     event.preventDefault();
@@ -105,25 +103,21 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onAddActor(event) {
     event.preventDefault();
     event.stopPropagation();
-    const position = ownProps.position;
-    dispatch(addActor(position));
+    dispatch(addActor(ownProps.position));
   },
-  onDeleteActor(event) {
-    event.preventDefault();
-    const eventNameArray = event.target.name.split('-')
-      , position = +eventNameArray[0]
-      , actorIndex = eventNameArray[1];
-    dispatch(deleteActor(position, actorIndex));
-  },
-  onGrabImage(position, actorIndex) {
-    const event = [].slice.call(arguments)[3];
+  onDeleteActor(actorIndex, event) {
     event.preventDefault();
     event.stopPropagation();
-    const name = store.getState().editor.scenes[position].actors[actorIndex].name;
+    dispatch(deleteActor(ownProps.position, actorIndex));
+  },
+  onGrabImage(actorIndex, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const name = store.getState().editor.scenes[ownProps.position].actors[actorIndex].name;
     return wiki().page(name)
       .then(page => page.mainImage())
       .then(image => {
-        dispatch(changeActor(position, actorIndex, 'image', image));
+        dispatch(changeActor(ownProps.position, actorIndex, 'image', image));
       });
   }
 });
