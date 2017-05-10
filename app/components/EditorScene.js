@@ -61,7 +61,7 @@ class EditorScene extends Component {
         <div className="col-md-1">
           <button
             className="btn btn-default"
-            onClick={this.props.onDeleteScene.bind(this, event, this.props.position)}
+            onClick={this.props.onDeleteScene}
           >
              <i className="fa fa-trash"></i> &nbsp; Delete
           </button>
@@ -109,21 +109,24 @@ class EditorScene extends Component {
           />
         </div>
         <div className="col-md-1">
-          <div className="generate-actors flex-container editor-actors">
-            <button
-              className="btn btn-default"
-              name={this.props.position}
-              onClick={this.props.onGenerateActors}
-            >
-              Show Actors
+          <div className="generate-actors flexcontainer-vertical editor-actors">
+            <div className="row">
+              <button
+                className="btn btn-default"
+                onClick={this.props.onShowActors}
+              >
+                Show Actors
             </button>
-            <button
-              className="btn btn-default"
-              name={this.props.position}
-              onClick={this.props.onGenerateMaps}
-            >
-              Generate Map
+            </div>
+            <div className="row">
+              <button
+                className="btn btn-default"
+                name={this.props.position}
+                onClick={this.props.onGenerateMaps}
+              >
+                Generate Map
             </button>
+            </div>
           </div>
         </div>
         <div className="col-md-5">
@@ -141,7 +144,7 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { toggleActors, generateActors, setSceneText, setSceneTitle, deleteScene } from '../reducers/editor'
+import { toggleActors, setSceneText, setSceneTitle, deleteScene } from '../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
@@ -151,23 +154,22 @@ const mapStateToProps = (store, ownProps) => ({
   displayActors: store.editor.scenes[ownProps.position].displayActors
 });
 
-const mapDispatchToProps = dispatch => ({
-  onGenerateActors(event) {
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onShowActors(event) {
     event.preventDefault();
-    dispatch(toggleActors(+event.target.name, true))
-    dispatch(generateActors(+event.target.name));
+    dispatch(toggleActors(ownProps.position, true));
   },
   onSceneTitleChange(event) {
     event.preventDefault();
-    dispatch(setSceneTitle(+event.target.name, event.target.value));
+    dispatch(setSceneTitle(ownProps.position, event.target.value));
   },
   onSceneTextChange(event) {
     event.preventDefault();
     dispatch(setSceneText(+event.target.name, event.target.value));
   },
-  onDeleteScene(event, position) {
+  onDeleteScene(event) {
     event.preventDefault();
-    dispatch(deleteScene(position))
+    dispatch(deleteScene(ownProps.position));
   },
   onGenerateMaps(event) {
     event.preventDefault();

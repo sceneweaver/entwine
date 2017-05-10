@@ -26,6 +26,14 @@
   border-bottom: solid 2px #c9c9c9;
 }
 
+/* ----- EditorScene Styling ----- */
+
+.flexcontainer-vertical {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 /* ----- EditorActors Styling ----- */
 
 .actors-module {
@@ -75,7 +83,6 @@
 
 .actors-heading {
   margin: 0px;
-
 }
 
 .article-text {
@@ -123,3 +130,7 @@
   align-self: flex-end;
 }
 
+.img-circle {
+  max-height: 60px;
+  max-width: 60px;
+}

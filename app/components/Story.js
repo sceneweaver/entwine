@@ -5,15 +5,6 @@ import Scene from './Scene.js';
 /* ----- COMPONENT ----- */
 
 class Story extends Component {
-  constructor() {
-    super()
-    this.getNewScene = this.getNewScene.bind(this);
-  }
-  getNewScene(evt) {
-    evt.preventDefault();
-    const newScene = this.props.scenes[evt.target.name - 1];
-    this.props.setCurrScene(newScene);
-  }
   render() {
     return (
       <div className="container">
@@ -25,11 +16,10 @@ class Story extends Component {
             this.props.scenes ? this.props.scenes.map(scene => (
               <div className="buttonContainer" key={scene.id}>
                 <button
-                  name={scene.position}
                   className="btn btn-success"
-                  onClick={this.getNewScene}
+                  onClick={this.props.getNewScene.bind(this, event, scene.position)}
                 >
-                  Go to scene {scene.position}
+                  Go to scene {scene.position + 1}
                 </button>
               </div>
             )) : null
@@ -52,8 +42,9 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrScene(scene) {
-    dispatch(setCurrScene(scene));
+  getNewScene(event, position) {
+    event.preventDefault();
+    dispatch(setCurrScene(this.props.scenes[position]));
   }
 });
 
