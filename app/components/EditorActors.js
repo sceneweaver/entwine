@@ -5,8 +5,6 @@ import store from '../store';
 
 class EditorActors extends Component {
   render() {
-    const evalActors = this.props.actors;
-    console.log("evalActors", evalActors);
     return (
       <div className="actors-module">
         <div className="flexcontainer-module-header">
@@ -30,7 +28,7 @@ class EditorActors extends Component {
         </div>
         <div className="actors-box">
           {this.props.actors.length ? (
-            evalActors.map((actor, index) => {
+            this.props.actors.map((actor, index) => {
               return (
                 <div key={index} className="actor-item">
                   {this.props.actors[index].image ?

@@ -10,9 +10,7 @@ export default class Actor {
   getWikiInfo() {
     return wiki().page(this.name)
       .then(page => {
-        console.log('I found a page', page);
         if (!page) {
-          console.log('Didnt find a page');
           return this;
         }
         else {
@@ -34,7 +32,6 @@ export default class Actor {
         }
       })
       .catch(err => {
-        console.log('something erred');
         return this;
       });
   }
