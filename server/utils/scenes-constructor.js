@@ -8,6 +8,7 @@ export default class Scene {
     this.paragraphs = [''];
     this.actors = [new Actor()];
     this.locations = [];
+    this.whichModule = null;
   }
   getPosition(index) {
     this.position = index;

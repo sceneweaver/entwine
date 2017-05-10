@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import store from '../store';
+import findPlaces from '../../server/utils/findPlaces'
 
 /* ----- COMPONENT ----- */
 
 class EditorMaps extends Component {
   render() {
     return (
-      <div className="actors-module">
+      <div className="maps-module">
         <div className="flexcontainer-module-header">
           <div className="module-header">
             <h4>Map</h4>
