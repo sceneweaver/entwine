@@ -7,6 +7,7 @@ const fakeData = {
   scenes: [
     {
       id: 3,
+      title: 'First scene!',
       paragraphs: ['When the campaign to expel the Islamic State from Mosul began, on October 17th, the Nineveh Province SWAT team was deployed far from the action, in the village of Kharbardan. For weeks, the élite police unit, made up almost entirely of native sons of Mosul, had been patrolling a bulldozed trench that divided bleak and vacant enemy-held plains from bleak and vacant government-held plains.', 'The men, needing a headquarters, had commandeered an abandoned mud-mortar house whose primary charm was its location: the building next door had been obliterated by an air strike, and the remains of half a dozen Islamic State fighters—charred torsos, limbs, and heads—still littered the rubble.'],
       paragraphsHTML: ['<p>When the campaign to expel the Islamic State from Mosul began, on October 17th, the Nineveh Province SWAT team was deployed far from the action, in the village of Kharbardan. For weeks, the élite police unit, made up almost entirely of native sons of Mosul, had been patrolling a bulldozed trench that divided bleak and vacant enemy-held plains from bleak and vacant government-held plains.', 'The men, needing a headquarters, had commandeered an abandoned mud-mortar house whose primary charm was its location: the building next door had been obliterated by an air strike, and the remains of half a dozen Islamic State fighters—charred torsos, limbs, and heads—still littered the rubble.</p>'],
       position: 0,
@@ -26,12 +27,14 @@ const fakeData = {
       ]
     }, {
       id: 4,
+      title: 'Second scene!',
       paragraphs: ['The rest of our story follows as so!'],
       paragraphsHTML: ['<p>The rest of our story follows as so!</p>'],
       position: 1,
       actors: []
     }, {
       id: 5,
+      title: 'Third scene!',
       paragraphs: ['More of our story appears here.', 'In two paragraphs.'],
       paragraphsHTML: ['<p>More of our story appears here.</p>', '<p>In two paragraphs.</p>'],
       position: 2,

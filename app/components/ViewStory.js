@@ -9,23 +9,22 @@ class Story extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <h1 className="col-md-7 col-md-offset-2 article-font">{this.props.title}</h1>
+          <div className="navButtons col-md-1">
+            {
+              this.props.scenes ? this.props.scenes.map(scene => (
+                <div className="buttonContainer" key={scene.id}>
+                  <button
+                    className="btn btn-success"
+                    onClick={this.props.getNewScene.bind(this, event, scene.position)}
+                  >
+                    Go to scene {scene.position}
+                  </button>
+                </div>
+              )) : null
+            }
+          </div>
+          <ViewScene />
         </div>
-        <div className="navButtons">
-          {
-            this.props.scenes ? this.props.scenes.map(scene => (
-              <div className="buttonContainer" key={scene.id}>
-                <button
-                  className="btn btn-success"
-                  onClick={this.props.getNewScene.bind(this, event, scene.position)}
-                >
-                  Go to scene {scene.position + 1}
-                </button>
-              </div>
-            )) : null
-          }
-        </div>
-        <ViewScene />
       </div>
     );
   }
