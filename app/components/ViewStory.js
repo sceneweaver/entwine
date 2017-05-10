@@ -9,23 +9,20 @@ class Story extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <h1 className="col-md-7 col-md-offset-2 article-font">{this.props.title}</h1>
+          <div className="col-md-1 scenes-nav col-md-offset-1">
+            <h4 className="scenes-nav-title">Navigate<br />Scenes</h4>
+            <input
+              type="range"
+              className="scene-navigator"
+              min={0}
+              max={this.props.scenes.length - 1}
+              step={1}
+              defaultValue={this.props.currScene.position}
+              onChange={this.props.getNewScene}
+            />
+          </div>
+          <ViewScene />
         </div>
-        <div className="navButtons">
-          {
-            this.props.scenes ? this.props.scenes.map(scene => (
-              <div className="buttonContainer" key={scene.id}>
-                <button
-                  className="btn btn-success"
-                  onClick={this.props.getNewScene.bind(this, event, scene.position)}
-                >
-                  Go to scene {scene.position + 1}
-                </button>
-              </div>
-            )) : null
-          }
-        </div>
-        <ViewScene />
       </div>
     );
   }
@@ -34,17 +31,17 @@ class Story extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { setCurrScene } from '../reducers/displayState'
+import { fetchScene } from '../reducers/displayState'
 
 const mapStateToProps = store => ({
-  title: store.displayState.title,
+  currScene: store.displayState.currScene,
   scenes: store.displayState.scenes
 });
 
 const mapDispatchToProps = dispatch => ({
-  getNewScene(event, position) {
+  getNewScene(event) {
     event.preventDefault();
-    dispatch(setCurrScene(this.props.scenes[position]));
+    dispatch(fetchScene(event.target.value));
   }
 });
 

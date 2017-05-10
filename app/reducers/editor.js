@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import wiki from 'wikijs';
 import Actor from '../../server/utils/actors-constructor';
 import Scene from '../../server/utils/scenes-constructor';
 
@@ -120,9 +119,9 @@ export default function reducer (state = {
 
     case DELETE_SCENE:
       const firstHalfOfScenes = newState.scenes.slice(0, +action.position)
-        , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
-          scene.position--;
-          return scene;
+          , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
+            scene.position--;
+            return scene;
         });
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
