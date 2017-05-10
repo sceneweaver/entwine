@@ -23,13 +23,10 @@ class Scene extends Component {
               dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
             />
           </div>
-          <div className="col-md-8 pull-right actorsBlock">
+          <div className="col-md-5">
             <ViewActors />
           </div>
-
         </div>
-
-
       </div>
     )
   }

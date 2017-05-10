@@ -58,8 +58,8 @@ class ViewActors extends Component {
           {
             this.state.on ? (
               <div>
-                <h5 className="article-font">{this.state.name}</h5>
-                <p>{this.state.description}</p>
+                <h3 className="article-font">{this.state.name}</h3>
+                <p className="article-font">{this.state.description}</p>
               </div>
             ) : (
               null
