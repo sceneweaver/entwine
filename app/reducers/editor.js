@@ -1,15 +1,9 @@
 import _ from 'lodash';
+import wiki from 'wikijs';
+import { Actor } from '../../server/utils/actors-constructor';
 
 /* -----------------    CLASSES     ------------------ */
 
-class Actor {
-  constructor() {
-    this.name = '';
-    this.description = '';
-    this.image = '';
-    this.link = '';
-  }
-}
 
 class Scene {
   constructor() {
@@ -148,7 +142,6 @@ export default function reducer(state = {
       break;
 
     case SET_ACTORS:
-      console.log(action.actors);
       newState.scenes[action.position].actors = action.actors;
       break;
 
@@ -164,7 +157,7 @@ export default function reducer(state = {
       const newActor = newState.scenes[action.position].actors[action.actorIndex];
       newActor[action.field] = action.input;
       const firstHalfOfChanges = newState.scenes[action.position].actors.slice(0, action.actorIndex)
-          , secondHalfOfChanges = newState.scenes[action.position].actors.slice(action.actorIndex + 1);
+        , secondHalfOfChanges = newState.scenes[action.position].actors.slice(action.actorIndex + 1);
       newState.scenes[action.position].actors = [...firstHalfOfChanges, newActor, ...secondHalfOfChanges];
       break;
 
@@ -193,45 +186,44 @@ export default function reducer(state = {
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import findProperNouns from '../../server/utils/findProperNouns'
-import wiki from 'wikijs';
 
-const getWikiDesc = (array, title, position, index) => {
-  return dispatch => {
-    return wiki().page(title)
-      .then(page => page.summary())
-      .then(info => {
-        info = info.slice(0, 250);
-        array[index].description = info;
-        return array;
-      })
-      .then(updatedArray => {
-        dispatch(setActors(position, updatedArray));
-      });
-  };
-};
+// const getWikiDesc = (array, title, position, index) => {
+//   return dispatch => {
+//     return wiki().page(title)
+//       .then(page => page.summary())
+//       .then(info => {
+//         info = info.slice(0, 250);
+//         const newArray = array;
+//         newArray[index].description = info;
+//         return newArray;
+//       })
+//       .then(updatedArray => {
+//         dispatch(setActors(position, updatedArray));
+//       });
+//   };
+// };
 
-const getWikiImage = (array, title, position, index) => {
-  return dispatch => {
-    return wiki().page(title)
-      .then(page => page.mainImage())
-      .then(image => {
-        array[index].image = image;
-        return array;
-      })
-      .then(updatedArray => {
-        dispatch(setActors(position, updatedArray));
-      });
-  };
-};
+// const getWikiImage = (array, title, position, index) => {
+//   return dispatch => {
+//     return wiki().page(title)
+//       .then(page => page.mainImage())
+//       .then(image => {
+//         const newArray = array;
+//         newArray[index].image = image;
+//         return newArray;
+//       })
+//       .then(updatedArray => {
+//         dispatch(setActors(position, updatedArray));
+//       });
+//   };
+// };
+
+
 
 export const generateActors = position => (dispatch, getState) => {
-  const textBody = getState().editor.scenes[position].paragraphs[0]
-    , actorsArray = findProperNouns(textBody);
-  console.log(actorsArray);
-  actorsArray.forEach((actor, index, array) => {
-    dispatch(getWikiDesc(array, actor.name, position, index));
-    dispatch(getWikiImage(array, actor.name, position, index));
-  });
+  const textBody = getState().editor.scenes[position].paragraphs[0];
+  findProperNouns(textBody)
+  .then(actorsArray => dispatch(setActors(position, actorsArray)));
 };
 
 export const submitStory = () => (dispatch, getState) => {

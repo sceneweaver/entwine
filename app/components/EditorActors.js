@@ -5,6 +5,8 @@ import store from '../store';
 
 class EditorActors extends Component {
   render() {
+    const evalActors = this.props.actors;
+    console.log("evalActors", evalActors);
     return (
       <div className="actors-module">
         <div className="flexcontainer-module-header">
@@ -13,13 +15,13 @@ class EditorActors extends Component {
           </div>
           <div className="button-container flex-self-right">
             <button
-              onClick={this.props.onRefreshActors.bind(this, this.props.position)}
+              onClick={this.props.onRefreshActors}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
-              onClick={this.props.onAddActor.bind(this, event, this.props.position)}
+              onClick={this.props.onAddActor}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-plus" />
@@ -28,26 +30,27 @@ class EditorActors extends Component {
         </div>
         <div className="actors-box">
           {this.props.actors.length ? (
-            this.props.actors.map((actor, index) => {
-              console.log(actor);
+            evalActors.map((actor, index) => {
               return (
                 <div key={index} className="actor-item">
-                 { this.props.actors[index].image ?
-                   <div className="actor-image">
-                    <img className="img-circle" src={this.props.actors[index].image} alt="Actor image." />
-                  </div> : null}
+                  {this.props.actors[index].image ?
+                    <div className="actor-image">
+                      <img className="img-circle" src={this.props.actors[index].image} alt="Actor image." />
+                    </div> : null}
                   <div className="actor-info">
                     <label>Name:</label>
                     <input
+                      type="text"
                       name="actor-name-field"
                       value={actor.name}
-                      onChange={this.props.onActorsChange.bind(this, event, this.props.position, index, 'name')}
+                      onChange={this.props.onActorsChange.bind(this, index, 'name')}
                     /><br />
                     <label>Description:</label>
                     <input
+                      type="text"
                       name="actor-description-field"
-                      value={actor.description}
-                      onChange={this.props.onActorsChange.bind(this, event, this.props.position, index, 'description')}
+                      value={actor.description || `WHERE ARE YOU`}
+                      onChange={this.props.onActorsChange.bind(this, index, 'description')}
                     />
                   </div>
                   <div className="actor-delete">
@@ -82,27 +85,27 @@ import { connect } from 'react-redux';
 import { changeActor, deleteActor, addActor, generateActors } from '../reducers/editor';
 import wiki from 'wikijs';
 
-const mapStateToProps = (store, ownProps) => ({
-  actors: store.editor.scenes[ownProps.position].actors,
+const mapStateToProps = (state, ownProps) => ({
+  actors: state.editor.scenes[ownProps.position].actors,
   position: ownProps.position
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onRefreshActors(position) {
+  onRefreshActors(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const position = ownProps.position;
     dispatch(generateActors(position));
   },
-  onActorsChange(event, position, actorIndex, field) {
-    const keyChange = [].slice.call(arguments)[4]
-        , newInput = keyChange.target.value;
+  onActorsChange(actorIndex, field, event) {
     event.preventDefault();
-    keyChange.preventDefault();
     event.stopPropagation();
-    keyChange.stopPropagation();
-    dispatch(changeActor(position, actorIndex, field, newInput));
+    dispatch(changeActor(ownProps.position, actorIndex, field, event.target.value));
   },
-  onAddActor(event, position) {
-    console.log(event);
+  onAddActor(event) {
     event.preventDefault();
+    event.stopPropagation();
+    const position = ownProps.position;
     dispatch(addActor(position));
   },
   onDeleteActor(event) {
