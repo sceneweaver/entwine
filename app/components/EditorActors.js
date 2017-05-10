@@ -49,7 +49,7 @@ class EditorActors extends Component {
                     <input
                       type="text"
                       name="actor-description-field"
-                      value={actor.description || `WHERE ARE YOU`}
+                      value={actor.description}
                       onChange={this.props.onActorsChange.bind(this, index, 'description')}
                     />
                   </div>

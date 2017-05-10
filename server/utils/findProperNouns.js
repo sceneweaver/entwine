@@ -1,4 +1,4 @@
-import { Actor } from './actors-constructor';
+import Actor from './actors-constructor';
 
 // remove new lines and spaces
 const splitStr = str => {
@@ -97,19 +97,8 @@ const convertHashToOrderedArr = hash => {
 };
 
 export default function findProperNouns(text) {
-  return convertHashToOrderedArr(sortObjByOccurrence(arrToObj(removeWords(removePunctuation(filterWords(removeAbbr(splitStr(text))))))));
+  const nounObj = arrToObj(removeWords(removePunctuation(filterWords(removeAbbr(splitStr(text))))));
+  return sortObjByOccurrence(nounObj)
+    .then(sortedObj => convertHashToOrderedArr(sortedObj));
 }
 
-/*
-
-suggesting refactor to handle async. would require refactoring removeAbbr, filterWords, removePunctuation, removeDates to be functional callbacks.
-
-findProperNouns then becomes a promise that can be chained in the store set. This means we can tell the store to only setActors once this has finished executing.
-
-const filteredWordsArray = splitStr(textBody).filter(removeAbbr).filter(filterWords).map(removePunctuation).filter(removeDates)
-    , nounObj = arrToObj(filteredWordsArray);
-
-return sortObjByOccurrence(nounObj)
-.then(sortedObj => convertHashToOrderedArr(sortedObj));
-
-*/
