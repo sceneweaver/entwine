@@ -40,9 +40,13 @@ class EditorActorItem extends Component {
         />
       </div>
 
-      { actor.image ?
-          <div className="img-circle" style={{ backgroundImage: `url(${actor.image})` }} />
-        : <p>No image</p> }
+      {actor.image ?
+        <div className="img-circle" style={{ backgroundImage: `url(${actor.image})` }} />
+        :
+        <div className="img-circle-letter" style={{ backgroundColor: 'rgb(14, 186, 100)' }} >
+            {actor.name[0]}
+        </div>
+      }
 
     </div>);
   }
