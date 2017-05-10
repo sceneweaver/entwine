@@ -1,5 +1,7 @@
 import Actor from './actors-constructor';
 
+let key = 1;
+
 export default class Scene {
   constructor() {
     this.displayActors = false;
@@ -9,6 +11,7 @@ export default class Scene {
     this.paragraphsHTML = [''];
     this.actors = [new Actor()];
     this.locations = [];
+    this.key = key++;
   }
   getPosition(index) {
     this.position = index;

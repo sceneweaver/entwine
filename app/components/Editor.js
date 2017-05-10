@@ -40,7 +40,7 @@ class Editor extends Component {
           this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
             <EditorScene
               position={scene.position}
-              key={scene.position}
+              key={scene.key}
             />
           )))
             : null
