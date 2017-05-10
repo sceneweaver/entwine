@@ -91,8 +91,8 @@
 }
 
 .img-circle {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   background-position-y: center;
   background-position-x: center;
@@ -102,6 +102,27 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.img-circle-letter {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ----- Scene Styling ----- */
