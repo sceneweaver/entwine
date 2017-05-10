@@ -15,9 +15,9 @@ class Story extends Component {
                 <div className="buttonContainer" key={scene.id}>
                   <button
                     className="btn btn-success"
-                    onClick={this.props.getNewScene.bind(this, event, scene.position)}
+                    onClick={this.props.getNewScene.bind(this, scene.position)}
                   >
-                    Go to scene {scene.position}
+                    Go to scene {scene.position + 1}
                   </button>
                 </div>
               )) : null
@@ -41,7 +41,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getNewScene(event, position) {
+  getNewScene(position, event) {
     event.preventDefault();
     dispatch(setCurrScene(this.props.scenes[position]));
   }

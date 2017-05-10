@@ -14,10 +14,9 @@ class Scene extends Component {
         <div className="row">
 
           <div className="col-md-4">
-            <div className="article-titles">
-              <h1 className="article-font col-md-offset-1">
-                {this.props.storyTitle} >> {this.props.currScene.title}
-              </h1>
+            <div className="article-titles article-font col-md-offset-1">
+              <h3>{this.props.storyTitle}</h3>
+              <h1>{this.props.currScene.title}</h1>
             </div>
             <div
               className="article-text article-font col-md-offset-1"
