@@ -17,7 +17,7 @@ class EditorScene extends Component {
         <div className="form-group col-md-5">
           <input
             placeholder="Scene Title"
-            onChange={this.props.onSceneTitleChange.bind(this, event, this.props.position)}
+            onChange={this.props.onSceneTitleChange.bind(this, event)}
             value={this.props.title}
           />
           <textarea
@@ -82,9 +82,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     dispatch(toggleActors(ownProps.position, true));
   },
-  onSceneTitleChange(event, position) {
+  onSceneTitleChange(event) {
     event.preventDefault();
-    dispatch(setSceneTitle(+position, event.target.value));
+    dispatch(setSceneTitle(ownProps.position, event.target.value));
   },
   onSceneTextChange(event) {
     event.preventDefault();
