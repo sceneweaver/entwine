@@ -3,7 +3,7 @@
 const { STRING, TEXT } = require('sequelize');
 
 module.exports = db => db.define('actors', {
-  title: {
+  name: {
     type: STRING,
     allowNull: false,
     validate: {
