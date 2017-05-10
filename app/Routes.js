@@ -38,7 +38,7 @@ const mapDispatch = dispatch => ({
     dispatch(setFakeState());
   },
   onRealStoryEnter: (nextRouterState) => {
-    const storyId = nextRouterState.params.storyId
+    const storyId = nextRouterState.params.storyId;
     dispatch(fetchStory(storyId));
   }
 });
