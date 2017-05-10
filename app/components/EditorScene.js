@@ -9,7 +9,7 @@ class EditorScene extends Component {
         <div className="col-md-1">
           <button
             className="btn btn-default"
-            onClick={this.props.onDeleteScene.bind(this, event, this.props.position)}
+            onClick={this.props.onDeleteScene}
           >
             Delete Scene
           </button>
@@ -17,7 +17,7 @@ class EditorScene extends Component {
         <div className="form-group col-md-5">
           <input
             placeholder="Scene Title"
-            onChange={this.props.onSceneTitleChange.bind(this, event, this.props.position)}
+            onChange={this.props.onSceneTitleChange}
             value={this.props.title}
           />
           <textarea
@@ -36,7 +36,7 @@ class EditorScene extends Component {
             <div className="row">
               <button
                 className="btn btn-default"
-                onClick={this.props.onShowActors.bind(this, event, this.props.position)}
+                onClick={this.props.onShowActors}
               >
                 Show Actors
             </button>
@@ -77,22 +77,22 @@ const mapStateToProps = (store, ownProps) => ({
   displayActors: store.editor.scenes[ownProps.position].displayActors
 });
 
-const mapDispatchToProps = dispatch => ({
-  onShowActors(event, position) {
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onShowActors(event) {
     event.preventDefault();
-    dispatch(toggleActors(+position, true));
+    dispatch(toggleActors(ownProps.position, true));
   },
-  onSceneTitleChange(event, position) {
+  onSceneTitleChange(event) {
     event.preventDefault();
-    dispatch(setSceneTitle(+position, event.target.value));
+    dispatch(setSceneTitle(ownProps.position, event.target.value));
   },
   onSceneTextChange(event) {
     event.preventDefault();
     dispatch(setSceneText(+event.target.name, event.target.value));
   },
-  onDeleteScene(event, position) {
+  onDeleteScene(event) {
     event.preventDefault();
-    dispatch(deleteScene(+position));
+    dispatch(deleteScene(ownProps.position));
   },
   onGenerateMaps(event) {
     event.preventDefault();

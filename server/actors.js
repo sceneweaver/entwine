@@ -63,7 +63,7 @@ router.post('/', (req, res, next) => {
 router.post('/:sceneId/bulk', (req, res, next) => {
   req.body.actors.forEach(actor => {
     Actor.create({
-      title: actor.title,
+      name: actor.name,
       description: actor.description,
       image: actor.image,
       link: actor.link,

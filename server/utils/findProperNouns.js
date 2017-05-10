@@ -1,3 +1,5 @@
+import Actor from './actors-constructor';
+
 // remove new lines and spaces
 const splitStr = str => {
   let arr = str.split('\n').join(' ');
@@ -8,10 +10,10 @@ const splitStr = str => {
 const removeAbbr = arr => {
   return arr.filter(word => {
     return word // convert string to array of words; only include words (no empty strings)
-        && word !== 'Mr.'
-        && word !== 'Ms.'
-        && word !== 'Mrs.'
-        && (word.length > 2 || word[word.length - 1] !== '.'); // removes middle initials as to not confuse them with the end of a sentence
+      && word !== 'Mr.'
+      && word !== 'Ms.'
+      && word !== 'Mrs.'
+      && (word.length > 2 || word[word.length - 1] !== '.'); // removes middle initials as to not confuse them with the end of a sentence
   });
 };
 
@@ -32,9 +34,10 @@ const filterWords = arr => {
 const removeApostrophes = arr => {
   return arr.map(word => word.replace(/'s/g, '')) // remove 's from end of words
 };
+
 // remove any date words
 const removeWords = arr => {
-  const dateWords = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri',  'Sat', 'Sun'];
+  const dateWords = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
   return arr.filter(word => !dateWords.includes(word));
 };
 
@@ -55,27 +58,35 @@ const arrToObj = arr => {
   return pronounObj;
 };
 
+const removePunctuation = obj => {
+  const newObj = {};
+  for (key in obj) {
+    const newKey = key.replace(/[",.!?*]+/g, '');
+    newObj.newKey = obj.key;
+  }
+  return newObj;
+}
+
 // convert obj of words to array by rate of occurrence
 const sortObjByOccurrence = obj => {
-  const hash = {};
-  for (const word in obj) {
-    if (hash[obj[word]]) {
-      hash[obj[word]].push({
-        title: word,
-        description: '',
-        image: '',
-        link: ''
-      });
-    } else {
-      hash[obj[word]] = [{
-        title: word,
-        description: '',
-        image: '',
-        link: ''
-      }];
-    }
+  const promisesArray = [];
+  for (let word in obj) {
+    const newActor = new Actor();
+    newActor.name = word;
+    promisesArray.push(newActor.getWikiInfo());
   }
-  return hash;
+  return Promise.all(promisesArray)
+    .then(updatedActors => {
+      const hash = {};
+      updatedActors.forEach(actor => {
+        if (hash[obj[actor.name]]) {
+          hash[obj[actor.name]].push(actor);
+        } else {
+          hash[obj[actor.name]] = [actor];
+        }
+      });
+      return hash;
+    });
 };
 
 const convertHashToOrderedArr = hash => {
@@ -91,16 +102,9 @@ const convertHashToOrderedArr = hash => {
   return arrayOfWords;
 };
 
-const removePunctuation = arr => {
-  const newArr = arr.map(obj => {
-    const title = obj.title.replace(/[",.!?*]+/g, '');
-    obj.title = title;
-    return obj;
-  }); // remove punctuation from strings
-  return newArr;
-}
-
 export default function findProperNouns(text) {
-  return removePunctuation(convertHashToOrderedArr(sortObjByOccurrence(arrToObj(removeWords(removeApostrophes(filterWords(removeAbbr(splitStr(text)))))))));
+  const nounObj = removePunctuation(arrToObj(removeApostrophes(filterWords(removeAbbr(splitStr(text))))));
+  return sortObjByOccurrence(nounObj)
+    .then(sortedObj => convertHashToOrderedArr(sortedObj));
 }
 
