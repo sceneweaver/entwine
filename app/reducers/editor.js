@@ -14,7 +14,6 @@ class Actor {
 class Scene {
   constructor() {
     this.whichModule = null;
-    this.displayActors = false;
     this.title = '';
     this.position = 0;
     this.paragraphs = [''];
@@ -47,10 +46,9 @@ const SET_LOCATIONS = 'SET_LOCATIONS'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const toggleActors = (position, displayActors) => ({
+export const toggleActors = (position) => ({
   type: TOGGLE_ACTORS,
-  position,
-  displayActors
+  position
 })
 
 export const changeStoryTitle = input => ({
@@ -125,8 +123,7 @@ export default function reducer(state = {
       break;
 
     case TOGGLE_ACTORS:
-      newState.scenes[action.position].displayActors = action.displayActors;
-      newState.scenes[action.position].whichModule = "EditorActors"
+      newState.scenes[action.position].whichModule = 'actors';
       break;
 
     case ADD_SCENE:

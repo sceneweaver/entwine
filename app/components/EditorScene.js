@@ -54,7 +54,11 @@ class EditorScene extends Component {
         </div>
         <div className="col-md-5">
           {
-            this.props.whichModule ? <this.props.whichModule position={this.props.position} /> :  null
+            this.props.whichModule === 'maps'
+            ? <EditorMaps position={this.props.position} />
+            : this.props.whichModule === 'actors'
+            ? <EditorActors position={this.props.position} />
+            : null
           }
         </div>
       </div>
@@ -72,7 +76,8 @@ const mapStateToProps = (store, ownProps) => ({
   position: ownProps.position,
   title: store.editor.scenes[ownProps.position].title,
   text: store.editor.scenes[ownProps.position].paragraphs[0],
-  displayActors: store.editor.scenes[ownProps.position].displayActors
+  displayActors: store.editor.scenes[ownProps.position].displayActors,
+  whichModule: store.editor.scenes[ownProps.position].whichModule
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
