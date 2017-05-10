@@ -66,7 +66,7 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { toggleActors, generateActors, setSceneText, setSceneTitle, deleteScene } from '../reducers/editor'
+import { toggleActors, generateActors, setSceneText, setSceneTitle, deleteScene, generateMapLocations } from '../reducers/editor'
 
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
@@ -97,6 +97,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onGenerateMaps(event) {
     event.preventDefault();
+    dispatch(generateMapLocations(+event.targe.name));
   }
 });
 

@@ -236,9 +236,9 @@ export const submitStory = title => (dispatch, getState) => {
     })
 }
 
-export const generateMapLocations = (position, nounsArr) => (dispatch, getState) => {
+export const generateMapLocations = (position) => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position - 1].paragraphs[0]
-    , nounArr = findProperNouns(textBody);
+    , nounsArr = findProperNouns(textBody);
   return axios.post('/compromise/places', {nounsArr})
     .then(res => dispatch(setLocations(position, res.data)))
 }
