@@ -62,7 +62,7 @@ class EditorScene extends Component {
         <div className="col-md-1">
           <button
             className="btn btn-default"
-            onClick={this.props.onDeleteScene}
+            onClick={this.props.onDeleteScene.bind(this, this.props.position)}
           >
              <i className="fa fa-trash"></i> &nbsp; Delete
           </button>
@@ -162,10 +162,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     dispatch(setSceneHTML(position, content));
   },
-  onDeleteScene(event) {
+  onDeleteScene(position, event) {
     event.preventDefault();
-    console.log("ownProps.position", ownProps.position);
-    dispatch(deleteScene(ownProps.position));
+    dispatch(deleteScene(position));
   },
   onGenerateMaps(event) {
     event.preventDefault();

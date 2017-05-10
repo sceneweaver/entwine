@@ -118,10 +118,10 @@ export default function reducer (state = {
       break;
 
     case DELETE_SCENE:
-      const firstHalfOfScenes = newState.scenes.slice(0, action.position)
-        , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
-          scene.position--;
-          return scene;
+      const firstHalfOfScenes = newState.scenes.slice(0, +action.position)
+          , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
+            scene.position--;
+            return scene;
         });
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
