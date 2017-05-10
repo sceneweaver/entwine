@@ -35,12 +35,6 @@ const removeApostrophes = arr => {
   return arr.map(word => word.replace(/'s/g, '')) // remove 's from end of words
 };
 
-// remove any date words
-const removeWords = arr => {
-  const dateWords = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
-  return arr.filter(word => !dateWords.includes(word));
-};
-
 const arrToObj = arr => {
   let pronounObj = {};
   let i = 0;
@@ -61,11 +55,23 @@ const arrToObj = arr => {
 const removePunctuation = obj => {
   const newObj = {};
   for (let key in obj) {
-    const newKey = key.replace(/[",.!?*]+/g, '');
+    const newKey = key.replace(/[",.!?*:]+/g, '');
     newObj[newKey] = obj[key];
   }
   return newObj;
-}
+};
+
+// remove any date words
+const removeUnwantedWords = obj => {
+  const newObj = {};
+  const unwantedWords = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun', 'I'];
+  for (let actorName in obj) {
+    if (!unwantedWords.includes(actorName)) {
+      newObj[actorName] = obj[actorName];
+    }
+  }
+  return newObj;
+};
 
 // convert obj of words to array by rate of occurrence
 const sortObjByOccurrence = obj => {
@@ -103,7 +109,7 @@ const convertHashToOrderedArr = hash => {
 };
 
 export default function findProperNouns(text) {
-  const nounObj = removePunctuation(arrToObj(removeApostrophes(filterWords(removeAbbr(splitStr(text))))));
+  const nounObj = removeUnwantedWords(removePunctuation(arrToObj(removeApostrophes(filterWords(removeAbbr(splitStr(text)))))));
   return sortObjByOccurrence(nounObj)
     .then(sortedObj => convertHashToOrderedArr(sortedObj));
 }
