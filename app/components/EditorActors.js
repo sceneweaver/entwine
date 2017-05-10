@@ -32,9 +32,8 @@ class EditorActors extends Component {
               return (
                 <div key={index} className="actor-item">
                   {this.props.actors[index].image ?
-                    <div className="actor-image">
-                      <img className="img-circle" src={this.props.actors[index].image} alt="Actor image." />
-                    </div> : null}
+                      <div className="img-circle" style={{backgroundImage: `url(${actor.image})`}} />
+                      : null }
                   <div className="actor-info">
                     <label>Name:</label>
                     <input

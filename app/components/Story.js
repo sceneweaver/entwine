@@ -7,7 +7,7 @@ import Scene from './Scene.js';
 class Story extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <h1 className="col-md-7 col-md-offset-2 article-font">{this.props.title}</h1>
         </div>
