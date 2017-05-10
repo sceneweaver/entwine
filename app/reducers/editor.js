@@ -166,37 +166,6 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import findProperNouns from '../../server/utils/findProperNouns';
 
-// const getWikiDesc = (array, title, position, index) => {
-//   return dispatch => {
-//     return wiki().page(title)
-//       .then(page => page.summary())
-//       .then(info => {
-//         info = info.slice(0, 250);
-//         const newArray = array;
-//         newArray[index].description = info;
-//         return newArray;
-//       })
-//       .then(updatedArray => {
-//         dispatch(setActors(position, updatedArray));
-//       });
-//   };
-// };
-
-// const getWikiImage = (array, title, position, index) => {
-//   return dispatch => {
-//     return wiki().page(title)
-//       .then(page => page.mainImage())
-//       .then(image => {
-//         const newArray = array;
-//         newArray[index].image = image;
-//         return newArray;
-//       })
-//       .then(updatedArray => {
-//         dispatch(setActors(position, updatedArray));
-//       });
-//   };
-// };
-
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)

@@ -18,7 +18,7 @@ export default class Actor {
         else {
           return page.summary()
             .then(returnedDesc => {
-              this.description = returnedDesc;
+              this.description = returnedDesc.slice(0, 250);
               return this;
             })
             .then(alteredActor => {
