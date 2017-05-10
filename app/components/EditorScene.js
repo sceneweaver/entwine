@@ -10,7 +10,6 @@ import {stateToHTML} from 'draft-js-export-html';
 import EditorActors from './EditorActors';
 import EditorMaps from './EditorMaps';
 
-
 class EditorScene extends Component {
    constructor(props) {
     super(props);
@@ -24,7 +23,7 @@ class EditorScene extends Component {
       this.props.onSceneHTMLChange(this.props.position, contentHTML);
       // updates Draft JS editor state
       this.setState({editorState});
-    }
+    };
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
 
@@ -165,11 +164,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onDeleteScene(event) {
     event.preventDefault();
+    console.log("ownProps.position", ownProps.position);
     dispatch(deleteScene(ownProps.position));
   },
   onGenerateMaps(event) {
     event.preventDefault();
-    dispatch(generateMapLocations(ownProps.position));
+    dispatch(generateMapLocations(+ownProps.position));
   }
 });
 

@@ -4,22 +4,29 @@ import React, { Component } from 'react';
 
 class Scene extends Component {
 
-  setInnerHTML(html){
-    return {__html: html}
+  setInnerHTML(html) {
+    return { __html: html }
   }
 
   render() {
     return (
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-md-1">
 
+          <div className="col-md-4">
+            <div className="article-titles article-font col-md-offset-1">
+              <h3>{this.props.storyTitle}</h3>
+              <h1>{this.props.currScene.title}</h1>
+            </div>
+            <div
+              className="article-text article-font col-md-offset-1"
+              dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
+            />
           </div>
-          <div className="col-md-8 col-md-offset-1 article-text article-font">
-            <div dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)} />
-          </div>
-          <div className="col-md-2 pull-right actorsBlock">
-            { this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null }
-            { this.props.actors ?
+
+          <div className="col-md-8 pull-right actorsBlock">
+            {this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null}
+            {this.props.actors ?
               this.props.actors.map(actor => (
                 <div key={actor.name}>
                   <img className="img-responsive img-circle actors-display" src={actor.image} />
@@ -29,7 +36,11 @@ class Scene extends Component {
               ))
               : null}
           </div>
+
         </div>
+
+
+      </div>
     )
   }
 }
@@ -40,7 +51,9 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = store => ({
   html: store.displayState.currScene.paragraphsHTML[0],
-  actors: store.displayState.currScene.actors
+  actors: store.displayState.currScene.actors,
+  storyTitle: store.displayState.title,
+  currScene: store.displayState.currScene
 });
 
 export default connect(mapStateToProps)(Scene);
