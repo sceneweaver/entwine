@@ -60,9 +60,9 @@ const arrToObj = arr => {
 
 const removePunctuation = obj => {
   const newObj = {};
-  for (key in obj) {
+  for (let key in obj) {
     const newKey = key.replace(/[",.!?*]+/g, '');
-    newObj.newKey = obj.key;
+    newObj[newKey] = obj[key];
   }
   return newObj;
 }
