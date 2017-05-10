@@ -126,7 +126,7 @@ class EditorScene extends Component {
                 name={this.props.position}
                 onClick={this.props.onGenerateMaps}
               >
-                Generate Map
+                Show Map
             </button>
             </div>
           </div>

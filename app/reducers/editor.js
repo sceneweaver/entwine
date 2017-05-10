@@ -20,6 +20,7 @@ const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
 const SET_LOCATIONS = 'SET_LOCATIONS';
+const ADD_LOCATION = 'ADD_LOCATION'
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -85,6 +86,11 @@ export const setLocations = (position, locations) => ({
   type: SET_LOCATIONS,
   position,
   locations
+})
+
+export const addLocation = position => ({
+  type: ADD_LOCATION,
+  position,
 })
 
 
@@ -185,8 +191,13 @@ export const submitStory = () => (dispatch, getState) => {
 };
 
 export const generateMapLocations = position => (dispatch, getState) => {
-  const textBody = getState().editor.scenes[position].paragraphs[0]
-    , nounsArr = findProperNouns(textBody);
-  return axios.post('/api/compromise/places', {textBody})
-    .then(res => dispatch(setLocations(position, res.data)))
+  const textBody = getState().editor.scenes[position].paragraphs[0];
+  findProperNouns(textBody)
+  .then(actorsArray => {
+    return findPlaces(actorsArray)
+  })
+  .then(placesArr => {
+    console.log("PLACES ARR", placesArr)
+    dispatch(setLocations(position, placesArr))
+  })
 };

@@ -14,13 +14,13 @@ class EditorMaps extends Component {
           </div>
           <div className="button-container flex-self-right">
             <button
-              onClick={this.props.onRefreshActors}
+              onClick={this.props.onRefreshLocations}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
-              onClick={this.props.onAddActor}
+              onClick={this.props.onAddLocation}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-plus" />
@@ -28,48 +28,29 @@ class EditorMaps extends Component {
           </div>
         </div>
         <div className="actors-box">
-          {this.props.actors.length ? (
-            this.props.actors.map((actor, index) => {
+          {this.props.locations.length ? (
+            this.props.locations.map((location, index) => {
               return (
-                <div key={index} className="actor-item">
-                  {this.props.actors[index].image ?
-                    <div className="actor-image">
-                      <img className="img-circle" src={this.props.actors[index].image} alt="Actor image." />
-                    </div> : null}
-                  <div className="actor-info">
-                    <label>Name:</label>
+                <div key={index} className="location-item">
+                  <div className="location-info">
+                    <label>Location:</label>
                     <input
                       type="text"
-                      name="actor-name-field"
-                      value={actor.name}
-                      onChange={this.props.onActorsChange.bind(this, index, 'name')}
+                      name="location-name-field"
+                      value={location.name}
+                      onChange={this.props.onLocationsChange.bind(this, index, 'name')}
                     /><br />
-                    <label>Description:</label>
-                    <input
-                      type="text"
-                      name="actor-description-field"
-                      value={actor.description}
-                      onChange={this.props.onActorsChange.bind(this, index, 'description')}
-                    />
                   </div>
-                  <div className="actor-delete">
+                  <div className="location-delete">
                     <button
                       className="btn btn-default"
-                      onClick={this.props.onDeleteActor.bind(this, index)}
+                      onClick={this.props.onDeleteLocation.bind(this, index)}
                     >X
-                      </button>
-                  </div>
-                  <div className="actor-gen-info">
-                    <button
-                      className="btn btn-default"
-                      onClick={this.props.onGrabImage.bind(this, index)}
-                    >
-                      GRAB IMAGE
                       </button>
                   </div>
                 </div>
               );
-            })) : (<p>No actors yet</p>)
+            })) : (<p>No locations yet</p>)
           }
         </div>
       </div>
@@ -80,26 +61,26 @@ class EditorMaps extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor, addActor, generateActors } from '../reducers/editor';
+import { changeActor, deleteActor, addActor, generateMapLocations } from '../reducers/editor';
 import wiki from 'wikijs';
 
 const mapStateToProps = (state, ownProps) => ({
-  actors: state.editor.scenes[ownProps.position].actors,
+  locations: state.editor.scenes[ownProps.position].locations,
   position: ownProps.position
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onRefreshActors(event) {
+  onRefreshLocations(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(generateActors(ownProps.position));
+    dispatch(generateMapLocations(ownProps.position));
   },
-  onActorsChange(actorIndex, field, event) {
+  onLocationsChange(actorIndex, field, event) {
     event.preventDefault();
     event.stopPropagation();
     dispatch(changeActor(ownProps.position, actorIndex, field, event.target.value));
   },
-  onAddActor(event) {
+  onAddLocation(event) {
     event.preventDefault();
     event.stopPropagation();
     dispatch(addActor(ownProps.position));

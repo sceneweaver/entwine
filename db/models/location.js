@@ -4,11 +4,7 @@ const { STRING, TEXT } = require('sequelize');
 
 module.exports = db => db.define('locations', {
   name: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: STRING
   },
   description: {
     type: TEXT

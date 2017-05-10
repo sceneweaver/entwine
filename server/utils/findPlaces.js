@@ -6,21 +6,19 @@ let googleMapsClient = require('@google/maps').createClient({
 
 export default function findPlaces(nounsArr) {
     let placesArr = [];
-
     nounsArr.forEach(noun => {
       googleMapsClient.geocode({
-      address: location
+      address: noun.name
     }, (err, response) => {
       if (!err) {
         placesArr.push({
-          name: noun,
-          coords: [response.json.results[0].geometry.location.lat, response.json.results[0].geometry.location.lng]
+          name: noun.name,
+          coords: [response.json.results[0].geometry.location.lng, response.json.results[0].geometry.location.lat]
         })
       }
     });
   })
 
- console.log(placesArr)
  return placesArr;
 }
 
