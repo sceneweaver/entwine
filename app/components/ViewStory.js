@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Scene from './Scene.js';
+import ViewScene from './ViewScene.js';
 
 /* ----- COMPONENT ----- */
 
@@ -25,7 +25,7 @@ class Story extends Component {
             )) : null
           }
         </div>
-        <Scene />
+        <ViewScene />
       </div>
     );
   }
