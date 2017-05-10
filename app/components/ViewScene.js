@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ViewActors from './ViewActors';
 
 /* ----- COMPONENT ----- */
 
@@ -12,22 +13,12 @@ class Scene extends Component {
     return (
         <div className="row">
           <div className="col-md-1">
-
           </div>
           <div className="col-md-8 col-md-offset-1 article-text article-font">
             <div dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)} />
           </div>
-          <div className="col-md-2 pull-right actorsBlock">
-            { this.props.actors ? <h3 className="actors-heading article-font">Actors</h3> : null }
-            { this.props.actors ?
-              this.props.actors.map(actor => (
-                <div key={actor.name}>
-                  <img className="img-responsive img-circle actors-display" src={actor.image} />
-                  <h5 className="article-font">{actor.name}</h5>
-                  <p>{actor.description}</p>
-                </div>
-              ))
-              : null}
+          <div className="col-md-2 pull-right">
+            <ViewActors />
           </div>
         </div>
     )

@@ -13,15 +13,15 @@ const fakeData = {
       actors: [
         {
           id: 1,
-          name: 'Islamic State',
-          description: 'also known as ISIL, ISIS...',
-          image: 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/45.png'
+          name: 'Hillary Clinton',
+          description: 'Hillary Diane Rodham Clinton (/ˈhɪləri daɪˈæn ˈrɒdəm ˈklɪntən/; born October 26, 1947) is an American politician who was the 67th United States Secretary of State from 2009 to 2013, U.S. Senator from New York from 2001 to 2009, First Lady of the Unit',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/2/27/Hillary_Clinton_official_Secretary_of_State_portrait_crop.jpg'
         },
         {
           id: 2,
-          name: 'Nineveh Province SWAT team',
-          description: 'description for the Nineveh Province SWAT team',
-          image: 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/45.png'
+          name: 'Bill Clinton',
+          description: 'William Jefferson Clinton (born William Jefferson Blythe III; August 19, 1946) is an American politician who served as the 42nd President of the United States from 1993 to 2001. Prior to the Presidency he was the 40th Governor of Arkansas from 1979 t',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/4/49/44_Bill_Clinton_3x4.jpg'
         }
       ]
     }, {
