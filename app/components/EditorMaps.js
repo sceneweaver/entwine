@@ -27,9 +27,10 @@ class EditorMaps extends Component {
             </button>
           </div>
         </div>
-        <div className="actors-box">
+        <div className="locations-box">
           {this.props.locations.length ? (
             this.props.locations.map((location, index) => {
+              console.log("HIYA", location.name)
               return (
                 <div key={index} className="location-item">
                   <div className="location-info">
@@ -61,8 +62,7 @@ class EditorMaps extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor, addActor, generateMapLocations } from '../reducers/editor';
-import wiki from 'wikijs';
+import { changeLocation, deleteLocation, addLocation, generateMapLocations } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
@@ -75,30 +75,20 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.stopPropagation();
     dispatch(generateMapLocations(ownProps.position));
   },
-  onLocationsChange(actorIndex, field, event) {
+  onLocationsChange(locationIndex, field, event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(changeActor(ownProps.position, actorIndex, field, event.target.value));
+    dispatch(changeLocation(ownProps.position, locationIndex, field, event.target.value));
   },
   onAddLocation(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(addActor(ownProps.position));
+    dispatch(addLocation(ownProps.position));
   },
-  onDeleteActor(actorIndex, event) {
+  onDeleteLocation(locationIndex, event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(deleteActor(ownProps.position, actorIndex));
-  },
-  onGrabImage(actorIndex, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const name = store.getState().editor.scenes[ownProps.position].actors[actorIndex].name;
-    return wiki().page(name)
-      .then(page => page.mainImage())
-      .then(image => {
-        dispatch(changeActor(ownProps.position, actorIndex, 'image', image));
-      });
+    dispatch(deleteLocation(ownProps.position, locationIndex));
   }
 });
 

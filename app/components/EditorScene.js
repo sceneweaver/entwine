@@ -124,7 +124,7 @@ class EditorScene extends Component {
               <button
                 className="btn btn-default"
                 name={this.props.position}
-                onClick={this.props.onGenerateMaps}
+                onClick={this.props.onShowMaps}
               >
                 Show Map
             </button>
@@ -176,9 +176,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     dispatch(deleteScene(ownProps.position));
   },
-  onGenerateMaps(event) {
+  onShowMaps(event) {
     event.preventDefault();
-    dispatch(generateMapLocations(ownProps.position));
+    dispatch(toggleMaps(ownProps.position))
+    // dispatch(generateMapLocations(ownProps.position));
   }
 });
 

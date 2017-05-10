@@ -1,4 +1,5 @@
 import Actor from './actors-constructor';
+import Location from './locations-constructor';
 
 export default class Scene {
   constructor() {
@@ -7,7 +8,7 @@ export default class Scene {
     this.position = 0;
     this.paragraphs = [''];
     this.actors = [new Actor()];
-    this.locations = [];
+    this.locations = [new Location()];
     this.whichModule = null;
   }
   getPosition(index) {

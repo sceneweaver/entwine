@@ -2,6 +2,7 @@ import _ from 'lodash';
 import wiki from 'wikijs';
 import Actor from '../../server/utils/actors-constructor';
 import Scene from '../../server/utils/scenes-constructor';
+import Location from '../../server/utils/locations-constructor';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -20,7 +21,9 @@ const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
 const SET_LOCATIONS = 'SET_LOCATIONS';
-const ADD_LOCATION = 'ADD_LOCATION'
+const ADD_LOCATION = 'ADD_LOCATION';
+const CHANGE_LOCATION = 'CHANGE_LOCATION';
+const DELETE_LOCATION = 'DELETE_LOCATION';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -90,9 +93,22 @@ export const setLocations = (position, locations) => ({
 
 export const addLocation = position => ({
   type: ADD_LOCATION,
-  position,
+  position
 })
 
+export const deleteLocation = (position, locationIndex) => ({
+  type: DELETE_LOCATION,
+  position,
+  locationIndex
+})
+
+export const changeLocation = (position, locationIndex, field, input) => ({
+  type: CHANGE_LOCATION,
+  position,
+  locationIndex,
+  field,
+  input
+})
 
 /* ------------       REDUCERS     ------------------ */
 
@@ -161,6 +177,24 @@ export default function reducer (state = {
       newState.scenes[action.position].whichModule = 'maps';
       break;
 
+    case CHANGE_LOCATION:
+      const newLocation = newState.scenes[action.position].locations[action.locationIndex];
+      newLocation[action.field] = action.input;
+      const firstHalfOfLocationChanges = newState.scenes[action.position].locations.slice(0, action.locationIndex)
+        , secondHalfOfLocationChanges = newState.scenes[action.position].locations.slice(action.locationIndex + 1);
+      newState.scenes[action.position].locations = [...firstHalfOfLocationChanges, newLocation, ...secondHalfOfLocationChanges];
+      break;
+
+    case ADD_LOCATION:
+      newState.scenes[action.position].locations = newState.scenes[action.position].locations.concat([new Location()]);
+      break;
+
+    case DELETE_LOCATION:
+      const firstHalfOfLocations = newState.scenes[action.position].locations.slice(0, +action.locationIndex)
+        , secondHalfOfLocations = newState.scenes[action.position].locations.slice(+action.locationIndex + 1);
+      newState.scenes[action.position].locations = [...firstHalfOfLocations, ...secondHalfOfLocations];
+      break;
+
     default:
       return newState;
   }
@@ -197,7 +231,6 @@ export const generateMapLocations = position => (dispatch, getState) => {
     return findPlaces(actorsArray)
   })
   .then(placesArr => {
-    console.log("PLACES ARR", placesArr)
     dispatch(setLocations(position, placesArr))
   })
 };
