@@ -1,28 +1,7 @@
 import _ from 'lodash';
 import wiki from 'wikijs';
-import { Actor } from '../../server/utils/actors-constructor';
-
-/* -----------------    CLASSES     ------------------ */
-
-
-class Scene {
-  constructor() {
-    this.displayActors = false;
-    this.title = '';
-    this.position = 0;
-    this.paragraphs = [''];
-    this.actors = [{
-      name: '',
-      description: '',
-      image: '',
-      link: ''
-    }];
-    this.locations = [];
-  }
-  getPosition(index) {
-    this.position = index;
-  }
-}
+import Actor from '../../server/utils/actors-constructor';
+import Scene from '../../server/utils/scenes-constructor';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -111,7 +90,7 @@ export const setLocations = (position, locations) => ({
 
 /* ------------       REDUCERS     ------------------ */
 
-export default function reducer(state = {
+export default function reducer (state = {
   title: '',
   scenes: [new Scene()],
 }, action) {
@@ -185,7 +164,7 @@ export default function reducer(state = {
 
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import findProperNouns from '../../server/utils/findProperNouns'
+import findProperNouns from '../../server/utils/findProperNouns';
 
 // const getWikiDesc = (array, title, position, index) => {
 //   return dispatch => {
