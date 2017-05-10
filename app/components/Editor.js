@@ -35,8 +35,7 @@ class Editor extends Component {
               Publish My Story
             </button>
           </div>
-        </div>
-
+      </div>
         {
           this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
             <EditorScene
