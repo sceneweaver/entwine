@@ -233,10 +233,10 @@ export const submitStory = () => (dispatch, getState) => {
     });
 };
 
+
 export const generateMapLocations = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0]
     , nounsArr = findProperNouns(textBody);
-    console.log(nounsArr)
   return axios.post('/api/compromise/places', {textBody})
     .then(res => dispatch(setLocations(position, res.data)))
 };

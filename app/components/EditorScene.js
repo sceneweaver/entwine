@@ -69,8 +69,6 @@ class EditorScene extends Component {
 import { connect } from 'react-redux';
 import { toggleActors, generateActors, setSceneText, setSceneTitle, deleteScene, generateMapLocations } from '../reducers/editor'
 
-
-
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
   position: ownProps.position,
