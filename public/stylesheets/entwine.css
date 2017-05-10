@@ -41,6 +41,39 @@
   align-content: center;
 }
 
+.editor-scene-title {
+   border: 1px solid #ddd;
+   height: 35px;
+   text-indent: 14px;
+   flex-grow: 1;
+}
+
+.editor-container {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  padding: 15px;
+  color: black;
+  /*min-height: 400px;*/
+}
+
+.editor-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-btn {
+  height: 35px;
+  width: 35px;
+  /*margin-bottom: 4px;*/
+}
+
+.editor-right-align {
+  align-self: flex-end;
+}
+
 /* ----- EditorActors Styling ----- */
 
 .actors-module {
@@ -125,7 +158,7 @@
   align-items: center;
 }
 
-/* ----- Scene Styling ----- */
+/* ----- Story / Scene Styling ----- */
 
 .article-font {
   font-family: 'Libre Baskerville', serif;
@@ -142,36 +175,13 @@
   font-size: 16px;
 }
 
-.editor-scene-title {
-   border: 1px solid #ddd;
-   height: 35px;
-   text-indent: 14px;
-   flex-grow: 1;
-}
-
-.editor-container {
-  background: #fff;
-  border: 1px solid #ddd;
-  font-family: 'Georgia', serif;
-  font-size: 14px;
-  padding: 15px;
-  color: black;
-  /*min-height: 400px;*/
-}
-
-.editor-row {
+.scenes-nav {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.editor-btn {
-  height: 35px;
-  width: 35px;
-  /*margin-bottom: 4px;*/
+.scenes-nav-title {
+  text-align: center;
 }
-
-.editor-right-align {
-  align-self: flex-end;
-}
-

@@ -110,7 +110,10 @@ export const fetchStory = (id) => dispatch => {
 };
 
 export const setFakeState = () => dispatch => {
-  dispatch(setStory(fakeData))
+  dispatch(setStory(fakeData));
 };
 
+export const fetchScene = position => (dispatch, getState) => {
+  dispatch(setCurrScene(getState().displayState.scenes[position]));
+};
 
