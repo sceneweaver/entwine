@@ -15,6 +15,14 @@ module.exports = db => db.define('scenes', {
       this.setDataValue('paragraphs', sanitizedParagraphs);
     }
   },
+  paragraphsHTML: {
+    type: ARRAY(TEXT),
+    defaultValue: [],
+    set: function (unsanitizedParagraphs) {
+      const sanitizedParagraphs = unsanitizedParagraphs.map(sanitizeHtml);
+      this.setDataValue('paragraphsHTML', sanitizedParagraphs);
+    }
+  },
   position: { //TODO: research best way to set up a DB that tracks the ORDER of associated scenes in a story
     type: INTEGER,
     defaultValue: 1

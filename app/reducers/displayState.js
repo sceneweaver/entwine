@@ -69,10 +69,12 @@ export default function reducer(state = {
   title: '',
   scenes: [],
   currScene: {
-    id: 0,
+    id: 0, // need to adjust
     paragraphs: [],
+    paragraphsHTML: [],
     position: 0,
-    actors: []
+    actors: [],
+    locations: [],
   }
 }, action) {
   const newState = Object.assign({}, state)

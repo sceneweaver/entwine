@@ -13,7 +13,16 @@ class EditorScene extends Component {
    constructor(props) {
     super(props);
     this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = (editorState) => {
+      // converts text to plaintext to allow actors / wiki module to parse correctly
+      let content = editorState.getCurrentContent();
+      let contentPlainText = content.getPlainText();
+      let contentHTML = stateToHTML(content);
+      this.props.onSceneTextChange(this.props.position, contentPlainText);
+      this.props.onSceneHTMLChange(this.props.position, contentHTML);
+      // updates Draft JS editor state
+      this.setState({editorState});
+    }
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
 
@@ -34,10 +43,6 @@ class EditorScene extends Component {
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
   }
 
-  onUnderlineClick() {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  }
-
   onBlockQuoteClick() {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'blockquote'));
   }
@@ -50,11 +55,6 @@ class EditorScene extends Component {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'ordered-list-item'));
   }
 
-  onSaveClick() {
-    const content = this.state.editorState.getCurrentContent();
-    console.log('converted from raw...', stateToHTML(content))
-  }
-
   render() {
     return (
       <div className="row">
@@ -65,8 +65,6 @@ class EditorScene extends Component {
           >
              <i className="fa fa-trash"></i> &nbsp; Delete
           </button>
-
-        <button className="editor-btn-save" onClick={this.onSaveClick.bind(this)}>Save this Shieeeet</button>
 
         </div>
         <div className="form-group col-md-5">
@@ -82,7 +80,6 @@ class EditorScene extends Component {
             <div className="editor-right-align">
               <button className="editor-btn" onClick={this.onBoldClick.bind(this)}><i className="fa fa-bold"></i></button>
               <button className="editor-btn" onClick={this.onItalicClick.bind(this)}><i className="fa fa-italic"></i></button>
-              <button className="editor-btn" onClick={this.onUnderlineClick.bind(this)}><i className="fa fa-underline"></i></button>
               <button className="editor-btn" onClick={this.onBlockQuoteClick.bind(this)}><i className="fa fa-quote-right"></i></button>
               <button className="editor-btn" onClick={this.onUnorderedListClick.bind(this)}><i className="fa fa-list-ul"></i></button>
               <button className="editor-btn" onClick={this.onOrderedListClick.bind(this)}><i className="fa fa-list-ol"></i></button>
@@ -94,19 +91,9 @@ class EditorScene extends Component {
               editorState={this.state.editorState}
               handleKeyCommand={this.handleKeyCommand}
               onChange={this.onChange}
+              position={this.props.position}
             />
           </div>
-
-          <textarea
-            rows="10"
-            cols="78"
-            type="text"
-            className="form-control"
-            placeholder="Scene Text"
-            name={this.props.position}
-            value={this.props.text}
-            onChange={this.props.onSceneTextChange}
-          />
         </div>
         <div className="col-md-1">
           <div className="generate-actors flexcontainer-vertical editor-actors">
@@ -144,7 +131,7 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { toggleActors, setSceneText, setSceneTitle, deleteScene } from '../reducers/editor';
+import { toggleActors, setSceneText, setSceneHTML, setSceneTitle, deleteScene } from '../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
@@ -163,9 +150,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     dispatch(setSceneTitle(ownProps.position, event.target.value));
   },
-  onSceneTextChange(event) {
+  onSceneTextChange(position, content) {
     event.preventDefault();
-    dispatch(setSceneText(+event.target.name, event.target.value));
+    dispatch(setSceneText(position, content));
+  },
+  onSceneHTMLChange(position, content) {
+    event.preventDefault();
+    dispatch(setSceneHTML(position, content));
   },
   onDeleteScene(event) {
     event.preventDefault();
