@@ -6,7 +6,6 @@ class EditorActorItem extends Component {
   render() {
     const actor = this.props.actor
         , index = this.props.index;
-    console.log(actor, index);
     return (<div className="module-item">
 
       <div className="module-btns">
