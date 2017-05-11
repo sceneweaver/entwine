@@ -60,7 +60,11 @@ import wiki from 'wikijs';
 import store from '../store';
 
 const mapStateToProps = (state, ownProps) => ({
-  position: ownProps.position
+  position: ownProps.position,
+  index: ownProps.index,
+  name: state.editor.scenes[ownProps.position].actors[ownProps.index].name,
+  description: state.editor.scenes[ownProps.position].actors[ownProps.index].description,
+  image: state.editor.scenes[ownProps.position].actors[ownProps.index].image
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
