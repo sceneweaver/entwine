@@ -43,12 +43,9 @@ router.post('/', (req, res, next) => {
   }, {
       include: [{
         model: Scene,
-        include: [{
-          model: Actor,
-        },
-        {
-          model: Map
-        }
+        include: [
+        {model: Actor},
+        {model: Map}
         ]
       }]
     })
