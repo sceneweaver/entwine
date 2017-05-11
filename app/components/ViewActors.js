@@ -14,16 +14,11 @@ class ViewActors extends Component {
   render() {
     console.log(this.state.name)
     return (
-        <div className="actorsBlock">
+      <div>
+        <div className="view-actors-heads-box">
           {
             this.props.actors ? (
-              <h3 className="actors-heading article-font">Actors</h3>
-            ) : (
-              null
-            )
-          }
-          {
-            this.props.actors ? (
+
               this.props.actors.map(actor => (
                 <div
                   key={actor.name}
@@ -32,7 +27,7 @@ class ViewActors extends Component {
                     name: actor.name,
                     description: actor.description
                   })}
-                  onMouseLeave={() => this.setState({on: false})}
+                  onMouseLeave={() => this.setState({ on: false })}
                 >
                   {
                     actor.image ? (
@@ -41,20 +36,22 @@ class ViewActors extends Component {
                         style={{ backgroundImage: `url(${actor.image})` }}
                       />
                     ) : (
-                      <div
-                        className="img-circle-letter"
-                        style={{ backgroundColor: 'rgb(14, 186, 100)' }}
-                      >
-                        {actor.name[0]}
-                      </div>
-                    )
+                        <div
+                          className="img-circle-letter"
+                          style={{ backgroundColor: '#0090FF' }}
+                        >
+                          {actor.name[0]}
+                        </div>
+                      )
                   }
                 </div>
               ))
             ) : (
-              null
-            )
+                null
+              )
           }
+        </div>
+        <div className="view-actors-info-box">
           {
             this.state.on ? (
               <div>
@@ -62,21 +59,14 @@ class ViewActors extends Component {
                 <p className="article-font">{this.state.description}</p>
               </div>
             ) : (
-              null
-            )
+                null
+              )
           }
         </div>
+      </div>
     );
   }
-};
-
-// console.log('hello')
-// return (
-//   <div>
-//     <h5 className="article-font">{actor.name}</h5>
-//     <p>{actor.description}</p>
-//   </div>
-// )
+}
 
 /* ----- CONTAINER ----- */
 

@@ -201,7 +201,7 @@
   align-items: center;
 }
 
-/* ----- Story / Scene Styling ----- */
+/* ----- ViewStory / ViewScene Styling ----- */
 
 .article-font {
   font-family: 'Libre Baskerville', serif;
@@ -317,3 +317,15 @@ input[type=range]:focus::-ms-fill-upper {
   background: #357cb9;
 }
 
+/* ----- ViewActors Styling ----- */
+
+.view-actors-heads-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.view-actors-info-box {
+ /* styling tbd */
+}
