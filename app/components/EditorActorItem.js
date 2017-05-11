@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 /* ----- COMPONENT ----- */
 
-class EditorActorItem extends Component {
-  render() {
-    const actor = this.props.actor;
-    const index = this.props.index;
-    return (<div className="actor-item">
-
+const EditorActorItem = props => {
+  const index = props.index;
+  const name = props.name;
+  const description = props.description;
+  const image = props.image;
+  return (
+    <div className="actor-item">
       <div className="actor-buttons btn-group-vertical">
         <button
           className="btn btn-default"
-          onClick={this.props.onDeleteActor.bind(this, index)}
+          onClick={props.onDeleteActor.bind(this, index)}
         >
           <span className="glyphicon glyphicon-trash" ></span>
         </button>
         <button
           className="btn btn-default"
-          onClick={this.props.onGrabImage.bind(this, index)}
+          onClick={props.onGrabImage.bind(this, index)}
         >
           <span className="glyphicon glyphicon-refresh"></span>
         </button>
@@ -28,29 +29,32 @@ class EditorActorItem extends Component {
         <input
           type="text"
           className="actor-form-field"
-          value={actor.name}
-          onChange={this.props.onActorsChange.bind(this, index, 'name')}
+          value={name}
+          onChange={props.onActorsChange.bind(this, index, 'name')}
         /><br />
         <label>Description:</label>
         <input
           type="text"
           className="actor-form-field"
-          value={actor.description}
-          onChange={this.props.onActorsChange.bind(this, index, 'description')}
+          value={description}
+          onChange={props.onActorsChange.bind(this, index, 'description')}
         />
       </div>
 
-      {actor.image ?
-        <div className="img-circle" style={{ backgroundImage: `url(${actor.image})` }} />
-        :
-        <div className="img-circle-letter" style={{ backgroundColor: 'rgb(14, 186, 100)' }} >
-            {actor.name[0]}
-        </div>
+      {
+        image ? (
+          <div className="img-circle" style={{ backgroundImage: `url(${image})` }} />
+        ) : (
+          <div className="img-circle-letter" style={{ backgroundColor: 'rgb(14, 186, 100)' }} >
+              {name[0]}
+          </div>
+        )
       }
 
-    </div>);
-  }
-}
+    </div>
+  );
+};
+
 
 /* ----- CONTAINER ----- */
 
@@ -60,7 +64,11 @@ import wiki from 'wikijs';
 import store from '../store';
 
 const mapStateToProps = (state, ownProps) => ({
-  position: ownProps.position
+  position: ownProps.position,
+  index: ownProps.index,
+  name: state.editor.scenes[ownProps.position].actors[ownProps.index].name,
+  description: state.editor.scenes[ownProps.position].actors[ownProps.index].description,
+  image: state.editor.scenes[ownProps.position].actors[ownProps.index].image
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
