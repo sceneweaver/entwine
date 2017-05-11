@@ -78,11 +78,11 @@
 .editor-container {
   background: transparent;
   border: 0.5px solid #c9c9c9;
-  font-family: 'Georgia', serif;
-  font-size: 14px;
+  font-size: 16apx;
   padding: 15px;
   color: black;
   min-height: 200px;
+  font-family: 'Sorts Mill Goudy', serif;
 }
 
 .editorscene-buttons {
@@ -193,6 +193,8 @@
   border: none;
   background-color: transparent;
   margin: 0px 20px;
+  font-size: 16px;
+  font-family: 'Sorts Mill Goudy', serif;
 }
 
 .actor-name-field-container {
@@ -260,8 +262,20 @@
 
 /* ----- ViewStory / ViewScene Styling ----- */
 
-.article-font {
-  font-family: 'Libre Baskerville', serif;
+.scenes-nav-title {
+  font-family: 'Playfair Display SC', serif;
+}
+
+.view-story-heading {
+  font-family: 'Playfair Display SC', serif;
+}
+
+.article-titles > h3 {
+  font-weight: bold;
+}
+
+.article-titles > h1 {
+  font-size: 40px;
 }
 
 .actors-heading {
@@ -270,9 +284,10 @@
 
 .article-text {
   margin-bottom: 2.625rem;
-  margin-top: 0;
+  margin-top: 5px;
   line-height: 2.875rem;
-  font-size: 16px;
+  font-size: 18px;
+  font-family: 'Sorts Mill Goudy', serif;
 }
 
 .scenes-nav {
@@ -386,4 +401,9 @@ input[type=range]:focus::-ms-fill-upper {
 
 .view-actors-info-box {
  /* styling tbd */
+}
+
+.view-actors-desc {
+  font-size: 16px;
+  font-family: 'Sorts Mill Goudy', serif;
 }
