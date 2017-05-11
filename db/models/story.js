@@ -5,11 +5,7 @@ const { STRING, ARRAY } = require('sequelize');
 module.exports = db => db.define('stories', {
   title: {
     type: STRING,
-    allowNull: false,
-    unique: true,
-    validate: {
-      notEmpty: true
-    }
+    allowNull: false
   },
   tags: {
     type: ARRAY(STRING),
@@ -36,5 +32,5 @@ module.exports = db => db.define('stories', {
 module.exports.associations = (Story, {User, Scene, Actor}) => {
   Story.belongsTo(User);
   Story.hasMany(Scene);
-  Story.hasMany(Actor)
-}
+  Story.hasMany(Actor);
+};

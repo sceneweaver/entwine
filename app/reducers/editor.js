@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import wiki from 'wikijs';
 import Actor from '../../server/utils/actors-constructor';
 import Scene from '../../server/utils/scenes-constructor';
 import Location from '../../server/utils/locations-constructor';
@@ -11,6 +10,7 @@ const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
 const SET_SCENE_TEXT = 'SET_SCENE_TEXT';
+const SET_SCENE_HTML = 'SET_SCENE_HTML';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
 const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
@@ -64,6 +64,12 @@ export const setSceneTitle = (position, input) => ({
 
 export const setSceneText = (position, input) => ({
   type: SET_SCENE_TEXT,
+  position,
+  input
+})
+
+export const setSceneHTML = (position, input) => ({
+  type: SET_SCENE_HTML,
   position,
   input
 })
@@ -153,9 +159,9 @@ export default function reducer (state = {
 
     case DELETE_SCENE:
       const firstHalfOfScenes = newState.scenes.slice(0, +action.position)
-        , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
-          scene.position--;
-          return scene;
+          , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
+            scene.position--;
+            return scene;
         });
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
       break;
@@ -166,6 +172,10 @@ export default function reducer (state = {
 
     case SET_SCENE_TEXT:
       newState.scenes[action.position].paragraphs[0] = action.input;
+      break;
+
+    case SET_SCENE_HTML:
+      newState.scenes[action.position].paragraphsHTML[0] = action.input;
       break;
 
     case SET_SCENE_TITLE:

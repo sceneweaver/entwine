@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import store from '../store';
+
+import EditorActorItem from './EditorActorItem';
 
 /* ----- COMPONENT ----- */
 
@@ -8,21 +9,30 @@ class EditorActors extends Component {
     return (
       <div className="actors-module">
         <div className="flexcontainer-module-header">
-          <div className="module-header">
-            <h4>Actors</h4>
+
+          <div className="module-collapse-btn">
+            <button
+              onClick={this.props.onHideActors}
+              className="btn actors-module-btn"
+            >
+              <span className="glyphicon glyphicon-menu-right"></span>
+            </button>
           </div>
-          <div className="button-container flex-self-right">
+
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Actors</h3>
+
+          <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
-              className="btn btn-default"
+              className="btn actors-module-btn"
             >
-              <span className="glyphicon glyphicon-refresh" />
+              Regenerate All &nbsp; <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
               onClick={this.props.onAddActor}
-              className="btn btn-default"
+              className="btn actors-module-btn"
             >
-              <span className="glyphicon glyphicon-plus" />
+              Add Actor &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
           </div>
         </div>
@@ -30,43 +40,12 @@ class EditorActors extends Component {
           {this.props.actors.length ? (
             this.props.actors.map((actor, index) => {
               return (
-                <div key={index} className="actor-item">
-                  {this.props.actors[index].image ?
-                    <div className="actor-image">
-                      <img className="img-circle" src={this.props.actors[index].image} alt="Actor image." />
-                    </div> : null}
-                  <div className="actor-info">
-                    <label>Name:</label>
-                    <input
-                      type="text"
-                      name="actor-name-field"
-                      value={actor.name}
-                      onChange={this.props.onActorsChange.bind(this, index, 'name')}
-                    /><br />
-                    <label>Description:</label>
-                    <input
-                      type="text"
-                      name="actor-description-field"
-                      value={actor.description}
-                      onChange={this.props.onActorsChange.bind(this, index, 'description')}
-                    />
-                  </div>
-                  <div className="actor-delete">
-                    <button
-                      className="btn btn-default"
-                      onClick={this.props.onDeleteActor.bind(this, index)}
-                    >X
-                      </button>
-                  </div>
-                  <div className="actor-gen-info">
-                    <button
-                      className="btn btn-default"
-                      onClick={this.props.onGrabImage.bind(this, index)}
-                    >
-                      GRAB IMAGE
-                      </button>
-                  </div>
-                </div>
+                <EditorActorItem
+                  key={index}
+                  index={index}
+                  actor={actor}
+                  position={this.props.position}
+                />
               );
             })) : (<p>No actors yet</p>)
           }
@@ -79,10 +58,10 @@ class EditorActors extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor, addActor, generateActors } from '../reducers/editor';
-import wiki from 'wikijs';
+import { addActor, generateActors, toggleActors } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
+  sceneTitle: state.editor.scenes[ownProps.position].title,
   actors: state.editor.scenes[ownProps.position].actors,
   position: ownProps.position
 });
@@ -93,30 +72,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.stopPropagation();
     dispatch(generateActors(ownProps.position));
   },
-  onActorsChange(actorIndex, field, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    dispatch(changeActor(ownProps.position, actorIndex, field, event.target.value));
-  },
   onAddActor(event) {
     event.preventDefault();
     event.stopPropagation();
     dispatch(addActor(ownProps.position));
   },
-  onDeleteActor(actorIndex, event) {
+  onHideActors(event) {
     event.preventDefault();
-    event.stopPropagation();
-    dispatch(deleteActor(ownProps.position, actorIndex));
-  },
-  onGrabImage(actorIndex, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const name = store.getState().editor.scenes[ownProps.position].actors[actorIndex].name;
-    return wiki().page(name)
-      .then(page => page.mainImage())
-      .then(image => {
-        dispatch(changeActor(ownProps.position, actorIndex, 'image', image));
-      });
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
+    dispatch(toggleActors(ownProps.position, true));
   }
 });
 

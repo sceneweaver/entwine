@@ -6,17 +6,29 @@ import {
   RichUtils
 } from 'draft-js';
 
-import {stateToHTML} from 'draft-js-export-html';
+import { stateToHTML } from 'draft-js-export-html';
 import EditorActors from './EditorActors';
 import EditorMaps from './EditorMaps';
 
-
 class EditorScene extends Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = (editorState) => this.setState({editorState});
+    this.state = {
+      editorState: EditorState.createEmpty(),
+      displayModule: false
+    };
+    this.onChange = (editorState) => {
+      // converts text to plaintext to allow actors / wiki module to parse correctly
+      let content = editorState.getCurrentContent();
+      let contentPlainText = content.getPlainText();
+      let contentHTML = stateToHTML(content);
+      this.props.onSceneTextChange(this.props.position, contentPlainText);
+      this.props.onSceneHTMLChange(this.props.position, contentHTML);
+      // updates Draft JS editor state
+      this.setState({ editorState });
+    };
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
+    this.focus = () => this.refs.editor.focus();
   }
 
   handleKeyCommand(command) {
@@ -36,10 +48,6 @@ class EditorScene extends Component {
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
   }
 
-  onUnderlineClick() {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  }
-
   onBlockQuoteClick() {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'blockquote'));
   }
@@ -52,94 +60,86 @@ class EditorScene extends Component {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'ordered-list-item'));
   }
 
-  onSaveClick() {
-    const content = this.state.editorState.getCurrentContent();
-    console.log('converted from raw...', stateToHTML(content))
-  }
-
   render() {
     return (
-      <div className="row">
-        <div className="col-md-1">
-          <button
-            className="btn btn-default"
-            onClick={this.props.onDeleteScene}
-          >
-             <i className="fa fa-trash"></i> &nbsp; Delete
-          </button>
+      <div className="editorscene-wrapper" id={`editorscene-wrapper-${this.props.position}`}>
 
-        <button className="editor-btn-save" onClick={this.onSaveClick.bind(this)}>Save this Shieeeet</button>
+        {/* ----- PAGE CONTENT ----- */}
 
-        </div>
-        <div className="form-group col-md-5">
-          <div className="editor-row">
-            <input
-              className="editor-scene-title"
-              placeholder="Scene Title"
+        <div className="editorscene-content-wrapper">
+
+          <div className="editorscene-buttons btn-group-vertical">
+            <button
+              className="btn btn-default editorscene-delete-btn"
+              onClick={this.props.onDeleteScene}
+            >
+               <span className="glyphicon glyphicon-trash" ></span>
+            </button>
+
+            <button
+              className="btn btn-default module-btn"
+              onClick={this.props.onShowActors}
+            >
+              Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
+            </button>
+
+            <button
+              className="btn btn-default module-btn"
               name={this.props.position}
-              onChange={this.props.onSceneTitleChange}
-              value={this.props.title}
-            />
-
-            <div className="editor-right-align">
-              <button className="editor-btn" onClick={this.onBoldClick.bind(this)}><i className="fa fa-bold"></i></button>
-              <button className="editor-btn" onClick={this.onItalicClick.bind(this)}><i className="fa fa-italic"></i></button>
-              <button className="editor-btn" onClick={this.onUnderlineClick.bind(this)}><i className="fa fa-underline"></i></button>
-              <button className="editor-btn" onClick={this.onBlockQuoteClick.bind(this)}><i className="fa fa-quote-right"></i></button>
-              <button className="editor-btn" onClick={this.onUnorderedListClick.bind(this)}><i className="fa fa-list-ul"></i></button>
-              <button className="editor-btn" onClick={this.onOrderedListClick.bind(this)}><i className="fa fa-list-ol"></i></button>
-            </div>
-          </div>
-
-          <div className="editor-container">
-            <Editor
-              editorState={this.state.editorState}
-              handleKeyCommand={this.handleKeyCommand}
-              onChange={this.onChange}
-            />
-          </div>
-
-          <textarea
-            rows="10"
-            cols="78"
-            type="text"
-            className="form-control"
-            placeholder="Scene Text"
-            name={this.props.position}
-            value={this.props.text}
-            onChange={this.props.onSceneTextChange}
-          />
-        </div>
-        <div className="col-md-1">
-          <div className="generate-actors flexcontainer-vertical editor-actors">
-            <div className="row">
-              <button
-                className="btn btn-default"
-                onClick={this.props.onShowActors}
-              >
-                Show Actors
+              onClick={this.props.onShowMaps}
+            >
+              Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
             </button>
-            </div>
-            <div className="row">
-              <button
-                className="btn btn-default"
+
+          </div>
+
+          <div className="form-group editorscene-texteditor">
+
+            <div className="editor-row">
+
+              <input
+                className="editor-scene-title"
+                placeholder="Scene Title"
                 name={this.props.position}
-                onClick={this.props.onShowMaps}
-              >
-                Show Map
-            </button>
+                onChange={this.props.onSceneTitleChange}
+                value={this.props.title}
+              />
+
+              <div className="editor-right-align btn-group">
+                <button className="editor-btn btn btn-default" onClick={this.onBoldClick.bind(this)}><i className="fa fa-bold"></i></button>
+                <button className="editor-btn btn btn-default" onClick={this.onItalicClick.bind(this)}><i className="fa fa-italic"></i></button>
+                <button className="editor-btn btn btn-default" onClick={this.onBlockQuoteClick.bind(this)}><i className="fa fa-quote-right"></i></button>
+                <button className="editor-btn btn btn-default" onClick={this.onUnorderedListClick.bind(this)}><i className="fa fa-list-ul"></i></button>
+                <button className="editor-btn btn btn-default" onClick={this.onOrderedListClick.bind(this)}><i className="fa fa-list-ol"></i></button>
+              </div>
+            </div>
+
+            <div className="editor-container" onClick={this.focus}>
+              <Editor
+                editorState={this.state.editorState}
+                handleKeyCommand={this.handleKeyCommand}
+                onChange={this.onChange}
+                position={this.props.position}
+                ref='editor'
+              />
             </div>
           </div>
+
         </div>
-        <div className="col-md-5">
+
+        {/* ----- SIDEBAR ----- */}
+
+        <div className="editorscene-sidebar-wrapper">
           {
             this.props.whichModule === 'maps'
-            ? <EditorMaps position={this.props.position} />
-            : this.props.whichModule === 'actors'
-            ? <EditorActors position={this.props.position} />
-            : null
+              ? <EditorMaps position={this.props.position} />
+              : this.props.whichModule === 'actors'
+                ? <EditorActors position={this.props.position} />
+                : null
           }
         </div>
+
+
       </div>
     );
   }
@@ -147,8 +147,9 @@ class EditorScene extends Component {
 
 /* ----- CONTAINER ----- */
 
+import $ from 'jquery';
 import { connect } from 'react-redux';
-import { toggleActors, setSceneText, setSceneTitle, deleteScene, toggleMaps } from '../reducers/editor';
+import { toggleActors, setSceneText, setSceneHTML, setSceneTitle, deleteScene, toggleMaps } from '../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
@@ -162,24 +163,32 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onShowActors(event) {
     event.preventDefault();
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
     dispatch(toggleActors(ownProps.position, true));
   },
   onSceneTitleChange(event) {
     event.preventDefault();
     dispatch(setSceneTitle(ownProps.position, event.target.value));
   },
-  onSceneTextChange(event) {
+  onSceneTextChange(position, content) {
     event.preventDefault();
-    dispatch(setSceneText(+event.target.name, event.target.value));
+    dispatch(setSceneText(position, content));
+  },
+  onSceneHTMLChange(position, content) {
+    event.preventDefault();
+    dispatch(setSceneHTML(position, content));
   },
   onDeleteScene(event) {
     event.preventDefault();
-    dispatch(deleteScene(ownProps.position));
+    let allowDelete = confirm(`Are you sure you want to delete scene ${+ownProps.position + 1}?`);
+    if (allowDelete) {
+      dispatch(deleteScene(+ownProps.position));
+    }
+
   },
   onShowMaps(event) {
     event.preventDefault();
     dispatch(toggleMaps(ownProps.position))
-    // dispatch(generateMapLocations(ownProps.position));
   }
 });
 

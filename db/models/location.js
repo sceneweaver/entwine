@@ -7,25 +7,20 @@ module.exports = db => db.define('locations', {
     type: STRING
   },
   description: {
-    type: TEXT
+    type: TEXT,
+    allowNull: false
   },
   latitude: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    allowNull: false
   },
   longitude: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    allowNull: false
   }
 });
 
 module.exports.associations = (Location, {Scene, Story}) => {
   Location.belongsTo(Story);
-  Location.belongsTo(Scene, { through: "ScenesLocations" })
-}
+  Location.belongsTo(Scene, { through: 'ScenesLocations' });
+};
