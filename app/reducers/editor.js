@@ -236,6 +236,7 @@ export default function reducer (state = {
 
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { create } from './stories';
 import findProperNouns from '../../server/utils/findProperNouns';
 import findPlaces from '../../server/utils/findPlaces'
 
@@ -245,14 +246,16 @@ export const generateActors = position => (dispatch, getState) => {
   .then(actorsArray => dispatch(setActors(position, actorsArray)));
 };
 
-export const submitStory = () => (dispatch, getState) => {
+export const submitStory = (user) => (dispatch, getState) => {
   return axios.post('/api/stories', {
     title: getState().editor.title,
-    scenes: getState().editor.scenes
+    scenes: getState().editor.scenes,
+    userId: getState().auth.id
   })
-    .then(newStory => {
-      browserHistory.push(`/stories/${newStory.data.id}`);
-    });
+  .then(newStory => {
+    dispatch(create(newStory.data));
+    browserHistory.push(`/stories/${newStory.data.id}`);
+  });
 };
 
 export const generateMapLocations = position => (dispatch, getState) => {

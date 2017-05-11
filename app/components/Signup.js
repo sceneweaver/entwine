@@ -47,7 +47,6 @@ class Signup extends React.Component {
               <input
                 name="display_name"
                 className="form-control"
-                required
               />
             </div>
             <button type="submit" className="btn btn-block btn-primary">{message}</button>
