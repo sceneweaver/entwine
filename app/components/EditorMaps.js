@@ -1,76 +1,107 @@
 import React, { Component } from 'react';
 import store from '../store';
+import findPlaces from '../../server/utils/findPlaces';
+import EditorMapModule from './EditorMapModule';
+import EditorMapsLocationItem from './EditorMapsLocationItem';
 
 /* ----- COMPONENT ----- */
 
 class EditorMaps extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      coords: [],
+      locationTypes: [],
+      locationAddress: '',
+      mapboxStyle: 'light',
+      mapboxZoom: 13,
+      mapboxPitch: 30,
+      mapboxInteractivity: true,
+      mapboxAnimationMethod: 'flyTo',
+    }
+
+    this.onFindCoordsClick = this.onFindCoordsClick.bind(this);
+    this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
+    this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
+    this.changeMapboxAnimationMethod = this.changeMapboxAnimationMethod.bind(this);
+    this.toggleMapboxInteractivity = this.toggleMapboxInteractivity.bind(this);
+  }
+
+   onFindCoordsClick(event) {
+    event.preventDefault();
+    this.findCoordinates(event.target.location.value);
+  }
+
+  changeMapboxStyle(event) {
+    event.preventDefault();
+    this.setState({ mapboxStyle: event.target.value })
+  }
+
+  changeMapboxZoom(event) {
+    event.preventDefault();
+    this.setState({ mapboxZoom: event.target.value })
+  }
+
+  changeMapboxAnimationMethod(event) {
+    event.preventDefault();
+    this.setState({ mapboxAnimationMethod: event.target.value })
+  }
+
+  toggleMapboxInteractivity(event) {
+    event.preventDefault();
+    this.setState({ mapboxInteractivity: event.target.value })
+  }
+
   render() {
     return (
-      <div className="actors-module">
+      <div className="maps-module">
         <div className="flexcontainer-module-header">
-          <div className="module-header">
-            <h4>Map</h4>
-          </div>
-          <div className="button-container flex-self-right">
+
+          <div className="module-collapse-btn">
             <button
-              onClick={this.props.onRefreshActors}
-              className="btn btn-default"
+              onClick={this.props.onHideMaps}
+              className="btn actors-module-btn"
             >
-              <span className="glyphicon glyphicon-refresh" />
-            </button>
-            <button
-              onClick={this.props.onAddActor}
-              className="btn btn-default"
-            >
-              <span className="glyphicon glyphicon-plus" />
+              <span className="glyphicon glyphicon-menu-right"></span>
             </button>
           </div>
+
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Map</h3>
+
+          <div className="flex-self-right">
+            <button
+              onClick={this.props.onRefreshLocations}
+              className="btn maps-module-btn"
+            >
+              Regenerate All &nbsp; <span className="glyphicon glyphicon-refresh" />
+            </button>
+            {/*
+            <button
+              onClick={this.props.onAddLocation}
+              className="btn maps-module-btn"
+            >
+              Add Location &nbsp; <span className="glyphicon glyphicon-plus" />
+            </button>
+            */}
+          </div>
+
         </div>
-        <div className="actors-box">
-          {this.props.actors.length ? (
-            this.props.actors.map((actor, index) => {
-              return (
-                <div key={index} className="actor-item">
-                  {this.props.actors[index].image ?
-                    <div className="actor-image">
-                      <img className="img-circle" src={this.props.actors[index].image} alt="Actor image." />
-                    </div> : null}
-                  <div className="actor-info">
-                    <label>Name:</label>
-                    <input
-                      type="text"
-                      name="actor-name-field"
-                      value={actor.name}
-                      onChange={this.props.onActorsChange.bind(this, index, 'name')}
-                    /><br />
-                    <label>Description:</label>
-                    <input
-                      type="text"
-                      name="actor-description-field"
-                      value={actor.description}
-                      onChange={this.props.onActorsChange.bind(this, index, 'description')}
-                    />
-                  </div>
-                  <div className="actor-delete">
-                    <button
-                      className="btn btn-default"
-                      onClick={this.props.onDeleteActor.bind(this, index)}
-                    >X
-                      </button>
-                  </div>
-                  <div className="actor-gen-info">
-                    <button
-                      className="btn btn-default"
-                      onClick={this.props.onGrabImage.bind(this, index)}
-                    >
-                      GRAB IMAGE
-                      </button>
-                  </div>
-                </div>
-              );
-            })) : (<p>No actors yet</p>)
-          }
+
+        <div className="locations-box">
+        {
+          this.props.locations.length ?
+              <EditorMapsLocationItem
+                location={this.props.locations[0]}
+                index={0}
+                key={0}
+                position={this.props.position}
+              />
+            : <div>Nothing here</div>
+        }
         </div>
+
+        <EditorMapModule position={this.props.position} />
+
       </div>
     );
   }
@@ -79,45 +110,30 @@ class EditorMaps extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor, addActor, generateActors } from '../reducers/editor';
-import wiki from 'wikijs';
+import { addLocation, generateMapLocations, toggleMaps } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
-  actors: state.editor.scenes[ownProps.position].actors,
-  position: ownProps.position
+  locations: state.editor.scenes[ownProps.position].locations,
+  position: ownProps.position,
+  sceneTitle: state.editor.scenes[ownProps.position].title,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onRefreshActors(event) {
+  onHideMaps(event) {
     event.preventDefault();
-    event.stopPropagation();
-    dispatch(generateActors(ownProps.position));
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
+    dispatch(toggleMaps(ownProps.position, true));
   },
-  onActorsChange(actorIndex, field, event) {
+  onRefreshLocations(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(changeActor(ownProps.position, actorIndex, field, event.target.value));
+    dispatch(generateMapLocations(ownProps.position));
   },
-  onAddActor(event) {
+  onAddLocation(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(addActor(ownProps.position));
+    dispatch(addLocation(ownProps.position));
   },
-  onDeleteActor(actorIndex, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    dispatch(deleteActor(ownProps.position, actorIndex));
-  },
-  onGrabImage(actorIndex, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const name = store.getState().editor.scenes[ownProps.position].actors[actorIndex].name;
-    return wiki().page(name)
-      .then(page => page.mainImage())
-      .then(image => {
-        dispatch(changeActor(ownProps.position, actorIndex, 'image', image));
-      });
-  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorMaps);

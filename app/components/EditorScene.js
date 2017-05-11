@@ -86,7 +86,7 @@ class EditorScene extends Component {
             <button
               className="btn btn-default module-btn"
               name={this.props.position}
-              onClick={this.props.onGenerateMaps}
+              onClick={this.props.onShowMaps}
             >
               Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
             </button>
@@ -149,7 +149,7 @@ class EditorScene extends Component {
 
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { toggleActors, setSceneText, setSceneHTML, setSceneTitle, deleteScene, generateMapLocations } from '../reducers/editor';
+import { toggleActors, setSceneText, setSceneHTML, setSceneTitle, deleteScene, toggleMaps } from '../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
   editor: store.editor,
@@ -165,6 +165,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
     dispatch(toggleActors(ownProps.position, true));
+  },
+  onShowMaps(event) {
+    event.preventDefault();
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
+    dispatch(toggleMaps(ownProps.position));
   },
   onSceneTitleChange(event) {
     event.preventDefault();
@@ -184,11 +189,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     if (allowDelete) {
       dispatch(deleteScene(+ownProps.position));
     }
-
-  },
-  onGenerateMaps(event) {
-    event.preventDefault();
-    dispatch(generateMapLocations(+ownProps.position));
   }
 });
 

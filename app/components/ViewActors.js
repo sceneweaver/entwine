@@ -12,7 +12,6 @@ class ViewActors extends Component {
     };
   }
   render() {
-    console.log(this.state.name)
     return (
       <div>
         <div className="view-actors-heads-box">

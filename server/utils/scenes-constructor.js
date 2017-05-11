@@ -1,4 +1,5 @@
 import Actor from './actors-constructor';
+import Location from './locations-constructor';
 
 let key = 1;
 
@@ -11,6 +12,8 @@ export default class Scene {
     this.paragraphsHTML = [''];
     this.actors = [new Actor()];
     this.locations = [];
+    this.whichModule = null;
+    this.maps = []
     this.key = key++;
   }
   getPosition(index) {
