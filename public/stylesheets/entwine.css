@@ -104,9 +104,13 @@
 /* ----- EditorActors Styling ----- */
 
 .actors-module {
-  background-color: rgba(32,178,170, 1);
+  background-color: #7CC6FE;
   padding: 25px;
   width: 100%;
+}
+
+.actors-module-btn {
+  background-color: #0090FF;
 }
 
 .flexcontainer-module-header {
@@ -123,8 +127,7 @@
 }
 
 .actors-box {
-  background-color: rgba(165,224,221, 1);
-  border-radius: 20px;
+  background-color: #D1EBFF;
 }
 
 /* ----- EditorActorItem Styling ----- */
@@ -137,11 +140,30 @@
   padding: 20px;
 }
 
+.actor-btns {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.delete-actor-btn {
+  margin-bottom: 5px;
+}
+
 .actor-form-field {
   border: none;
   border-bottom: 1px solid;
   background-color: transparent;
   margin: 0px 20px;
+}
+
+.actor-name-field {
+  width: 250px;
+}
+
+.actor-desc-field {
+  width: 200px;
 }
 
 .img-circle {

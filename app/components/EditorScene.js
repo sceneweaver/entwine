@@ -72,7 +72,7 @@ class EditorScene extends Component {
               className="btn btn-default editorscene-delete-btn"
               onClick={this.props.onDeleteScene}
             >
-               Delete &nbsp; <i className="fa fa-trash" />
+               <i className="fa fa-trash" />
             </button>
 
             <button
@@ -93,7 +93,9 @@ class EditorScene extends Component {
           </div>
 
           <div className="form-group editor-texteditor">
+
             <div className="editor-row">
+
               <input
                 className="editor-scene-title"
                 placeholder="Scene Title"
