@@ -20,11 +20,12 @@ class EditorActorItem extends Component {
           className="btn btn-default"
           onClick={this.props.onGrabImage.bind(this, index)}
         >
-          <span className="glyphicon glyphicon-refresh"></span>
+          <span className="glyphicon glyphicon-camera"></span>
         </button>
       </div>
 
       <div className="actor-info">
+
         <div className="actor-name-field-container">
           <label>Name:</label>
           <input
@@ -33,11 +34,11 @@ class EditorActorItem extends Component {
             value={actor.name}
             onChange={this.props.onActorsChange.bind(this, index, 'name')}
           />
-        </div>
+         </div>
         <br />
         <div className="actor-desc-field-container">
           <label>Description:</label>
-          <textarea
+          <input
             type="text"
             className="actor-form-field actor-desc-field"
             value={actor.description}
@@ -64,6 +65,7 @@ import { connect } from 'react-redux';
 import { changeActor, deleteActor } from '../reducers/editor';
 import wiki from 'wikijs';
 import store from '../store';
+import $ from 'jquery';
 
 const mapStateToProps = (state, ownProps) => ({
   position: ownProps.position,
