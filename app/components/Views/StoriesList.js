@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import StoriesItems from './StoriesItems';
-import { addStory } from '../reducers/stories';
+import { addStory } from '../../reducers/stories';
 
 /* -----------------    COMPONENT     ------------------ */
 

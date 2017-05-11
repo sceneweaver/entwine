@@ -5,11 +5,11 @@ import Root from './components/Root';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import MapTest from './components/Map';
-import StoriesList from './components/StoriesList';
+import MapTest from './components/Views/Map';
+import StoriesList from './components/Views/StoriesList';
 
-import Editor from './components/Editor';
-import ViewStory from './components/ViewStory';
+import Editor from './components/Editor/Editor';
+import ViewStory from './components/Views/ViewStory';
 
 /* -----------------    COMPONENT     ------------------ */
 

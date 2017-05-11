@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import store from '../store';
-import findPlaces from '../../server/utils/findPlaces';
 import EditorMapModule from './EditorMapModule';
 import EditorMapsLocationItem from './EditorMapsLocationItem';
 
@@ -60,7 +58,7 @@ class EditorMaps extends Component {
           <div className="module-collapse-btn">
             <button
               onClick={this.props.onHideMaps}
-              className="btn actors-module-btn"
+              className="btn maps-module-btn"
             >
               <span className="glyphicon glyphicon-menu-right"></span>
             </button>
@@ -89,18 +87,27 @@ class EditorMaps extends Component {
 
         <div className="locations-box">
         {
-          this.props.locations.length ?
+          this.props.locations.length ? this.props.locations.map((location, index) => {
+            return (
               <EditorMapsLocationItem
-                location={this.props.locations[0]}
-                index={0}
-                key={0}
+                location={location}
+                index={index}
+                key={index}
                 position={this.props.position}
               />
-            : <div>Nothing here</div>
+            );
+          })
+            : <p>Generate locations to generate map</p>
         }
         </div>
 
-        <EditorMapModule position={this.props.position} />
+        {
+          this.props.locations.length ?
+            <EditorMapModule
+              position={this.props.position}
+            />
+            : null
+        }
 
       </div>
     );
@@ -110,7 +117,7 @@ class EditorMaps extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addLocation, generateMapLocations, toggleMaps } from '../reducers/editor';
+import { addLocation, generateMapLocations, toggleMaps } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,

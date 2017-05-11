@@ -262,25 +262,9 @@ export const generateMapLocations = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => {
-    console.log("actors ", actorsArray)
     return findPlaces(actorsArray)
   })
   .then(placesArr => {
-    console.log("places, ", placesArr)
     dispatch(setLocations(position, placesArr))
   })
-
 };
-
-
-// export const generateMapLocations = position => (dispatch, getState) => {
-//   const textBody = getState().editor.scenes[position].paragraphs[0];
-//   findProperNouns(textBody)
-//   .then(actorsArray => {
-//     return findPlaces(actorsArray)
-//   })
-//   .then(placesArr => {
-//     console.log(placesArr)
-//     dispatch(setLocations(position, placesArr))
-//   })
-// };

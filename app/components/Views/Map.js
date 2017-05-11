@@ -1,7 +1,6 @@
-
 import React, { Component } from 'react';
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
-import secrets from '../../secrets.json';
+import secrets from '../../../secrets.json';
 
 let googleMapsClient = require('@google/maps').createClient({
   key: secrets.googlemaps

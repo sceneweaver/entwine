@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 
-class Navbar extends React.Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
     this.renderLoginSignup = this.renderLoginSignup.bind(this);

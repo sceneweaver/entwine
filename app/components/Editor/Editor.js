@@ -53,7 +53,7 @@ class Editor extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addScene, changeStoryTitle, submitStory } from '../reducers/editor';
+import { addScene, changeStoryTitle, submitStory } from '../../reducers/editor';
 
 const mapStateToProps = store => ({
   editor: store.editor,

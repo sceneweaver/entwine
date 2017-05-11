@@ -6,10 +6,9 @@ class EditorActorItem extends Component {
   render() {
     const actor = this.props.actor
         , index = this.props.index;
-    console.log(actor, index);
-    return (<div className="actor-item">
+    return (<div className="module-item">
 
-      <div className="actor-btns">
+      <div className="module-btns">
         <button
           className="btn btn-default delete-actor-btn"
           onClick={this.props.onDeleteActor.bind(this, index)}
@@ -62,10 +61,9 @@ class EditorActorItem extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor } from '../reducers/editor';
+import { changeActor, deleteActor } from '../../reducers/editor';
 import wiki from 'wikijs';
-import store from '../store';
-import $ from 'jquery';
+import store from '../../store';
 
 const mapStateToProps = (state, ownProps) => ({
   position: ownProps.position,
