@@ -11,7 +11,7 @@ const UPDATE     = 'UPDATE_STORY';
 /* ------------   ACTION CREATORS     ------------------ */
 
 const init   = stories => ({ type: INITIALIZE, stories });
-const create = story   => ({ type: CREATE, story });
+export const create = story   => ({ type: CREATE, story });
 // const remove = id      => ({ type: REMOVE, id });
 const update = story   => ({ type: UPDATE, story });
 

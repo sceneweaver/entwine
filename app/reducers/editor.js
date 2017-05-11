@@ -175,6 +175,7 @@ export default function reducer (state = {
 
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { create } from './stories';
 import findProperNouns from '../../server/utils/findProperNouns';
 
 export const generateActors = position => (dispatch, getState) => {
@@ -190,6 +191,7 @@ export const submitStory = (user) => (dispatch, getState) => {
     userId: getState().auth.id
   })
   .then(newStory => {
+    dispatch(create(newStory.data));
     browserHistory.push(`/stories/${newStory.data.id}`);
   });
 };
