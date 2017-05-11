@@ -38,7 +38,7 @@ class EditorActorItem extends Component {
         <br />
         <div className="actor-desc-field-container">
           <label>Description:</label>
-          <input
+          <textarea
             type="text"
             className="actor-form-field actor-desc-field"
             value={actor.description}
