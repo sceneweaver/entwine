@@ -163,19 +163,42 @@
   margin-bottom: 5px;
 }
 
+.actor-info {
+  width: 60%;
+}
+
 .actor-form-field {
   border: none;
-  border-bottom: solid 0.5px gray;
   background-color: transparent;
   margin: 0px 20px;
 }
 
+.actor-name-field-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.actor-name-field-container > label {
+  margin-bottom: 0;
+}
+
 .actor-name-field {
-  width: 250px;
+  width: 100%;
+  border-bottom: 0.5px solid;
+}
+
+.actor-desc-field-container {
+  display: flex;
+  width: 100%;
 }
 
 .actor-desc-field {
-  width: 200px;
+  border: 0.5px solid;
+  resize: none;
+  width: 100%;
 }
 
 .img-circle {
