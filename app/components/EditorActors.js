@@ -9,21 +9,30 @@ class EditorActors extends Component {
     return (
       <div className="actors-module">
         <div className="flexcontainer-module-header">
-          <div className="module-header">
-            <h3>{this.props.sceneTitle} >> Actors</h3>
+
+          <div className="module-collapse-btn">
+            <button
+              onClick={this.props.onHideActors}
+              className="btn actors-module-btn"
+            >
+              <span className="glyphicon glyphicon-menu-right"></span>
+            </button>
           </div>
-          <div className="btn-group flex-self-right">
+
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Actors</h3>
+
+          <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
               className="btn actors-module-btn"
             >
-              <span className="glyphicon glyphicon-refresh" />
+              Regenerate All &nbsp; <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
               onClick={this.props.onAddActor}
               className="btn actors-module-btn"
             >
-              <span className="glyphicon glyphicon-plus" />
+              Add Actor &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
           </div>
         </div>
@@ -49,7 +58,7 @@ class EditorActors extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addActor, generateActors } from '../reducers/editor';
+import { addActor, generateActors, toggleActors } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,
@@ -68,6 +77,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.stopPropagation();
     dispatch(addActor(ownProps.position));
   },
+  onHideActors(event) {
+    event.preventDefault();
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
+    dispatch(toggleActors(ownProps.position, true));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorActors);

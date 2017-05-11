@@ -27,7 +27,7 @@ class Scene extends Component {
           />
         </div>
 
-        <div className="col-md-5">
+        <div className="col-md-5 col-md-offset-1">
           <ViewActors />
         </div>
 
