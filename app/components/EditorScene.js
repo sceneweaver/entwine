@@ -28,6 +28,7 @@ class EditorScene extends Component {
       this.setState({ editorState });
     };
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
+    this.focus = () => this.refs.editor.focus();
   }
 
   handleKeyCommand(command) {
@@ -72,7 +73,7 @@ class EditorScene extends Component {
               className="btn btn-default editorscene-delete-btn"
               onClick={this.props.onDeleteScene}
             >
-               <i className="fa fa-trash" />
+               <span className="glyphicon glyphicon-trash" ></span>
             </button>
 
             <button
@@ -113,12 +114,13 @@ class EditorScene extends Component {
               </div>
             </div>
 
-            <div className="editor-container">
+            <div className="editor-container" onClick={this.focus}>
               <Editor
                 editorState={this.state.editorState}
                 handleKeyCommand={this.handleKeyCommand}
                 onChange={this.onChange}
                 position={this.props.position}
+                ref='editor'
               />
             </div>
           </div>
@@ -178,7 +180,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onDeleteScene(event) {
     event.preventDefault();
-    dispatch(deleteScene(+ownProps.position));
+    let allowDelete = confirm(`Are you sure you want to delete scene ${+ownProps.position + 1}?`);
+    if (allowDelete) {
+      dispatch(deleteScene(+ownProps.position));
+    }
+
   },
   onGenerateMaps(event) {
     event.preventDefault();
