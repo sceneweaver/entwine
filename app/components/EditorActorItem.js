@@ -25,20 +25,25 @@ class EditorActorItem extends Component {
       </div>
 
       <div className="actor-info">
-        <label>Name:</label>
-        <input
-          type="text"
-          className="actor-form-field actor-name-field"
-          value={actor.name}
-          onChange={this.props.onActorsChange.bind(this, index, 'name')}
-        /><br />
-        <label>Description:</label>
-        <input
-          type="text"
-          className="actor-form-field actor-desc-field"
-          value={actor.description}
-          onChange={this.props.onActorsChange.bind(this, index, 'description')}
-        />
+        <div className="actor-name-field-container">
+          <label>Name:</label>
+          <input
+            type="text"
+            className="actor-form-field actor-name-field"
+            value={actor.name}
+            onChange={this.props.onActorsChange.bind(this, index, 'name')}
+          />
+        </div>
+        <br />
+        <div className="actor-desc-field-container">
+          <label>Description:</label>
+          <textarea
+            type="text"
+            className="actor-form-field actor-desc-field"
+            value={actor.description}
+            onChange={this.props.onActorsChange.bind(this, index, 'description')}
+          />
+        </div>
       </div>
 
       {actor.image ?
