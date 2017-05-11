@@ -26,6 +26,8 @@ const ADD_LOCATION = 'ADD_LOCATION';
 const CHANGE_LOCATION = 'CHANGE_LOCATION';
 const DELETE_LOCATION = 'DELETE_LOCATION';
 
+const SET_MAP = 'SET_MAP';
+
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -116,6 +118,12 @@ export const changeLocation = (position, locationIndex, field, input) => ({
   input
 })
 
+export const setMap = (position, reactMap) => ({
+  type: SET_MAP,
+  reactMap,
+  position
+})
+
 /* ------------       REDUCERS     ------------------ */
 
 export default function reducer (state = {
@@ -204,6 +212,10 @@ export default function reducer (state = {
       newState.scenes[action.position].locations = [...firstHalfOfLocations, ...secondHalfOfLocations];
       break;
 
+    case SET_MAP:
+      newState.scenes[action.position].reactMap = action.reactMap;
+      break;
+
     default:
       return newState;
   }
@@ -237,9 +249,25 @@ export const generateMapLocations = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => {
+    console.log("actors ", actorsArray)
     return findPlaces(actorsArray)
   })
   .then(placesArr => {
+    console.log("places, ", placesArr)
     dispatch(setLocations(position, placesArr))
   })
+
 };
+
+
+// export const generateMapLocations = position => (dispatch, getState) => {
+//   const textBody = getState().editor.scenes[position].paragraphs[0];
+//   findProperNouns(textBody)
+//   .then(actorsArray => {
+//     return findPlaces(actorsArray)
+//   })
+//   .then(placesArr => {
+//     console.log(placesArr)
+//     dispatch(setLocations(position, placesArr))
+//   })
+// };

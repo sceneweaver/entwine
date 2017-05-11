@@ -19,8 +19,8 @@ let googleMapsClient = require('@google/maps').createClient({
 /* ----- COMPONENT ----- */
 
 class Map extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       coords: [],
       locationTypes: [],
@@ -35,9 +35,12 @@ class Map extends Component {
     this.findCoordinates = this.findCoordinates.bind(this);
     this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
     this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
-    this.changeMapboxAnimationMethod = this.changeMapboxAnimationMethod.bind(this);
-    this.toggleMapboxInteractivity = this.toggleMapboxInteractivity.bind(this);
   }
+
+  // componentDidMount() {
+  //    var reactMapString = "<ReactMapboxGl style={`mapbox://styles/mapbox/$style-v9`} accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=$zoom center=$coords containerStyle={{ height: '500px', width: 'auto' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinate $coords /> </Layer>  <Marker coordinates=$coords anchor='bottom' </Marker> </div>  </ReactMapboxGl>"
+  // }
+
 
   findCoordinates(location) {
     googleMapsClient.geocode({
@@ -91,17 +94,9 @@ class Map extends Component {
     this.setState({ mapboxZoom: event.target.value })
   }
 
-  changeMapboxAnimationMethod(event) {
-    event.preventDefault();
-    this.setState({ mapboxAnimationMethod: event.target.value })
-  }
-
-  toggleMapboxInteractivity(event) {
-    event.preventDefault();
-    this.setState({ mapboxInteractivity: event.target.value })
-  }
 
   render() {
+     var reactMapString = "<ReactMapboxGl style={`mapbox://styles/mapbox/replaceStyle-v9`} accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=replaceZoom center=replaceCoords containerStyle={{ height: '500px', width: 'auto' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinates=replaceCoords /> </Layer>  <Marker coordinates=replaceCoords anchor='bottom' </Marker> </div>  </ReactMapboxGl>"
     return (
       <div className="container">
         <div className="row">
@@ -115,13 +110,6 @@ class Map extends Component {
               <option value="dark">Dark</option>
               <option value="outdoors">Outdoors</option>
               <option value="satellite">Satellite</option>
-            </select>
-
-            <b> &nbsp; Animation Type: &nbsp; </b>
-            <select value={this.state.mapboxAnimationMethod} onChange={this.changeMapboxAnimationMethod}>
-              <option value="flyTo">Fly To</option>
-              <option value="jumpTo">Jump To</option>
-              <option value="easeTo">Ease To</option>
             </select>
 
             <b> Map Zoom: &nbsp; </b>
@@ -138,43 +126,46 @@ class Map extends Component {
               <option value="19">19</option>
             </select>
 
-            <b> &nbsp; Lock Map? &nbsp; </b>
-            <select value={this.state.mapboxInteractivity} onChange={this.toggleMapboxInteractivity}>
-              <option value="true">No</option>
-              <option value="false">Yes</option>
-            </select>
 
           </div>
           <div className="col-md-8">
-            {
-
-              this.props.locations.length > 0 ?
+          {
+                this.props.locations[0] ?
+            <div>
                 <ReactMapboxGl
-                  style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
-                  accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-                  zoom={[this.state.mapboxZoom]}
-                  pitch={this.state.mapboxPitch}
-                  center={this.props.locations[0].coords}
-                  movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
-                  interactive={this.state.mapboxInteractivity} // if false, map cannot be manipulated
-                  containerStyle={{
-                    height: "500px",
-                    width: "auto"
-                  }}>
-                  <Layer
-                    type="symbol"
-                    id="marker"
-                    layout={{ "icon-image": "marker-15" }}>
-                    <Feature coordinates={this.props.locations[0].coords} />
-                  </Layer>
-                  {this.props.locations.length > 0 ?
-                    <Marker
-                      coordinates={this.props.locations[0].coords}
-                      anchor="bottom">
-                    </Marker> : null
-                  }
-                </ReactMapboxGl> : <div style={{ backgroundColor: 'lightgrey', height: 500, width: 'auto', justifyContent: 'center', alignItems: 'center', display: 'flex', fontSize: 20 }}> <span>Waiting for location input...</span> </div>
-            }
+              style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
+              accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
+              zoom={[this.state.mapboxZoom]}
+              pitch={this.state.mapboxPitch}
+              center={this.props.locations[0].coords}
+              movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
+              interactive="true" // if false, map cannot be manipulated
+              containerStyle={{
+                height: "500px",
+                width: "auto"
+              }}>
+
+                    <div>
+                        <Layer
+                          type="symbol"
+                          id="marker"
+                          layout={{ "icon-image": "marker-15" }}>
+                        <Feature coordinates={this.props.locations[0].coords} />
+                        </Layer>
+                        <Marker
+                          coordinates={this.props.locations[0].coords}
+                          anchor="bottom">
+                        </Marker>
+                      </div>
+                      </ReactMapboxGl>
+                      <button onClick={this.props.onSaveMap.bind(this, this.props.position, reactMapString, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
+                      </div>
+                      : <h2> nothing here</h2>
+
+              }
+
+
+
           </div>
         </div>
       </div>
@@ -183,11 +174,47 @@ class Map extends Component {
 }
 
 /* ----- CONTAINER ----- */
+import {setMap} from '../reducers/editor';
+
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
-  position: ownProps.position
+  position: ownProps.position,
+  maps: state.editor.scenes[ownProps.position].maps
 });
+
+const mapDispatchToProps = (dispatch) => ({
+  onSaveMap(position, reactMapString, style, coords, zoom) {
+    coords = '[' + coords.join(', ') + ']'
+    let string = reactMapString.replace(/replaceStyle/g, style).replace(/replaceCoords/g, coords).replace(/replaceZoom/g, zoom);
+    dispatch(setMap(position, string));
+  }
+})
+
 
 import { connect } from 'react-redux';
 
-export default connect(mapStateToProps)(Map);
+export default connect(mapStateToProps, mapDispatchToProps)(Map);
+
+
+
+              // {
+              //   (this.props.locations.length > 0) ?
+              //     (this.props.locations.map(location => {
+              //       console.log(this.props.locations.length, " NAME ", location.coords)
+              //       return (
+              //         <div key={location.coords[0]}>
+              //           <Layer
+              //             type="symbol"
+              //             id="marker"
+              //             layout={{ "icon-image": "marker-15" }}>
+              //           <Feature coordinates={location.coords} />
+              //           </Layer>
+              //           <Marker
+              //             coordinates={location.coords}
+              //             anchor="bottom">
+              //           </Marker>
+              //         </div>
+              //       );
+              //     }))
+              //     : <div style={{ backgroundColor: 'lightgrey', height: 500, width: 'auto', justifyContent: 'center', alignItems: 'center', display: 'flex', fontSize: 20 }}> <span>Waiting for location input...</span> </div>
+              // }

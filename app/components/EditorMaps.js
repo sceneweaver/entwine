@@ -8,8 +8,8 @@ import Map from './EditorMapModule';
 /* ----- COMPONENT ----- */
 
 class EditorMaps extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       coords: [],
       locationTypes: [],
@@ -76,32 +76,34 @@ class EditorMaps extends Component {
           </div>
         </div>
         <div className="locations-box">
-          {this.props.locations.length ? (
-            this.props.locations.map((location, index) => {
-              return (
-                <div key={index} className="location-item">
+        {
+
+          this.props.locations[0] ?
+          <div className="location-item">
                   <div className="location-info">
                     <label>Location:</label>
                     <input
                       type="text"
                       name="location-name-field"
-                      value={location.name}
+                      value={this.props.locations[0].name}
                       onChange={() => {
-                        this.props.onLocationsChange.bind(this, index, 'name');
+                        this.props.onLocationsChange.bind(this, 'name');
                       }}
                     /><br />
                   </div>
                   <div className="location-delete">
                     <button
                       className="btn btn-default"
-                      onClick={this.props.onDeleteLocation.bind(this, index)}
+                      onClick={this.props.onDeleteLocation.bind(this)}
                     >X
                       </button>
                   </div>
                 </div>
-              );
-            })) : (<p>No locations yet</p>)
-          }
+                :
+                <div>Nothing here</div>
+        }
+
+
         </div>
         <br />
         <Map position={this.props.position}/>
@@ -109,6 +111,8 @@ class EditorMaps extends Component {
     );
   }
 }
+
+
 
 /* ----- CONTAINER ----- */
 
@@ -152,3 +156,32 @@ export default connect(mapStateToProps, mapDispatchToProps)(EditorMaps);
                   //     anchor="bottom">
                   //   </Marker> : null
                   // }
+
+
+
+// {this.props.locations.length > 0 ? (
+//             this.props.locations.map((location, index) => {
+//               return (
+//                 <div key={index} className="location-item">
+//                   <div className="location-info">
+//                     <label>Location:</label>
+//                     <input
+//                       type="text"
+//                       name="location-name-field"
+//                       value={location.name}
+//                       onChange={() => {
+//                         this.props.onLocationsChange.bind(this, index, 'name');
+//                       }}
+//                     /><br />
+//                   </div>
+//                   <div className="location-delete">
+//                     <button
+//                       className="btn btn-default"
+//                       onClick={this.props.onDeleteLocation.bind(this, index)}
+//                     >X
+//                       </button>
+//                   </div>
+//                 </div>
+//               );
+//             })) : (<p>No locations yet</p>)
+//           }
