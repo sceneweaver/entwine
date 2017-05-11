@@ -61,6 +61,7 @@ const setStory = story => ({
   type: SET_STORY,
   title: story.title,
   scenes: story.scenes,
+  user: story.user,
   currScene: story.scenes[0]
 });
 
@@ -74,6 +75,7 @@ export const setCurrScene = scene => ({
 export default function reducer(state = {
   title: '',
   scenes: [],
+  user: {},
   currScene: {
     id: 0, // need to adjust
     paragraphs: [],
@@ -91,6 +93,7 @@ export default function reducer(state = {
       newState.scenes = action.scenes;
       newState.currScene = action.currScene;
       newState.currScene.mapModules = action.currScene.mapModules[0]
+      newState.user = action.user;
       break;
     case SET_SCENE:
       newState.currScene = action.currScene;

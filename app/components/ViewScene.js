@@ -16,15 +16,14 @@ class Scene extends Component {
 
       <div className="col-md-10">
 
-        <div className="col-md-11 article-titles article-font">
-          <h3>
-            {this.props.storyTitle}</h3>
-          <h1>
-            {this.props.currScene.title}</h1>
+      <div className="col-md-11 article-titles">
+          <h3 className="view-story-heading story">{this.props.storyTitle} by {this.props.user ? this.props.user.username : 'anonymous'}</h3>
+          <h1 className="view-story-heading">{this.props.currScene.title}</h1>
         </div>
 
-        <div className="col-md-4 article-text article-font">
+        <div className="col-md-4 article-text">
           <div
+            className="article-text"
             dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
           />
         </div>
@@ -38,6 +37,7 @@ class Scene extends Component {
     );
   }
 }
+
 
 /* ----- CONTAINER ----- */
 

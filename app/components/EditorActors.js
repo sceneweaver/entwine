@@ -35,7 +35,9 @@ class EditorActors extends Component {
               Add Actor &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
           </div>
+
         </div>
+
         <div className="actors-box">
           {this.props.actors.length ? (
             this.props.actors.map((actor, index) => {
