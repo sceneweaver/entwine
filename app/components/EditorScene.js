@@ -166,6 +166,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
     dispatch(toggleActors(ownProps.position, true));
   },
+  onShowMaps(event) {
+    event.preventDefault();
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
+    dispatch(toggleMaps(ownProps.position));
+  },
   onSceneTitleChange(event) {
     event.preventDefault();
     dispatch(setSceneTitle(ownProps.position, event.target.value));
@@ -184,11 +189,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     if (allowDelete) {
       dispatch(deleteScene(+ownProps.position));
     }
-
-  },
-  onShowMaps(event) {
-    event.preventDefault();
-    dispatch(toggleMaps(ownProps.position))
   }
 });
 

@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
 import secrets from '../../secrets.json';
 
-const googleMapsKey = process.env.GOOGLE_MAPS || secrets.googlemaps;
 let googleMapsClient = require('@google/maps').createClient({
-  key: googleMapsKey
+  key: secrets.googlemaps
 });
 
 // googleMapsClient.geocode({ // this is for testing and demo purposes - shows how the geocode method works
