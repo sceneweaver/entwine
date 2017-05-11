@@ -4,13 +4,14 @@ import React, { Component } from 'react';
 
 class EditorActorItem extends Component {
   render() {
-    const actor = this.props.actor;
-    const index = this.props.index;
+    const actor = this.props.actor
+        , index = this.props.index;
+    console.log(actor, index);
     return (<div className="actor-item">
 
-      <div className="actor-buttons btn-group-vertical">
+      <div className="actor-btns">
         <button
-          className="btn btn-default"
+          className="btn btn-default delete-actor-btn"
           onClick={this.props.onDeleteActor.bind(this, index)}
         >
           <span className="glyphicon glyphicon-trash" ></span>
@@ -27,14 +28,14 @@ class EditorActorItem extends Component {
         <label>Name:</label>
         <input
           type="text"
-          className="actor-form-field"
+          className="actor-form-field actor-name-field"
           value={actor.name}
           onChange={this.props.onActorsChange.bind(this, index, 'name')}
         /><br />
         <label>Description:</label>
         <input
           type="text"
-          className="actor-form-field"
+          className="actor-form-field actor-desc-field"
           value={actor.description}
           onChange={this.props.onActorsChange.bind(this, index, 'description')}
         />
@@ -43,7 +44,7 @@ class EditorActorItem extends Component {
       {actor.image ?
         <div className="img-circle" style={{ backgroundImage: `url(${actor.image})` }} />
         :
-        <div className="img-circle-letter" style={{ backgroundColor: 'rgb(14, 186, 100)' }} >
+        <div className="img-circle-letter" style={{ backgroundColor: '#0090FF' }} >
             {actor.name[0]}
         </div>
       }
@@ -60,7 +61,11 @@ import wiki from 'wikijs';
 import store from '../store';
 
 const mapStateToProps = (state, ownProps) => ({
-  position: ownProps.position
+  position: ownProps.position,
+  index: ownProps.index,
+  name: state.editor.scenes[ownProps.position].actors[ownProps.index].name,
+  description: state.editor.scenes[ownProps.position].actors[ownProps.index].description,
+  image: state.editor.scenes[ownProps.position].actors[ownProps.index].image
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

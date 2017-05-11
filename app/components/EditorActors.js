@@ -10,18 +10,18 @@ class EditorActors extends Component {
       <div className="actors-module">
         <div className="flexcontainer-module-header">
           <div className="module-header">
-            <h3>Actors</h3>
+            <h3>{this.props.sceneTitle} >> Actors</h3>
           </div>
           <div className="btn-group flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
-              className="btn btn-success"
+              className="btn actors-module-btn"
             >
               <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
               onClick={this.props.onAddActor}
-              className="btn btn-success"
+              className="btn actors-module-btn"
             >
               <span className="glyphicon glyphicon-plus" />
             </button>
@@ -33,8 +33,8 @@ class EditorActors extends Component {
               return (
                 <EditorActorItem
                   key={index}
-                  actor={actor}
                   index={index}
+                  actor={actor}
                   position={this.props.position}
                 />
               );
@@ -52,6 +52,7 @@ import { connect } from 'react-redux';
 import { addActor, generateActors } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
+  sceneTitle: state.editor.scenes[ownProps.position].title,
   actors: state.editor.scenes[ownProps.position].actors,
   position: ownProps.position
 });
