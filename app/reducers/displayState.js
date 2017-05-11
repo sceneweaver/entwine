@@ -107,7 +107,6 @@ export default function reducer(state = {
 export const fetchStory = (id) => dispatch => {
   axios.get(`/api/stories/${id}`)
     .then(res => {
-      console.log(res.data)
       dispatch(setStory(res.data))
     })
     .catch(err => console.error(`Fetching story ${id} unsuccessful`, err));

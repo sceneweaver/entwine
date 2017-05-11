@@ -37,6 +37,8 @@ class Scene extends Component {
   }
 }
 
+// by {this.props.currScene.user.username ? this.props.currScene.user.username : 'anonymous'}
+
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
