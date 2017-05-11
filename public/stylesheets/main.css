@@ -2,12 +2,13 @@ html {
   background-color: #f9f4f5; }
 
 body {
-  background-color: #f9f4f5;
+  background-color: #FCFCFC;
   /*background: repeating-linear-gradient(45deg, #e3e3e3 0px, #e3e3e3 10px, #ccc 1px, #ccc 11px);*/
 }
 
-a, span, h1, h2, h3, h4, h5, h6, div {
-  font-family: 'Roboto Slab', serif; }
+label, input, button, a, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nixie One', cursive;
+}
 
 select {
   -webkit-appearance: menulist-button;
@@ -121,7 +122,9 @@ html {
 
 body {
   padding-bottom: 110px;
-  min-height: 100vh; }
+  min-height: 100vh;
+  font-size: 16px;
+}
 
 .footer {
   position: absolute;

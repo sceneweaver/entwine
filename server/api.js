@@ -9,6 +9,7 @@ api
   .use('/stories', require('./stories'))
   .use('/actors', require('./actors'))
   .use('/compromise', require('./compromise'))
+  .use('/maps', require('./maps'))
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
