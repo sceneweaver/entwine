@@ -7,7 +7,8 @@ const router = require('express').Router()
   , Story = db.model('stories')
   , User = db.model('users')
   , Scene = db.model('scenes')
-  , Actor = db.model('actors');
+  , Actor = db.model('actors')
+  , Map = db.model('maps');
 
 module.exports = router;
 
@@ -43,9 +44,10 @@ router.post('/', (req, res, next) => {
   }, {
       include: [{
         model: Scene,
-        include: [{
-          model: Actor
-        }]
+        include: [
+        {model: Actor},
+        {model: Map}
+        ]
       }]
     })
     .then(story => {
