@@ -31,12 +31,12 @@ class ViewActors extends Component {
                   {
                     actor.image ? (
                       <div
-                        className="img-circle"
+                        className="img-circle view-image-icons"
                         style={{ backgroundImage: `url(${actor.image})` }}
                       />
                     ) : (
                         <div
-                          className="img-circle-letter"
+                          className="img-circle-letter view-image-icons"
                           style={{ backgroundColor: '#0090FF' }}
                         >
                           {actor.name[0]}
