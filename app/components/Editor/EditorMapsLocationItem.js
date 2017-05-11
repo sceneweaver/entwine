@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 
 class EditorMapsLocationItem extends Component {
   render() {
-    const location = this.props.location
-        , index = this.props.index;
+    const index = this.props.index;
     return (
       <div className="location-item">
 
@@ -37,7 +36,7 @@ class EditorMapsLocationItem extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeLocation, deleteLocation } from '../reducers/editor';
+import { changeLocation, deleteLocation } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   position: ownProps.position,

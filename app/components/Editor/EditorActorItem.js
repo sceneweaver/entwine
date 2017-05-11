@@ -62,10 +62,9 @@ class EditorActorItem extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor } from '../reducers/editor';
+import { changeActor, deleteActor } from '../../reducers/editor';
 import wiki from 'wikijs';
-import store from '../store';
-import $ from 'jquery';
+import store from '../../store';
 
 const mapStateToProps = (state, ownProps) => ({
   position: ownProps.position,

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import store from '../store';
-import findPlaces from '../../server/utils/findPlaces';
 import EditorMapModule from './EditorMapModule';
 import EditorMapsLocationItem from './EditorMapsLocationItem';
 
@@ -116,7 +114,7 @@ class EditorMaps extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addLocation, generateMapLocations, toggleMaps } from '../reducers/editor';
+import { addLocation, generateMapLocations, toggleMaps } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,

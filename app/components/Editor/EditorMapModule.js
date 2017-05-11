@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
-import secrets from '../../secrets.json';
+import secrets from '../../../secrets.json';
 
 let googleMapsClient = require('@google/maps').createClient({
   key: secrets.googlemaps
@@ -165,7 +165,7 @@ class EditorMapModule extends Component {
 
 /* ----- CONTAINER ----- */
 import { connect } from 'react-redux';
-import { setMap } from '../reducers/editor';
+import { setMap, addMap } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,

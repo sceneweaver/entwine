@@ -33,8 +33,7 @@ class Story extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { fetchScene } from '../reducers/displayState';
-import $ from 'jquery';
+import { fetchScene } from '../../reducers/displayState';
 
 const mapStateToProps = store => ({
   currScene: store.displayState.currScene,
