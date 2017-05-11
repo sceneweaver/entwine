@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import store from '../store';
 import findPlaces from '../../server/utils/findPlaces';
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
-import Test from './Map';
+import Map from './EditorMapModule';
 
 
 /* ----- COMPONENT ----- */
@@ -86,7 +86,9 @@ class EditorMaps extends Component {
                       type="text"
                       name="location-name-field"
                       value={location.name}
-                      onChange={this.props.onLocationsChange.bind(this, index, 'name')}
+                      onChange={() => {
+                        this.props.onLocationsChange.bind(this, index, 'name');
+                      }}
                     /><br />
                   </div>
                   <div className="location-delete">
@@ -102,7 +104,7 @@ class EditorMaps extends Component {
           }
         </div>
         <br />
-        <Test />
+        <Map position={this.props.position}/>
       </div>
     );
   }
