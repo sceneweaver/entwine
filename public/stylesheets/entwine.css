@@ -109,22 +109,89 @@
 /* ----- EditorMaps Styling ----- */
 
 .maps-module {
-  background-color: #7CC6FE;
+  background-color: #58D88C;
   padding: 30px;
   width: 100%;
 }
 
 .maps-module-btn {
-  background-color: #0090FF;
+  background-color: #37A36B;
   margin: 10px;
 }
 
 .locations-box {
-  background-color: #D1EBFF;
+  background-color: #84F4A7;
+}
+
+.editor-map {
+  width: 100%;
 }
 
 .map-editor-header {
-  margin: 10px;
+  width: 100%;
+  padding: 20px 0px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.generated-map {
+  width: 100%;
+  padding: 0px 25px;
+  text-align: center;
+}
+
+.locations-box {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.locations-box > p {
+  margin-bottom: 0;
+}
+
+/* ----- EditorMapsLocationItem Styling ----- */
+
+.location-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  width: 60%
+}
+
+.location-info {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.location-name-field-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.location-name-field-container > label {
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+.location-name-field {
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid;
 }
 
 
@@ -166,7 +233,7 @@
 
 /* ----- EditorActorItem Styling ----- */
 
-.actor-item {
+.module-item {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -174,7 +241,7 @@
   padding: 20px;
 }
 
-.actor-btns {
+.module-btns {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;

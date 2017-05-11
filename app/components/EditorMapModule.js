@@ -10,7 +10,7 @@ let googleMapsClient = require('@google/maps').createClient({
 
 class EditorMapModule extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       coords: [],
       locationTypes: [],
@@ -20,18 +20,12 @@ class EditorMapModule extends Component {
       mapboxPitch: 30,
       mapboxInteractivity: true,
       mapboxAnimationMethod: 'flyTo',
-    }
+    };
     this.onFindCoordsClick = this.onFindCoordsClick.bind(this);
     this.findCoordinates = this.findCoordinates.bind(this);
     this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
     this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
   }
-
-  // componentDidMount() {
-  //    var reactMapString = "<ReactMapboxGl style={`mapbox://styles/mapbox/$style-v9`} accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=$zoom center=$coords containerStyle={{ height: '500px', width: 'auto' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinate $coords /> </Layer>  <Marker coordinates=$coords anchor='bottom' </Marker> </div>  </ReactMapboxGl>"
-  // }
-
-
   findCoordinates(location) {
     googleMapsClient.geocode({
       address: location
@@ -84,83 +78,87 @@ class EditorMapModule extends Component {
     this.setState({ mapboxZoom: event.target.value })
   }
 
-
   render() {
-     var reactMapString = "<ReactMapboxGl style={`mapbox://styles/mapbox/replaceStyle-v9`} accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=replaceZoom center=replaceCoords containerStyle={{ height: '500px', width: 'auto' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinates=replaceCoords /> </Layer>  <Marker coordinates=replaceCoords anchor='bottom' </Marker> </div>  </ReactMapboxGl>"
+     const reactMapString = "<ReactMapboxGl style={`mapbox://styles/mapbox/replaceStyle-v9`}accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=replaceZoom center=replaceCoords containerStyle={{ height: '500px', width: 'auto', position: 'relative' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinates=replaceCoords /> </Layer>  <Marker coordinates=replaceCoords anchor='bottom' </Marker> </div>  </ReactMapboxGl>";
     return (
-      <div className="container">
-        <div className="row map-editor-header">
+      <div className="editor-map">
 
-            <b> Map Style: &nbsp; </b>
-            <select value={this.state.mapboxStyle} onChange={this.changeMapboxStyle}>
-              <option value="basic">Basic</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="outdoors">Outdoors</option>
-              <option value="satellite">Satellite</option>
-            </select>
+  			<div className="map-editor-header">
 
-            <b> Map Zoom: &nbsp; </b>
-            <select value={this.state.mapboxZoom} onChange={this.changeMapboxZoom}>
-              <option value="1">1</option>
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="7">7</option>
-              <option value="9">9</option>
-              <option value="11">11</option>
-              <option value="13">13</option>
-              <option value="15">15</option>
-              <option value="17">17</option>
-              <option value="19">19</option>
-            </select>
+					<div className="map-style">
+						<label> Map Style: &nbsp; </label>
+						<select
+							value={this.state.mapboxStyle}
+							onChange={this.changeMapboxStyle}
+						>
+							<option value="basic">Basic</option>
+							<option value="light">Light</option>
+							<option value="dark">Dark</option>
+							<option value="outdoors">Outdoors</option>
+							<option value="satellite">Satellite</option>
+						</select>
+					</div>
 
-						{
-							this.props.locations[0] ?
-							<button onClick={this.props.onSaveMap.bind(this, this.props.position, reactMapString, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
-							: null
-						}
+					<div className="map-zoom">
+						<label> Map Zoom: &nbsp; </label>
+						<select
+							value={this.state.mapboxZoom}
+							onChange={this.changeMapboxZoom}
+						>
+							<option value="1">1</option>
+							<option value="3">3</option>
+							<option value="5">5</option>
+							<option value="7">7</option>
+							<option value="9">9</option>
+							<option value="11">11</option>
+							<option value="13">13</option>
+							<option value="15">15</option>
+							<option value="17">17</option>
+							<option value="19">19</option>
+						</select>
+					</div>
 
-				</div>
+          <button onClick={this.props.onSaveMap.bind(this, this.props.position, reactMapString, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
 
-          <div className="row map-editor">
-          {
-                this.props.locations[0] ?
-            <div>
-                <ReactMapboxGl
-              style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
-              accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-              zoom={[this.state.mapboxZoom]}
-              pitch={this.state.mapboxPitch}
-              center={this.props.locations[0].coords}
-              movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
-              interactive="true" // if false, map cannot be manipulated
-              containerStyle={{
-                height: "500px",
-                width: "auto"
-              }}>
-
-                    <div>
-                        <Layer
-                          type="symbol"
-                          id="marker"
-                          layout={{ "icon-image": "marker-15" }}>
-                        <Feature coordinates={this.props.locations[0].coords} />
-                        </Layer>
-                        <Marker
-                          coordinates={this.props.locations[0].coords}
-                          anchor="bottom">
-                        </Marker>
-                      </div>
-                      </ReactMapboxGl>
-											</div>
-                      : <h2>Add locations to generate map</h2>
-
-              }
-
-
-
-          </div>
         </div>
+
+        <div className="generated-map">
+        {
+          this.props.locations[0] ?
+          (<div>
+          	<ReactMapboxGl
+							style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
+							accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
+							zoom={[this.state.mapboxZoom]}
+							pitch={this.state.mapboxPitch}
+							center={this.props.locations[0].coords}
+							movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
+							interactive="true" // if false, map cannot be manipulated
+							containerStyle={{
+								position: 'relative',
+								height: "500px",
+								width: "auto"
+            	}}
+						>
+              <div> {/* Need to set position of inner canvas to relative */}
+                <Layer
+                  type="symbol"
+                  id="marker"
+                  layout={{ "icon-image": "marker-15" }}
+								>
+                	<Feature coordinates={this.props.locations[0].coords} />
+                </Layer>
+                <Marker
+                  coordinates={this.props.locations[0].coords}
+                  anchor="bottom"
+								/>
+              </div>
+            </ReactMapboxGl>
+          </div>)
+          : null
+        }
+        </div>
+      </div>
     );
   }
 }

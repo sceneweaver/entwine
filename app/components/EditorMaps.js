@@ -60,7 +60,7 @@ class EditorMaps extends Component {
           <div className="module-collapse-btn">
             <button
               onClick={this.props.onHideMaps}
-              className="btn actors-module-btn"
+              className="btn maps-module-btn"
             >
               <span className="glyphicon glyphicon-menu-right"></span>
             </button>
@@ -96,11 +96,17 @@ class EditorMaps extends Component {
                 key={0}
                 position={this.props.position}
               />
-            : <div>Nothing here</div>
+            : <p>Generate locations to generate map</p>
         }
         </div>
 
-        <EditorMapModule position={this.props.position} />
+        {
+          this.props.locations.length ?
+            <EditorMapModule
+              position={this.props.position}
+            />
+            : null
+        }
 
       </div>
     );

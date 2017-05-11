@@ -7,9 +7,9 @@ class EditorMapsLocationItem extends Component {
     const location = this.props.location
         , index = this.props.index;
     return (
-      <div className="actor-item">
+      <div className="location-item">
 
-        <div className="actor-btns">
+        <div className="module-btns">
           <button
             className="btn btn-default"
             onClick={this.props.onDeleteLocation.bind(this, this.props.index)}
@@ -18,12 +18,12 @@ class EditorMapsLocationItem extends Component {
           </button>
         </div>
 
-        <div className="actor-info">
-          <div className="actor-name-field-container">
+        <div className="location-info">
+          <div className="location-name-field-container">
             <label>Location:</label>
             <input
               type="text"
-              className="actor-name-field"
+              className="location-name-field"
               value={this.props.name}
               onChange={this.props.onLocationsChange.bind(this, index, 'name')}
             />

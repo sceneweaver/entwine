@@ -7,9 +7,9 @@ class EditorActorItem extends Component {
     const actor = this.props.actor
         , index = this.props.index;
     console.log(actor, index);
-    return (<div className="actor-item">
+    return (<div className="module-item">
 
-      <div className="actor-btns">
+      <div className="module-btns">
         <button
           className="btn btn-default delete-actor-btn"
           onClick={this.props.onDeleteActor.bind(this, index)}
