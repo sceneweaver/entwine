@@ -116,16 +116,22 @@
 
 .actors-module-btn {
   background-color: #0090FF;
-  margin-left: 20px;
+  margin: 10px;
 }
 
 .flexcontainer-module-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 0px 15px;
   margin-bottom: 15px;
   color: white;
+}
+
+.module-header {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .flex-self-right {
