@@ -120,7 +120,7 @@ class EditorScene extends Component {
                 handleKeyCommand={this.handleKeyCommand}
                 onChange={this.onChange}
                 position={this.props.position}
-                ref='editor'
+                ref="editor"
               />
             </div>
           </div>
