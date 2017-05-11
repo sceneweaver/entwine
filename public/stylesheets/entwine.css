@@ -106,6 +106,15 @@
 }
 
 
+/* ----- EditorMaps Styling ----- */
+
+.maps-module {
+  background-color: #7CC6FE;
+  padding: 30px;
+  width: 100%;
+}
+
+
 /* ----- EditorActors Styling ----- */
 
 .actors-module {
