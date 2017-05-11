@@ -11,15 +11,17 @@ class Story extends Component {
         <div className="row">
           <div className="col-md-1 scenes-nav col-md-offset-1">
             <h4 className="scenes-nav-title">Navigate<br />Scenes</h4>
+
             <input
               type="range"
-              className="scene-navigator"
+              id="scene-navigator"
               min={0}
               max={this.props.scenes.length - 1}
               step={1}
               defaultValue={this.props.currScene.position}
               onChange={this.props.getNewScene}
             />
+
           </div>
           <ViewScene />
         </div>
@@ -31,7 +33,8 @@ class Story extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { fetchScene } from '../reducers/displayState'
+import { fetchScene } from '../reducers/displayState';
+import $ from 'jquery';
 
 const mapStateToProps = store => ({
   currScene: store.displayState.currScene,
