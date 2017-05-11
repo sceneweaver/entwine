@@ -374,3 +374,7 @@ input[type=range]:focus::-ms-fill-upper {
 .view-actors-info-box {
  /* styling tbd */
 }
+
+.view-image-icons {
+  margin: 0 5px;
+}
