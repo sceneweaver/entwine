@@ -31,7 +31,7 @@ class Editor extends Component {
             className="btn btn-success titlerow-button"
             onClick={this.props.onSubmitStory}
           >
-            Publish My Story  <span className="glyphicon glyphicon-share"></span>
+            Publish Story  <span className="glyphicon glyphicon-share"></span>
           </button>
         </div>
 
