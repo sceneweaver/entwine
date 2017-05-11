@@ -71,7 +71,7 @@ class EditorMaps extends Component {
               onClick={this.props.onRefreshLocations}
               className="btn maps-module-btn"
             >
-              Regenerate All &nbsp; <span className="glyphicon glyphicon-refresh" />
+              Generate Locations &nbsp; <span className="glyphicon glyphicon-refresh" />
             </button>
             {/*
             <button

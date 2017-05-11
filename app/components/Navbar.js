@@ -35,13 +35,10 @@ class Navbar extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
+                <Link to="/editor">Create Story</Link>
+              </li>
+              <li>
                 <Link to="/stories" activeClassName="active">All Stories</Link>
-              </li>
-              <li>
-                <Link to="/editor">Create New Story</Link>
-              </li>
-              <li>
-                <Link to="/maptest">Map Testing</Link>
               </li>
             </ul>
             { this.props.currentUser ? this.renderLogout() : this.renderLoginSignup() }
