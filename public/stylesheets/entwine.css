@@ -89,9 +89,8 @@
 
 .actors-module {
   background-color: rgba(32,178,170, 1);
-  margin: 10px;
-  border-radius: 20px;
-  padding: 15px;
+  padding: 25px;
+  width: 100%;
 }
 
 .flexcontainer-module-header {

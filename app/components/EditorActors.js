@@ -10,7 +10,7 @@ class EditorActors extends Component {
       <div className="actors-module">
         <div className="flexcontainer-module-header">
           <div className="module-header">
-            <h3>Actors</h3>
+            <h3>{this.props.sceneTitle} >> Actors</h3>
           </div>
           <div className="btn-group flex-self-right">
             <button
@@ -52,6 +52,7 @@ import { connect } from 'react-redux';
 import { addActor, generateActors } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
+  sceneTitle: state.editor.scenes[ownProps.position].title,
   actors: state.editor.scenes[ownProps.position].actors,
   position: ownProps.position
 });
