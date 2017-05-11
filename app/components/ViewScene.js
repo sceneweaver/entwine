@@ -11,24 +11,29 @@ class Scene extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-4">
-            <div className="article-titles article-font col-md-offset-1">
-              <h3>{this.props.storyTitle}</h3>
-              <h1>{this.props.currScene.title}</h1>
-            </div>
-            <div
-              className="article-text article-font col-md-offset-1"
-              dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
-            />
-          </div>
-          <div className="col-md-5">
-            <ViewActors />
-          </div>
+
+      <div className="col-md-10">
+
+        <div className="col-md-11 article-titles article-font">
+          <h3>
+            {this.props.storyTitle}</h3>
+          <h1>
+            {this.props.currScene.title}</h1>
         </div>
+
+        <div className="col-md-4 article-text article-font">
+          <div
+            dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
+          />
+        </div>
+
+        <div className="col-md-5">
+          <ViewActors />
+        </div>
+
       </div>
-    )
+
+    );
   }
 }
 
