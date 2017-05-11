@@ -116,6 +116,7 @@
 
 .actors-module-btn {
   background-color: #0090FF;
+  margin-left: 20px;
 }
 
 .flexcontainer-module-header {
@@ -158,7 +159,7 @@
 
 .actor-form-field {
   border: none;
-  border-left: solid 1.5px #c9c9c9;
+  border-bottom: solid 0.5px gray;
   background-color: transparent;
   margin: 0px 20px;
 }

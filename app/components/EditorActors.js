@@ -12,18 +12,18 @@ class EditorActors extends Component {
           <div className="module-header">
             <h3>{this.props.sceneTitle} >> Actors</h3>
           </div>
-          <div className="btn-group flex-self-right">
+          <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
               className="btn actors-module-btn"
             >
-              <span className="glyphicon glyphicon-refresh" />
+              Regenerate All &nbsp; <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
               onClick={this.props.onAddActor}
               className="btn actors-module-btn"
             >
-              <span className="glyphicon glyphicon-plus" />
+              Add Actor &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
           </div>
         </div>
