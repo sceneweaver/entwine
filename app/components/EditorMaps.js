@@ -1,10 +1,58 @@
 import React, { Component } from 'react';
 import store from '../store';
-import findPlaces from '../../server/utils/findPlaces'
+import findPlaces from '../../server/utils/findPlaces';
+import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
+import Test from './Map';
+
 
 /* ----- COMPONENT ----- */
 
 class EditorMaps extends Component {
+  constructor() {
+    super()
+    this.state = {
+      coords: [],
+      locationTypes: [],
+      locationAddress: '',
+      mapboxStyle: 'light',
+      mapboxZoom: 13,
+      mapboxPitch: 30,
+      mapboxInteractivity: true,
+      mapboxAnimationMethod: 'flyTo',
+    }
+
+    this.onFindCoordsClick = this.onFindCoordsClick.bind(this);
+    this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
+    this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
+    this.changeMapboxAnimationMethod = this.changeMapboxAnimationMethod.bind(this);
+    this.toggleMapboxInteractivity = this.toggleMapboxInteractivity.bind(this);
+  }
+
+   onFindCoordsClick(event) {
+    event.preventDefault();
+    this.findCoordinates(event.target.location.value);
+  }
+
+  changeMapboxStyle(event) {
+    event.preventDefault();
+    this.setState({ mapboxStyle: event.target.value })
+  }
+
+  changeMapboxZoom(event) {
+    event.preventDefault();
+    this.setState({ mapboxZoom: event.target.value })
+  }
+
+  changeMapboxAnimationMethod(event) {
+    event.preventDefault();
+    this.setState({ mapboxAnimationMethod: event.target.value })
+  }
+
+  toggleMapboxInteractivity(event) {
+    event.preventDefault();
+    this.setState({ mapboxInteractivity: event.target.value })
+  }
+
   render() {
     return (
       <div className="maps-module">
@@ -30,7 +78,6 @@ class EditorMaps extends Component {
         <div className="locations-box">
           {this.props.locations.length ? (
             this.props.locations.map((location, index) => {
-              console.log("HIYA", location.name)
               return (
                 <div key={index} className="location-item">
                   <div className="location-info">
@@ -54,6 +101,8 @@ class EditorMaps extends Component {
             })) : (<p>No locations yet</p>)
           }
         </div>
+        <br />
+        <Test />
       </div>
     );
   }
@@ -93,3 +142,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorMaps);
+
+
+  // {this.props.locations.length > 0 ?
+                  //   <Marker
+                  //     coordinates={this.props.locations[0].coords}
+                  //     anchor="bottom">
+                  //   </Marker> : null
+                  // }

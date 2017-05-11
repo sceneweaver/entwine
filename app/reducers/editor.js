@@ -14,6 +14,7 @@ const SET_SCENE_TEXT = 'SET_SCENE_TEXT';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
 const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
+const TOGGLE_MAPS = 'TOGGLE_MAPS'
 
 const SET_ACTORS = 'SET_ACTORS';
 const CHANGE_ACTOR = 'CHANGE_ACTOR';
@@ -32,6 +33,11 @@ export const toggleActors = (position, displayActors) => ({
   type: TOGGLE_ACTORS,
   position,
   displayActors
+})
+
+export const toggleMaps = (position) => ({
+  type: TOGGLE_MAPS,
+  position
 })
 
 export const changeStoryTitle = input => ({
@@ -127,6 +133,10 @@ export default function reducer (state = {
       newState.scenes[action.position].whichModule = 'actors';
       break;
 
+    case TOGGLE_MAPS:
+      newState.scenes[action.position].whichModule = 'maps';
+      break;
+
     case ADD_SCENE:
       const newScene = new Scene();
       newScene.getPosition(newState.scenes.length);
@@ -174,7 +184,6 @@ export default function reducer (state = {
 
     case SET_LOCATIONS:
       newState.scenes[action.position].locations = action.locations;
-      newState.scenes[action.position].whichModule = 'maps';
       break;
 
     case CHANGE_LOCATION:
