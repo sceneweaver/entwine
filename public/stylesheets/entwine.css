@@ -21,11 +21,12 @@
   margin-bottom: 20px;
 }
 
-.titleInput {
+.story-title-input {
   font-size: 30px;
   text-indent: 7px;
   border: none;
   border-bottom: solid 2px #c9c9c9;
+  width: 100%;
 }
 
 .publish-button {
@@ -38,7 +39,8 @@
 .flexcontainer-vertical {
   display: flex;
   flex-direction: column;
-  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .editor-scene-title {
@@ -55,7 +57,11 @@
   font-size: 14px;
   padding: 15px;
   color: black;
-  /*min-height: 400px;*/
+  min-height: 200px;
+}
+
+.editor-texteditor {
+  width: 500px;
 }
 
 .editor-row {
@@ -73,6 +79,11 @@
 .editor-right-align {
   align-self: flex-end;
 }
+
+.module-btn {
+  width: 100px;
+}
+
 
 /* ----- EditorActors Styling ----- */
 
@@ -99,11 +110,6 @@
 .actors-box {
   background-color: rgba(165,224,221, 1);
   border-radius: 20px;
-}
-
-.generate-actors {
-  display: flex;
-  justify-content: flex-start;
 }
 
 /* ----- EditorActorItem Styling ----- */

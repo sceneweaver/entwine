@@ -12,9 +12,9 @@ class Editor extends Component {
           <div className="col-md-6">
             <input
               name="storyTitle"
+              className="story-title-input"
               type="text"
-              placeholder="Story Title"
-              className="titleInput"
+              placeholder="Title your story"
               onChange={this.props.onStoryTitleChange}
               value={this.props.storyTitle}
             />
@@ -32,7 +32,7 @@ class Editor extends Component {
               className="btn btn-success"
               onClick={this.props.onSubmitStory}
             >
-              Publish My Story
+              Publish My Story  <span className="glyphicon glyphicon-share"></span>
             </button>
           </div>
       </div>
