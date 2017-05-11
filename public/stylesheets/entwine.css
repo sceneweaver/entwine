@@ -14,23 +14,27 @@
 /* ----- Editor Styling ----- */
 
 #storyEditor {
-  margin: 0px 100px
+  margin-left: 0px;
+  margin-right: 0px;
+  margin: 0px 100px;
 }
 
-.titleRow {
-  margin-bottom: 20px;
+.title-row {
+  margin-top: 10px;
 }
 
 .titlerow-button {
-  margin: 20px 20px 20px 0px;
+  margin: 10px 20px 20px 0px;
 }
 
 .story-title-input {
   font-size: 30px;
   text-indent: 7px;
   border: none;
-  border-bottom: solid 2px #c9c9c9;
+  border-bottom: solid 1.5px #c9c9c9;
   width: 100%;
+  margin-top: 20px;
+  background-color: transparent;
 }
 
 .publish-button {
@@ -47,37 +51,38 @@
   align-items: center;
 }
 
-.editor-scene-title {
-   border: 1px solid #ddd;
-   height: 35px;
-   text-indent: 14px;
-   flex-grow: 1;
-}
-
-.editor-container {
-  background: #fff;
-  border: 1px solid #ddd;
-  font-family: 'Georgia', serif;
-  font-size: 14px;
-  padding: 15px;
-  color: black;
-  min-height: 200px;
-}
-
-.editor-texteditor {
-  width: 500px;
+.editorscene-texteditor {
+  width: 60%;
 }
 
 .editor-row {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
-.editor-btn {
-  height: 35px;
-  width: 35px;
-  /*margin-bottom: 4px;*/
+.editor-scene-title {
+   border: 1px solid #ddd;
+   height: 35px;
+   text-indent: 14px;
+   flex-grow: 1;
+   border: none;
+   border-bottom: solid 1.5px #c9c9c9;
+   background-color: transparent;
+   font-size: 25px;
+   width: 50%;
+   margin-right: 20px;
+}
+
+.editor-container {
+  background: transparent;
+  border: 0.5px solid #c9c9c9;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  padding: 15px;
+  color: black;
+  min-height: 200px;
 }
 
 .editorscene-buttons {
@@ -153,7 +158,7 @@
 
 .actor-form-field {
   border: none;
-  border-bottom: 1px solid;
+  border-left: solid 1.5px #c9c9c9;
   background-color: transparent;
   margin: 0px 20px;
 }

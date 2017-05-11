@@ -9,7 +9,7 @@ class Editor extends Component {
     return (
       <div id="storyEditor">
 
-        <div className="row">
+        <div className="title-row">
           <input
             name="storyTitle"
             className="story-title-input"
@@ -20,7 +20,7 @@ class Editor extends Component {
           />
         </div>
 
-        <div className="row">
+        <div className="title-row">
           <button
             className="btn btn-success titlerow-button"
             onClick={this.props.onAddScene}

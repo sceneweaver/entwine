@@ -93,7 +93,7 @@ class EditorScene extends Component {
 
           </div>
 
-          <div className="form-group editor-texteditor">
+          <div className="form-group editorscene-texteditor">
 
             <div className="editor-row">
 
@@ -105,12 +105,12 @@ class EditorScene extends Component {
                 value={this.props.title}
               />
 
-              <div className="editor-right-align">
-                <button className="editor-btn" onClick={this.onBoldClick.bind(this)}><i className="fa fa-bold"></i></button>
-                <button className="editor-btn" onClick={this.onItalicClick.bind(this)}><i className="fa fa-italic"></i></button>
-                <button className="editor-btn" onClick={this.onBlockQuoteClick.bind(this)}><i className="fa fa-quote-right"></i></button>
-                <button className="editor-btn" onClick={this.onUnorderedListClick.bind(this)}><i className="fa fa-list-ul"></i></button>
-                <button className="editor-btn" onClick={this.onOrderedListClick.bind(this)}><i className="fa fa-list-ol"></i></button>
+              <div className="editor-right-align btn-group">
+                <button className="editor-btn btn btn-default" onClick={this.onBoldClick.bind(this)}><i className="fa fa-bold"></i></button>
+                <button className="editor-btn btn btn-default" onClick={this.onItalicClick.bind(this)}><i className="fa fa-italic"></i></button>
+                <button className="editor-btn btn btn-default" onClick={this.onBlockQuoteClick.bind(this)}><i className="fa fa-quote-right"></i></button>
+                <button className="editor-btn btn btn-default" onClick={this.onUnorderedListClick.bind(this)}><i className="fa fa-list-ul"></i></button>
+                <button className="editor-btn btn btn-default" onClick={this.onOrderedListClick.bind(this)}><i className="fa fa-list-ol"></i></button>
               </div>
             </div>
 
