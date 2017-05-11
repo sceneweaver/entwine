@@ -6,14 +6,17 @@ import {
   RichUtils
 } from 'draft-js';
 
-import {stateToHTML} from 'draft-js-export-html';
+import { stateToHTML } from 'draft-js-export-html';
 import EditorActors from './EditorActors';
 import EditorMaps from './EditorMaps';
 
 class EditorScene extends Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+    this.state = {
+      editorState: EditorState.createEmpty(),
+      displayModule: false
+    };
     this.onChange = (editorState) => {
       // converts text to plaintext to allow actors / wiki module to parse correctly
       let content = editorState.getCurrentContent();
@@ -22,7 +25,7 @@ class EditorScene extends Component {
       this.props.onSceneTextChange(this.props.position, contentPlainText);
       this.props.onSceneHTMLChange(this.props.position, contentHTML);
       // updates Draft JS editor state
-      this.setState({editorState});
+      this.setState({ editorState });
     };
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
@@ -58,74 +61,83 @@ class EditorScene extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-1">
-          <button
-            className="btn btn-default"
-            onClick={this.props.onDeleteScene.bind(this, this.props.position)}
-          >
-             <i className="fa fa-trash"></i> &nbsp; Delete
-          </button>
+      <div className="editorscene-wrapper" id={`editorscene-wrapper-${this.props.position}`}>
 
-        </div>
-        <div className="form-group col-md-5">
-          <div className="editor-row">
-            <input
-              className="editor-scene-title"
-              placeholder="Scene Title"
+        {/* ----- PAGE CONTENT ----- */}
+
+        <div className="editorscene-content-wrapper">
+
+          <div className="editorscene-buttons btn-group-vertical">
+            <button
+              className="btn btn-default editorscene-delete-btn"
+              onClick={this.props.onDeleteScene}
+            >
+               <i className="fa fa-trash" />
+            </button>
+
+            <button
+              className="btn btn-default module-btn"
+              onClick={this.props.onShowActors}
+            >
+              Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
+            </button>
+
+            <button
+              className="btn btn-default module-btn"
               name={this.props.position}
-              onChange={this.props.onSceneTitleChange}
-              value={this.props.title}
-            />
-
-            <div className="editor-right-align">
-              <button className="editor-btn" onClick={this.onBoldClick.bind(this)}><i className="fa fa-bold"></i></button>
-              <button className="editor-btn" onClick={this.onItalicClick.bind(this)}><i className="fa fa-italic"></i></button>
-              <button className="editor-btn" onClick={this.onBlockQuoteClick.bind(this)}><i className="fa fa-quote-right"></i></button>
-              <button className="editor-btn" onClick={this.onUnorderedListClick.bind(this)}><i className="fa fa-list-ul"></i></button>
-              <button className="editor-btn" onClick={this.onOrderedListClick.bind(this)}><i className="fa fa-list-ol"></i></button>
-            </div>
-          </div>
-
-          <div className="editor-container">
-            <Editor
-              editorState={this.state.editorState}
-              handleKeyCommand={this.handleKeyCommand}
-              onChange={this.onChange}
-              position={this.props.position}
-            />
-          </div>
-        </div>
-        <div className="col-md-1">
-          <div className="generate-actors flexcontainer-vertical editor-actors">
-            <div className="row">
-              <button
-                className="btn btn-default"
-                onClick={this.props.onShowActors}
-              >
-                Show Actors
+              onClick={this.props.onGenerateMaps}
+            >
+              Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
             </button>
-            </div>
-            <div className="row">
-              <button
-                className="btn btn-default"
+
+          </div>
+
+          <div className="form-group editor-texteditor">
+
+            <div className="editor-row">
+
+              <input
+                className="editor-scene-title"
+                placeholder="Scene Title"
                 name={this.props.position}
-                onClick={this.props.onGenerateMaps}
-              >
-                Generate Map
-            </button>
+                onChange={this.props.onSceneTitleChange}
+                value={this.props.title}
+              />
+
+              <div className="editor-right-align">
+                <button className="editor-btn" onClick={this.onBoldClick.bind(this)}><i className="fa fa-bold"></i></button>
+                <button className="editor-btn" onClick={this.onItalicClick.bind(this)}><i className="fa fa-italic"></i></button>
+                <button className="editor-btn" onClick={this.onBlockQuoteClick.bind(this)}><i className="fa fa-quote-right"></i></button>
+                <button className="editor-btn" onClick={this.onUnorderedListClick.bind(this)}><i className="fa fa-list-ul"></i></button>
+                <button className="editor-btn" onClick={this.onOrderedListClick.bind(this)}><i className="fa fa-list-ol"></i></button>
+              </div>
+            </div>
+
+            <div className="editor-container">
+              <Editor
+                editorState={this.state.editorState}
+                handleKeyCommand={this.handleKeyCommand}
+                onChange={this.onChange}
+                position={this.props.position}
+              />
             </div>
           </div>
+
         </div>
-        <div className="col-md-5">
+
+        {/* ----- SIDEBAR ----- */}
+
+        <div className="editorscene-sidebar-wrapper">
           {
             this.props.whichModule === 'maps'
-            ? <EditorMaps position={this.props.position} />
-            : this.props.whichModule === 'actors'
-            ? <EditorActors position={this.props.position} />
-            : null
+              ? <EditorMaps position={this.props.position} />
+              : this.props.whichModule === 'actors'
+                ? <EditorActors position={this.props.position} />
+                : null
           }
         </div>
+
+
       </div>
     );
   }
@@ -133,6 +145,7 @@ class EditorScene extends Component {
 
 /* ----- CONTAINER ----- */
 
+import $ from 'jquery';
 import { connect } from 'react-redux';
 import { toggleActors, setSceneText, setSceneHTML, setSceneTitle, deleteScene, generateMapLocations } from '../reducers/editor';
 
@@ -148,6 +161,7 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onShowActors(event) {
     event.preventDefault();
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
     dispatch(toggleActors(ownProps.position, true));
   },
   onSceneTitleChange(event) {
@@ -162,9 +176,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     dispatch(setSceneHTML(position, content));
   },
-  onDeleteScene(position, event) {
+  onDeleteScene(event) {
     event.preventDefault();
-    dispatch(deleteScene(position));
+    dispatch(deleteScene(+ownProps.position));
   },
   onGenerateMaps(event) {
     event.preventDefault();

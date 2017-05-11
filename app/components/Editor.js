@@ -8,34 +8,33 @@ class Editor extends Component {
   render() {
     return (
       <div id="storyEditor">
-        <div className="row titleRow">
-          <div className="col-md-6">
-            <input
-              name="storyTitle"
-              type="text"
-              placeholder="Story Title"
-              className="titleInput"
-              onChange={this.props.onStoryTitleChange}
-              value={this.props.storyTitle}
-            />
-          </div>
-          <div className="col-md-3 addScene">
-            <button
-              className="btn btn-success"
-              onClick={this.props.onAddScene}
-            >
-              Add Scene
-                </button>
-          </div>
-          <div className="col-md-3 publish-button">
-            <button
-              className="btn btn-success"
-              onClick={this.props.onSubmitStory}
-            >
-              Publish My Story
-            </button>
-          </div>
-      </div>
+
+        <div className="row">
+          <input
+            name="storyTitle"
+            className="story-title-input"
+            type="text"
+            placeholder="Title your story"
+            onChange={this.props.onStoryTitleChange}
+            value={this.props.storyTitle}
+          />
+        </div>
+
+        <div className="row">
+          <button
+            className="btn btn-success titlerow-button"
+            onClick={this.props.onAddScene}
+          >
+            Add Scene <span className="glyphicon glyphicon-plus"></span>
+          </button>
+          <button
+            className="btn btn-success titlerow-button"
+            onClick={this.props.onSubmitStory}
+          >
+            Publish My Story  <span className="glyphicon glyphicon-share"></span>
+          </button>
+        </div>
+
         {
           this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
             <EditorScene
@@ -45,6 +44,7 @@ class Editor extends Component {
           )))
             : null
         }
+
       </div>
     );
   }
