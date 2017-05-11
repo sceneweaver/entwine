@@ -114,6 +114,19 @@
   width: 100%;
 }
 
+.maps-module-btn {
+  background-color: #0090FF;
+  margin: 10px;
+}
+
+.locations-box {
+  background-color: #D1EBFF;
+}
+
+.map-editor-header {
+  margin: 10px;
+}
+
 
 /* ----- EditorActors Styling ----- */
 
