@@ -58,7 +58,8 @@
     padding: 15px;
     display: inline-flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .editorscene-wrapper.toggled .editorscene-content-wrapper {
@@ -68,7 +69,7 @@
     padding: 0px;
     display: inline-flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 /* Sidebar Styles */

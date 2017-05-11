@@ -67,13 +67,29 @@ class EditorScene extends Component {
 
         <div className="editorscene-content-wrapper">
 
-          <div className="editorscene-delete-button">
+          <div className="editorscene-buttons btn-group-vertical">
             <button
-              className="btn btn-default"
-              onClick={this.props.onDeleteScene.bind(this, this.props.position)}
+              className="btn btn-default editorscene-delete-btn"
+              onClick={this.props.onDeleteScene}
             >
-              <i className="fa fa-trash"></i> &nbsp; Delete
+               Delete &nbsp; <i className="fa fa-trash" />
             </button>
+
+            <button
+              className="btn btn-default module-btn"
+              onClick={this.props.onShowActors}
+            >
+              Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
+            </button>
+
+            <button
+              className="btn btn-default module-btn"
+              name={this.props.position}
+              onClick={this.props.onGenerateMaps}
+            >
+              Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
+            </button>
+
           </div>
 
           <div className="form-group editor-texteditor">
@@ -102,28 +118,6 @@ class EditorScene extends Component {
                 onChange={this.onChange}
                 position={this.props.position}
               />
-            </div>
-          </div>
-
-          <div>
-            <div className="flexcontainer-vertical">
-              <div className="row">
-                <button
-                  className="btn btn-default module-btn"
-                  onClick={this.props.onShowActors}
-                >
-                  <span className="glyphicon glyphicon-user"></span> Actors
-            </button>
-              </div>
-              <div className="row">
-                <button
-                  className="btn btn-default module-btn"
-                  name={this.props.position}
-                  onClick={this.props.onGenerateMaps}
-                >
-                  <span className="glyphicon glyphicon-globe"></span> Map
-            </button>
-              </div>
             </div>
           </div>
 
@@ -180,9 +174,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     dispatch(setSceneHTML(position, content));
   },
-  onDeleteScene(position, event) {
+  onDeleteScene(event) {
     event.preventDefault();
-    dispatch(deleteScene(position));
+    dispatch(deleteScene(+ownProps.position));
   },
   onGenerateMaps(event) {
     event.preventDefault();

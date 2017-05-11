@@ -14,11 +14,15 @@
 /* ----- Editor Styling ----- */
 
 #storyEditor {
-  margin: 0px 30px
+  margin: 0px 100px
 }
 
 .titleRow {
   margin-bottom: 20px;
+}
+
+.titlerow-button {
+  margin: 20px 20px 20px 0px;
 }
 
 .story-title-input {
@@ -74,6 +78,18 @@
   height: 35px;
   width: 35px;
   /*margin-bottom: 4px;*/
+}
+
+.editorscene-buttons {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 20px;
+}
+
+.editorscene-delete-btn {
+  margin-bottom: 20px;
 }
 
 .editor-right-align {
