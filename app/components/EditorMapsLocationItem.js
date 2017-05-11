@@ -24,7 +24,7 @@ class EditorMapsLocationItem extends Component {
             <input
               type="text"
               className="actor-name-field"
-              value={location.name}
+              value={this.props.name}
               onChange={this.props.onLocationsChange.bind(this, index, 'name')}
             />
           </div>
@@ -42,6 +42,7 @@ import { changeLocation, deleteLocation } from '../reducers/editor';
 const mapStateToProps = (state, ownProps) => ({
   position: ownProps.position,
   index: ownProps.index,
+  name: ownProps.location.name
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
