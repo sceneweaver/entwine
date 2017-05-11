@@ -16,7 +16,7 @@ class Scene extends Component {
 
         <div className="col-md-11 article-titles article-font">
           <h3>
-            {this.props.storyTitle}</h3>
+            {this.props.storyTitle} by {this.props.user ? this.props.user.username : 'anonymous'}</h3>
           <h1>
             {this.props.currScene.title}</h1>
         </div>
@@ -37,7 +37,6 @@ class Scene extends Component {
   }
 }
 
-// by {this.props.currScene.user.username ? this.props.currScene.user.username : 'anonymous'}
 
 /* ----- CONTAINER ----- */
 
@@ -47,7 +46,8 @@ const mapStateToProps = store => ({
   html: store.displayState.currScene.paragraphsHTML[0],
   actors: store.displayState.currScene.actors,
   storyTitle: store.displayState.title,
-  currScene: store.displayState.currScene
+  currScene: store.displayState.currScene,
+  user: store.displayState.user
 });
 
 export default connect(mapStateToProps)(Scene);
