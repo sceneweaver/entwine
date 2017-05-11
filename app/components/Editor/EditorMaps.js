@@ -87,13 +87,16 @@ class EditorMaps extends Component {
 
         <div className="locations-box">
         {
-          this.props.locations.length ?
+          this.props.locations.length ? this.props.locations.map((location, index) => {
+            return (
               <EditorMapsLocationItem
-                location={this.props.locations[0]}
-                index={0}
-                key={0}
+                location={location}
+                index={index}
+                key={index}
                 position={this.props.position}
               />
+            );
+          })
             : <p>Generate locations to generate map</p>
         }
         </div>

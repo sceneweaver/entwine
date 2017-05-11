@@ -11,7 +11,7 @@ class EditorMapsLocationItem extends Component {
         <div className="module-btns">
           <button
             className="btn btn-default"
-            onClick={this.props.onDeleteLocation.bind(this, this.props.index)}
+            onClick={this.props.onDeleteLocation.bind(this, index)}
           >
             <span className="glyphicon glyphicon-trash" ></span>
           </button>
