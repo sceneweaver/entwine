@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import Actor from '../../server/utils/actors-constructor';
 import Scene from '../../server/utils/scenes-constructor';
+import Location from '../../server/utils/locations-constructor';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -13,6 +14,7 @@ const SET_SCENE_HTML = 'SET_SCENE_HTML';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
 const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
+const TOGGLE_MAPS = 'TOGGLE_MAPS'
 
 const SET_ACTORS = 'SET_ACTORS';
 const CHANGE_ACTOR = 'CHANGE_ACTOR';
@@ -20,6 +22,11 @@ const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
 const SET_LOCATIONS = 'SET_LOCATIONS';
+const ADD_LOCATION = 'ADD_LOCATION';
+const CHANGE_LOCATION = 'CHANGE_LOCATION';
+const DELETE_LOCATION = 'DELETE_LOCATION';
+
+const SET_MAP = 'SET_MAP';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -28,6 +35,11 @@ export const toggleActors = (position, displayActors) => ({
   type: TOGGLE_ACTORS,
   position,
   displayActors
+})
+
+export const toggleMaps = (position) => ({
+  type: TOGGLE_MAPS,
+  position
 })
 
 export const changeStoryTitle = input => ({
@@ -93,6 +105,30 @@ export const setLocations = (position, locations) => ({
   locations
 })
 
+export const addLocation = position => ({
+  type: ADD_LOCATION,
+  position
+})
+
+export const deleteLocation = (position, locationIndex) => ({
+  type: DELETE_LOCATION,
+  position,
+  locationIndex
+})
+
+export const changeLocation = (position, locationIndex, field, input) => ({
+  type: CHANGE_LOCATION,
+  position,
+  locationIndex,
+  field,
+  input
+})
+
+export const setMap = (position, reactMap) => ({
+  type: SET_MAP,
+  reactMap,
+  position
+})
 
 /* ------------       REDUCERS     ------------------ */
 
@@ -109,6 +145,10 @@ export default function reducer (state = {
 
     case TOGGLE_ACTORS:
       newState.scenes[action.position].whichModule = 'actors';
+      break;
+
+    case TOGGLE_MAPS:
+      newState.scenes[action.position].whichModule = 'maps';
       break;
 
     case ADD_SCENE:
@@ -162,7 +202,28 @@ export default function reducer (state = {
 
     case SET_LOCATIONS:
       newState.scenes[action.position].locations = action.locations;
-      newState.scenes[action.position].whichModule = 'maps';
+      break;
+
+    case CHANGE_LOCATION:
+      const newLocation = newState.scenes[action.position].locations[action.locationIndex];
+      newLocation[action.field] = action.input;
+      const firstHalfOfLocationChanges = newState.scenes[action.position].locations.slice(0, action.locationIndex)
+        , secondHalfOfLocationChanges = newState.scenes[action.position].locations.slice(action.locationIndex + 1);
+      newState.scenes[action.position].locations = [...firstHalfOfLocationChanges, newLocation, ...secondHalfOfLocationChanges];
+      break;
+
+    case ADD_LOCATION:
+      newState.scenes[action.position].locations = newState.scenes[action.position].locations.concat([new Location()]);
+      break;
+
+    case DELETE_LOCATION:
+      const firstHalfOfLocations = newState.scenes[action.position].locations.slice(0, +action.locationIndex)
+        , secondHalfOfLocations = newState.scenes[action.position].locations.slice(+action.locationIndex + 1);
+      newState.scenes[action.position].locations = [...firstHalfOfLocations, ...secondHalfOfLocations];
+      break;
+
+    case SET_MAP:
+      newState.scenes[action.position].reactMap = action.reactMap;
       break;
 
     default:
@@ -176,6 +237,7 @@ export default function reducer (state = {
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import findProperNouns from '../../server/utils/findProperNouns';
+import findPlaces from '../../server/utils/findPlaces'
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
@@ -194,8 +256,28 @@ export const submitStory = () => (dispatch, getState) => {
 };
 
 export const generateMapLocations = position => (dispatch, getState) => {
-  const textBody = getState().editor.scenes[position].paragraphs[0]
-    , nounsArr = findProperNouns(textBody);
-  return axios.post('/api/compromise/places', {textBody})
-    .then(res => dispatch(setLocations(position, res.data)))
+  const textBody = getState().editor.scenes[position].paragraphs[0];
+  findProperNouns(textBody)
+  .then(actorsArray => {
+    console.log("actors ", actorsArray)
+    return findPlaces(actorsArray)
+  })
+  .then(placesArr => {
+    console.log("places, ", placesArr)
+    dispatch(setLocations(position, placesArr))
+  })
+
 };
+
+
+// export const generateMapLocations = position => (dispatch, getState) => {
+//   const textBody = getState().editor.scenes[position].paragraphs[0];
+//   findProperNouns(textBody)
+//   .then(actorsArray => {
+//     return findPlaces(actorsArray)
+//   })
+//   .then(placesArr => {
+//     console.log(placesArr)
+//     dispatch(setLocations(position, placesArr))
+//   })
+// };

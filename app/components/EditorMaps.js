@@ -1,123 +1,187 @@
 import React, { Component } from 'react';
 import store from '../store';
+import findPlaces from '../../server/utils/findPlaces';
+import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
+import Map from './EditorMapModule';
+
 
 /* ----- COMPONENT ----- */
 
 class EditorMaps extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      coords: [],
+      locationTypes: [],
+      locationAddress: '',
+      mapboxStyle: 'light',
+      mapboxZoom: 13,
+      mapboxPitch: 30,
+      mapboxInteractivity: true,
+      mapboxAnimationMethod: 'flyTo',
+    }
+
+    this.onFindCoordsClick = this.onFindCoordsClick.bind(this);
+    this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
+    this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
+    this.changeMapboxAnimationMethod = this.changeMapboxAnimationMethod.bind(this);
+    this.toggleMapboxInteractivity = this.toggleMapboxInteractivity.bind(this);
+  }
+
+   onFindCoordsClick(event) {
+    event.preventDefault();
+    this.findCoordinates(event.target.location.value);
+  }
+
+  changeMapboxStyle(event) {
+    event.preventDefault();
+    this.setState({ mapboxStyle: event.target.value })
+  }
+
+  changeMapboxZoom(event) {
+    event.preventDefault();
+    this.setState({ mapboxZoom: event.target.value })
+  }
+
+  changeMapboxAnimationMethod(event) {
+    event.preventDefault();
+    this.setState({ mapboxAnimationMethod: event.target.value })
+  }
+
+  toggleMapboxInteractivity(event) {
+    event.preventDefault();
+    this.setState({ mapboxInteractivity: event.target.value })
+  }
+
   render() {
     return (
-      <div className="actors-module">
+      <div className="maps-module">
         <div className="flexcontainer-module-header">
           <div className="module-header">
             <h4>Map</h4>
           </div>
           <div className="button-container flex-self-right">
             <button
-              onClick={this.props.onRefreshActors}
+              onClick={this.props.onRefreshLocations}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
-              onClick={this.props.onAddActor}
+              onClick={this.props.onAddLocation}
               className="btn btn-default"
             >
               <span className="glyphicon glyphicon-plus" />
             </button>
           </div>
         </div>
-        <div className="actors-box">
-          {this.props.actors.length ? (
-            this.props.actors.map((actor, index) => {
-              return (
-                <div key={index} className="actor-item">
-                  {this.props.actors[index].image ?
-                    <div className="actor-image">
-                      <img className="img-circle" src={this.props.actors[index].image} alt="Actor image." />
-                    </div> : null}
-                  <div className="actor-info">
-                    <label>Name:</label>
+        <div className="locations-box">
+        {
+
+          this.props.locations[0] ?
+          <div className="location-item">
+                  <div className="location-info">
+                    <label>Location:</label>
                     <input
                       type="text"
-                      name="actor-name-field"
-                      value={actor.name}
-                      onChange={this.props.onActorsChange.bind(this, index, 'name')}
+                      name="location-name-field"
+                      value={this.props.locations[0].name}
+                      onChange={() => {
+                        this.props.onLocationsChange.bind(this, 'name');
+                      }}
                     /><br />
-                    <label>Description:</label>
-                    <input
-                      type="text"
-                      name="actor-description-field"
-                      value={actor.description}
-                      onChange={this.props.onActorsChange.bind(this, index, 'description')}
-                    />
                   </div>
-                  <div className="actor-delete">
+                  <div className="location-delete">
                     <button
                       className="btn btn-default"
-                      onClick={this.props.onDeleteActor.bind(this, index)}
+                      onClick={this.props.onDeleteLocation.bind(this)}
                     >X
                       </button>
                   </div>
-                  <div className="actor-gen-info">
-                    <button
-                      className="btn btn-default"
-                      onClick={this.props.onGrabImage.bind(this, index)}
-                    >
-                      GRAB IMAGE
-                      </button>
-                  </div>
                 </div>
-              );
-            })) : (<p>No actors yet</p>)
-          }
+                :
+                <div>Nothing here</div>
+        }
+
+
         </div>
+        <br />
+        <Map position={this.props.position}/>
       </div>
     );
   }
 }
 
+
+
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeActor, deleteActor, addActor, generateActors } from '../reducers/editor';
-import wiki from 'wikijs';
+import { changeLocation, deleteLocation, addLocation, generateMapLocations } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
-  actors: state.editor.scenes[ownProps.position].actors,
+  locations: state.editor.scenes[ownProps.position].locations,
   position: ownProps.position
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onRefreshActors(event) {
+  onRefreshLocations(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(generateActors(ownProps.position));
+    dispatch(generateMapLocations(ownProps.position));
   },
-  onActorsChange(actorIndex, field, event) {
+  onLocationsChange(locationIndex, field, event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(changeActor(ownProps.position, actorIndex, field, event.target.value));
+    dispatch(changeLocation(ownProps.position, locationIndex, field, event.target.value));
   },
-  onAddActor(event) {
+  onAddLocation(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(addActor(ownProps.position));
+    dispatch(addLocation(ownProps.position));
   },
-  onDeleteActor(actorIndex, event) {
+  onDeleteLocation(locationIndex, event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(deleteActor(ownProps.position, actorIndex));
-  },
-  onGrabImage(actorIndex, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const name = store.getState().editor.scenes[ownProps.position].actors[actorIndex].name;
-    return wiki().page(name)
-      .then(page => page.mainImage())
-      .then(image => {
-        dispatch(changeActor(ownProps.position, actorIndex, 'image', image));
-      });
+    dispatch(deleteLocation(ownProps.position, locationIndex));
   }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorMaps);
+
+
+  // {this.props.locations.length > 0 ?
+                  //   <Marker
+                  //     coordinates={this.props.locations[0].coords}
+                  //     anchor="bottom">
+                  //   </Marker> : null
+                  // }
+
+
+
+// {this.props.locations.length > 0 ? (
+//             this.props.locations.map((location, index) => {
+//               return (
+//                 <div key={index} className="location-item">
+//                   <div className="location-info">
+//                     <label>Location:</label>
+//                     <input
+//                       type="text"
+//                       name="location-name-field"
+//                       value={location.name}
+//                       onChange={() => {
+//                         this.props.onLocationsChange.bind(this, index, 'name');
+//                       }}
+//                     /><br />
+//                   </div>
+//                   <div className="location-delete">
+//                     <button
+//                       className="btn btn-default"
+//                       onClick={this.props.onDeleteLocation.bind(this, index)}
+//                     >X
+//                       </button>
+//                   </div>
+//                 </div>
+//               );
+//             })) : (<p>No locations yet</p>)
+//           }
