@@ -16,7 +16,7 @@ export const set = user => ({ type: SET, user });
 /* -------------------<   REDUCERS   >--------------------- */
 
 const initialState = {
-  users: []
+  user: {}
 }
 
 const reducer = (state = initialState, action) => {

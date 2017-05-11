@@ -183,14 +183,15 @@ export const generateActors = position => (dispatch, getState) => {
   .then(actorsArray => dispatch(setActors(position, actorsArray)));
 };
 
-export const submitStory = () => (dispatch, getState) => {
+export const submitStory = (user) => (dispatch, getState) => {
   return axios.post('/api/stories', {
     title: getState().editor.title,
-    scenes: getState().editor.scenes
+    scenes: getState().editor.scenes,
+    userId: getState().auth.id
   })
-    .then(newStory => {
-      browserHistory.push(`/stories/${newStory.data.id}`);
-    });
+  .then(newStory => {
+    browserHistory.push(`/stories/${newStory.data.id}`);
+  });
 };
 
 export const generateMapLocations = position => (dispatch, getState) => {
