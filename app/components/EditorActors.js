@@ -34,6 +34,7 @@ class EditorActors extends Component {
                 <EditorActorItem
                   key={index}
                   index={index}
+                  actor={actor}
                   position={this.props.position}
                 />
               );

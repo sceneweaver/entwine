@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 
 class EditorActorItem extends Component {
   render() {
-    const actor = this.props.actor;
-    const index = this.props.index;
+    const actor = this.props.actor
+        , index = this.props.index;
+    console.log(actor, index);
     return (<div className="actor-item">
 
       <div className="actor-btns">
