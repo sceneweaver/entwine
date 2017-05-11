@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ViewActors from './ViewActors';
+import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
 
 /* ----- COMPONENT ----- */
 
@@ -10,6 +11,7 @@ class Scene extends Component {
   }
 
   render() {
+    console.log("mapcompo", this.props.mapComponent, this.props.currScene)
     return (
 
       <div className="col-md-10">
@@ -45,7 +47,8 @@ const mapStateToProps = store => ({
   html: store.displayState.currScene.paragraphsHTML[0],
   actors: store.displayState.currScene.actors,
   storyTitle: store.displayState.title,
-  currScene: store.displayState.currScene
+  currScene: store.displayState.currScene,
+  mapComponent: store.displayState.currScene.maps
 });
 
 export default connect(mapStateToProps)(Scene);

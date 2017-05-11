@@ -34,8 +34,8 @@ module.exports = db => db.define('scenes', {
   }
 });
 
-module.exports.associations = (Scene, {Story, Actor, Map}) => {
+module.exports.associations = (Scene, {Story, Actor, MapModule}) => {
   Scene.belongsTo(Story);
   Scene.belongsToMany(Actor, { through: 'ScenesActors' });
-  Scene.belongsToMany(Map, { through: 'ScenesMaps' });
+  Scene.belongsToMany(MapModule, { through: 'ScenesMaps' });
 };

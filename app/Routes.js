@@ -29,7 +29,7 @@ const Routes = (props) => (
 
 /* -----------------    CONTAINER     ------------------ */
 
-import { setFakeState, fetchStory } from './reducers/displayState';
+import { setFakeState, fetchStory, fetchMap } from './reducers/displayState';
 
 const mapProps = null;
 

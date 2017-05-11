@@ -223,7 +223,7 @@ export default function reducer (state = {
       break;
 
     case SET_MAP:
-      newState.scenes[action.position].reactMap = action.reactMap;
+      newState.scenes[action.position].mapModules = action.reactMap;
       break;
 
     default:

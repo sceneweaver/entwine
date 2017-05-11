@@ -13,7 +13,7 @@ export default class Scene {
     this.actors = [new Actor()];
     this.locations = [];
     this.whichModule = null;
-    this.maps = []
+    this.mapModules = '';
     this.key = key++;
   }
   getPosition(index) {

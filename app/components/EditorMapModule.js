@@ -187,7 +187,6 @@ const mapDispatchToProps = (dispatch) => ({
     coords = '[' + coords.join(', ') + ']'
     let string = reactMapString.replace(/replaceStyle/g, style).replace(/replaceCoords/g, coords).replace(/replaceZoom/g, zoom);
     dispatch(setMap(position, string));
-    dispatch(addMap(sceneId))
   }
 })
 
