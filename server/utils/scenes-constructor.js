@@ -11,7 +11,12 @@ export default class Scene {
     this.whichModule = null;
     this.maps = [];
     this.key = key++;
-    this.hero = '';
+    this.heroQuery = '';
+    this.heroURL = '';
+    this.heroCredit = {
+      photog: '',
+      photogURL: ''
+    };
   }
   getPosition(index) {
     this.position = index;

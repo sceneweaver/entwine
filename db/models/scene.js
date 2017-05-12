@@ -27,6 +27,10 @@ module.exports = db => db.define('scenes', {
   },
   position: { //TODO: research best way to set up a DB that tracks the ORDER of associated scenes in a story
     type: INTEGER
+  },
+  heroURL: {
+    type: STRING,
+    defaultValue: ''
   }
 }, {
   defaultScope: {

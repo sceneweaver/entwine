@@ -19,29 +19,32 @@ class EditorHero extends Component {
 
           <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Hero Image</h3>
 
-          <div className="flex-self-right">
-            <button
-              onClick={this.props.onRefreshActors}
-              className="btn hero-module-btn"
-            >
-              Generate Hero &nbsp; <span className="glyphicon glyphicon-refresh" />
-            </button>
-            <button
-              onClick={this.props.onAddActor}
-              className="btn hero-module-btn"
-            >
-              Add Hero URL &nbsp; <span className="fa fa-file-image-o" />
-            </button>
-          </div>
-
         </div>
 
         <div className="hero-box">
+          <label>
+            Keyword: &nbsp;
+            </label>
+          <input
+            type="text"
+            onChange={this.props.onHeroQueryChange}
+            value={this.props.heroQuery}
+          />
+          <button
+            onClick={this.props.onGenerateHero}
+            className="btn hero-module-btn"
+          >
+            Generate Hero &nbsp; <span className="glyphicon glyphicon-refresh" />
+          </button>
+        </div>
+
+        <div className="hero-viewer">
           {this.props.hero
             ? (<img src={this.props.hero} />)
             : (<p>Analyze text to generate a hero -- or upload one yourself.</p>)
           }
         </div>
+
       </div>
     );
   }
@@ -50,19 +53,25 @@ class EditorHero extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addActor, generateActors, toggleActors } from '../../reducers/editor';
+import { addActor, generateHero, setHeroQuery, toggleHero } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,
   hero: state.editor.scenes[ownProps.position].hero,
+  heroQuery: state.editor.scenes[ownProps.position].heroQuery,
   position: ownProps.position
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onRefreshActors(event) {
+  onHeroQueryChange(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(generateActors(ownProps.position));
+    dispatch(setHeroQuery(ownProps.position, event.target.value));
+  },
+  onGenerateHero(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    dispatch(generateHero(ownProps.position));
   },
   onAddActor(event) {
     event.preventDefault();
@@ -72,7 +81,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onHideActors(event) {
     event.preventDefault();
     $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-    dispatch(toggleActors(ownProps.position));
+    dispatch(toggleHero(ownProps.position));
   }
 });
 

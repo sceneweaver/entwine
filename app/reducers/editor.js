@@ -30,6 +30,9 @@ const DELETE_LOCATION = 'DELETE_LOCATION';
 
 const SET_MAP = 'SET_MAP';
 
+const SET_HERO = 'SET_HERO';
+const SET_HERO_QUERY = 'SET_HERO_QUERY';
+
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -138,6 +141,19 @@ export const setMap = (position, coords, style, zoom) => ({
   zoom
 })
 
+export const setHeroQuery = (position, heroQuery) => ({
+  type: SET_HERO_QUERY,
+  position,
+  heroQuery
+})
+
+export const setHero = (position, imageObj) => ({
+  type: SET_HERO,
+  position,
+  heroURL: imageObj.heroURL,
+  heroCredit: imageObj.heroCredit
+})
+
 /* ------------       REDUCERS     ------------------ */
 
 export default function reducer (state = {
@@ -238,6 +254,15 @@ export default function reducer (state = {
       newState.scenes[action.position].maps = newState.scenes[action.position].maps.concat([new MapModule(action.coords, action.style, action.zoom)]);
       break;
 
+    case SET_HERO_QUERY:
+      newState.scenes[action.position].heroQuery = action.heroQuery;
+      break;
+
+    case SET_HERO:
+      newState.scenes[action.position].heroURL = action.heroURL;
+      newState.scenes[action.position].heroCredit = action.heroCredit;
+      break;
+
     default:
       return newState;
   }
@@ -250,12 +275,19 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { create } from './stories';
 import findProperNouns from '../../server/utils/findProperNouns';
-import findPlaces from '../../server/utils/findPlaces'
+import findPlaces from '../../server/utils/findPlaces';
+import findHeroImage from '../../server/utils/findHeroImage';
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => dispatch(setActors(position, actorsArray)));
+};
+
+export const generateHero = position => (dispatch, getState) => {
+  const heroQuery = getState().editor.scenes[position].heroQuery;
+  findHeroImage(heroQuery)
+  .then(imageData => dispatch(setHero(position, imageData)));
 };
 
 export const submitStory = (user) => (dispatch, getState) => {
