@@ -16,6 +16,7 @@ const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
 const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
 const TOGGLE_MAPS = 'TOGGLE_MAPS';
+const TOGGLE_HERO = 'TOGGLE_HERO';
 
 const SET_ACTORS = 'SET_ACTORS';
 const CHANGE_ACTOR = 'CHANGE_ACTOR';
@@ -32,14 +33,18 @@ const SET_MAP = 'SET_MAP';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const toggleActors = (position, displayActors) => ({
+export const toggleActors = (position) => ({
   type: TOGGLE_ACTORS,
   position,
-  displayActors
 })
 
 export const toggleMaps = (position) => ({
   type: TOGGLE_MAPS,
+  position
+})
+
+export const toggleHero = (position) => ({
+  type: TOGGLE_HERO,
   position
 })
 
@@ -152,6 +157,10 @@ export default function reducer (state = {
 
     case TOGGLE_MAPS:
       newState.scenes[action.position].whichModule = 'maps';
+      break;
+
+    case TOGGLE_HERO:
+      newState.scenes[action.position].whichModule = 'hero';
       break;
 
     case ADD_SCENE:
