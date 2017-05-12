@@ -73,7 +73,7 @@ export const featuredStory = {
           id: 1,
           coords: '37, 55',
           zoom: 3,
-          style: 'light'
+          style: 'satellite'
         }
       ]
     }, {
