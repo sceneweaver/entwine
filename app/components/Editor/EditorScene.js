@@ -347,7 +347,6 @@ class EditorScene extends Component {
 								handleKeyCommand={this.handleKeyCommand}
 								onChange={this.onChange}
 								position={this.props.position}
-								placeholder="Write your story"
 								ref="editor"
 							/>
 						</div>
