@@ -41,7 +41,7 @@ class ViewActors extends Component {
                       />
                     ) : (
                       <div
-                        className="view-image-icons"
+                        className="img-circle-letter view-image-icons"
                         style={{ backgroundColor: '#0090FF', height: this.state.name === actor.name ? 100 : 75, width: this.state.name === actor.name ? 100 : 75 }}
                       >
                         {actor.name[0]}
