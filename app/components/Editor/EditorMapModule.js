@@ -117,7 +117,7 @@ class EditorMapModule extends Component {
 						</select>
 					</div>
 
-          <button onClick={this.props.onSaveMap.bind(this, this.props.position, reactMapString, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
+          <button onClick={this.props.onSaveMap.bind(this, this.props.position, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
 
         </div>
 
@@ -164,7 +164,7 @@ class EditorMapModule extends Component {
 
 /* ----- CONTAINER ----- */
 import { connect } from 'react-redux';
-import { setMap, addMap } from '../../reducers/editor';
+import { setMap } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
@@ -174,7 +174,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSaveMap(position, style, coords, zoom) {
-    let coordsStr = coords.join(', ')
+    let coordsStr = coords.join(', ');
     dispatch(setMap(position, coordsStr, style, zoom));
   }
 });
