@@ -89,7 +89,7 @@ class Scene extends Component {
           <div className="article-titles">
             <h3 className="view-story-heading story">{this.props.storyTitle}</h3>
             <h1 className="view-story-heading">{this.props.currScene.title}</h1>
-            <h3>by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h3>
+            <h4 className="view-story-heading">by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h4>
           </div>
 
           <div
