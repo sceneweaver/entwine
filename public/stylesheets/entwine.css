@@ -139,6 +139,14 @@ html, body, #main {
   width: 100px;
 }
 
+.editorscene-mediaurl-input > input {
+  border: 0.5px solid #c9c9c9;
+  color: black;
+  background: transparent;
+}
+
+.editorscene-mediaurl-input > button
+
 
 /* ----- EditorMaps Styling ----- */
 
