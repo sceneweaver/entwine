@@ -65,7 +65,7 @@ const Media = (props) => {
 	let media;
 	if (type === 'audio') {
 		media = <Audio src={src} />;
-	} else if (type === 'image') {
+	} else if (type === 'img') {
 		media = <Image src={src} />;
 	} else if (type === 'video') {
 		media = <Video src={src} />;
@@ -88,8 +88,10 @@ let stateToHTMLOptions = {
 		atomic: (block) => {
 			const mediaKey = block.getEntityAt(0)
 					, mediaEntityInstance = Entity.get(mediaKey)
-					, mediaEntityInstanceData = mediaEntityInstance.getData();
-			return '<div><img src="' + mediaEntityInstanceData.src + '"/></div>';
+					, mediaEntityInstanceData = mediaEntityInstance.getData()
+					, mediaEntityInstanceType = mediaEntityInstance.getType();
+			console.log(mediaEntityInstanceType);
+			return `<div><${mediaEntityInstanceType} src="${mediaEntityInstanceData.src}" /></div>`;
 		},
 	},
 };
@@ -183,7 +185,7 @@ class EditorScene extends Component {
 		this._promptForMedia('audio');
 	}
 	_addImage() {
-		this._promptForMedia('image');
+		this._promptForMedia('img');
 	}
 	_addVideo() {
 		this._promptForMedia('video');
