@@ -2,7 +2,6 @@ let key = 1;
 
 export default class Scene {
   constructor() {
-    this.displayActors = false;
     this.title = '';
     this.position = 0;
     this.paragraphs = [''];
@@ -12,6 +11,10 @@ export default class Scene {
     this.whichModule = null;
     this.maps = [];
     this.key = key++;
+    this.heroQuery = '';
+    this.heroURL = '';
+    this.heroPhotog = '';
+    this.heroPhotogURL = '';
   }
   getPosition(index) {
     this.position = index;

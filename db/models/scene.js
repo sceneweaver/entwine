@@ -19,12 +19,26 @@ module.exports = db => db.define('scenes', {
     type: ARRAY(TEXT),
     defaultValue: [],
     set: function (unsanitizedParagraphs) {
-      const sanitizedParagraphs = unsanitizedParagraphs.map(sanitizeHtml);
+      const sanitizedParagraphs = unsanitizedParagraphs.map(dirty => sanitizeHtml(dirty, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+      }));
       this.setDataValue('paragraphsHTML', sanitizedParagraphs);
     }
   },
   position: { //TODO: research best way to set up a DB that tracks the ORDER of associated scenes in a story
     type: INTEGER
+  },
+  heroURL: {
+    type: STRING,
+    defaultValue: ''
+  },
+  heroPhotog: {
+    type: STRING,
+    defaultValue: ''
+  },
+  heroPhotogURL: {
+    type: STRING,
+    defaultValue: ''
   }
 }, {
   defaultScope: {

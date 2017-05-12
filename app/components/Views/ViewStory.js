@@ -10,7 +10,7 @@ class Story extends Component {
     return (
       <div className="story-wrapper">
 
-          <div className="col-md-1 scenes-nav col-md-offset-1">
+          <div className="col-md-1 col-md-offset-1 scenes-nav">
             <h4 className="scenes-nav-title">Navigate<br />Scenes</h4>
 
             <ViewStorySlider />

@@ -52,24 +52,13 @@ class Scene extends Component {
 
   render() {
     return (
-      <div className="col-md-10">
-      <div className="col-md-11 article-titles">
-          <h3 className="view-story-heading story">{this.props.storyTitle} by {this.props.user ? this.props.user.username : 'anonymous'}</h3>
-          <h1 className="view-story-heading">{this.props.currScene.title}</h1>
-        </div>
+      <div className="col-md-12">
 
-        <div className="col-md-4 article-text">
-          <div
-            className="article-text"
-            dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
-          />
-        </div>
+        <div className="scene-hero">
 
-        <div className="col-md-5 col-md-offset-1">
-           <ViewActors />
-          { this.props.maps && `there are ${this.props.maps.length} maps` }
-          { this.props.maps && this.props.maps.length ?
-            <ReactMapboxGl
+          {
+            this.props.maps && this.props.maps.length
+            ? (<ReactMapboxGl
               style={`mapbox://styles/mapbox/${this.state.style}-v9`}
               accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
               zoom={[this.state.zoom]}
@@ -79,7 +68,41 @@ class Scene extends Component {
                 height: "500px",
                 width: "auto"
               }}>
-          </ReactMapboxGl> : null}
+              </ReactMapboxGl>)
+            : (
+              <div className="scene-hero-img">
+                <div className="scene-hero-img-container">
+                  <img src={this.props.heroURL} />
+                </div>
+                <div className="scene-hero-img-credit">
+                  <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+                </div>
+              </div>
+            )
+
+          }
+
+        </div>
+
+        <div className="article-content col-md-4 col-md-offset-2">
+
+          <div className="article-titles">
+            <h3 className="view-story-heading story">{this.props.storyTitle}</h3>
+            <h1 className="view-story-heading">{this.props.currScene.title}</h1>
+            <h3>by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h3>
+          </div>
+
+          <div
+            className="article-text"
+            dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
+          />
+
+        </div>
+
+        <div className="article-modules col-md-5 col-md-offset-1">
+
+          <ViewActors />
+
         </div>
       </div>
 
@@ -97,7 +120,11 @@ const mapStateToProps = store => ({
   actors: store.displayState.currScene.actors,
   storyTitle: store.displayState.title,
   currScene: store.displayState.currScene,
-  maps: store.displayState.currScene.maps
+  maps: store.displayState.currScene.maps,
+  user: store.displayState.user,
+  heroURL: store.displayState.currScene.heroURL,
+  heroPhotog: store.displayState.currScene.heroPhotog,
+  heroPhotogURL: store.displayState.currScene.heroPhotogURL
 });
 
 export default connect(mapStateToProps)(ReactTimeout(Scene));

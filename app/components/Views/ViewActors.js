@@ -20,28 +20,33 @@ class ViewActors extends Component {
 
               this.props.actors.map(actor => (
                 <div
+                  className="view-actors-head"
                   key={actor.name}
                   onMouseEnter={() => this.setState({
                     on: true,
                     name: actor.name,
                     description: actor.description
                   })}
-                  onMouseLeave={() => this.setState({ on: false })}
+                  onMouseLeave={() => this.setState({
+                    on: false,
+                    name: '',
+                    description: ''
+                  })}
                 >
                   {
                     actor.image ? (
                       <div
-                        className="img-circle view-image-icons"
-                        style={{ backgroundImage: `url(${actor.image})` }}
+                        className="view-image-icons"
+                        style={{ backgroundImage: `url(${actor.image})`, height: this.state.name === actor.name ? 100 : 75, width: this.state.name === actor.name ? 100 : 75 }}
                       />
                     ) : (
-                        <div
-                          className="img-circle-letter view-image-icons"
-                          style={{ backgroundColor: '#0090FF' }}
-                        >
-                          {actor.name[0]}
-                        </div>
-                      )
+                      <div
+                        className="view-image-icons"
+                        style={{ backgroundColor: '#0090FF', height: this.state.name === actor.name ? 100 : 75, width: this.state.name === actor.name ? 100 : 75 }}
+                      >
+                        {actor.name[0]}
+                      </div>
+                    )
                   }
                 </div>
               ))
