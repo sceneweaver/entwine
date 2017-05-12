@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import store from '../store';
 import findPlaces from '../../server/utils/findPlaces';
+<<<<<<< HEAD
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
 import EditorMapModule from './EditorMapModule';
+=======
+import EditorMapModule from './EditorMapModule';
+import EditorMapsLocationItem from './EditorMapsLocationItem';
+>>>>>>> e2bb4dd3a5ac34a1590684e3f8a08af9eb09d29b
 
 /* ----- COMPONENT ----- */
 
@@ -56,94 +61,84 @@ class EditorMaps extends Component {
     return (
       <div className="maps-module">
         <div className="flexcontainer-module-header">
-          <div className="module-header">
-            <h4>Map</h4>
+
+          <div className="module-collapse-btn">
+            <button
+              onClick={this.props.onHideMaps}
+              className="btn actors-module-btn"
+            >
+              <span className="glyphicon glyphicon-menu-right"></span>
+            </button>
           </div>
-          <div className="button-container flex-self-right">
+
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Map</h3>
+
+          <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshLocations}
-              className="btn btn-default"
+              className="btn maps-module-btn"
             >
-              <span className="glyphicon glyphicon-refresh" />
+              Regenerate All &nbsp; <span className="glyphicon glyphicon-refresh" />
             </button>
+            {/*
             <button
               onClick={this.props.onAddLocation}
-              className="btn btn-default"
+              className="btn maps-module-btn"
             >
-              <span className="glyphicon glyphicon-plus" />
+              Add Location &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
+            */}
           </div>
+
         </div>
+
         <div className="locations-box">
         {
-
-          this.props.locations[0] ?
-          <div className="location-item">
-                  <div className="location-info">
-                    <label>Location:</label>
-                    <input
-                      type="text"
-                      name="location-name-field"
-                      value={this.props.locations[0].name}
-                      onChange={() => {
-                        this.props.onLocationsChange.bind(this, 'name');
-                      }}
-                    /><br />
-                  </div>
-                  <div className="location-delete">
-                    <button
-                      className="btn btn-default"
-                      onClick={this.props.onDeleteLocation.bind(this)}
-                    >X
-                      </button>
-                  </div>
-                </div>
-                :
-                <div>Nothing here</div>
+          this.props.locations.length ?
+              <EditorMapsLocationItem
+                location={this.props.locations[0]}
+                index={0}
+                key={0}
+                position={this.props.position}
+              />
+            : <div>Nothing here</div>
         }
-
-
         </div>
+
         <br />
-        <EditorMapModule position={this.props.position}/>
+        <EditorMapModule position={this.props.position} />
       </div>
     );
   }
 }
 
-
-
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeLocation, deleteLocation, addLocation, generateMapLocations } from '../reducers/editor';
+import { addLocation, generateMapLocations, toggleMaps } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
-  position: ownProps.position
+  position: ownProps.position,
+  sceneTitle: state.editor.scenes[ownProps.position].title,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  onHideMaps(event) {
+    event.preventDefault();
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
+    dispatch(toggleMaps(ownProps.position, true));
+  },
   onRefreshLocations(event) {
     event.preventDefault();
     event.stopPropagation();
     dispatch(generateMapLocations(ownProps.position));
-  },
-  onLocationsChange(locationIndex, field, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    dispatch(changeLocation(ownProps.position, locationIndex, field, event.target.value));
   },
   onAddLocation(event) {
     event.preventDefault();
     event.stopPropagation();
     dispatch(addLocation(ownProps.position));
   },
-  onDeleteLocation(locationIndex, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    dispatch(deleteLocation(ownProps.position, locationIndex));
-  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorMaps);

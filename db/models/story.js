@@ -21,7 +21,9 @@ module.exports = db => db.define('stories', {
 }, {
   defaultScope: {
     include: [{
-      model: db.model('scenes')
+      model: db.model('scenes'),
+    }, {
+      model: db.model('users'),
     }],
     order: [
       [db.model('scenes'), 'position', 'ASC']

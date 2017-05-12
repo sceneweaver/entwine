@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
 import secrets from '../../secrets.json';
@@ -6,15 +5,6 @@ import secrets from '../../secrets.json';
 let googleMapsClient = require('@google/maps').createClient({
   key: secrets.googlemaps
 });
-
-// googleMapsClient.geocode({ // this is for testing and demo purposes - shows how the geocode method works
-//   address: 'Los Angeles'
-// }, function(err, response) {
-//   if (!err) {
-//     console.log(response.json.results[0]);
-//     console.log(response.json.results[0].geometry.location);
-//   }
-// });
 
 /* ----- COMPONENT ----- */
 
@@ -99,9 +89,7 @@ class EditorMapModule extends Component {
      var reactMapString = "style={`mapbox://styles/mapbox/replaceStyle-v9`} accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=[replaceZoom] center=replaceCoords containerStyle={{ height: '500px', width: 'auto' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinates=replaceCoords /> </Layer>  <Marker coordinates=replaceCoords anchor='bottom' </Marker> </div>"
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-md-4">
-            <h2> Map Creator </h2>
+        <div className="row map-editor-header">
 
             <b> Map Style: &nbsp; </b>
             <select value={this.state.mapboxStyle} onChange={this.changeMapboxStyle}>
@@ -126,9 +114,15 @@ class EditorMapModule extends Component {
               <option value="19">19</option>
             </select>
 
+						{
+							this.props.locations[0] ?
+							<button onClick={this.props.onSaveMap.bind(this, this.props.position, reactMapString, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
+							: null
+						}
 
-          </div>
-          <div className="col-md-8">
+				</div>
+
+          <div className="row map-editor">
           {
                 this.props.locations[0] ?
             <div>
@@ -158,14 +152,12 @@ class EditorMapModule extends Component {
                         </Marker>
                       </div>
                       </ReactMapboxGl>
-                      <button onClick={this.props.onSaveMap.bind(this, this.props.position, reactMapString, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
-                      </div>
-                      : <h2> nothing here</h2>
+											</div>
+                      : <h2>Add locations to generate map</h2>
 
               }
           </div>
         </div>
-      </div>
     );
   }
 }
@@ -212,3 +204,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(EditorMapModule);
               //     }))
               //     : <div style={{ backgroundColor: 'lightgrey', height: 500, width: 'auto', justifyContent: 'center', alignItems: 'center', display: 'flex', fontSize: 20 }}> <span>Waiting for location input...</span> </div>
               // }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditorMapModule);

@@ -58,6 +58,7 @@ import { addScene, changeStoryTitle, submitStory } from '../reducers/editor';
 const mapStateToProps = store => ({
   editor: store.editor,
   storyTitle: store.editor.title,
+  user: store.auth
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -69,7 +70,7 @@ const mapDispatchToProps = dispatch => ({
     event.preventDefault();
     dispatch(changeStoryTitle(event.target.value));
   },
-  onSubmitStory(event) {
+  onSubmitStory(user, event) {
     event.preventDefault();
     dispatch(submitStory());
   }

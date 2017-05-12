@@ -31,12 +31,12 @@ class ViewActors extends Component {
                   {
                     actor.image ? (
                       <div
-                        className="img-circle"
+                        className="img-circle view-image-icons"
                         style={{ backgroundImage: `url(${actor.image})` }}
                       />
                     ) : (
                         <div
-                          className="img-circle-letter"
+                          className="img-circle-letter view-image-icons"
                           style={{ backgroundColor: '#0090FF' }}
                         >
                           {actor.name[0]}
@@ -54,8 +54,8 @@ class ViewActors extends Component {
           {
             this.state.on ? (
               <div>
-                <h3 className="article-font">{this.state.name}</h3>
-                <p className="article-font">{this.state.description}</p>
+                <h3 className="view-story-heading">{this.state.name}</h3>
+                <p className="view-actors-desc">{this.state.description}</p>
               </div>
             ) : (
                 null
