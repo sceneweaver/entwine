@@ -428,3 +428,16 @@ html, body, #main {
   font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
+
+.hero-viewer {
+  width: 100%;
+  padding: 30px;
+}
+
+.hero-image-container {
+  width: 100%
+}
+
+.hero-image-container > img {
+  width: 100%;
+}
