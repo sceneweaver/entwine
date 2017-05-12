@@ -48,7 +48,7 @@ class EditorHero extends Component {
                 </div>
               </div>
               )
-            : (<p>Analyze text to generate a hero -- or upload one yourself.</p>)
+            : (<p>Search for a hero image</p>)
           }
         </div>
 
