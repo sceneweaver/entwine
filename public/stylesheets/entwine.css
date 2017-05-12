@@ -385,6 +385,19 @@ html, body, #main {
   font-family: 'Playfair Display SC', serif;
 }
 
+.scene-hero {
+  width: 100%;
+  position: fixed;
+  top: 0%;
+  left: 0;
+  z-index: 0;
+}
+
+.article-content {
+  position: relative;
+  z-index: 2;
+}
+
 .article-titles > h3 {
   font-weight: bold;
 }
@@ -407,6 +420,7 @@ html, body, #main {
 
 .scenes-nav {
   position: fixed;
+  z-index: 1;
   top: 20%;
   left: 0;
   display: inline-flex;

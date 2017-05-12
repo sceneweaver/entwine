@@ -85,6 +85,8 @@ select {
   opacity: 0; }
 
 .navbar {
+  position: relative;
+  z-index: 1;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid lightgrey; }

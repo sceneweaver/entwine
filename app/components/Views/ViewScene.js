@@ -22,36 +22,45 @@ class Scene extends Component {
       zoom = this.props.maps[0].zoom;
     }
     return (
-      <div className="col-md-10">
+      <div className="col-md-12">
 
-      <div className="col-md-11 article-titles">
-          <h3 className="view-story-heading story">{this.props.storyTitle}</h3>
-          <h1 className="view-story-heading">{this.props.currScene.title}</h1>
-          <h3>by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h3>
+        <div className="scene-hero">
+
+          { this.props.maps && this.props.maps.length ?
+              <ReactMapboxGl
+                style={`mapbox://styles/mapbox/${style}-v9`}
+                accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
+                zoom={[zoom]}
+                pitch={30}
+                center={coords}
+                containerStyle={{
+                  height: "500px",
+                  width: "auto"
+                }}>
+            </ReactMapboxGl> : null}
+
         </div>
 
-        <div className="col-md-4 article-text">
-          <div
-            className="article-text"
-            dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
-          />
+        <div className="article-content col-md-4 col-md-offset-2">
+
+          <div className="article-titles">
+            <h3 className="view-story-heading story">{this.props.storyTitle}</h3>
+            <h1 className="view-story-heading">{this.props.currScene.title}</h1>
+            <h3>by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h3>
+          </div>
+
+          <div className="article-text">
+            <div
+              className="article-text"
+              dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
+            />
+          </div>
+
         </div>
 
         <div className="col-md-5 col-md-offset-1">
-           <ViewActors />
-          { this.props.maps && this.props.maps.length ?
-            <ReactMapboxGl
-              style={`mapbox://styles/mapbox/${style}-v9`}
-              accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-              zoom={[zoom]}
-              pitch={30}
-              center={coords}
-              containerStyle={{
-                height: "500px",
-                width: "auto"
-              }}>
-          </ReactMapboxGl> : null}
 
+           <ViewActors />
 
         </div>
 
