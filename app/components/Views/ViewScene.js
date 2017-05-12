@@ -15,8 +15,12 @@ class Scene extends Component {
   }
 
   render() {
-    let coords;
-    if (this.props.maps) coords = this.props.maps[0].coords.split(',');
+    let coords, style, zoom;
+    if (this.props.maps && this.props.maps.length) {
+      coords = this.props.maps[0].coords.split(',');
+      style = this.props.maps[0].style;
+      zoom = this.props.maps[0].zoom;
+    }
     return (
       <div className="col-md-10">
 
@@ -34,11 +38,11 @@ class Scene extends Component {
 
         <div className="col-md-5 col-md-offset-1">
            <ViewActors />
-          { this.props.maps ?
+          { this.props.maps && this.props.maps.length ?
             <ReactMapboxGl
-              style={`mapbox://styles/mapbox/${this.props.maps[0].style}-v9`}
+              style={`mapbox://styles/mapbox/${style}-v9`}
               accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-              zoom={[this.props.maps[0].zoom]}
+              zoom={[zoom]}
               pitch={30}
               center={coords}
               containerStyle={{
