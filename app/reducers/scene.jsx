@@ -15,6 +15,7 @@ export default function reducer (scene = {
   subhead: '',
   text: '',
   actors: [],
+  maps: [],
 }, action) {
   switch (action.type) {
 

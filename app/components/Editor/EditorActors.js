@@ -26,7 +26,7 @@ class EditorActors extends Component {
               onClick={this.props.onRefreshActors}
               className="btn actors-module-btn"
             >
-              Regenerate All &nbsp; <span className="glyphicon glyphicon-refresh" />
+              Generate Actors &nbsp; <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
               onClick={this.props.onAddActor}

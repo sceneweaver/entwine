@@ -31,8 +31,9 @@ module.exports = db => db.define('stories', {
   }
 });
 
-module.exports.associations = (Story, {User, Scene, Actor}) => {
+module.exports.associations = (Story, {User, Scene, Actor, Map}) => {
   Story.belongsTo(User);
   Story.hasMany(Scene);
   Story.hasMany(Actor);
+  Story.hasMany(Map);
 };

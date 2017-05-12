@@ -15,10 +15,10 @@ const app = require('APP')
     , metaModels = {
       OAuth: require('./oauth'),
       User: require('./user'),
+      Map: require('./map'),
       Actor: require('./actor'),
       Scene: require('./scene'),
       Story: require('./story'),
-      Map: require('./map')
     }
     , {mapValues} = require('lodash');
 

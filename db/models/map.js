@@ -1,11 +1,17 @@
 'use strict';
 
-const { STRING, TEXT } = require('sequelize');
+const { STRING, TEXT, INTEGER } = require('sequelize');
 
 module.exports = db => db.define('maps', {
-  html: {
-    type: TEXT
-  }
+  coords: {
+    type: STRING
+  },
+  style: {
+    type: STRING
+  },
+  zoom: {
+    type: INTEGER
+  },
 });
 
 module.exports.associations = (Map, {Scene, Story}) => {

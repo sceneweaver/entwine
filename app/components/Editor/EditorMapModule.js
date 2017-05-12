@@ -94,55 +94,45 @@ class EditorMapModule extends Component {
   }
 
   render() {
-    const reactMapString = "<ReactMapboxGl style={`mapbox://styles/mapbox/replaceStyle-v9`}accessToken='pk.e" +
-        "yJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lf" +
-        "oQhC_abI5w' zoom=replaceZoom center=replaceCoords containerStyle={{ height: '500" +
-        "" +
-        "px', width: 'auto', position: 'relative' }}> <div> <Layer type='sym" +
-        "bol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinates=re" +
-        "placeCoords /> </Layer>  <Marker coordinates=replaceCoords anchor='bottom' </Mar" +
-        "ker> </div>  </ReactMapboxGl>";
     return (
       <div className="editor-map">
 
-        <div className="map-editor-header">
+  			<div className="map-editor-header">
 
-          <div className="map-style">
-            <label>
-              Map Style: &nbsp;
-            </label>
-            <select value={this.state.mapboxStyle} onChange={this.changeMapboxStyle}>
-              <option value="basic">Basic</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="outdoors">Outdoors</option>
-              <option value="satellite">Satellite</option>
-            </select>
-          </div>
+					<div className="map-style">
+						<label> Map Style: &nbsp; </label>
+						<select
+							value={this.state.mapboxStyle}
+							onChange={this.changeMapboxStyle}
+						>
+							<option value="basic">Basic</option>
+							<option value="light">Light</option>
+							<option value="dark">Dark</option>
+							<option value="outdoors">Outdoors</option>
+							<option value="satellite">Satellite</option>
+						</select>
+					</div>
 
-          <div className="map-zoom">
-            <label>
-              Map Zoom: &nbsp;
-            </label>
-            <select value={this.state.mapboxZoom} onChange={this.changeMapboxZoom}>
-              <option value="1">1</option>
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="7">7</option>
-              <option value="9">9</option>
-              <option value="11">11</option>
-              <option value="13">13</option>
-              <option value="15">15</option>
-              <option value="17">17</option>
-              <option value="19">19</option>
-            </select>
-          </div>
+					<div className="map-zoom">
+						<label> Map Zoom: &nbsp; </label>
+						<select
+							value={this.state.mapboxZoom}
+							onChange={this.changeMapboxZoom}
+						>
+							<option value="1">1</option>
+							<option value="3">3</option>
+							<option value="5">5</option>
+							<option value="7">7</option>
+							<option value="9">9</option>
+							<option value="11">11</option>
+							<option value="13">13</option>
+							<option value="15">15</option>
+							<option value="17">17</option>
+							<option value="19">19</option>
+						</select>
+					</div>
 
-          <button
-            onClick={this
-            .props
-            .onSaveMap
-            .bind(this, this.props.position, reactMapString, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
+          <button onClick={this.props.onSaveMap.bind(this, this.props.position, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
 
         </div>
 
@@ -182,8 +172,8 @@ class EditorMapModule extends Component {
 }
 
 /* ----- CONTAINER ----- */
-import {connect} from 'react-redux';
-import {setMap, addMap} from '../../reducers/editor';
+import { connect } from 'react-redux';
+import { setMap } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
@@ -192,14 +182,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSaveMap(position, reactMapString, style, coords, zoom) {
-    coords = '[' + coords.join(', ') + ']'
-    let string = reactMapString
-      .replace(/replaceStyle/g, style)
-      .replace(/replaceCoords/g, coords)
-      .replace(/replaceZoom/g, zoom);
-    dispatch(setMap(position, string));
-    dispatch(addMap(sceneId))
+  onSaveMap(position, style, coords, zoom) {
+    let coordsStr = coords.join(', ');
+    dispatch(setMap(position, coordsStr, style, zoom));
   }
 });
 

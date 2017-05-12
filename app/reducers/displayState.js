@@ -83,6 +83,7 @@ export default function reducer(state = {
     position: 0,
     actors: [],
     locations: [],
+    maps: []
   }
 }, action) {
   const newState = Object.assign({}, state)
@@ -103,7 +104,6 @@ export default function reducer(state = {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-
 export const fetchStory = (id) => dispatch => {
   axios.get(`/api/stories/${id}`)
     .then(res => {
@@ -119,4 +119,3 @@ export const setFakeState = () => dispatch => {
 export const fetchScene = position => (dispatch, getState) => {
   dispatch(setCurrScene(getState().displayState.scenes[position]));
 };
-

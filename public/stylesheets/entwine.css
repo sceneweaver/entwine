@@ -1,6 +1,20 @@
-.container-fluid {
+html, body, #main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.story-wrapper {
+  width: 100%;
+  height: 100%;
   padding-left: 0;
   padding-right: 0;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: absolute;
+  top: 15%;
 }
 
 .margin-top-20 {
@@ -9,6 +23,23 @@
 
 .search-box {
   background-color: floralwhite;
+}
+
+/* ----- Home Page ----- */
+
+.home > .banner > h1 {
+  font-family: 'Nixie One', cursive;
+  font-size: 1.6em;
+}
+
+.home-page-header {
+  font-family: 'Nixie One', cursive;
+  font-size: 1.5em;
+}
+
+.home-page-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1em;
 }
 
 /* ----- Editor Styling ----- */
@@ -125,6 +156,10 @@
   background-color: #84F4A7;
 }
 
+.locations-box > p {
+  font-family: 'Nixie One', cursive;
+}
+
 .editor-map {
   width: 100%;
 }
@@ -136,6 +171,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  font-family: 'Nixie One', cursive;
 }
 
 .generated-map {
@@ -327,6 +363,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Nixie One', cursive;
+  font-size: 1.7em;
 }
 
 /* ----- ViewStory / ViewScene Styling ----- */
@@ -362,8 +400,9 @@
 .scenes-nav {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  height: 60%;
 }
 
 .scenes-nav-title {
