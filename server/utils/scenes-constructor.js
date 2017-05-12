@@ -1,7 +1,3 @@
-import Actor from './actors-constructor';
-import MapModule from './maps-constructor'
-import Location from './locations-constructor';
-
 let key = 1;
 
 export default class Scene {

@@ -49,7 +49,7 @@ class EditorActors extends Component {
                   position={this.props.position}
                 />
               );
-            })) : (<p>No actors yet</p>)
+            })) : (<p>Generate actors to generate module</p>)
           }
         </div>
       </div>
