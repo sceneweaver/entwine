@@ -140,7 +140,6 @@ class EditorMapModule extends Component {
 						</select>
 					</div>
 
-          <button onClick={this.props.onSaveMap.bind(this, this.props.position, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
 
         </div>
 
@@ -152,6 +151,7 @@ class EditorMapModule extends Component {
                     return (
                       <Tab label={`Map of ` + location.name} key={i}>
                         <div >
+                         <button onClick={this.props.onSaveMap.bind(this, this.props.position, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
                           <ReactMapboxGl
                             style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
                             accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
@@ -214,40 +214,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorMapModule);
 
-
-// <div className="generated-map">
-//           {this.props.locations.length
-//             ? this.props.locations.map((location, i) => {
-//               console.log("loc ", location, "i ", i)
-//               return (
-//                 <div key={i}>
-
-//                 <ReactMapboxGl style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]} pitch={this.state.mapboxPitch} center={this.props.locations[0].coords} movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
-//                   interactive="true" // if false, map cannot be manipulated
-//                   containerStyle={{
-//                   position: 'relative',
-//                   height: "50vh",
-//                   width: "auto",
-//                   display: "flex",
-//                   top: "100px"
-//                 }}>
-//                   <div>
-//                     {/* Need to set position of inner canvas to relative */}
-//                     <Layer
-//                       type="symbol"
-//                       id="marker"
-//                       layout={{
-//                       "icon-image": "marker-15"
-//                     }}>
-//                       <Feature coordinates={this.props.locations[0].coords}/>
-//                     </Layer>
-//                     <Marker coordinates={this.props.locations[0].coords} anchor="bottom"/>
-//                   </div>
-//                 </ReactMapboxGl>
-//               </div>
-//             )
-//             })
-
-//             : null
-//           }
-//                   </div>
