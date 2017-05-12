@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { unsplashClientId } from '../../secrets.json';
 
+let unsplash = process.env.UNSPLASH_ID || unsplashClientId;
+
 const findHeroImage = (query) => {
   return axios.get('https://api.unsplash.com/search/photos', {
     params: {
@@ -8,7 +10,7 @@ const findHeroImage = (query) => {
     },
     headers: {
       'Accept-Version': 'v1',
-      'Authorization': 'Client-ID ' + process.env.UNSPLASH_ID || unsplashClientId
+      'Authorization': 'Client-ID ' + unsplash
     }
   })
   .then(res => {
