@@ -60,7 +60,7 @@ class EditorMaps extends Component {
               onClick={this.props.onHideMaps}
               className="btn maps-module-btn"
             >
-              <span className="glyphicon glyphicon-menu-right"></span>
+              Collapse &nbsp; <span className="glyphicon glyphicon-menu-right"></span>
             </button>
           </div>
 

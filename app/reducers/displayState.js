@@ -33,10 +33,13 @@ export default function reducer(state = {
     position: 0,
     actors: [],
     locations: [],
-    maps: []
+    maps: [],
+    heroURL: '',
+    heroPhotog: '',
+    heroPhotogURL: ''
   }
 }, action) {
-  const newState = Object.assign({}, state)
+  const newState = Object.assign({}, state);
   switch (action.type) {
     case SET_STORY:
       newState.title = action.title;

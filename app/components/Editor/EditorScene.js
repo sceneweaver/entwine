@@ -12,6 +12,7 @@ import {
 import { stateToHTML } from 'draft-js-export-html';
 import EditorActors from './EditorActors';
 import EditorMaps from './EditorMaps';
+import EditorHero from './EditorHero';
 
 /* ----- COMPONENT STYLES & DRAFT.JS EDITOR UTILS ----- */
 
@@ -267,6 +268,14 @@ class EditorScene extends Component {
 							Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
 						</button>
 
+						<button
+							className="btn btn-default module-btn"
+							name={this.props.position}
+							onClick={this.props.onShowHero}
+						>
+							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
+						</button>
+
 					</div>
 
 					<div className="form-group editorscene-texteditor">
@@ -354,7 +363,9 @@ class EditorScene extends Component {
 							? <EditorMaps position={this.props.position} />
 							: this.props.whichModule === 'actors'
 								? <EditorActors position={this.props.position} />
-								: null
+								: this.props.whichModule === 'hero'
+									? <EditorHero position={this.props.position} />
+									: null
 					}
 				</div>
 
@@ -368,7 +379,7 @@ class EditorScene extends Component {
 
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { toggleActors, setSceneText, setSceneHTML, setSceneTitle, deleteScene, toggleMaps } from '../../reducers/editor';
+import { toggleActors, toggleMaps, toggleHero, setSceneText, setSceneHTML, setSceneTitle, deleteScene  } from '../../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
 	editor: store.editor,
@@ -383,12 +394,17 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onShowActors(event) {
 		event.preventDefault();
 		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-		dispatch(toggleActors(ownProps.position, true));
+		dispatch(toggleActors(ownProps.position));
 	},
 	onShowMaps(event) {
 		event.preventDefault();
 		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
 		dispatch(toggleMaps(ownProps.position));
+	},
+	onShowHero(event) {
+		event.preventDefault();
+		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
+		dispatch(toggleHero(ownProps.position));
 	},
 	onSceneTitleChange(event) {
 		event.preventDefault();
