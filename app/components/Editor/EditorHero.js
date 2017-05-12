@@ -39,8 +39,15 @@ class EditorHero extends Component {
         </div>
 
         <div className="hero-viewer">
-          {this.props.hero
-            ? (<img src={this.props.hero} />)
+          {this.props.heroURL
+            ? (
+              <div className="hero-image-container">
+                <img src={this.props.heroURL} />
+                <div className="hero-credit">
+                  <h4>Photo by <a href={this.props.heroCredit.photogURL}>{this.props.heroCredit.photog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+                </div>
+              </div>
+              )
             : (<p>Analyze text to generate a hero -- or upload one yourself.</p>)
           }
         </div>
@@ -57,7 +64,8 @@ import { addActor, generateHero, setHeroQuery, toggleHero } from '../../reducers
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,
-  hero: state.editor.scenes[ownProps.position].hero,
+  heroCredit: state.editor.scenes[ownProps.position].heroCredit,
+  heroURL: state.editor.scenes[ownProps.position].heroURL,
   heroQuery: state.editor.scenes[ownProps.position].heroQuery,
   position: ownProps.position
 });
