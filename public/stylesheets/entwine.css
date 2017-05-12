@@ -381,3 +381,50 @@ html, body, #main {
   font-size: 1.7em;
 }
 
+/* ----- EditorHero Styling ----- */
+
+.hero-module {
+  background-color: #7CC6FE;
+  padding: 30px;
+  width: 100%;
+}
+
+.hero-module-btn {
+  background-color: #0090FF;
+  margin: 10px;
+}
+
+.flexcontainer-module-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.module-header {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.flex-self-right {
+  align-self: flex-end;
+}
+
+.hero-box {
+  background-color: #D1EBFF;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-box > p {
+  font-family: 'Nixie One', cursive;
+  margin-bottom: 0;
+}

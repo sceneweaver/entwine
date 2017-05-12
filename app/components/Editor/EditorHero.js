@@ -13,7 +13,7 @@ class EditorHero extends Component {
               onClick={this.props.onHideHero}
               className="btn hero-module-btn"
             >
-              <span className="glyphicon glyphicon-menu-right"></span>
+              Collapse &nbsp; <span className="glyphicon glyphicon-menu-right"></span>
             </button>
           </div>
 
@@ -22,13 +22,13 @@ class EditorHero extends Component {
           <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
-              className="btn actors-module-btn"
+              className="btn hero-module-btn"
             >
               Generate Hero &nbsp; <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
               onClick={this.props.onAddActor}
-              className="btn actors-module-btn"
+              className="btn hero-module-btn"
             >
               Add Hero URL &nbsp; <span className="fa fa-file-image-o" />
             </button>
@@ -36,18 +36,10 @@ class EditorHero extends Component {
 
         </div>
 
-        <div className="actors-box">
-          {this.props.actors.length ? (
-            this.props.actors.map((actor, index) => {
-              return (
-                <EditorActorItem
-                  key={index}
-                  index={index}
-                  actor={actor}
-                  position={this.props.position}
-                />
-              );
-            })) : (<p>Generate actors to generate module</p>)
+        <div className="hero-box">
+          {this.props.hero
+            ? (<img src={this.props.hero} />)
+            : (<p>Analyze text to generate a hero -- or upload one yourself.</p>)
           }
         </div>
       </div>
@@ -62,7 +54,7 @@ import { addActor, generateActors, toggleActors } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,
-  actors: state.editor.scenes[ownProps.position].actors,
+  hero: state.editor.scenes[ownProps.position].hero,
   position: ownProps.position
 });
 

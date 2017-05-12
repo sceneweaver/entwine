@@ -11,6 +11,7 @@ export default class Scene {
     this.whichModule = null;
     this.maps = [];
     this.key = key++;
+    this.hero = '';
   }
   getPosition(index) {
     this.position = index;

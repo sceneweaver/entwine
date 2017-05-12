@@ -15,7 +15,7 @@ class EditorActors extends Component {
               onClick={this.props.onHideActors}
               className="btn actors-module-btn"
             >
-              <span className="glyphicon glyphicon-menu-right"></span>
+              Collapse &nbsp; <span className="glyphicon glyphicon-menu-right"></span>
             </button>
           </div>
 
