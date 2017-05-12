@@ -290,7 +290,7 @@ class EditorScene extends Component {
 								value={this.props.title}
 							/>
 
-							<div className="editor-right-align btn-group">
+							<div className="editor-right-align btn-group-vertical">
 								<button
 									className="editor-btn btn btn-default"
 									onClick={this.onBoldClick.bind(this)}
