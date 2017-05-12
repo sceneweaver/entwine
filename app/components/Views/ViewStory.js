@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import ViewStorySlider from './ViewStorySlider.js';
 import ViewScene from './ViewScene.js';
 
 /* ----- COMPONENT ----- */
@@ -7,24 +8,17 @@ import ViewScene from './ViewScene.js';
 class Story extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
+      <div className="story-wrapper">
+
           <div className="col-md-1 scenes-nav col-md-offset-1">
             <h4 className="scenes-nav-title">Navigate<br />Scenes</h4>
 
-            <input
-              type="range"
-              id="scene-navigator"
-              min={0}
-              max={this.props.scenes.length - 1}
-              step={1}
-              defaultValue={this.props.currScene.position}
-              onChange={this.props.getNewScene}
-            />
+            <ViewStorySlider />
 
           </div>
+
           <ViewScene />
-        </div>
+
       </div>
     );
   }
@@ -33,18 +27,10 @@ class Story extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { fetchScene } from '../../reducers/displayState';
 
 const mapStateToProps = store => ({
   currScene: store.displayState.currScene,
   scenes: store.displayState.scenes
 });
 
-const mapDispatchToProps = dispatch => ({
-  getNewScene(event) {
-    event.preventDefault();
-    dispatch(fetchScene(event.target.value));
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Story);
+export default connect(mapStateToProps)(Story);

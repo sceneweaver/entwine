@@ -1,6 +1,21 @@
-.container-fluid {
+html, body, #main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.story-wrapper {
+  width: 100%;
+  height: 100%;
   padding-left: 0;
   padding-right: 0;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: absolute;
+  top: 15%;
 }
 
 .margin-top-20 {
@@ -386,8 +401,9 @@
 .scenes-nav {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  height: 60%;
 }
 
 .scenes-nav-title {
