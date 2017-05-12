@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import ViewActors from './ViewActors';
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
+import ReactTimeout from 'react-timeout'
 
 /* ----- COMPONENT ----- */
 
 class Scene extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      coords: '',
+      style: 'light',
+      zoom: 13,
+    }
+  }
 
   setInnerHTML(html) {
     return { __html: html }
@@ -14,13 +24,33 @@ class Scene extends Component {
     return { __html: jsx }
   }
 
-  render() {
-    let coords, style, zoom;
-    if (this.props.maps && this.props.maps.length) {
-      coords = this.props.maps[0].coords.split(',');
-      style = this.props.maps[0].style;
-      zoom = this.props.maps[0].zoom;
+  componentWillReceiveProps(nextProps) {
+    // to animate map, set initial zoom to something more zoomed out than the actual value
+    if (nextProps.maps && nextProps.maps.length) {
+      let zoom = nextProps.maps[0].zoom;
+      if (zoom > 12) zoom -= 9;
+      else if (zoom > 6) zoom -= 3;
+      else if (zoom > 2) zoom -= 2;
+
+      this.setState({
+        coords: nextProps.maps[0].coords.split(','),
+        style: nextProps.maps[0].style,
+        zoom: zoom
+      })
     }
+
+    this.props.setTimeout(() => {
+      if (nextProps.maps && nextProps.maps.length) {
+      this.setState({
+        coords: nextProps.maps[0].coords.split(','),
+        style: nextProps.maps[0].style,
+        zoom: nextProps.maps[0].zoom
+      })
+    }
+    }, 2001)
+  }
+
+  render() {
     return (
       <div className="col-md-12">
 
@@ -29,11 +59,11 @@ class Scene extends Component {
           {
             this.props.maps && this.props.maps.length
             ? (<ReactMapboxGl
-              style={`mapbox://styles/mapbox/${style}-v9`}
+              style={`mapbox://styles/mapbox/${this.state.style}-v9`}
               accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-              zoom={[zoom]}
+              zoom={[this.state.zoom]}
               pitch={30}
-              center={coords}
+              center={this.state.coords}
               containerStyle={{
                 height: "500px",
                 width: "auto"
@@ -74,7 +104,6 @@ class Scene extends Component {
           <ViewActors />
 
         </div>
-
       </div>
 
     );
@@ -98,4 +127,4 @@ const mapStateToProps = store => ({
   heroPhotogURL: store.displayState.currScene.heroPhotogURL
 });
 
-export default connect(mapStateToProps)(Scene);
+export default connect(mapStateToProps)(ReactTimeout(Scene));
