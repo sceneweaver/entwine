@@ -48,7 +48,7 @@ class EditorHero extends Component {
                 </div>
               </div>
               )
-            : (<p>Search for a hero image</p>)
+            : null
           }
         </div>
 
