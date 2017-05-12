@@ -26,17 +26,17 @@ class Scene extends Component {
 
         <div className="scene-hero">
 
-          { this.props.maps && this.props.maps.length ?
-              <ReactMapboxGl
-                style={`mapbox://styles/mapbox/${style}-v9`}
-                accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-                zoom={[zoom]}
-                pitch={30}
-                center={coords}
-                containerStyle={{
-                  height: "500px",
-                  width: "auto"
-                }}>
+          {this.props.maps && this.props.maps.length ?
+            <ReactMapboxGl
+              style={`mapbox://styles/mapbox/${style}-v9`}
+              accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
+              zoom={[zoom]}
+              pitch={30}
+              center={coords}
+              containerStyle={{
+                height: "500px",
+                width: "auto"
+              }}>
             </ReactMapboxGl> : null}
 
         </div>
@@ -49,18 +49,16 @@ class Scene extends Component {
             <h3>by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h3>
           </div>
 
-          <div className="article-text">
-            <div
-              className="article-text"
-              dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
-            />
-          </div>
+          <div
+            className="article-text"
+            dangerouslySetInnerHTML={this.setInnerHTML(this.props.html)}
+          />
 
         </div>
 
-        <div className="col-md-5 col-md-offset-1">
+        <div className="article-modules col-md-5 col-md-offset-1">
 
-           <ViewActors />
+          <ViewActors />
 
         </div>
 

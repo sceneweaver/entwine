@@ -383,6 +383,7 @@ html, body, #main {
 
 .view-story-heading {
   font-family: 'Playfair Display SC', serif;
+  margin-top: 0;
 }
 
 .scene-hero {
@@ -396,6 +397,12 @@ html, body, #main {
 .article-content {
   position: relative;
   z-index: 2;
+  background-color: rgba(255,255,255,0.8);
+  padding: 40px;
+}
+
+.article-titles {
+  margin-bottom: 40px;
 }
 
 .article-titles > h3 {
@@ -521,6 +528,12 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #357cb9;
+}
+
+.article-modules {
+  position: fixed;
+  right: 5%;
+  top: 55%;
 }
 
 /* ----- ViewActors Styling ----- */
