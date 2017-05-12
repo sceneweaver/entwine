@@ -65,7 +65,7 @@ class Scene extends Component {
               pitch={30}
               center={this.state.coords}
               containerStyle={{
-                height: "500px",
+                height: "100%",
                 width: "auto"
               }}>
               </ReactMapboxGl>)
