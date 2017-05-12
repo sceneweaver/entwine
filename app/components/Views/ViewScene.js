@@ -25,7 +25,7 @@ class Scene extends Component {
       <div className="col-md-10">
 
       <div className="col-md-11 article-titles">
-          <h3 className="view-story-heading story">{this.props.storyTitle} by {this.props.user ? this.props.user.username : 'anonymous'}</h3>
+          <h3 className="view-story-heading story">{this.props.storyTitle} by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h3>
           <h1 className="view-story-heading">{this.props.currScene.title}</h1>
         </div>
 
@@ -70,7 +70,8 @@ const mapStateToProps = store => ({
   actors: store.displayState.currScene.actors,
   storyTitle: store.displayState.title,
   currScene: store.displayState.currScene,
-  maps: store.displayState.currScene.maps
+  maps: store.displayState.currScene.maps,
+  user: store.displayState.user
 });
 
 export default connect(mapStateToProps)(Scene);

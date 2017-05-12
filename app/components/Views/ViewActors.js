@@ -20,6 +20,7 @@ class ViewActors extends Component {
 
               this.props.actors.map(actor => (
                 <div
+                  className="view-actors-head"
                   key={actor.name}
                   onMouseEnter={() => this.setState({
                     on: true,

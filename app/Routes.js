@@ -19,7 +19,7 @@ const Routes = (props) => (
       <IndexRoute component={Home} />
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
-      <Route path="stories/fakeStory" component={ViewStory} onEnter={props.onFakeStoryEnter} />
+      <Route path="stories/featured" component={ViewStory} onEnter={props.onFakeStoryEnter} />
       <Route path="stories/:storyId" component={ViewStory} onEnter={props.onRealStoryEnter} />
       <Route path="editor" component={Editor} />
       <Route path="stories" component={StoriesList} />

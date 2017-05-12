@@ -512,6 +512,7 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  flex-wrap: wrap;
 }
 
 .view-actors-info-box {
@@ -519,8 +520,9 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
-.view-image-icons {
+.view-actors-head {
   margin: 0 5px;
+
 }
 
 .view-actors-desc {
