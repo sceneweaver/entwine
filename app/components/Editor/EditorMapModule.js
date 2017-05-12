@@ -19,18 +19,10 @@ class EditorMapModule extends Component {
       mapboxInteractivity: true,
       mapboxAnimationMethod: 'flyTo'
     };
-    this.onFindCoordsClick = this
-      .onFindCoordsClick
-      .bind(this);
-    this.findCoordinates = this
-      .findCoordinates
-      .bind(this);
-    this.changeMapboxStyle = this
-      .changeMapboxStyle
-      .bind(this);
-    this.changeMapboxZoom = this
-      .changeMapboxZoom
-      .bind(this);
+    this.onFindCoordsClick = this.onFindCoordsClick.bind(this);
+    this.findCoordinates = this.findCoordinates.bind(this);
+    this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
+    this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
   }
   findCoordinates(location) {
     googleMapsClient.geocode({
@@ -51,17 +43,12 @@ class EditorMapModule extends Component {
           style = 'light';
         }
 
-        // if location type includes
-        if (results.types.includes('country'))
-          zoom = 3;
-        else if (results.types.includes('administrative_area_level_1'))
-          zoom = 5;
-        else if (results.types.includes('administrative_area_level_2'))
-          zoom = 7;
-        else if (results.types.includes('administrative_area_level_3'))
-          zoom = 8;
-        else
-          zoom = 13;
+        // if location type includes country or administrative area, set the zoom levels appropriately
+        if (results.types.includes('country')) zoom = 3;
+        else if (results.types.includes('administrative_area_level_1')) zoom = 5;
+        else if (results.types.includes('administrative_area_level_2')) zoom = 7;
+        else if (results.types.includes('administrative_area_level_3')) zoom = 8;
+        else zoom = 13;
 
         // google gives an object {lat: x, lng: y} -> reactmapboxgl takes it in the form
         // of [lng, lat]

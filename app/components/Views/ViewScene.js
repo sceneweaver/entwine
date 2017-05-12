@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ViewActors from './ViewActors';
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
-import ReactTimeout from 'react-timeout'
+import ReactTimeout from 'react-timeout';
 
 /* ----- COMPONENT ----- */
 

@@ -71,16 +71,8 @@ class EditorMaps extends Component {
               onClick={this.props.onRefreshLocations}
               className="btn maps-module-btn"
             >
-              Generate Locations &nbsp; <span className="glyphicon glyphicon-refresh" />
+              Add Map &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
-            {/*
-            <button
-              onClick={this.props.onAddLocation}
-              className="btn maps-module-btn"
-            >
-              Add Location &nbsp; <span className="glyphicon glyphicon-plus" />
-            </button>
-            */}
           </div>
 
         </div>
@@ -97,7 +89,7 @@ class EditorMaps extends Component {
               />
             );
           })
-            : <p>Generate locations to generate map</p>
+            : <p>No map yet for this scene. Add a new map!</p>
         }
         </div>
 
