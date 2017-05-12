@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
+import React, {Component} from 'react';
+import ReactMapboxGl, {Layer, Feature, Marker} from 'react-mapbox-gl';
 import secrets from '../../../secrets.json';
 
-let googleMapsClient = require('@google/maps').createClient({
-  key: secrets.googlemaps
-});
+let googleMapsClient = require('@google/maps').createClient({key: secrets.googlemaps});
 
 /* ----- COMPONENT ----- */
 
@@ -19,21 +17,30 @@ class EditorMapModule extends Component {
       mapboxZoom: 13,
       mapboxPitch: 30,
       mapboxInteractivity: true,
-      mapboxAnimationMethod: 'flyTo',
+      mapboxAnimationMethod: 'flyTo'
     };
-    this.onFindCoordsClick = this.onFindCoordsClick.bind(this);
-    this.findCoordinates = this.findCoordinates.bind(this);
-    this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
-    this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
+    this.onFindCoordsClick = this
+      .onFindCoordsClick
+      .bind(this);
+    this.findCoordinates = this
+      .findCoordinates
+      .bind(this);
+    this.changeMapboxStyle = this
+      .changeMapboxStyle
+      .bind(this);
+    this.changeMapboxZoom = this
+      .changeMapboxZoom
+      .bind(this);
   }
   findCoordinates(location) {
     googleMapsClient.geocode({
       address: location
     }, (err, response) => {
       if (!err) {
-        let results = response.json.results[0]
-          , coords = results.geometry.location
-          , style, zoom;
+        let results = response.json.results[0],
+          coords = results.geometry.location,
+          style,
+          zoom;
 
         // if location type includes park or natural_feature, use 'outdoors' map
         // https://developers.google.com/places/supported_types
@@ -45,19 +52,27 @@ class EditorMapModule extends Component {
         }
 
         // if location type includes
-        if (results.types.includes('country')) zoom = 3;
-        else if (results.types.includes('administrative_area_level_1')) zoom = 5;
-        else if (results.types.includes('administrative_area_level_2')) zoom = 7;
-        else if (results.types.includes('administrative_area_level_3')) zoom = 8;
-        else zoom = 13;
+        if (results.types.includes('country'))
+          zoom = 3;
+        else if (results.types.includes('administrative_area_level_1'))
+          zoom = 5;
+        else if (results.types.includes('administrative_area_level_2'))
+          zoom = 7;
+        else if (results.types.includes('administrative_area_level_3'))
+          zoom = 8;
+        else
+          zoom = 13;
 
-        // google gives an object {lat: x, lng: y} -> reactmapboxgl takes it in the form of [lng, lat]
+        // google gives an object {lat: x, lng: y} -> reactmapboxgl takes it in the form
+        // of [lng, lat]
         this.setState({
-          coords: [coords.lng, coords.lat],
+          coords: [
+            coords.lng, coords.lat
+          ],
           locationAddress: results.formatted_address,
           locationTypes: results.types,
           mapboxStyle: style,
-          mapboxZoom: zoom,
+          mapboxZoom: zoom
         });
       }
     });
@@ -70,12 +85,12 @@ class EditorMapModule extends Component {
 
   changeMapboxStyle(event) {
     event.preventDefault();
-    this.setState({ mapboxStyle: event.target.value })
+    this.setState({mapboxStyle: event.target.value})
   }
 
   changeMapboxZoom(event) {
     event.preventDefault();
-    this.setState({ mapboxZoom: event.target.value })
+    this.setState({mapboxZoom: event.target.value})
   }
 
   render() {
@@ -122,40 +137,34 @@ class EditorMapModule extends Component {
         </div>
 
         <div className="generated-map">
-        {
-          this.props.locations[0] ?
-          (<div>
-          	<ReactMapboxGl
-							style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
-							accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-							zoom={[this.state.mapboxZoom]}
-							pitch={this.state.mapboxPitch}
-							center={this.props.locations[0].coords}
-							movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
-							interactive="true" // if false, map cannot be manipulated
-							containerStyle={{
-								position: 'relative',
-								height: "500px",
-								width: "auto"
-            	}}
-						>
-              <div> {/* Need to set position of inner canvas to relative */}
-                <Layer
-                  type="symbol"
-                  id="marker"
-                  layout={{ "icon-image": "marker-15" }}
-								>
-                	<Feature coordinates={this.props.locations[0].coords} />
-                </Layer>
-                <Marker
-                  coordinates={this.props.locations[0].coords}
-                  anchor="bottom"
-								/>
+          {this.props.locations[0]
+            ? (
+              <div>
+                <ReactMapboxGl style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]} pitch={this.state.mapboxPitch} center={this.props.locations[0].coords} movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
+                  interactive="true" // if false, map cannot be manipulated
+                  containerStyle={{
+                  position: 'relative',
+                  height: "50vh",
+                  width: "auto",
+                  display: "flex"
+                }}>
+                  <div>
+                    {/* Need to set position of inner canvas to relative */}
+                    <Layer
+                      type="symbol"
+                      id="marker"
+                      layout={{
+                      "icon-image": "marker-15"
+                    }}>
+                      <Feature coordinates={this.props.locations[0].coords}/>
+                    </Layer>
+                    <Marker coordinates={this.props.locations[0].coords} anchor="bottom"/>
+                  </div>
+                </ReactMapboxGl>
               </div>
-            </ReactMapboxGl>
-          </div>)
-          : null
-        }
+            )
+            : null
+}
         </div>
       </div>
     );
