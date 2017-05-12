@@ -54,6 +54,7 @@ class Editor extends Component {
 
 import { connect } from 'react-redux';
 import { addScene, changeStoryTitle, submitStory } from '../../reducers/editor';
+import store from '../../store';
 
 const mapStateToProps = store => ({
   editor: store.editor,
@@ -72,6 +73,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onSubmitStory(user, event) {
     event.preventDefault();
+    if (!store.getState().editor.title) {
+      return alert('Please enter a title for your story.');
+    }
     dispatch(submitStory());
   }
 });
