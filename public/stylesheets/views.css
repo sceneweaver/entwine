@@ -165,18 +165,24 @@ input[type=range]:focus::-ms-fill-upper {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
-.view-actors-info-box {
- /* styling tbd */
+.view-actors-head {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.view-actors-head {
-  margin: 0 5px;
-
+.view-image-icons {
+  border-radius: 50%;
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .view-actors-desc {
