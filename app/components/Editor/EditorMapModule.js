@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import ReactMapboxGl, {Layer, Feature, Marker} from 'react-mapbox-gl';
 import secrets from '../../../secrets.json';
-import {Tabs} from 'material-ui';
+import {Tabs, Tab} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 
 
 let googleMapsClient = require('@google/maps').createClient({key: secrets.googlemaps});
@@ -140,43 +144,52 @@ class EditorMapModule extends Component {
 
         </div>
 
-        <div className="generated-map">
-          {this.props.locations.length
-            ? this.props.locations.map((location, i) => {
-              return (
-              <div key={i}>
-              <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-              <Tabs/>
-              </MuiThemeProvider>
-                <ReactMapboxGl style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]} pitch={this.state.mapboxPitch} center={this.props.locations[0].coords} movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
-                  interactive="true" // if false, map cannot be manipulated
-                  containerStyle={{
-                  position: 'relative',
-                  height: "50vh",
-                  width: "auto",
-                  display: "flex",
-                  top: "100px"
-                }}>
-                  <div>
-                    {/* Need to set position of inner canvas to relative */}
-                    <Layer
-                      type="symbol"
-                      id="marker"
-                      layout={{
-                      "icon-image": "marker-15"
-                    }}>
-                      <Feature coordinates={this.props.locations[0].coords}/>
-                    </Layer>
-                    <Marker coordinates={this.props.locations[0].coords} anchor="bottom"/>
-                  </div>
-                </ReactMapboxGl>
-              </div>
-            )
-            })
-
-            : null
-}
+        <div className="generated-tabs">
+          <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+              <Tabs>
+                {this.props.locations.length
+                  ? this.props.locations.map((location, i) => {
+                    return (
+                      <Tab label={`Map of ` + location.name} key={i}>
+                        <div >
+                          <ReactMapboxGl
+                            style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`}
+                            accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
+                            zoom={[this.state.mapboxZoom]}
+                            pitch={this.state.mapboxPitch}
+                            center={location.coords}
+                            movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
+                            interactive="true" // if false, map cannot be manipulated
+                            containerStyle={{
+                            position: 'relative',
+                            height: "50vh",
+                            width: "auto",
+                            display: "flex",
+                            top: "100px"
+                          }}>
+                            <div>
+                              <Layer
+                                type="symbol"
+                                id="marker"
+                                layout={{
+                                "icon-image": "marker-15"
+                              }}>
+                                <Feature coordinates={location.coords}/>
+                              </Layer>
+                              <Marker coordinates={location.coords} anchor="bottom"/>
+                            </div>
+                          </ReactMapboxGl>
+                        </div>
+                      </Tab>
+                    )
+                  })
+                : null }
+              </Tabs>
+            </MuiThemeProvider>
         </div>
+
+
+
       </div>
     );
   }
@@ -200,3 +213,41 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorMapModule);
+
+
+// <div className="generated-map">
+//           {this.props.locations.length
+//             ? this.props.locations.map((location, i) => {
+//               console.log("loc ", location, "i ", i)
+//               return (
+//                 <div key={i}>
+
+//                 <ReactMapboxGl style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]} pitch={this.state.mapboxPitch} center={this.props.locations[0].coords} movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
+//                   interactive="true" // if false, map cannot be manipulated
+//                   containerStyle={{
+//                   position: 'relative',
+//                   height: "50vh",
+//                   width: "auto",
+//                   display: "flex",
+//                   top: "100px"
+//                 }}>
+//                   <div>
+//                     {/* Need to set position of inner canvas to relative */}
+//                     <Layer
+//                       type="symbol"
+//                       id="marker"
+//                       layout={{
+//                       "icon-image": "marker-15"
+//                     }}>
+//                       <Feature coordinates={this.props.locations[0].coords}/>
+//                     </Layer>
+//                     <Marker coordinates={this.props.locations[0].coords} anchor="bottom"/>
+//                   </div>
+//                 </ReactMapboxGl>
+//               </div>
+//             )
+//             })
+
+//             : null
+//           }
+//                   </div>
