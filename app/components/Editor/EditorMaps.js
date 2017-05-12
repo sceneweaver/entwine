@@ -108,7 +108,6 @@ class EditorMaps extends Component {
             />
             : null
         }
-
       </div>
     );
   }

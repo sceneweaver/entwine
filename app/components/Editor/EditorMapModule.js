@@ -79,7 +79,6 @@ class EditorMapModule extends Component {
   }
 
   render() {
-     const reactMapString = "<ReactMapboxGl style={`mapbox://styles/mapbox/replaceStyle-v9`}accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=replaceZoom center=replaceCoords containerStyle={{ height: '500px', width: 'auto', position: 'relative' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinates=replaceCoords /> </Layer>  <Marker coordinates=replaceCoords anchor='bottom' </Marker> </div>  </ReactMapboxGl>";
     return (
       <div className="editor-map">
 
@@ -174,11 +173,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSaveMap(position, reactMapString, style, coords, zoom) {
-    coords = '[' + coords.join(', ') + ']'
-    let string = reactMapString.replace(/replaceStyle/g, style).replace(/replaceCoords/g, coords).replace(/replaceZoom/g, zoom);
-    dispatch(setMap(position, string));
-    dispatch(addMap(sceneId))
+  onSaveMap(position, style, coords, zoom) {
+    let coordsStr = coords.join(', ')
+    dispatch(setMap(position, coordsStr, style, zoom));
   }
 });
 

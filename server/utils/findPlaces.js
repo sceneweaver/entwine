@@ -16,9 +16,10 @@ export default function findPlaces(nounsArr) {
             name: noun.name,
             coords: [response.json.results[0].geometry.location.lng, response.json.results[0].geometry.location.lat]
           });
-        } else {
-          reject(new Error('nope'));
         }
+        // else {
+        //   reject(new Error('nope'));
+        // }
       })
     }).catch(error => {
       throw error;

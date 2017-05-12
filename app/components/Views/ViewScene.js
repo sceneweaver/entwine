@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ViewActors from './ViewActors';
+import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
 
 /* ----- COMPONENT ----- */
 
@@ -9,9 +10,14 @@ class Scene extends Component {
     return { __html: html }
   }
 
-  render() {
-    return (
+  setMapJSX(jsx) {
+    return { __html: jsx }
+  }
 
+  render() {
+    let coords;
+    if (this.props.maps.length > 0) coords = this.props.maps[0].coords.split(',');
+    return (
       <div className="col-md-10">
 
       <div className="col-md-11 article-titles">
@@ -27,7 +33,21 @@ class Scene extends Component {
         </div>
 
         <div className="col-md-5 col-md-offset-1">
-          <ViewActors />
+           <ViewActors />
+          { this.props.maps.length > 0 ?
+            <ReactMapboxGl
+              style={`mapbox://styles/mapbox/${this.props.maps[0].style}-v9`}
+              accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
+              zoom={[this.props.maps[0].zoom]}
+              pitch={30}
+              center={coords}
+              containerStyle={{
+                height: "500px",
+                width: "auto"
+              }}>
+          </ReactMapboxGl> : null}
+
+
         </div>
 
       </div>
@@ -46,7 +66,7 @@ const mapStateToProps = store => ({
   actors: store.displayState.currScene.actors,
   storyTitle: store.displayState.title,
   currScene: store.displayState.currScene,
-  user: store.displayState.user
+  maps: store.displayState.currScene.maps
 });
 
 export default connect(mapStateToProps)(Scene);

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Actor from '../../server/utils/actors-constructor';
 import Scene from '../../server/utils/scenes-constructor';
 import Location from '../../server/utils/locations-constructor';
+import MapModule from '../../server/utils/maps-constructor';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -124,10 +125,12 @@ export const changeLocation = (position, locationIndex, field, input) => ({
   input
 })
 
-export const setMap = (position, reactMap) => ({
+export const setMap = (position, coords, style, zoom) => ({
   type: SET_MAP,
-  reactMap,
-  position
+  position,
+  coords,
+  style,
+  zoom
 })
 
 /* ------------       REDUCERS     ------------------ */
@@ -223,7 +226,7 @@ export default function reducer (state = {
       break;
 
     case SET_MAP:
-      newState.scenes[action.position].reactMap = action.reactMap;
+      newState.scenes[action.position].maps = newState.scenes[action.position].maps.concat([new MapModule(action.coords, action.style, action.zoom)]);
       break;
 
     default:

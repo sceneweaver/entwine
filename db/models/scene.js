@@ -29,7 +29,9 @@ module.exports = db => db.define('scenes', {
 }, {
   defaultScope: {
     include: [{
-      model: db.model('actors')
+      model: db.model('actors'),
+    }, {
+      model: db.model('maps')
     }]
   }
 });
