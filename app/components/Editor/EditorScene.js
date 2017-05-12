@@ -216,7 +216,7 @@ class EditorScene extends Component {
 		let urlInput;
 		if (this.state.showURLInput) {
 			urlInput =
-				<div style={styles.urlInputContainer}>
+				(<div className="editorscene-mediaurl-input" style={styles.urlInputContainer}>
 					<label>
 						Media URL: &nbsp;
 					</label>
@@ -228,10 +228,13 @@ class EditorScene extends Component {
 						value={this.state.urlValue}
 						onKeyDown={this.onURLInputKeyDown}
 					/>
-					<button onMouseDown={this.confirmMedia}>
-						Confirm
+					<button
+						className="editor-btn btn btn-default"
+						onMouseDown={this.confirmMedia}
+					>
+						Add Media
                 </button>
-				</div>;
+				</div>);
 		}
 
 		return (
@@ -279,22 +282,50 @@ class EditorScene extends Component {
 							/>
 
 							<div className="editor-right-align btn-group">
-								<button className="editor-btn btn btn-default" onClick={this.onBoldClick.bind(this)}><i className="fa fa-bold"></i></button>
-								<button className="editor-btn btn btn-default" onClick={this.onItalicClick.bind(this)}><i className="fa fa-italic"></i></button>
-								<button className="editor-btn btn btn-default" onClick={this.onBlockQuoteClick.bind(this)}><i className="fa fa-quote-right"></i></button>
-								<button className="editor-btn btn btn-default" onClick={this.onUnorderedListClick.bind(this)}><i className="fa fa-list-ul"></i></button>
-								<button className="editor-btn btn btn-default" onClick={this.onOrderedListClick.bind(this)}><i className="fa fa-list-ol"></i></button>
-								<div style={styles.buttons}>
-									<button onMouseDown={this.addAudio} style={{ marginRight: 10 }}>
-										Add Audio
+								<button
+									className="editor-btn btn btn-default"
+									onClick={this.onBoldClick.bind(this)}
+								>
+									<i className="fa fa-bold" />
+								</button>
+								<button
+									className="editor-btn btn btn-default"
+									onClick={this.onItalicClick.bind(this)}
+								>
+									<i className="fa fa-italic" />
+								</button>
+								<button
+									className="editor-btn btn btn-default"
+									onClick={this.onBlockQuoteClick.bind(this)}
+								>
+									<i className="fa fa-quote-right" />
+								</button>
+								<button
+									className="editor-btn btn btn-default"
+									onClick={this.onUnorderedListClick.bind(this)}
+								>
+									<i className="fa fa-list-ul" />
+								</button>
+								<button
+									className="editor-btn btn btn-default"
+									onClick={this.onOrderedListClick.bind(this)}
+								>
+									<i className="fa fa-list-ol" />
+								</button>
+								{/* <button
+									onMouseDown={this.addAudio}
+								>
+									Add Audio
+                </button> */}
+								<button
+									className="editor-btn btn btn-default"
+									onClick={this.addImage}
+								>
+									<i className="fa fa-file-image-o" />
                 </button>
-									<button onMouseDown={this.addImage} style={{ marginRight: 10 }}>
-										Add Image
-                </button>
-									<button onMouseDown={this.addVideo} style={{ marginRight: 10 }}>
-										Add Video
-                </button>
-								</div>
+								{/* <button onMouseDown={this.addVideo} style={{ marginRight: 10 }}>
+									Add Video
+                </button> */}
 							</div>
 						</div>
 

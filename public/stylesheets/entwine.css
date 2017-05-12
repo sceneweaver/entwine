@@ -139,6 +139,14 @@ html, body, #main {
   width: 100px;
 }
 
+.editorscene-mediaurl-input > input {
+  border: 0.5px solid #c9c9c9;
+  color: black;
+  background: transparent;
+}
+
+.editorscene-mediaurl-input > button
+
 
 /* ----- EditorMaps Styling ----- */
 
@@ -383,6 +391,26 @@ html, body, #main {
 
 .view-story-heading {
   font-family: 'Playfair Display SC', serif;
+  margin-top: 0;
+}
+
+.scene-hero {
+  width: 100%;
+  position: fixed;
+  top: 0%;
+  left: 0;
+  z-index: 0;
+}
+
+.article-content {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(255,255,255,0.8);
+  padding: 40px;
+}
+
+.article-titles {
+  margin-bottom: 40px;
 }
 
 .article-titles > h3 {
@@ -406,7 +434,11 @@ html, body, #main {
 }
 
 .scenes-nav {
-  display: flex;
+  position: fixed;
+  z-index: 1;
+  top: 20%;
+  left: 0;
+  display: inline-flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -504,6 +536,12 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #357cb9;
+}
+
+.article-modules {
+  position: fixed;
+  right: 5%;
+  top: 55%;
 }
 
 /* ----- ViewActors Styling ----- */
