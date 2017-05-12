@@ -30,12 +30,21 @@ class EditorHero extends Component {
             onChange={this.props.onHeroQueryChange}
             value={this.props.heroQuery}
           />
+
           <button
             onClick={this.props.onGenerateHero}
             className="btn hero-module-btn"
           >
             Generate Hero &nbsp; <span className="glyphicon glyphicon-refresh" />
           </button>
+
+          <button
+            className="btn hero-module-btn"
+            onClick={this.props.onRemoveHero}
+          >
+            <span className="glyphicon glyphicon-trash" ></span>
+          </button>
+
         </div>
 
         <div className="hero-viewer">
@@ -48,7 +57,9 @@ class EditorHero extends Component {
                 </div>
               </div>
               )
-            : (<p>Search for a hero image</p>)
+            : (
+              <p>No hero set.</p>
+            )
           }
         </div>
 
@@ -60,7 +71,7 @@ class EditorHero extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addActor, generateHero, setHeroQuery, toggleHero } from '../../reducers/editor';
+import { generateHero, setHeroQuery, toggleHero, setHero } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,
@@ -82,12 +93,16 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.stopPropagation();
     dispatch(generateHero(ownProps.position));
   },
-  onAddActor(event) {
+  onRemoveHero(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(addActor(ownProps.position));
+    dispatch(setHero(ownProps.position, {
+      heroURL: '',
+      heroPhotog: '',
+      heroPhotogURL: ''
+    }));
   },
-  onHideActors(event) {
+  onHideHero(event) {
     event.preventDefault();
     $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
     dispatch(toggleHero(ownProps.position));

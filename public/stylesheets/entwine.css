@@ -381,6 +381,7 @@ html, body, #main {
 .hero-module-btn {
   background-color: #0090FF;
   margin: 10px;
+  color: white;
 }
 
 .flexcontainer-module-header {
@@ -407,10 +408,18 @@ html, body, #main {
   width: 100%;
   padding: 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.hero-box > input {
+  border: 0.5px solid #c9c9c9;
+  background-color: transparent;
+  margin: 0px 20px;
+  font-size: 16px;
+  font-family: 'Sorts Mill Goudy', serif;
 }
 
 .hero-box > p {
