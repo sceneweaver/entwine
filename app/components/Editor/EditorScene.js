@@ -90,7 +90,6 @@ let stateToHTMLOptions = {
 					, mediaEntityInstance = Entity.get(mediaKey)
 					, mediaEntityInstanceData = mediaEntityInstance.getData()
 					, mediaEntityInstanceType = mediaEntityInstance.getType();
-			console.log(mediaEntityInstanceType);
 			return `<div><${mediaEntityInstanceType} src="${mediaEntityInstanceData.src}" /></div>`;
 		},
 	},

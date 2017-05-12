@@ -256,7 +256,6 @@ export const submitStory = (user) => (dispatch, getState) => {
     userId: getState().auth.id
   })
   .then(newStory => {
-    console.log("newStory", newStory);
     dispatch(create(newStory.data));
     browserHistory.push(`/stories/${newStory.data.id}`);
   });
