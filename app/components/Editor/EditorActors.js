@@ -26,7 +26,7 @@ class EditorActors extends Component {
               onClick={this.props.onRefreshActors}
               className="btn actors-module-btn"
             >
-              Regenerate All &nbsp; <span className="glyphicon glyphicon-refresh" />
+              Generate Actors &nbsp; <span className="glyphicon glyphicon-refresh" />
             </button>
             <button
               onClick={this.props.onAddActor}
@@ -60,7 +60,7 @@ class EditorActors extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addActor, generateActors, toggleActors } from '../reducers/editor';
+import { addActor, generateActors, toggleActors } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 
-class Navbar extends React.Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
     this.renderLoginSignup = this.renderLoginSignup.bind(this);
@@ -35,13 +35,10 @@ class Navbar extends React.Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
+                <Link to="/editor">Create Story</Link>
+              </li>
+              <li>
                 <Link to="/stories" activeClassName="active">All Stories</Link>
-              </li>
-              <li>
-                <Link to="/editor">Create New Story</Link>
-              </li>
-              <li>
-                <Link to="/maptest">Map Testing</Link>
               </li>
             </ul>
             { this.props.currentUser ? this.renderLogout() : this.renderLoginSignup() }

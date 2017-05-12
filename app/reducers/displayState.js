@@ -104,8 +104,6 @@ export default function reducer(state = {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-import { setMap } from './editor';
-
 export const fetchStory = (id) => dispatch => {
   axios.get(`/api/stories/${id}`)
     .then(res => {

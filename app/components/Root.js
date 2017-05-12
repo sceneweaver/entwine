@@ -3,9 +3,11 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Root = ({ children }) => (
-  <div id="main" className="container-fluid">
+  <div id="main">
     <Navbar />
-    { children }
+    <div id="root-children-wrapper">
+      { children }
+    </div>
     <Footer />
   </div>
 );

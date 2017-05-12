@@ -15,7 +15,6 @@ class Scene extends Component {
   }
 
   render() {
-    console.log("mapcompo", this.props.mapComponent, this.props.currScene)
     let coords;
     if (this.props.maps.length > 0) coords = this.props.maps[0].coords.split(',');
     return (
