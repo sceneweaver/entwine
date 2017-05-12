@@ -8,7 +8,7 @@ const findHeroImage = (query) => {
     },
     headers: {
       'Accept-Version': 'v1',
-      'Authorization': 'Client-ID ' + unsplashClientId
+      'Authorization': 'Client-ID ' + process.env.UNSPLASH_ID || unsplashClientId
     }
   })
   .then(res => {
