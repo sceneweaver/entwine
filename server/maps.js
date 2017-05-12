@@ -3,14 +3,14 @@
 const router = require('express').Router()
     , HttpError = require('./utils/HttpError')
     , db = require('APP/db')
-    , MapModule = db.model('mapModules')
+    , Map = db.model('maps')
     , Scene = db.model('scenes');
 
 module.exports = router;
 
 // param middleware to set id param to 'actor';
 router.param('mapId', (req, res, next, mapId) => {
-  MapModule.findById(mapId)
+  Map.findById(mapId)
   .then(map => {
     if (!map) throw HttpError(404);
     req.map = map;
@@ -22,7 +22,7 @@ router.param('mapId', (req, res, next, mapId) => {
 
 // get all maps for a given story
 router.get('/:storyId', (req, res, next) => {
-  MapModule.findAll({where: {
+  Map.findAll({where: {
     storyId: req.params.storyId
   }})
   .then(maps => {
@@ -33,7 +33,7 @@ router.get('/:storyId', (req, res, next) => {
 
 // get all maps for a given scene
 router.get('/:storyId/:sceneId', (req, res, next) => {
-  MapModule.findAll({where: {
+  Map.findAll({where: {
     storyId: req.params.storyId,
     sceneId: req.params.sceneId
   }})
@@ -44,7 +44,7 @@ router.get('/:storyId/:sceneId', (req, res, next) => {
 });
 // get one map by id
 router.get('/:id', (req, res, next) => {
-  MapModule.findOne(req.map)
+  Map.findOne(req.map)
   .then(map => {
     res.json(map)
   })
@@ -52,7 +52,7 @@ router.get('/:id', (req, res, next) => {
 });
 // create an map
 router.post('/', (req, res, next) => {
-  MapModule.create(req.body)
+  Map.create(req.body)
   .then(createdMap => {
     createdMap.setScene(req.params.sceneId)
     res.status(201).json(createdMap);

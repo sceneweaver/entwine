@@ -18,7 +18,7 @@ let googleMapsClient = require('@google/maps').createClient({
 
 /* ----- COMPONENT ----- */
 
-class Map extends Component {
+class EditorMapModule extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -96,7 +96,7 @@ class Map extends Component {
 
 
   render() {
-     var reactMapString = "<ReactMapboxGl style={`mapbox://styles/mapbox/replaceStyle-v9`} accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=replaceZoom center=replaceCoords containerStyle={{ height: '500px', width: 'auto' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinates=replaceCoords /> </Layer>  <Marker coordinates=replaceCoords anchor='bottom' </Marker> </div>  </ReactMapboxGl>"
+     var reactMapString = "style={`mapbox://styles/mapbox/replaceStyle-v9`} accessToken='pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w' zoom=[replaceZoom] center=replaceCoords containerStyle={{ height: '500px', width: 'auto' }}> <div> <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}> <Feature coordinates=replaceCoords /> </Layer>  <Marker coordinates=replaceCoords anchor='bottom' </Marker> </div>"
     return (
       <div className="container">
         <div className="row">
@@ -163,9 +163,6 @@ class Map extends Component {
                       : <h2> nothing here</h2>
 
               }
-
-
-
           </div>
         </div>
       </div>
@@ -174,7 +171,8 @@ class Map extends Component {
 }
 
 /* ----- CONTAINER ----- */
-import {setMap} from '../reducers/editor';
+import { connect } from 'react-redux';
+import { setMap } from '../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
@@ -184,16 +182,12 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSaveMap(position, reactMapString, style, coords, zoom) {
-    coords = '[' + coords.join(', ') + ']'
-    let string = reactMapString.replace(/replaceStyle/g, style).replace(/replaceCoords/g, coords).replace(/replaceZoom/g, zoom);
-    dispatch(setMap(position, string));
+    let coordsStr = coords.join(', ')
+    dispatch(setMap(position, coordsStr, style, zoom));
   }
 })
 
-
-import { connect } from 'react-redux';
-
-export default connect(mapStateToProps, mapDispatchToProps)(Map);
+export default connect(mapStateToProps, mapDispatchToProps)(EditorMapModule);
 
 
 

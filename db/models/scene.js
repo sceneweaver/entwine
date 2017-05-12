@@ -29,13 +29,15 @@ module.exports = db => db.define('scenes', {
 }, {
   defaultScope: {
     include: [{
-      model: db.model('actors')
+      model: db.model('actors'),
+    }, {
+      model: db.model('maps')
     }]
   }
 });
 
-module.exports.associations = (Scene, {Story, Actor, MapModule}) => {
+module.exports.associations = (Scene, {Story, Actor, Map}) => {
   Scene.belongsTo(Story);
   Scene.belongsToMany(Actor, { through: 'ScenesActors' });
-  Scene.belongsToMany(MapModule, { through: 'ScenesMaps' });
+  Scene.belongsToMany(Map, { through: 'ScenesMaps' });
 };

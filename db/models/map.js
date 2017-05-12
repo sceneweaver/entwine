@@ -1,14 +1,20 @@
 'use strict';
 
-const { STRING, TEXT } = require('sequelize');
+const { STRING, TEXT, INTEGER } = require('sequelize');
 
-module.exports = db => db.define('mapModules', {
-  html: {
-    type: TEXT
-  }
+module.exports = db => db.define('maps', {
+  coords: {
+    type: STRING
+  },
+  style: {
+    type: STRING
+  },
+  zoom: {
+    type: INTEGER
+  },
 });
 
-module.exports.associations = (MapModule, {Scene, Story}) => {
-  MapModule.belongsTo(Story);
-  MapModule.belongsTo(Scene, { through: "ScenesMaps" })
+module.exports.associations = (Map, {Scene, Story}) => {
+  Map.belongsTo(Story);
+  Map.belongsTo(Scene, { through: "ScenesMaps" })
 }

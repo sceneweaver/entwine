@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import store from '../store';
 import findPlaces from '../../server/utils/findPlaces';
 import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
-import Map from './EditorMapModule';
-
+import EditorMapModule from './EditorMapModule';
 
 /* ----- COMPONENT ----- */
 
@@ -106,7 +105,7 @@ class EditorMaps extends Component {
 
         </div>
         <br />
-        <Map position={this.props.position}/>
+        <EditorMapModule position={this.props.position}/>
       </div>
     );
   }

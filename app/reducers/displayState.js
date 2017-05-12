@@ -81,7 +81,7 @@ export default function reducer(state = {
     position: 0,
     actors: [],
     locations: [],
-    mapModules: ''
+    maps: []
   }
 }, action) {
   const newState = Object.assign({}, state)
@@ -90,7 +90,7 @@ export default function reducer(state = {
       newState.title = action.title;
       newState.scenes = action.scenes;
       newState.currScene = action.currScene;
-      newState.currScene.mapModules = action.currScene.mapModules[0]
+      // newState.currScene.mapModules = action.currScene.mapModules[0]
       break;
     case SET_SCENE:
       newState.currScene = action.currScene;
@@ -102,7 +102,7 @@ export default function reducer(state = {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-import {setMap} from './editor';
+import { setMap } from './editor';
 
 export const fetchStory = (id) => dispatch => {
   axios.get(`/api/stories/${id}`)
