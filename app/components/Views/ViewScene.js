@@ -69,7 +69,7 @@ class Scene extends Component {
                 width: "auto"
               }}>
               </ReactMapboxGl>)
-            : (
+            : this.props.heroURL === '' ? null : (
               <div className="scene-hero-img">
                 <div
                   className="scene-hero-img-container"
