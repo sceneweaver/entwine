@@ -349,6 +349,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Nixie One', cursive;
+  font-size: 1.7em;
 }
 
 /* ----- ViewStory / ViewScene Styling ----- */
