@@ -10,8 +10,8 @@ class Scene extends Component {
   constructor() {
     super();
     this.state = {
-      coords: [37, 55],
-      style: 'light',
+      coords: [-74.009160, 40.705076],
+      style: 'satellite',
       zoom: 13,
     }
   }
