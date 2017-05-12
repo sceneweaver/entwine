@@ -44,7 +44,7 @@ class EditorHero extends Component {
               <div className="hero-image-container">
                 <img src={this.props.heroURL} />
                 <div className="hero-credit">
-                  <h4>Photo by <a href={this.props.heroCredit.photogURL}>{this.props.heroCredit.photog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+                  <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
                 </div>
               </div>
               )
@@ -64,7 +64,8 @@ import { addActor, generateHero, setHeroQuery, toggleHero } from '../../reducers
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,
-  heroCredit: state.editor.scenes[ownProps.position].heroCredit,
+  heroPhotog: state.editor.scenes[ownProps.position].heroPhotog,
+  heroPhotogURL: state.editor.scenes[ownProps.position].heroPhotogURL,
   heroURL: state.editor.scenes[ownProps.position].heroURL,
   heroQuery: state.editor.scenes[ownProps.position].heroQuery,
   position: ownProps.position

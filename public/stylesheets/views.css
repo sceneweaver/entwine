@@ -184,3 +184,14 @@ input[type=range]:focus::-ms-fill-upper {
   font-family: 'Sorts Mill Goudy', serif;
 }
 
+/* ----- ViewScene Styling ----- */
+
+.scene-hero-img-container {
+  width: 100%;
+  height: 50%;
+}
+
+.scene-hero-img-container > img {
+  width: 100%;
+  height: 100%;
+}

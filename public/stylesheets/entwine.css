@@ -432,12 +432,24 @@ html, body, #main {
 .hero-viewer {
   width: 100%;
   padding: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-viewer > p {
+  font-family: 'Nixie One', cursive;
+  margin-bottom: 0;
 }
 
 .hero-image-container {
-  width: 100%
+  width: 100%;
+  height: 50%;
 }
 
 .hero-image-container > img {
   width: 100%;
+  height: auto;
 }

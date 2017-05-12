@@ -31,6 +31,14 @@ module.exports = db => db.define('scenes', {
   heroURL: {
     type: STRING,
     defaultValue: ''
+  },
+  heroPhotog: {
+    type: STRING,
+    defaultValue: ''
+  },
+  heroPhotogURL: {
+    type: STRING,
+    defaultValue: ''
   }
 }, {
   defaultScope: {

@@ -82,7 +82,7 @@ export const featuredStory = {
       paragraphs: ['The rest of our story follows as so!'],
       paragraphsHTML: ['<p>The rest of our story follows as so!</p>'],
       position: 1,
-      actors: []
+      actors: [],
     }, {
       id: 5,
       title: 'Third scene!',

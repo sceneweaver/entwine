@@ -151,7 +151,8 @@ export const setHero = (position, imageObj) => ({
   type: SET_HERO,
   position,
   heroURL: imageObj.heroURL,
-  heroCredit: imageObj.heroCredit
+  heroPhotog: imageObj.heroPhotog,
+  heroPhotogURL: imageObj.heroPhotogURL
 })
 
 /* ------------       REDUCERS     ------------------ */

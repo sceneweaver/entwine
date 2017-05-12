@@ -13,10 +13,8 @@ export default class Scene {
     this.key = key++;
     this.heroQuery = '';
     this.heroURL = '';
-    this.heroCredit = {
-      photog: '',
-      photogURL: ''
-    };
+    this.heroPhotog = '';
+    this.heroPhotogURL = '';
   }
   getPosition(index) {
     this.position = index;

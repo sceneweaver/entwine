@@ -14,10 +14,8 @@ const findHeroImage = (query) => {
   .then(res => {
     return {
       heroURL: res.data.results[0].urls.full,
-      heroCredit: {
-        photog: res.data.results[0].user.name,
-        photogURL: res.data.results[0].user.links.html
-      }
+      heroPhotog: res.data.results[0].user.name,
+      heroPhotogURL: res.data.results[0].user.links.html
     };
   });
 };

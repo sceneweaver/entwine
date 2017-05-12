@@ -26,8 +26,9 @@ class Scene extends Component {
 
         <div className="scene-hero">
 
-          {this.props.maps && this.props.maps.length ?
-            <ReactMapboxGl
+          {
+            this.props.maps && this.props.maps.length
+            ? (<ReactMapboxGl
               style={`mapbox://styles/mapbox/${style}-v9`}
               accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
               zoom={[zoom]}
@@ -37,7 +38,19 @@ class Scene extends Component {
                 height: "500px",
                 width: "auto"
               }}>
-            </ReactMapboxGl> : null}
+              </ReactMapboxGl>)
+            : (
+              <div className="scene-hero-img">
+                <div className="scene-hero-img-container">
+                  <img src={this.props.heroURL} />
+                </div>
+                <div className="scene-hero-img-credit">
+                  <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+                </div>
+              </div>
+            )
+
+          }
 
         </div>
 
@@ -79,7 +92,10 @@ const mapStateToProps = store => ({
   storyTitle: store.displayState.title,
   currScene: store.displayState.currScene,
   maps: store.displayState.currScene.maps,
-  user: store.displayState.user
+  user: store.displayState.user,
+  heroURL: store.displayState.currScene.heroURL,
+  heroPhotog: store.displayState.currScene.heroPhotog,
+  heroPhotogURL: store.displayState.currScene.heroPhotogURL
 });
 
 export default connect(mapStateToProps)(Scene);
