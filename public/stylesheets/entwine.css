@@ -406,7 +406,10 @@ html, body, #main {
 }
 
 .scenes-nav {
-  display: flex;
+  position: fixed;
+  top: 20%;
+  left: 0;
+  display: inline-flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
