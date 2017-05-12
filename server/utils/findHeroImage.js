@@ -12,10 +12,17 @@ const findHeroImage = (query) => {
     }
   })
   .then(res => {
+    let randomIndex, image
+      , horizontal = false;
+    while (!horizontal) {
+      randomIndex = Math.floor(Math.random() * (res.data.results.length - 1));
+      image = res.data.results[randomIndex];
+      horizontal = image.width > image.height;
+    }
     return {
-      heroURL: res.data.results[0].urls.full,
-      heroPhotog: res.data.results[0].user.name,
-      heroPhotogURL: res.data.results[0].user.links.html
+      heroURL: image.urls.full,
+      heroPhotog: image.user.name,
+      heroPhotogURL: image.user.links.html
     };
   });
 };
