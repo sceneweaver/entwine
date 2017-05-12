@@ -278,6 +278,7 @@ import { create } from './stories';
 import findProperNouns from '../../server/utils/findProperNouns';
 import findPlaces from '../../server/utils/findPlaces';
 import findHeroImage from '../../server/utils/findHeroImage';
+import findPlaceCoords from '../../server/utils/findPlaceCoords';
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
@@ -313,3 +314,10 @@ export const generateMapLocations = position => (dispatch, getState) => {
     dispatch(setLocations(position, placesArr))
   })
 };
+
+export const generateSingleMapLocation = (position, placeName) => (dispatch, getState) => {
+  return findPlaceCoords(placeName)
+  .then(placesArr => {
+    dispatch(setLocations(position, placesArr))
+  })
+}

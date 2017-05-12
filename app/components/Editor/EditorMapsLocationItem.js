@@ -3,6 +3,14 @@ import React, { Component } from 'react';
 /* ----- COMPONENT ----- */
 
 class EditorMapsLocationItem extends Component {
+  constructor() {
+    super()
+    this.onChanges.bind(this);
+  }
+  onChanges(index, event) {
+    this.props.onLocationsChange(index, event.target.value);
+  }
+
   render() {
     const index = this.props.index;
     return (
@@ -24,7 +32,8 @@ class EditorMapsLocationItem extends Component {
               type="text"
               className="location-name-field"
               value={this.props.name}
-              onChange={this.props.onLocationsChange.bind(this, index, 'name')}
+              onChange={this.props.onFieldChange.bind(this, index, 'name')}
+              onKeyPress={this.props.onChangeLocation.bind(this, index)}
             />
           </div>
         </div>
@@ -36,7 +45,7 @@ class EditorMapsLocationItem extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { changeLocation, deleteLocation } from '../../reducers/editor';
+import { changeLocation, deleteLocation, generateSingleMapLocation } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   position: ownProps.position,
@@ -45,16 +54,26 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onLocationsChange(locationIndex, field, event) {
+  onFieldChange(locationIndex, field, event) {
     event.preventDefault();
     event.stopPropagation();
     dispatch(changeLocation(ownProps.position, locationIndex, field, event.target.value));
+  },
+  onChangeLocation(index, event) {
+    if(event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log(event.target.value)
+      dispatch(generateSingleMapLocation(ownProps.position, event.target.value));
+
+    }
   },
   onDeleteLocation(locationIndex, event) {
     event.preventDefault();
     event.stopPropagation();
     dispatch(deleteLocation(ownProps.position, locationIndex));
-  }
+  },
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorMapsLocationItem);
