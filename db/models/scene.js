@@ -19,7 +19,9 @@ module.exports = db => db.define('scenes', {
     type: ARRAY(TEXT),
     defaultValue: [],
     set: function (unsanitizedParagraphs) {
-      const sanitizedParagraphs = unsanitizedParagraphs.map(sanitizeHtml);
+      const sanitizedParagraphs = unsanitizedParagraphs.map(dirty => sanitizeHtml(dirty, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+      }));
       this.setDataValue('paragraphsHTML', sanitizedParagraphs);
     }
   },
