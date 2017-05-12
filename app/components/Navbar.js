@@ -41,7 +41,7 @@ class Navbar extends Component {
                 <Link to="/stories" activeClassName="active">All Stories</Link>
               </li>
               <li>
-                <Link to="/stories/fakeStory">Featured Story</Link>
+                <Link to="/stories/featured">Featured Story</Link>
               </li>
             </ul>
             { this.props.currentUser ? this.renderLogout() : this.renderLoginSignup() }
