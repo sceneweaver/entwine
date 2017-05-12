@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import ReactMapboxGl, {Layer, Feature, Marker} from 'react-mapbox-gl';
 import secrets from '../../../secrets.json';
+import {Tabs} from 'material-ui';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 
 let googleMapsClient = require('@google/maps').createClient({key: secrets.googlemaps});
 
@@ -137,16 +141,21 @@ class EditorMapModule extends Component {
         </div>
 
         <div className="generated-map">
-          {this.props.locations[0]
-            ? (
-              <div>
+          {this.props.locations.length
+            ? this.props.locations.map((location, i) => {
+              return (
+              <div key={i}>
+              <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+              <Tabs/>
+              </MuiThemeProvider>
                 <ReactMapboxGl style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]} pitch={this.state.mapboxPitch} center={this.props.locations[0].coords} movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
                   interactive="true" // if false, map cannot be manipulated
                   containerStyle={{
                   position: 'relative',
                   height: "50vh",
                   width: "auto",
-                  display: "flex"
+                  display: "flex",
+                  top: "100px"
                 }}>
                   <div>
                     {/* Need to set position of inner canvas to relative */}
@@ -163,6 +172,8 @@ class EditorMapModule extends Component {
                 </ReactMapboxGl>
               </div>
             )
+            })
+
             : null
 }
         </div>
