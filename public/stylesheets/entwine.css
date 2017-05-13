@@ -119,10 +119,11 @@ html, body, #main {
 
 .editor-row {
   display: inline-flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 100%;
 }
 
@@ -145,6 +146,7 @@ html, body, #main {
   border: 0.5px solid #c9c9c9;
   font-size: 18px;
   padding: 15px;
+  margin-top: 10px;
   color: black;
   min-height: 200px;
   font-family: 'Sorts Mill Goudy', serif;
@@ -154,13 +156,20 @@ html, body, #main {
   margin-bottom: 20px;
 }
 
-.editor-right-align {
+.editor-btns-left-align {
   align-self: flex-start;
   margin-right: 20px;
+  margin-top: 10px;
+}
+
+.editor-btns-right-align {
+  align-self: flex-end;
+  margin-top: 10px;
 }
 
 .module-btn {
   width: 100px;
+  align-self: flex-end;
 }
 
 .editorscene-mediaurl-input > input {

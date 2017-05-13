@@ -252,7 +252,7 @@ class EditorScene extends Component {
 
 				<div className="editor-row">
 
-					<div className="editor-right-align btn-group">
+					<div className="editor-btns-left-align btn-group">
 
 						<button
 							className="editor-btn btn btn-default"
@@ -301,7 +301,7 @@ class EditorScene extends Component {
 
 					</div>
 
-					<div className="btn-group">
+					<div className="editor-btns-right-align btn-group">
 
 						<button
 							className="btn btn-default module-btn"
