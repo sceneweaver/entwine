@@ -202,6 +202,7 @@ export default function reducer (state = {
             return scene;
         });
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
+      newState.whichScene = action.position - 1;
       break;
 
     case SET_ACTORS:

@@ -409,13 +409,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSceneHTMLChange(content) {
 		event.preventDefault();
 		dispatch(setSceneHTML(content));
-	},
-	onDeleteScene(event) {
-		event.preventDefault();
-		let allowDelete = confirm(`Are you sure you want to delete scene ${+ownProps.position + 1}?`);
-		if (allowDelete) {
-			dispatch(deleteScene(+ownProps.position));
-		}
 	}
 });
 
