@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ViewStorySlider from './ViewStorySlider.js';
+import ViewStoryStepper from './ViewStoryStepper.js';
 import ViewScene from './ViewScene.js';
 
 /* ----- COMPONENT ----- */
@@ -10,10 +11,9 @@ class Story extends Component {
     return (
       <div className="story-wrapper">
 
-          <div className="col-md-1 col-md-offset-1 scenes-nav">
-            <h4 className="scenes-nav-title">Navigate<br />Scenes</h4>
+          <div className="col-md-2 scenes-nav">
 
-            <ViewStorySlider />
+            <ViewStoryStepper />
 
           </div>
 
