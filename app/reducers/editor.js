@@ -7,6 +7,7 @@ import MapModule from '../../server/utils/maps-constructor';
 /* -----------------    ACTIONS     ------------------ */
 
 const SET_STORY_TITLE = 'SET_STORY_TITLE';
+const SET_EDITOR_SCENE = 'SET_EDITOR_SCENE';
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
@@ -14,9 +15,11 @@ const SET_SCENE_TEXT = 'SET_SCENE_TEXT';
 const SET_SCENE_HTML = 'SET_SCENE_HTML';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
-const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
-const TOGGLE_MAPS = 'TOGGLE_MAPS';
-const TOGGLE_HERO = 'TOGGLE_HERO';
+const DESELECT_MODULE = 'DESELECT_MODULE';
+
+const SHOW_ACTORS = 'SHOW_ACTORS';
+const SHOW_MAPS = 'SHOW_MAPS';
+const SHOW_HERO = 'SHOW_HERO';
 
 const SET_ACTORS = 'SET_ACTORS';
 const CHANGE_ACTOR = 'CHANGE_ACTOR';
@@ -36,19 +39,26 @@ const SET_HERO_QUERY = 'SET_HERO_QUERY';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const toggleActors = (position) => ({
-  type: TOGGLE_ACTORS,
-  position,
+export const setEditorScene = (whichScene) => ({
+  type: SET_EDITOR_SCENE,
+  whichScene
 })
 
-export const toggleMaps = (position) => ({
-  type: TOGGLE_MAPS,
+export const deselectModule = (position) => ({
+  type: DESELECT_MODULE,
   position
 })
 
-export const toggleHero = (position) => ({
-  type: TOGGLE_HERO,
-  position
+export const showActors = () => ({
+  type: SHOW_ACTORS,
+})
+
+export const showMaps = () => ({
+  type: SHOW_MAPS,
+})
+
+export const showHero = () => ({
+  type: SHOW_HERO,
 })
 
 export const changeStoryTitle = input => ({
@@ -65,21 +75,18 @@ export const deleteScene = (position) => ({
   position
 })
 
-export const setSceneTitle = (position, input) => ({
+export const setSceneTitle = (input) => ({
   type: SET_SCENE_TITLE,
-  position,
   input
 })
 
-export const setSceneText = (position, input) => ({
+export const setSceneText = (input) => ({
   type: SET_SCENE_TEXT,
-  position,
   input
 })
 
-export const setSceneHTML = (position, input) => ({
+export const setSceneHTML = (input) => ({
   type: SET_SCENE_HTML,
-  position,
   input
 })
 
@@ -160,6 +167,7 @@ export const setHero = (position, imageObj) => ({
 export default function reducer (state = {
   title: '',
   scenes: [new Scene()],
+  whichScene: 0
 }, action) {
   const newState = _.merge({}, state);
   switch (action.type) {
@@ -168,22 +176,31 @@ export default function reducer (state = {
       newState.title = action.input;
       break;
 
-    case TOGGLE_ACTORS:
-      newState.scenes[action.position].whichModule = 'actors';
+    case SET_EDITOR_SCENE:
+      newState.whichScene = action.whichScene;
       break;
 
-    case TOGGLE_MAPS:
-      newState.scenes[action.position].whichModule = 'maps';
+    case DESELECT_MODULE:
+      newState.scenes[action.position].whichModule = null;
       break;
 
-    case TOGGLE_HERO:
-      newState.scenes[action.position].whichModule = 'hero';
+    case SHOW_ACTORS:
+      newState.scenes[state.whichScene].whichModule = 'actors';
+      break;
+
+    case SHOW_MAPS:
+      newState.scenes[state.whichScene].whichModule = 'maps';
+      break;
+
+    case SHOW_HERO:
+      newState.scenes[state.whichScene].whichModule = 'hero';
       break;
 
     case ADD_SCENE:
       const newScene = new Scene();
       newScene.getPosition(newState.scenes.length);
       newState.scenes = [...newState.scenes, newScene];
+      newState.whichScene = newState.scenes.length - 1;
       break;
 
     case DELETE_SCENE:
@@ -193,6 +210,7 @@ export default function reducer (state = {
             return scene;
         });
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
+      newState.whichScene = action.position - 1;
       break;
 
     case SET_ACTORS:
@@ -200,15 +218,15 @@ export default function reducer (state = {
       break;
 
     case SET_SCENE_TEXT:
-      newState.scenes[action.position].paragraphs[0] = action.input;
+      newState.scenes[state.whichScene].paragraphs[0] = action.input;
       break;
 
     case SET_SCENE_HTML:
-      newState.scenes[action.position].paragraphsHTML[0] = action.input;
+      newState.scenes[state.whichScene].paragraphsHTML[0] = action.input;
       break;
 
     case SET_SCENE_TITLE:
-      newState.scenes[action.position].title = action.input;
+      newState.scenes[state.whichScene].title = action.input;
       break;
 
     case CHANGE_ACTOR:

@@ -10,9 +10,6 @@ import {
 } from 'draft-js';
 
 import { stateToHTML } from 'draft-js-export-html';
-import EditorActors from './EditorActors';
-import EditorMaps from './EditorMaps';
-import EditorHero from './EditorHero';
 
 /* ----- COMPONENT STYLES & DRAFT.JS EDITOR UTILS ----- */
 
@@ -88,9 +85,9 @@ let stateToHTMLOptions = {
 	blockRenderers: {
 		atomic: (block) => {
 			const mediaKey = block.getEntityAt(0)
-					, mediaEntityInstance = Entity.get(mediaKey)
-					, mediaEntityInstanceData = mediaEntityInstance.getData()
-					, mediaEntityInstanceType = mediaEntityInstance.getType();
+				, mediaEntityInstance = Entity.get(mediaKey)
+				, mediaEntityInstanceData = mediaEntityInstance.getData()
+				, mediaEntityInstanceType = mediaEntityInstance.getType();
 			return `<div><${mediaEntityInstanceType} src="${mediaEntityInstanceData.src}" /></div>`;
 		},
 	},
@@ -113,8 +110,8 @@ class EditorScene extends Component {
 			let content = editorState.getCurrentContent()
 				, contentPlainText = content.getPlainText()
 				, contentHTML = stateToHTML(content, stateToHTMLOptions);
-			this.props.onSceneTextChange(this.props.position, contentPlainText);
-			this.props.onSceneHTMLChange(this.props.position, contentHTML);
+			this.props.onSceneTextChange(contentPlainText);
+			this.props.onSceneHTMLChange(contentHTML);
 			// updates Draft JS editor state
 			this.setState({ editorState });
 		};
@@ -137,9 +134,7 @@ class EditorScene extends Component {
 		}
 		return 'not-handled';
 	}
-
-	// BEGIN EXPERIMENT: MEDIA EDITOR
-
+  
 	_confirmMedia(e) {
 		e.preventDefault();
 		const { editorState, urlValue, urlType } = this.state
@@ -155,10 +150,10 @@ class EditorScene extends Component {
 				{ currentContent: contentStateWithEntity }
 			);
 		this.onChange(AtomicBlockUtils.insertAtomicBlock(
-				newEditorState,
-				entityKey,
-				' '
-			));
+			newEditorState,
+			entityKey,
+			' '
+		));
 		this.setState({
 			showURLInput: false,
 			urlValue: '',
@@ -190,9 +185,7 @@ class EditorScene extends Component {
 	_addVideo() {
 		this._promptForMedia('video');
 	}
-
-	// END MEDIA EDITOR EXPERIMENT
-
+  
 	onBoldClick() {
 		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
 	}
@@ -239,108 +232,99 @@ class EditorScene extends Component {
 		}
 
 		return (
-			<div className="editorscene-wrapper" id={`editorscene-wrapper-${this.props.position}`}>
+			<div className="form-group editorscene-texteditor">
 
-				{/* ----- PAGE CONTENT ----- */}
+				<div className="editor-row">
 
-				<div className="editorscene-content-wrapper">
+					<input
+						className="editor-scene-title"
+						placeholder="Scene Title"
+						name={this.props.whichScene}
+						onChange={this.props.onSceneTitleChange}
+						value={this.props.title}
+					/>
 
-					<div className="editorscene-buttons btn-group-vertical">
+				</div>
+
+				<div className="editor-row">
+
+					<div className="editor-btns-left-align btn-group">
+
 						<button
-							className="btn btn-default editorscene-delete-btn"
-							onClick={this.props.onDeleteScene}
+							className="editor-btn btn btn-default"
+							onClick={this.onBoldClick.bind(this)}
 						>
-							<span className="glyphicon glyphicon-trash" ></span>
+							<i className="fa fa-bold" />
 						</button>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onItalicClick.bind(this)}
+						>
+							<i className="fa fa-italic" />
+						</button>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onBlockQuoteClick.bind(this)}
+						>
+							<i className="fa fa-quote-right" />
+						</button>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onUnorderedListClick.bind(this)}
+						>
+							<i className="fa fa-list-ul" />
+						</button>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onOrderedListClick.bind(this)}
+						>
+							<i className="fa fa-list-ol" />
+						</button>
+						{/* <button
+									onMouseDown={this.addAudio}
+								>
+									Add Audio
+                </button> */}
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.addImage}
+						>
+							<i className="fa fa-file-image-o" />
+						</button>
+						{/* <button onMouseDown={this.addVideo} style={{ marginRight: 10 }}>
+									Add Video
+                </button> */}
+
+					</div>
+
+					<div className="editor-btns-right-align btn-group">
 
 						<button
 							className="btn btn-default module-btn"
-							onClick={this.props.onShowActors}
+							onClick={this.props.onToggleActors}
 						>
 							Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
 						</button>
 
 						<button
 							className="btn btn-default module-btn"
-							name={this.props.position}
-							onClick={this.props.onShowMaps}
+							onClick={this.props.onToggleMaps}
 						>
 							Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
 						</button>
 
 						<button
 							className="btn btn-default module-btn"
-							name={this.props.position}
-							onClick={this.props.onShowHero}
+							onClick={this.props.onToggleHero}
 						>
 							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
 						</button>
 
-					</div>
+				</div>
 
-					<div className="form-group editorscene-texteditor">
+				{urlInput}
 
-						<div className="editor-row">
-
-							<input
-								className="editor-scene-title title-font"
-								placeholder="Scene Title"
-								name={this.props.position}
-								onChange={this.props.onSceneTitleChange}
-								value={this.props.title}
-							/>
-
-							<div className="editor-right-align btn-group">
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onBoldClick.bind(this)}
-								>
-									<i className="fa fa-bold" />
-								</button>
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onItalicClick.bind(this)}
-								>
-									<i className="fa fa-italic" />
-								</button>
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onBlockQuoteClick.bind(this)}
-								>
-									<i className="fa fa-quote-right" />
-								</button>
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onUnorderedListClick.bind(this)}
-								>
-									<i className="fa fa-list-ul" />
-								</button>
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onOrderedListClick.bind(this)}
-								>
-									<i className="fa fa-list-ol" />
-								</button>
-								{/* <button
-									onMouseDown={this.addAudio}
-								>
-									Add Audio
-                </button> */}
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.addImage}
-								>
-									<i className="fa fa-file-image-o" />
-                </button>
-								{/* <button onMouseDown={this.addVideo} style={{ marginRight: 10 }}>
-									Add Video
-                </button> */}
-							</div>
-						</div>
-
-						{urlInput}
-
-						<div className="editor-container" onClick={this.focus}>
+				<div className="editor-container" onClick={this.focus}>
 							<Editor
 								blockRendererFn={mediaBlockRenderer}
 								editorState={this.state.editorState}
@@ -349,26 +333,7 @@ class EditorScene extends Component {
 								position={this.props.position}
 								ref="editor"
 							/>
-						</div>
-					</div>
-
 				</div>
-
-				{/* ----- SIDEBAR ----- */}
-
-				<div className="editorscene-sidebar-wrapper">
-					{
-						this.props.whichModule === 'maps'
-							? <EditorMaps position={this.props.position} />
-							: this.props.whichModule === 'actors'
-								? <EditorActors position={this.props.position} />
-								: this.props.whichModule === 'hero'
-									? <EditorHero position={this.props.position} />
-									: null
-					}
-				</div>
-
-
 			</div>
 		);
 	}
@@ -378,51 +343,58 @@ class EditorScene extends Component {
 
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { toggleActors, toggleMaps, toggleHero, setSceneText, setSceneHTML, setSceneTitle, deleteScene  } from '../../reducers/editor';
+import { deselectModule, showActors, showMaps, showHero, setSceneText, setSceneHTML, setSceneTitle } from '../../reducers/editor';
+import store from '../../store';
 
-const mapStateToProps = (store, ownProps) => ({
-	editor: store.editor,
-	position: ownProps.position,
-	title: store.editor.scenes[ownProps.position].title,
-	text: store.editor.scenes[ownProps.position].paragraphs[0],
-	displayActors: store.editor.scenes[ownProps.position].displayActors,
-	whichModule: store.editor.scenes[ownProps.position].whichModule
+const mapStateToProps = (state) => ({
+	whichScene: state.editor.whichScene,
+	title: state.editor.scenes[state.editor.whichScene].title,
+	text: state.editor.scenes[state.editor.whichScene].paragraphs[0],
+	whichModule: state.editor.scenes[state.editor.whichScene].whichModule
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onShowActors(event) {
+	onToggleActors(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-		dispatch(toggleActors(ownProps.position));
+		if (ownProps.whichModule === 'actors') {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
+			dispatch(deselectModule(ownProps.whichScene));
+		} else {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
+			dispatch(showActors());
+		}
 	},
-	onShowMaps(event) {
+	onToggleMaps(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-		dispatch(toggleMaps(ownProps.position));
+		if (ownProps.whichModule === 'maps') {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
+			dispatch(deselectModule(ownProps.whichScene));
+		} else {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
+			dispatch(showMaps());
+		}
 	},
-	onShowHero(event) {
+	onToggleHero(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-		dispatch(toggleHero(ownProps.position));
+		if (ownProps.whichModule === 'hero') {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
+			dispatch(deselectModule(ownProps.whichScene));
+		} else {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
+			dispatch(showHero());
+		}
 	},
 	onSceneTitleChange(event) {
 		event.preventDefault();
-		dispatch(setSceneTitle(ownProps.position, event.target.value));
+		dispatch(setSceneTitle(event.target.value));
 	},
-	onSceneTextChange(position, content) {
+	onSceneTextChange(content) {
 		event.preventDefault();
-		dispatch(setSceneText(position, content));
+		dispatch(setSceneText(content));
 	},
-	onSceneHTMLChange(position, content) {
+	onSceneHTMLChange(content) {
 		event.preventDefault();
-		dispatch(setSceneHTML(position, content));
-	},
-	onDeleteScene(event) {
-		event.preventDefault();
-		let allowDelete = confirm(`Are you sure you want to delete scene ${+ownProps.position + 1}?`);
-		if (allowDelete) {
-			dispatch(deleteScene(+ownProps.position));
-		}
+		dispatch(setSceneHTML(content));
 	}
 });
 

@@ -60,7 +60,7 @@ class EditorActors extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addActor, generateActors, toggleActors } from '../../reducers/editor';
+import { addActor, generateActors, deselectModule } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,
@@ -81,8 +81,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onHideActors(event) {
     event.preventDefault();
-    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-    dispatch(toggleActors(ownProps.position, true));
+    $(`#editorscene-wrapper-${ownProps.position}`).removeClass("toggled");
+    dispatch(deselectModule(ownProps.position));
   }
 });
 

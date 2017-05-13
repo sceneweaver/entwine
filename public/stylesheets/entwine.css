@@ -55,33 +55,62 @@ html, body, #main {
 }
 /* ----- Editor Styling ----- */
 
-#storyEditor {
-  margin-left: 0px;
-  margin-right: 0px;
-  margin: 0px 100px;
-}
-
-.title-row {
+#title-row {
   margin-top: 10px;
+  margin-bottom: 40px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }
 
-.titlerow-button {
-  margin: 10px 20px 20px 0px;
+#publish-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  margin-right: 20px;
 }
 
-.story-title-input {
+#story-title-input {
   font-size: 30px;
   text-indent: 7px;
   border: none;
   border-bottom: solid 1.5px #c9c9c9;
   width: 100%;
-  margin-top: 20px;
   background-color: transparent;
 }
 
-.publish-button {
+#editor-scenes-wrapper {
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start
+}
+
+#editor-scenes-menu {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px 0 0;
+}
+
+#editor-scenes-menu-items-container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+/* ----- EditorScenesMenuItem styling ----- */
+
+.editor-scene-menu-item {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ----- EditorScene Styling ----- */
@@ -98,10 +127,13 @@ html, body, #main {
 }
 
 .editor-row {
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .editor-scene-title {
@@ -113,7 +145,7 @@ html, body, #main {
   border-bottom: solid 1.5px #c9c9c9;
   background-color: transparent;
   font-size: 25px;
-  width: 50%;
+  width: 100%;
   margin-right: 20px;
 }
 
@@ -122,29 +154,30 @@ html, body, #main {
   border: 0.5px solid #c9c9c9;
   font-size: 18px;
   padding: 15px;
+  margin-top: 10px;
   color: black;
   min-height: 200px;
   font-family: 'Sorts Mill Goudy', serif;
-}
-
-.editorscene-buttons {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin-right: 20px;
 }
 
 .editorscene-delete-btn {
   margin-bottom: 20px;
 }
 
-.editor-right-align {
+.editor-btns-left-align {
+  align-self: flex-start;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.editor-btns-right-align {
   align-self: flex-end;
+  margin-top: 10px;
 }
 
 .module-btn {
   width: 100px;
+  align-self: flex-end;
 }
 
 .editorscene-mediaurl-input > input {

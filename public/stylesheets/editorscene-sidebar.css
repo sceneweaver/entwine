@@ -11,17 +11,18 @@
 /* Toggle Styles */
 
 .editorscene-wrapper {
+  padding-left: 0;
   padding-right: 0;
   height: 100%;
-  margin-top: 25px;
+  width: 100%;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: baseline;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .editorscene-wrapper.toggled {
@@ -50,15 +51,15 @@
 
 .editorscene-content-wrapper {
     width: 100%;
+    padding: 0;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 15px;
     display: inline-flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: baseline;
 }
 
@@ -66,10 +67,10 @@
     width: 100%;
     position: absolute;
     margin-right: -50%;
-    padding: 0px;
+    padding: 0;
     display: inline-flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 /* Sidebar Styles */
@@ -101,7 +102,6 @@
     }
 
     .editorscene-content-wrapper {
-        padding: 20px;
         position: relative;
     }
 
