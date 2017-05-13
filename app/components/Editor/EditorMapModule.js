@@ -13,7 +13,7 @@ class EditorMapModule extends Component {
     this.state = {
       coords: [],
       location: '',
-      locationFormattedAddress: '',
+      locationFormatted: '',
       mapboxStyle: '',
       mapboxZoom: '',
       mapboxPitch: 30,
@@ -22,7 +22,7 @@ class EditorMapModule extends Component {
   }
 
   componentDidMount() {
-    console.log("mounting map!", this.props.locations[0])
+    console.log("mounting map!")
     this.setState({
       coords: this.props.locations[0].coords,
       mapboxStyle: this.props.locations[0].style,
@@ -84,9 +84,8 @@ class EditorMapModule extends Component {
     }, (err, response) => {
       if (!err) {
         let results = response.json.results[0],
-          coords = results.geometry.location,
-          style,
-          zoom;
+            coords = results.geometry.location,
+            zoom;
 
         // if location type includes country or administrative area, set the zoom levels appropriately
         if (results.types.includes('country')) zoom = 3;
@@ -98,7 +97,7 @@ class EditorMapModule extends Component {
         // google gives an object {lat: x, lng: y} -> reactmapboxgl takes it in the form of [lng, lat]
         this.setState({
           coords: [coords.lng, coords.lat],
-          locationAddress: results.formatted_address,
+          locationFormatted: results.formatted_address,
           mapboxZoom: zoom
         });
 
