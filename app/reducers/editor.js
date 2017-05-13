@@ -15,9 +15,11 @@ const SET_SCENE_TEXT = 'SET_SCENE_TEXT';
 const SET_SCENE_HTML = 'SET_SCENE_HTML';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
-const TOGGLE_ACTORS = 'TOGGLE_ACTORS';
-const TOGGLE_MAPS = 'TOGGLE_MAPS';
-const TOGGLE_HERO = 'TOGGLE_HERO';
+const DESELECT_MODULE = 'DESELECT_MODULE';
+
+const SHOW_ACTORS = 'SHOW_ACTORS';
+const SHOW_MAPS = 'SHOW_MAPS';
+const SHOW_HERO = 'SHOW_HERO';
 
 const SET_ACTORS = 'SET_ACTORS';
 const CHANGE_ACTOR = 'CHANGE_ACTOR';
@@ -42,16 +44,20 @@ export const setEditorScene = (whichScene) => ({
   whichScene
 })
 
-export const toggleActors = () => ({
-  type: TOGGLE_ACTORS,
+export const deselectModule = () => ({
+  type: DESELECT_MODULE,
 })
 
-export const toggleMaps = () => ({
-  type: TOGGLE_MAPS,
+export const showActors = () => ({
+  type: SHOW_ACTORS,
 })
 
-export const toggleHero = () => ({
-  type: TOGGLE_HERO,
+export const showMaps = () => ({
+  type: SHOW_MAPS,
+})
+
+export const showHero = () => ({
+  type: SHOW_HERO,
 })
 
 export const changeStoryTitle = input => ({
@@ -173,15 +179,19 @@ export default function reducer (state = {
       newState.whichScene = action.whichScene;
       break;
 
-    case TOGGLE_ACTORS:
+    case DESELECT_MODULE:
+      newState.scenes[state.whichScene].whichModule = null;
+      break;
+
+    case SHOW_ACTORS:
       newState.scenes[state.whichScene].whichModule = 'actors';
       break;
 
-    case TOGGLE_MAPS:
+    case SHOW_MAPS:
       newState.scenes[state.whichScene].whichModule = 'maps';
       break;
 
-    case TOGGLE_HERO:
+    case SHOW_HERO:
       newState.scenes[state.whichScene].whichModule = 'hero';
       break;
 

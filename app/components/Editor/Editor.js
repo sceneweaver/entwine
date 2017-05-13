@@ -71,6 +71,7 @@ class Editor extends Component {
 
             <EditorScene
               whichScene={this.props.whichScene}
+              whichModule={this.props.whichModule}
             />
 
           </div>

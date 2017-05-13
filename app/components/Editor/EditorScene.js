@@ -305,21 +305,21 @@ class EditorScene extends Component {
 
 						<button
 							className="btn btn-default module-btn"
-							onClick={this.props.onShowActors}
+							onClick={this.props.onToggleActors}
 						>
 							Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
 						</button>
 
 						<button
 							className="btn btn-default module-btn"
-							onClick={this.props.onShowMaps}
+							onClick={this.props.onToggleMaps}
 						>
 							Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
 						</button>
 
 						<button
 							className="btn btn-default module-btn"
-							onClick={this.props.onShowHero}
+							onClick={this.props.onToggleHero}
 						>
 							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
 						</button>
@@ -349,7 +349,7 @@ class EditorScene extends Component {
 
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { toggleActors, toggleMaps, toggleHero, setSceneText, setSceneHTML, setSceneTitle } from '../../reducers/editor';
+import { deselectModule, showActors, showMaps, showHero, setSceneText, setSceneHTML, setSceneTitle } from '../../reducers/editor';
 import store from '../../store';
 
 const mapStateToProps = (state) => ({
@@ -360,20 +360,35 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onShowActors(event) {
+	onToggleActors(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
-		dispatch(toggleActors());
+		if (ownProps.whichModule === 'actors') {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
+			dispatch(deselectModule());
+		} else {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
+			dispatch(showActors());
+		}
 	},
-	onShowMaps(event) {
+	onToggleMaps(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
-		dispatch(toggleMaps());
+		if (ownProps.whichModule === 'maps') {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
+			dispatch(deselectModule());
+		} else {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
+			dispatch(showMaps());
+		}
 	},
-	onShowHero(event) {
+	onToggleHero(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
-		dispatch(toggleHero());
+		if (ownProps.whichModule === 'hero') {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
+			dispatch(deselectModule());
+		} else {
+			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
+			dispatch(showHero());
+		}
 	},
 	onSceneTitleChange(event) {
 		event.preventDefault();
