@@ -23,7 +23,7 @@ export default function findPlaces(nounsArr) {
           style = 'outdoors';
           zoom = 5;
         } else {
-          style = 'basic';
+          style = 'light';
         }
 
         // if location type includes country or administrative area, set the zoom levels appropriately
@@ -31,7 +31,7 @@ export default function findPlaces(nounsArr) {
         else if (results.types.includes('administrative_area_level_1')) zoom = 5;
         else if (results.types.includes('administrative_area_level_2')) zoom = 7;
         else if (results.types.includes('administrative_area_level_3')) zoom = 8;
-        else zoom = 13;
+        else zoom = 12;
 
           resolve({
             name: noun.name,

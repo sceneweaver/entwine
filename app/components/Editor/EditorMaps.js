@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import EditorMapModule from './EditorMapModule';
-import EditorMapsLocationItem from './EditorMapsLocationItem';
+import EditorMapsLocation from './EditorMapsLocation';
 
 /* ----- COMPONENT ----- */
 
 class EditorMaps extends Component {
+  constructor(){
+    super();
+    this.state = {
+      disableAdd: false
+    }
+  }
+
   render() {
     return (
       <div className="maps-module">
@@ -25,6 +32,7 @@ class EditorMaps extends Component {
             <button
               onClick={this.props.onAddMap}
               className="btn maps-module-btn"
+              disabled={this.state.disableAdd}
             >
               Add Map &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
@@ -35,7 +43,7 @@ class EditorMaps extends Component {
         <div className="locations-box">
         {
           this.props.locations.length ?
-              <EditorMapsLocationItem
+              <EditorMapsLocation
                 location={this.props.locations[0]}
                 index={0}
                 position={this.props.position}
@@ -75,6 +83,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(toggleMaps(ownProps.position, true));
   },
   onAddMap(event) {
+    this.setState({disableAdd: true})
     event.preventDefault();
     event.stopPropagation();
     dispatch(generateMapLocations(ownProps.position));

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 /* ----- COMPONENT ----- */
 
-class EditorMapsLocationItem extends Component {
+class EditorMapsLocation extends Component {
   constructor() {
     super()
     this.onChanges.bind(this);
@@ -88,4 +88,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditorMapsLocationItem);
+export default connect(mapStateToProps, mapDispatchToProps)(EditorMapsLocation);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactMapboxGl, {Layer, Feature, Marker} from 'react-mapbox-gl';
 import secrets from '../../../secrets.json';
+import ReactTimeout from 'react-timeout';
 
 let googleMapsClient = require('@google/maps').createClient({key: secrets.googlemaps});
 
@@ -10,13 +11,12 @@ class EditorMapModule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      coords: [],
+      coords: [-74.009160, 40.705076],
       locationTypes: [],
       locationAddress: '',
       mapboxStyle: 'light',
       mapboxZoom: 12,
       mapboxPitch: 30,
-      mapboxInteractivity: true,
       mapboxAnimationMethod: 'flyTo'
     };
     this.onFindCoordsClick = this.onFindCoordsClick.bind(this);
@@ -24,6 +24,21 @@ class EditorMapModule extends Component {
     this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
     this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
   }
+
+  componentDidMount() {
+    console.log("mounting map!", this.props.locations[0])
+    this.props.setTimeout(() => {
+      this.setState({
+        coords: this.props.locations[0].coords,
+        mapboxStyle: this.props.locations[0].style,
+        mapboxZoom: this.props.locations[0].zoom
+      })
+    }, 1000);
+  }
+
+  // componentWillReceiveProps(nextProps){
+  //   console.log(nextProps)
+  // }
 
   findCoordinates(location) {
     googleMapsClient.geocode({
@@ -135,34 +150,31 @@ class EditorMapModule extends Component {
         </div>
 
         <div className="generated-map">
-          {this.props.locations[0]
-            ? (
-              <div>
-                <ReactMapboxGl style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]} pitch={this.state.mapboxPitch} center={this.props.locations[0].coords} movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
-                  interactive="true" // if false, map cannot be manipulated
-                  containerStyle={{
-                  position: 'relative',
-                  height: "50vh",
-                  width: "auto",
-                  display: "flex"
-                }}>
-                  <div>
-                    {/* Need to set position of inner canvas to relative */}
-                    <Layer
-                      type="symbol"
-                      id="marker"
-                      layout={{
-                      "icon-image": "marker-15"
-                    }}>
-                      <Feature coordinates={this.props.locations[0].coords}/>
-                    </Layer>
-                    <Marker coordinates={this.props.locations[0].coords} anchor="bottom"/>
-                  </div>
-                </ReactMapboxGl>
-              </div>
-            )
-            : null
-}
+          <ReactMapboxGl
+            style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]}
+            pitch={this.state.mapboxPitch}
+            center={this.props.locations[0].coords}
+            movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
+            interactive="true" // if false, map cannot be manipulated
+            containerStyle={{
+            position: 'relative',
+            height: '50vh',
+            width: 'auto',
+            display: 'flex'
+          }}>
+            <div>
+              {/* Need to set position of inner canvas to relative */}
+              <Layer
+                type="symbol"
+                id="marker"
+                layout={{
+                "icon-image": 'marker-15'
+              }}>
+                <Feature coordinates={this.props.locations[0].coords}/>
+              </Layer>
+              <Marker coordinates={this.props.locations[0].coords} anchor="bottom"/>
+            </div>
+          </ReactMapboxGl>
         </div>
       </div>
     );
@@ -186,4 +198,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditorMapModule);
+export default connect(mapStateToProps, mapDispatchToProps)(ReactTimeout(EditorMapModule));
