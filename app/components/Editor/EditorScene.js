@@ -88,9 +88,9 @@ let stateToHTMLOptions = {
 	blockRenderers: {
 		atomic: (block) => {
 			const mediaKey = block.getEntityAt(0)
-					, mediaEntityInstance = Entity.get(mediaKey)
-					, mediaEntityInstanceData = mediaEntityInstance.getData()
-					, mediaEntityInstanceType = mediaEntityInstance.getType();
+				, mediaEntityInstance = Entity.get(mediaKey)
+				, mediaEntityInstanceData = mediaEntityInstance.getData()
+				, mediaEntityInstanceType = mediaEntityInstance.getType();
 			return `<div><${mediaEntityInstanceType} src="${mediaEntityInstanceData.src}" /></div>`;
 		},
 	},
@@ -155,10 +155,10 @@ class EditorScene extends Component {
 				{ currentContent: contentStateWithEntity }
 			);
 		this.onChange(AtomicBlockUtils.insertAtomicBlock(
-				newEditorState,
-				entityKey,
-				' '
-			));
+			newEditorState,
+			entityKey,
+			' '
+		));
 		this.setState({
 			showURLInput: false,
 			urlValue: '',
@@ -245,33 +245,6 @@ class EditorScene extends Component {
 
 				<div className="editorscene-content-wrapper">
 
-					<div className="editorscene-buttons btn-group-vertical">
-
-						<button
-							className="btn btn-default module-btn"
-							onClick={this.props.onShowActors}
-						>
-							Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
-						</button>
-
-						<button
-							className="btn btn-default module-btn"
-							name={this.props.whichScene}
-							onClick={this.props.onShowMaps}
-						>
-							Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
-						</button>
-
-						<button
-							className="btn btn-default module-btn"
-							name={this.props.whichScene}
-							onClick={this.props.onShowHero}
-						>
-							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
-						</button>
-
-					</div>
-
 					<div className="form-group editorscene-texteditor">
 
 						<div className="editor-row">
@@ -284,7 +257,12 @@ class EditorScene extends Component {
 								value={this.props.title}
 							/>
 
+						</div>
+
+						<div className="editor-row">
+
 							<div className="editor-right-align btn-group">
+
 								<button
 									className="editor-btn btn btn-default"
 									onClick={this.onBoldClick.bind(this)}
@@ -325,11 +303,40 @@ class EditorScene extends Component {
 									onClick={this.addImage}
 								>
 									<i className="fa fa-file-image-o" />
-                </button>
+								</button>
 								{/* <button onMouseDown={this.addVideo} style={{ marginRight: 10 }}>
 									Add Video
                 </button> */}
+
 							</div>
+
+							<div className="btn-group">
+
+								<button
+									className="btn btn-default module-btn"
+									onClick={this.props.onShowActors}
+								>
+									Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
+								</button>
+
+								<button
+									className="btn btn-default module-btn"
+									name={this.props.whichScene}
+									onClick={this.props.onShowMaps}
+								>
+									Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
+								</button>
+
+								<button
+									className="btn btn-default module-btn"
+									name={this.props.whichScene}
+									onClick={this.props.onShowHero}
+								>
+									Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
+								</button>
+
+							</div>
+
 						</div>
 
 						{urlInput}

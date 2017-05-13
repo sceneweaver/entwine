@@ -118,9 +118,10 @@ html, body, #main {
 }
 
 .editor-row {
-  display: flex;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
   margin-bottom: 20px;
 }
 
@@ -148,20 +149,13 @@ html, body, #main {
   font-family: 'Sorts Mill Goudy', serif;
 }
 
-.editorscene-buttons {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin-right: 20px;
-}
-
 .editorscene-delete-btn {
   margin-bottom: 20px;
 }
 
 .editor-right-align {
-  align-self: flex-end;
+  align-self: flex-start;
+  margin-right: 20px;
 }
 
 .module-btn {
