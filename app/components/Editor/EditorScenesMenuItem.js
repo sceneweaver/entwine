@@ -30,7 +30,7 @@ class EditorScenesMenuItem extends Component {
 
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { deleteScene, setEditorScene } from '../../reducers/editor';
+import { deleteScene, setEditorScene, deselectModule } from '../../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
 	position: ownProps.position,
@@ -41,6 +41,8 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onSwitchScene(event) {
     event.preventDefault();
+    $('.editorscene-wrapper').removeClass('toggled');
+    dispatch(deselectModule(ownProps.position));
     dispatch(setEditorScene(ownProps.position));
   },
 	onDeleteScene(event) {

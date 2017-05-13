@@ -364,7 +364,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		event.preventDefault();
 		if (ownProps.whichModule === 'actors') {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
-			dispatch(deselectModule());
+			dispatch(deselectModule(ownProps.whichScene));
 		} else {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
 			dispatch(showActors());
@@ -374,7 +374,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		event.preventDefault();
 		if (ownProps.whichModule === 'maps') {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
-			dispatch(deselectModule());
+			dispatch(deselectModule(ownProps.whichScene));
 		} else {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
 			dispatch(showMaps());
@@ -384,7 +384,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		event.preventDefault();
 		if (ownProps.whichModule === 'hero') {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
-			dispatch(deselectModule());
+			dispatch(deselectModule(ownProps.whichScene));
 		} else {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
 			dispatch(showHero());

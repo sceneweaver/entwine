@@ -44,8 +44,9 @@ export const setEditorScene = (whichScene) => ({
   whichScene
 })
 
-export const deselectModule = () => ({
+export const deselectModule = (position) => ({
   type: DESELECT_MODULE,
+  position
 })
 
 export const showActors = () => ({
@@ -180,7 +181,7 @@ export default function reducer (state = {
       break;
 
     case DESELECT_MODULE:
-      newState.scenes[state.whichScene].whichModule = null;
+      newState.scenes[action.position].whichModule = null;
       break;
 
     case SHOW_ACTORS:
