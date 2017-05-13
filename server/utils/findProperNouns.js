@@ -41,7 +41,9 @@ const arrToObj = arr => {
   while (i < arr.length) {
     if (/^[A-Z]/.test(arr[i])) { // check if word is capitalized
       let newWord = `${arr[i]}`;
-      while (/^[A-Z]/.test(arr[i + 1]) && newWord[newWord.length - 1] !== ',') { // if next word is capitalized too, combine them. Will not combine proper nouns separated by a comma
+      while (/^[A-Z]/.test(arr[i + 1]) && arr[i + 1].replace(/,+/g, '') !== 'I' && newWord[newWord.length - 1] !== ',') {
+        // if next word is capitalized too, combine them. Will not combine proper nouns separated by a comma
+        // also do not count 'I' as part of the word if adjacent to another capitalized word
         newWord += ` ${arr[i + 1]}`;
         i++;
       }
