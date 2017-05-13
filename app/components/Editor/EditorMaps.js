@@ -5,51 +5,6 @@ import EditorMapsLocationItem from './EditorMapsLocationItem';
 /* ----- COMPONENT ----- */
 
 class EditorMaps extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      coords: [],
-      locationTypes: [],
-      locationAddress: '',
-      mapboxStyle: 'light',
-      mapboxZoom: 13,
-      mapboxPitch: 30,
-      mapboxInteractivity: true,
-      mapboxAnimationMethod: 'flyTo',
-    }
-
-    this.onFindCoordsClick = this.onFindCoordsClick.bind(this);
-    this.changeMapboxStyle = this.changeMapboxStyle.bind(this);
-    this.changeMapboxZoom = this.changeMapboxZoom.bind(this);
-    this.changeMapboxAnimationMethod = this.changeMapboxAnimationMethod.bind(this);
-    this.toggleMapboxInteractivity = this.toggleMapboxInteractivity.bind(this);
-  }
-
-   onFindCoordsClick(event) {
-    event.preventDefault();
-    this.findCoordinates(event.target.location.value);
-  }
-
-  changeMapboxStyle(event) {
-    event.preventDefault();
-    this.setState({ mapboxStyle: event.target.value })
-  }
-
-  changeMapboxZoom(event) {
-    event.preventDefault();
-    this.setState({ mapboxZoom: event.target.value })
-  }
-
-  changeMapboxAnimationMethod(event) {
-    event.preventDefault();
-    this.setState({ mapboxAnimationMethod: event.target.value })
-  }
-
-  toggleMapboxInteractivity(event) {
-    event.preventDefault();
-    this.setState({ mapboxInteractivity: event.target.value })
-  }
-
   render() {
     return (
       <div className="maps-module">
@@ -68,7 +23,7 @@ class EditorMaps extends Component {
 
           <div className="flex-self-right">
             <button
-              onClick={this.props.onRefreshLocations}
+              onClick={this.props.onAddMap}
               className="btn maps-module-btn"
             >
               Add Map &nbsp; <span className="glyphicon glyphicon-plus" />
@@ -79,16 +34,12 @@ class EditorMaps extends Component {
 
         <div className="locations-box">
         {
-          this.props.locations.length ? this.props.locations.map((location, index) => {
-            return (
+          this.props.locations.length ?
               <EditorMapsLocationItem
-                location={location}
-                index={index}
-                key={index}
+                location={this.props.locations[0]}
+                index={0}
                 position={this.props.position}
               />
-            );
-          })
             : <p>No map yet for this scene. Add a new map!</p>
         }
         </div>
@@ -108,29 +59,25 @@ class EditorMaps extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addLocation, generateMapLocations, toggleMaps } from '../../reducers/editor';
+import { generateMapLocations, toggleMaps } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
   position: ownProps.position,
   sceneTitle: state.editor.scenes[ownProps.position].title,
+  paragraphs: state.editor.scenes[ownProps.position].paragraphs
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onHideMaps(event) {
     event.preventDefault();
-    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
+    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass('toggled');
     dispatch(toggleMaps(ownProps.position, true));
   },
-  onRefreshLocations(event) {
+  onAddMap(event) {
     event.preventDefault();
     event.stopPropagation();
     dispatch(generateMapLocations(ownProps.position));
-  },
-  onAddLocation(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    dispatch(addLocation(ownProps.position));
   },
 });
 

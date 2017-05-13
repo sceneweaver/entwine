@@ -308,7 +308,8 @@ export const generateMapLocations = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => {
-    return findPlaces(actorsArray)
+    if (!actorsArray[0]) return findPlaces([{name: 'Fullstack Academy'}]);
+    else return findPlaces(actorsArray);
   })
   .then(placesArr => {
     dispatch(setLocations(position, placesArr))

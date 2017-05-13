@@ -23,7 +23,7 @@ export default function findPlaces(nounsArr) {
           style = 'outdoors';
           zoom = 5;
         } else {
-          style = 'light';
+          style = 'basic';
         }
 
         // if location type includes country or administrative area, set the zoom levels appropriately

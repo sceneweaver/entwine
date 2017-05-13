@@ -6,6 +6,9 @@ class EditorMapsLocationItem extends Component {
   constructor() {
     super()
     this.onChanges.bind(this);
+    this.state = {
+      location: ''
+    }
   }
   onChanges(index, event) {
     this.props.onLocationsChange(index, event.target.value);
@@ -17,6 +20,12 @@ class EditorMapsLocationItem extends Component {
       <div className="location-item">
 
         <div className="module-btns">
+          <button
+            className="btn btn-default"
+            onClick={this.props.onChangeLocation.bind(this, index, this.state.location)}
+          >
+          <span className="glyphicon glyphicon-refresh" ></span>
+          </button>
           <button
             className="btn btn-default"
             onClick={this.props.onDeleteLocation.bind(this, index)}
@@ -32,8 +41,8 @@ class EditorMapsLocationItem extends Component {
               type="text"
               className="location-name-field"
               value={this.props.name}
-              onChange={this.props.onFieldChange.bind(this, index, 'name')}
-              onKeyPress={this.props.onChangeLocation.bind(this, index)}
+              onChange={this.props.onFieldChange.bind(this, index, null)}
+              onKeyPress={this.props.onChangeLocation.bind(this, index, 'keypress')}
             />
           </div>
         </div>
@@ -57,15 +66,18 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onFieldChange(locationIndex, field, event) {
     event.preventDefault();
     event.stopPropagation();
+    this.setState({location: event.target.value})
     dispatch(changeLocation(ownProps.position, locationIndex, field, event.target.value));
   },
-  onChangeLocation(index, event) {
-    if(event.key === 'Enter') {
+  onChangeLocation(index, valueOnClick, event) {
+    console.log(valueOnClick, event.target.value)
+    let value;
+    if (valueOnClick) value = valueOnClick;
+    else if (event.key === 'Enter') value = event.target.value;
+    if (event.key === 'Enter' || valueOnClick) {
       event.preventDefault();
       event.stopPropagation();
-      console.log(event.target.value)
-      dispatch(generateSingleMapLocation(ownProps.position, event.target.value));
-
+      dispatch(generateSingleMapLocation(ownProps.position, value));
     }
   },
   onDeleteLocation(locationIndex, event) {
