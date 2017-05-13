@@ -362,17 +362,17 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onShowActors(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.whichScene}`).toggleClass("toggled");
+		$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
 		dispatch(toggleActors());
 	},
 	onShowMaps(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.whichScene}`).toggleClass("toggled");
+		$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
 		dispatch(toggleMaps());
 	},
 	onShowHero(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.whichScene}`).toggleClass("toggled");
+		$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
 		dispatch(toggleHero());
 	},
 	onSceneTitleChange(event) {
