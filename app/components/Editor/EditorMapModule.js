@@ -41,10 +41,6 @@ class EditorMapModule extends Component {
     }, 1500);
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   console.log(nextProps)
-  // }
-
   findCoordinates(location) {
     googleMapsClient.geocode({
       address: location
@@ -157,9 +153,6 @@ class EditorMapModule extends Component {
 							<option value="20">20</option>
 						</select>
 					</div>
-
-          <button onClick={this.props.onSaveMap.bind(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)}>Save Map</button>
-
         </div>
 
         <div className="generated-map">
