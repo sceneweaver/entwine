@@ -19,7 +19,7 @@ class EditorMaps extends Component {
 
           <div className="module-collapse-btn">
             <button
-              onClick={this.props.onHideMaps}
+              onClick={this.props.onHideMaps.bind}
               className="btn maps-module-btn"
             >
               Collapse &nbsp; <span className="glyphicon glyphicon-menu-right"></span>
@@ -30,7 +30,7 @@ class EditorMaps extends Component {
 
           <div className="flex-self-right">
             <button
-              onClick={this.props.onAddMap}
+              onClick={this.props.onAddMap.bind(this)}
               className="btn maps-module-btn"
               disabled={this.state.disableAdd}
             >
@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(toggleMaps(ownProps.position, true));
   },
   onAddMap(event) {
-    this.setState({disableAdd: true})
+    this.setState({disableAdd: true});
     event.preventDefault();
     event.stopPropagation();
     dispatch(generateMapLocations(ownProps.position));

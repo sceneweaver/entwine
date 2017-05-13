@@ -41,8 +41,8 @@ class EditorMapsLocation extends Component {
               type="text"
               className="location-name-field"
               value={this.props.name}
-              onChange={this.props.onFieldChange.bind(this, index, null)}
-              onKeyPress={this.props.onChangeLocation.bind(this, index, 'keypress')}
+              onChange={this.props.onFieldChange.bind(this, index)}
+              onKeyPress={this.props.onChangeLocation.bind(this, index, null)}
             />
           </div>
         </div>
