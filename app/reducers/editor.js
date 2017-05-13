@@ -119,10 +119,9 @@ export const addLocation = position => ({
   position
 })
 
-export const deleteLocation = (position, locationIndex) => ({
+export const deleteLocation = (position) => ({
   type: DELETE_LOCATION,
-  position,
-  locationIndex
+  position
 })
 
 export const changeLocation = (position, locationIndex, field, input) => ({
@@ -246,9 +245,7 @@ export default function reducer (state = {
       break;
 
     case DELETE_LOCATION:
-      const firstHalfOfLocations = newState.scenes[action.position].locations.slice(0, +action.locationIndex)
-        , secondHalfOfLocations = newState.scenes[action.position].locations.slice(+action.locationIndex + 1);
-      newState.scenes[action.position].locations = [...firstHalfOfLocations, ...secondHalfOfLocations];
+      newState.scenes[action.position].locations = [];
       break;
 
     case SET_MAP:

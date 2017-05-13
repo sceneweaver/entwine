@@ -37,22 +37,6 @@ class EditorMapModule extends Component {
     }, 1500);
   }
 
-  componentWillUnmount() {
-
-  }
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('receiving location props!', nextProps)
-  //   if (nextProps.maps && nextProps.maps.length) {
-  //     let zoom = nextProps.maps[0].zoom;
-  //     this.setState({
-  //       coords: nextProps.maps[0].coords.split(','),
-  //       style: nextProps.maps[0].style,
-  //       zoom: zoom
-  //     })
-  //   }
-  // }
-
   changeMapboxStyle(event) {
     event.preventDefault();
     this.setState({mapboxStyle: event.target.value})
