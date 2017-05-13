@@ -11,11 +11,11 @@ class EditorMapModule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      coords: [-74.009160, 40.705076],
+      coords: [],
       location: '',
       locationFormattedAddress: '',
-      mapboxStyle: 'light',
-      mapboxZoom: 12,
+      mapboxStyle: '',
+      mapboxZoom: '',
       mapboxPitch: 30,
       mapboxAnimationMethod: 'flyTo'
     };
@@ -23,13 +23,11 @@ class EditorMapModule extends Component {
 
   componentDidMount() {
     console.log("mounting map!", this.props.locations[0])
-    this.props.setTimeout(() => {
-      this.setState({
-        coords: this.props.locations[0].coords,
-        mapboxStyle: this.props.locations[0].style,
-        mapboxZoom: this.props.locations[0].zoom
-      })
-    }, 1000);
+    this.setState({
+      coords: this.props.locations[0].coords,
+      mapboxStyle: this.props.locations[0].style,
+      mapboxZoom: this.props.locations[0].zoom
+    })
 
     this.props.setTimeout(() => {
       console.log("saving map!")
@@ -123,9 +121,7 @@ class EditorMapModule extends Component {
   render() {
     return (
       <div className="editor-map">
-
   			<div className="map-editor-header">
-
 					<div className="map-style">
 						<label> Map Style: &nbsp; </label>
 						<select
@@ -169,34 +165,36 @@ class EditorMapModule extends Component {
           </button>
 
         </div>
-
-        <div className="generated-map">
-          <ReactMapboxGl
-            style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]}
-            pitch={this.state.mapboxPitch}
-            center={this.state.coords}
-            movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
-            interactive="true" // if false, map cannot be manipulated
-            containerStyle={{
-            position: 'relative',
-            height: '50vh',
-            width: 'auto',
-            display: 'flex'
-          }}>
-            <div>
-              {/* Need to set position of inner canvas to relative */}
-              <Layer
-                type="symbol"
-                id="marker"
-                layout={{
-                "icon-image": 'marker-15'
+        {
+          this.state.mapboxStyle ?
+            <div className="generated-map">
+              <ReactMapboxGl
+                style={`mapbox://styles/mapbox/${this.state.mapboxStyle}-v9`} accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w" zoom={[this.state.mapboxZoom]}
+                pitch={this.state.mapboxPitch}
+                center={this.state.coords}
+                movingMethod={this.state.mapboxAnimationMethod} // animation style; default 'flyTo'
+                interactive="true" // if false, map cannot be manipulated
+                containerStyle={{
+                position: 'relative',
+                height: '50vh',
+                width: 'auto',
+                display: 'flex'
               }}>
-                <Feature coordinates={this.state.coords}/>
-              </Layer>
-              <Marker coordinates={this.state.coords} anchor="bottom"/>
-            </div>
-          </ReactMapboxGl>
-        </div>
+                <div>
+                  {/* Need to set position of inner canvas to relative */}
+                  <Layer
+                    type="symbol"
+                    id="marker"
+                    layout={{
+                    "icon-image": 'marker-15'
+                  }}>
+                    <Feature coordinates={this.state.coords}/>
+                  </Layer>
+                  <Marker coordinates={this.state.coords} anchor="bottom"/>
+                </div>
+              </ReactMapboxGl>
+            </div> : null
+          }
       </div>
     );
   }

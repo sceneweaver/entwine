@@ -12,7 +12,7 @@ class EditorMaps extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.locations[0])
+    // if there are no locations, let the user add map
     if (!nextProps.locations[0]) this.setState({disableAdd: false});
   }
 
@@ -41,24 +41,14 @@ class EditorMaps extends Component {
               Add Map &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
           </div>
-
         </div>
-
-
-        {
-          this.props.locations.length ?
-            null
-          : <div className="locations-box"><p>Each scene can either have a hero image or a map. Add a new map!</p></div>
-        }
-
-
-        {
-          this.props.locations.length ?
-            <EditorMapModule
-              position={this.props.position}
-            />
-            : null
-        }
+          {
+            this.props.locations.length ?
+              <EditorMapModule
+                position={this.props.position}
+              />
+              : <div className="locations-box"><p>Each scene can either have a hero image or a map. Add a new map!</p></div>
+          }
       </div>
     );
   }
