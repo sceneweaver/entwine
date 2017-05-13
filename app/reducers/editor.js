@@ -6,6 +6,7 @@ import MapModule from '../../server/utils/maps-constructor';
 
 /* -----------------    ACTIONS     ------------------ */
 
+const INIT_EDITOR = 'INIT_EDITOR';
 const SET_STORY_TITLE = 'SET_STORY_TITLE';
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
@@ -35,6 +36,10 @@ const SET_HERO_QUERY = 'SET_HERO_QUERY';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
+
+export const initEditor = () => ({
+  type: INIT_EDITOR,
+})
 
 export const toggleActors = (position) => ({
   type: TOGGLE_ACTORS,
@@ -160,6 +165,7 @@ export const setHero = (position, imageObj) => ({
 export default function reducer (state = {
   title: '',
   scenes: [new Scene()],
+  whichScene: 0
 }, action) {
   const newState = _.merge({}, state);
   switch (action.type) {

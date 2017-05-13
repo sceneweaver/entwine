@@ -8,12 +8,12 @@ import EditorScenesMenuItem from './EditorScenesMenuItem';
 class Editor extends Component {
   render() {
     return (
-      <div id="storyEditor">
+      <div id="storyEditor" className="container">
 
         <div className="title-row">
 
           <button
-            className="btn btn-success titlerow-button"
+            className="btn btn-success publish-btn"
             onClick={this.props.onSubmitStory}
           >
             Publish Story  <span className="glyphicon glyphicon-share"></span>

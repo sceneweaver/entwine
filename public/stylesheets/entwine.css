@@ -45,18 +45,17 @@ html, body, #main {
 
 /* ----- Editor Styling ----- */
 
-#storyEditor {
-  margin-left: 0px;
-  margin-right: 0px;
-  margin: 0px 100px;
-}
-
 .title-row {
   margin-top: 10px;
+  margin-bottom: 40px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.titlerow-button {
-  margin: 10px 20px 20px 0px;
+.publish-btn {
+  margin: 0;
 }
 
 .story-title-input {
@@ -65,7 +64,6 @@ html, body, #main {
   border: none;
   border-bottom: solid 1.5px #c9c9c9;
   width: 100%;
-  margin-top: 20px;
   background-color: transparent;
   font-family: 'Playfair Display SC', serif;
 }
@@ -73,6 +71,29 @@ html, body, #main {
 .publish-button {
   display: flex;
   justify-content: flex-end;
+}
+
+.editor-scenes-menu {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-scenes-menu-items-container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+/* ----- EditorScenesMenuItem styling ----- */
+
+.editor-scene-menu-item {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ----- EditorScene Styling ----- */

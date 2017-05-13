@@ -375,12 +375,11 @@ import { connect } from 'react-redux';
 import { toggleActors, toggleMaps, toggleHero, setSceneText, setSceneHTML, setSceneTitle, deleteScene  } from '../../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
-	editor: store.editor,
 	position: ownProps.position,
-	title: store.editor.scenes[ownProps.position].title,
-	text: store.editor.scenes[ownProps.position].paragraphs[0],
-	displayActors: store.editor.scenes[ownProps.position].displayActors,
-	whichModule: store.editor.scenes[ownProps.position].whichModule
+	whichScene: store.editor.whichScene,
+	title: store.editor.scenes[store.editor.whichScene].title,
+	text: store.editor.scenes[store.editor.whichScene].paragraphs[0],
+	whichModule: store.editor.scenes[store.editor.whichScene].whichModule
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
