@@ -14,9 +14,9 @@ input, .article-text, .article-text *, .view-actors-desc, .editor-container * {
   font-family: 'Sorts Mill Goudy', serif;
 }
 
-/*.title-font {
-
-}*/
+.title-font {
+  font-family: 'Roboto', sans-serif;
+}
 
 select {
   -webkit-appearance: menulist-button;
