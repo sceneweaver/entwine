@@ -43,6 +43,16 @@ html, body, #main {
   font-size: 1em;
 }
 
+.feature-row {
+  margin-bottom: 20px
+}
+
+.create-story-button {
+  width: 75%;
+  margin: 45px;
+  margin-top: 12px;
+  margin-bottom: 12px
+}
 /* ----- Editor Styling ----- */
 
 #storyEditor {
