@@ -44,7 +44,15 @@ class EditorMapModule extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('receiving props!', nextProps)
+    console.log('receiving location props!', nextProps)
+    if (nextProps.maps && nextProps.maps.length) {
+      let zoom = nextProps.maps[0].zoom;
+      this.setState({
+        coords: nextProps.maps[0].coords.split(','),
+        style: nextProps.maps[0].style,
+        zoom: zoom
+      })
+    }
   }
 
   changeMapboxStyle(event) {
@@ -62,7 +70,7 @@ class EditorMapModule extends Component {
     this.props.setTimeout(() => {
       console.log("saving map!")
       this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
-    }, 1500);
+    }, 200);
   }
 
   render() {

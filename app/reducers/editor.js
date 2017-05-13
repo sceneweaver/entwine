@@ -277,8 +277,8 @@ import { browserHistory } from 'react-router';
 import { create } from './stories';
 import findProperNouns from '../../server/utils/findProperNouns';
 import findPlaces from '../../server/utils/findPlaces';
+import findSinglePlace from '../../server/utils/findSinglePlace';
 import findHeroImage from '../../server/utils/findHeroImage';
-import findPlaceCoords from '../../server/utils/findPlaceCoords';
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
@@ -317,7 +317,7 @@ export const generateMapLocations = position => (dispatch, getState) => {
 };
 
 export const generateSingleMapLocation = (position, placeName) => (dispatch, getState) => {
-  return findPlaceCoords(placeName)
+  return findSinglePlace(placeName)
   .then(placesArr => {
     dispatch(setLocations(position, placesArr))
   })
