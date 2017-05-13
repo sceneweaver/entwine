@@ -10,7 +10,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-input, span, .article-text, .view-actors-desc {
+input, .article-text *, .view-actors-desc, .editor-container * {
   font-family: 'Sorts Mill Goudy', serif;
 }
 
