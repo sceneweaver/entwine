@@ -11,9 +11,6 @@ import {
   StepContent,
 } from 'material-ui';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
 /* ----- COMPONENT ----- */
 class ViewStoryStepper extends React.Component {
   constructor(props) {

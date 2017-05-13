@@ -4,8 +4,6 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText, RaisedBut
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 const Home = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>

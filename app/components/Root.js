@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
-import Footer from './Footer';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 const Root = ({ children }) => (
   <div id="main">
