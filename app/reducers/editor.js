@@ -192,6 +192,7 @@ export default function reducer (state = {
       const newScene = new Scene();
       newScene.getPosition(newState.scenes.length);
       newState.scenes = [...newState.scenes, newScene];
+      newState.whichScene = newState.scenes.length - 1;
       break;
 
     case DELETE_SCENE:
