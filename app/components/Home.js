@@ -7,8 +7,6 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-
-
 const Home = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
     <div className="home main-featured container">
