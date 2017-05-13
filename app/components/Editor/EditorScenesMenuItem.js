@@ -19,7 +19,6 @@ class EditorScenesMenuItem extends Component {
           onClick={this.props.onSwitchScene}
         >
           <h4>Scene {this.props.position + 1}</h4>
-          <h2>{this.props.sceneTitle}</h2>
         </button>
 
       </div>
