@@ -45,21 +45,24 @@ html, body, #main {
 
 /* ----- Editor Styling ----- */
 
-.title-row {
+#title-row {
   margin-top: 10px;
   margin-bottom: 40px;
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
 }
 
-.publish-btn {
+#publish-btn {
+  display: flex;
+  justify-content: flex-end;
   margin: 0;
   margin-right: 20px;
 }
 
-.story-title-input {
+#story-title-input {
   font-size: 30px;
   text-indent: 7px;
   border: none;
@@ -69,12 +72,15 @@ html, body, #main {
   font-family: 'Playfair Display SC', serif;
 }
 
-.publish-button {
+#editor-scenes-wrapper {
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start
 }
 
-.editor-scenes-menu {
+#editor-scenes-menu {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -82,7 +88,7 @@ html, body, #main {
   margin: 0 20px;
 }
 
-.editor-scenes-menu-items-container {
+#editor-scenes-menu-items-container {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;

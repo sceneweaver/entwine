@@ -10,10 +10,11 @@ class Editor extends Component {
     return (
       <div id="storyEditor" className="container">
 
-        <div className="title-row">
+        <div id="title-row">
 
           <button
-            className="btn btn-success publish-btn"
+            className="btn btn-success"
+            id="publish-btn"
             onClick={this.props.onSubmitStory}
           >
             Publish Story  <span className="glyphicon glyphicon-share"></span>
@@ -22,7 +23,7 @@ class Editor extends Component {
 
           <input
             name="storyTitle"
-            className="story-title-input"
+            id="story-title-input"
             type="text"
             placeholder="Title your story"
             onChange={this.props.onStoryTitleChange}
@@ -31,15 +32,15 @@ class Editor extends Component {
 
         </div>
 
-        <div className="editorscene-wrapper">
+        <div id="editor-scenes-wrapper">
 
-          <div className="editor-scenes-menu">
+          <div id="editor-scenes-menu">
 
-            <div className="editor-scenes-menu-label">
+            <div id="editor-scenes-menu-label">
               <h4>Scenes</h4>
             </div>
 
-            <div className="editor-scenes-menu-items-container">
+            <div id="editor-scenes-menu-items-container">
               {
                 this.props.scenes && this.props.scenes.map((scene, index) => (
                   <EditorScenesMenuItem
@@ -51,7 +52,7 @@ class Editor extends Component {
               }
             </div>
 
-            <div className="editor-scenes-menu-add">
+            <div id="editor-scenes-menu-add">
               <button
                 className="btn btn-success titlerow-button"
                 onClick={this.props.onAddScene}

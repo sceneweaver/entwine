@@ -372,7 +372,7 @@ class EditorScene extends Component {
 
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { toggleActors, toggleMaps, toggleHero, setSceneText, setSceneHTML, setSceneTitle, deleteScene  } from '../../reducers/editor';
+import { toggleActors, toggleMaps, toggleHero, setSceneText, setSceneHTML, setSceneTitle } from '../../reducers/editor';
 import store from '../../store';
 
 const mapStateToProps = (state) => ({
