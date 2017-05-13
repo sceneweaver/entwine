@@ -43,6 +43,10 @@ html, body, #main {
   font-size: 1em;
 }
 
+.feature-row {
+  margin-bottom: 20px
+}
+
 /* ----- Editor Styling ----- */
 
 #storyEditor {
