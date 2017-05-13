@@ -31,12 +31,12 @@ class Editor extends Component {
 
         </div>
 
-        <div className="editor-scenes-wrapper">
+        <div className="editorscene-wrapper">
 
           <div className="editor-scenes-menu">
 
             <div className="editor-scenes-menu-label">
-              Scenes
+              <h4>Scenes</h4>
             </div>
 
             <div className="editor-scenes-menu-items-container">

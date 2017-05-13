@@ -113,8 +113,8 @@ class EditorScene extends Component {
 			let content = editorState.getCurrentContent()
 				, contentPlainText = content.getPlainText()
 				, contentHTML = stateToHTML(content, stateToHTMLOptions);
-			this.props.onSceneTextChange(this.props.position, contentPlainText);
-			this.props.onSceneHTMLChange(this.props.position, contentHTML);
+			this.props.onSceneTextChange(contentPlainText);
+			this.props.onSceneHTMLChange(contentHTML);
 			// updates Draft JS editor state
 			this.setState({ editorState });
 		};
@@ -239,7 +239,7 @@ class EditorScene extends Component {
 		}
 
 		return (
-			<div className="editorscene-wrapper" id={`editorscene-wrapper-${this.props.position}`}>
+			<div className="editorscene-wrapper" id={`editorscene-wrapper-${this.props.whichScene}`}>
 
 				{/* ----- PAGE CONTENT ----- */}
 
@@ -256,7 +256,7 @@ class EditorScene extends Component {
 
 						<button
 							className="btn btn-default module-btn"
-							name={this.props.position}
+							name={this.props.whichScene}
 							onClick={this.props.onShowMaps}
 						>
 							Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
@@ -264,7 +264,7 @@ class EditorScene extends Component {
 
 						<button
 							className="btn btn-default module-btn"
-							name={this.props.position}
+							name={this.props.whichScene}
 							onClick={this.props.onShowHero}
 						>
 							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
@@ -279,7 +279,7 @@ class EditorScene extends Component {
 							<input
 								className="editor-scene-title"
 								placeholder="Scene Title"
-								name={this.props.position}
+								name={this.props.whichScene}
 								onChange={this.props.onSceneTitleChange}
 								value={this.props.title}
 							/>
@@ -340,7 +340,7 @@ class EditorScene extends Component {
 								editorState={this.state.editorState}
 								handleKeyCommand={this.handleKeyCommand}
 								onChange={this.onChange}
-								position={this.props.position}
+								position={this.props.whichScene}
 								ref="editor"
 							/>
 						</div>
@@ -353,11 +353,11 @@ class EditorScene extends Component {
 				<div className="editorscene-sidebar-wrapper">
 					{
 						this.props.whichModule === 'maps'
-							? <EditorMaps position={this.props.position} />
+							? <EditorMaps position={this.props.whichScene} />
 							: this.props.whichModule === 'actors'
-								? <EditorActors position={this.props.position} />
+								? <EditorActors position={this.props.whichScene} />
 								: this.props.whichModule === 'hero'
-									? <EditorHero position={this.props.position} />
+									? <EditorHero position={this.props.whichScene} />
 									: null
 					}
 				</div>
@@ -373,13 +373,13 @@ class EditorScene extends Component {
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { toggleActors, toggleMaps, toggleHero, setSceneText, setSceneHTML, setSceneTitle, deleteScene  } from '../../reducers/editor';
+import store from '../../store';
 
-const mapStateToProps = (store, ownProps) => ({
-	position: ownProps.position,
-	whichScene: store.editor.whichScene,
-	title: store.editor.scenes[store.editor.whichScene].title,
-	text: store.editor.scenes[store.editor.whichScene].paragraphs[0],
-	whichModule: store.editor.scenes[store.editor.whichScene].whichModule
+const mapStateToProps = (state) => ({
+	whichScene: state.editor.whichScene,
+	title: state.editor.scenes[state.editor.whichScene].title,
+	text: state.editor.scenes[state.editor.whichScene].paragraphs[0],
+	whichModule: state.editor.scenes[state.editor.whichScene].whichModule
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -400,15 +400,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	},
 	onSceneTitleChange(event) {
 		event.preventDefault();
-		dispatch(setSceneTitle(ownProps.position, event.target.value));
+		dispatch(setSceneTitle(event.target.value));
 	},
-	onSceneTextChange(position, content) {
+	onSceneTextChange(content) {
 		event.preventDefault();
-		dispatch(setSceneText(position, content));
+		dispatch(setSceneText(content));
 	},
-	onSceneHTMLChange(position, content) {
+	onSceneHTMLChange(content) {
 		event.preventDefault();
-		dispatch(setSceneHTML(position, content));
+		dispatch(setSceneHTML(content));
 	},
 	onDeleteScene(event) {
 		event.preventDefault();

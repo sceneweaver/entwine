@@ -14,10 +14,13 @@ class EditorScenesMenuItem extends Component {
           <span className="glyphicon glyphicon-trash" ></span>
         </button>
 
-        <div>
+        <button
+          className="btn btn-default"
+          onClick={this.props.onSwitchScene}
+        >
           <h4>Scene {this.props.position + 1}</h4>
           <h2>{this.props.sceneTitle}</h2>
-        </div>
+        </button>
 
       </div>
     )
@@ -28,7 +31,7 @@ class EditorScenesMenuItem extends Component {
 
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import {  deleteScene  } from '../../reducers/editor';
+import { deleteScene, setEditorScene } from '../../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
 	position: ownProps.position,
@@ -36,6 +39,10 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  onSwitchScene(event) {
+    event.preventDefault();
+    dispatch(setEditorScene(ownProps.position));
+  },
 	onDeleteScene(event) {
 		event.preventDefault();
 		let allowDelete = confirm(`Are you sure you want to delete scene ${+ownProps.position + 1}?`);

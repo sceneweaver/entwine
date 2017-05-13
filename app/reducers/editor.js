@@ -6,8 +6,8 @@ import MapModule from '../../server/utils/maps-constructor';
 
 /* -----------------    ACTIONS     ------------------ */
 
-const INIT_EDITOR = 'INIT_EDITOR';
 const SET_STORY_TITLE = 'SET_STORY_TITLE';
+const SET_EDITOR_SCENE = 'SET_EDITOR_SCENE';
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
@@ -37,8 +37,9 @@ const SET_HERO_QUERY = 'SET_HERO_QUERY';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const initEditor = () => ({
-  type: INIT_EDITOR,
+export const setEditorScene = (whichScene) => ({
+  type: SET_EDITOR_SCENE,
+  whichScene
 })
 
 export const toggleActors = (position) => ({
@@ -70,21 +71,18 @@ export const deleteScene = (position) => ({
   position
 })
 
-export const setSceneTitle = (position, input) => ({
+export const setSceneTitle = (input) => ({
   type: SET_SCENE_TITLE,
-  position,
   input
 })
 
-export const setSceneText = (position, input) => ({
+export const setSceneText = (input) => ({
   type: SET_SCENE_TEXT,
-  position,
   input
 })
 
-export const setSceneHTML = (position, input) => ({
+export const setSceneHTML = (input) => ({
   type: SET_SCENE_HTML,
-  position,
   input
 })
 
@@ -174,6 +172,10 @@ export default function reducer (state = {
       newState.title = action.input;
       break;
 
+    case SET_EDITOR_SCENE:
+      newState.whichScene = action.whichScene;
+      break;
+
     case TOGGLE_ACTORS:
       newState.scenes[action.position].whichModule = 'actors';
       break;
@@ -206,15 +208,15 @@ export default function reducer (state = {
       break;
 
     case SET_SCENE_TEXT:
-      newState.scenes[action.position].paragraphs[0] = action.input;
+      newState.scenes[state.whichScene].paragraphs[0] = action.input;
       break;
 
     case SET_SCENE_HTML:
-      newState.scenes[action.position].paragraphsHTML[0] = action.input;
+      newState.scenes[state.whichScene].paragraphsHTML[0] = action.input;
       break;
 
     case SET_SCENE_TITLE:
-      newState.scenes[action.position].title = action.input;
+      newState.scenes[state.whichScene].title = action.input;
       break;
 
     case CHANGE_ACTOR:
