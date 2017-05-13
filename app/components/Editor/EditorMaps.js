@@ -67,7 +67,7 @@ class EditorMaps extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { generateMapLocations, toggleMaps } from '../../reducers/editor';
+import { generateMapLocations, deselectModule } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
@@ -79,8 +79,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onHideMaps(event) {
     event.preventDefault();
-    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass('toggled');
-    dispatch(toggleMaps(ownProps.position, true));
+    $(`#editorscene-wrapper-${ownProps.position}`).removeClass('toggled');
+    dispatch(deselectModule(ownProps.position));
   },
   onAddMap(event) {
     this.setState({disableAdd: true});

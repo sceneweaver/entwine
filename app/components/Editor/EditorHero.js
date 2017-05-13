@@ -71,7 +71,7 @@ class EditorHero extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { generateHero, setHeroQuery, toggleHero, setHero } from '../../reducers/editor';
+import { generateHero, setHeroQuery, deselectModule, setHero } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   sceneTitle: state.editor.scenes[ownProps.position].title,
@@ -104,8 +104,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onHideHero(event) {
     event.preventDefault();
-    $(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-    dispatch(toggleHero(ownProps.position));
+    $(`#editorscene-wrapper-${ownProps.position}`).removeClass("toggled");
+    dispatch(deselectModule(ownProps.position));
   }
 });
 
