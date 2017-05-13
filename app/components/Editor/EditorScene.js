@@ -134,9 +134,7 @@ class EditorScene extends Component {
 		}
 		return 'not-handled';
 	}
-
-	// BEGIN EXPERIMENT: MEDIA EDITOR
-
+  
 	_confirmMedia(e) {
 		e.preventDefault();
 		const { editorState, urlValue, urlType } = this.state
@@ -187,9 +185,7 @@ class EditorScene extends Component {
 	_addVideo() {
 		this._promptForMedia('video');
 	}
-
-	// END MEDIA EDITOR EXPERIMENT
-
+  
 	onBoldClick() {
 		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
 	}
@@ -324,21 +320,19 @@ class EditorScene extends Component {
 							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
 						</button>
 
-					</div>
-
 				</div>
 
 				{urlInput}
 
 				<div className="editor-container" onClick={this.focus}>
-					<Editor
-						blockRendererFn={mediaBlockRenderer}
-						editorState={this.state.editorState}
-						handleKeyCommand={this.handleKeyCommand}
-						onChange={this.onChange}
-						position={this.props.whichScene}
-						ref="editor"
-					/>
+							<Editor
+								blockRendererFn={mediaBlockRenderer}
+								editorState={this.state.editorState}
+								handleKeyCommand={this.handleKeyCommand}
+								onChange={this.onChange}
+								position={this.props.position}
+								ref="editor"
+							/>
 				</div>
 			</div>
 		);

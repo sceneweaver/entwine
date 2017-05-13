@@ -1,37 +1,79 @@
 import React from 'react';
+import {Link} from 'react-router'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText, RaisedButton} from 'material-ui';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
+
 
 const Home = () => (
-  <div className="home">
-    <div className="banner text-inverted inverted flex-container">
-        <h1>entwine: &nbsp; <br/>
-        create and tell interactive stories on the web </h1>
-    </div>
-    <div className="about">
-        <div className="container">
-          <div className="media large-font">
-            {/*<div className="media-left media-middle">
-              <img className="media-object" src="/images/stock-footage-old-typewriter.jpg" />
-            </div>*/}
-            <div className="media-body">
-              <p className="media-heading large-font home-page-header"><b>enhancing the storytelling experience</b></p>
-              <span className="home-page-text">Check out our featured stories! Entwine allows content creators to quickly embed interactive maps, information about key characters, and data visualizations into their stories. </span>
+  <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+    <div className="home main-featured container">
+      <div className="row feature-row">
+        <div className="featured-card col-md-8">
+          <Card>
+            <CardMedia
+              overlay={<CardTitle title="Featured Story" subtitle="James Comey's Conspicuous Independence" />}
+            >
+              <img height="400px" src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+            </CardMedia>
+          </Card>
+        </div>
+        <div className="col-md-4 about">
+          <Card>
+            <CardMedia>
+            </CardMedia>
+            <CardText style={{'font-size': 25}}>entwine allows content creators to quickly embed interactive maps, information about key characters, and data visualizations into their stories.</CardText>
+            <div className="create-story-button">
+              <RaisedButton label="Create a Story Now" fullWidth={true} labelStyle={{'font-size': 22}} containerElement={<Link to="/editor"/>} />
             </div>
-          </div>
-          <br />
-          <br />
-          <br />
-          <div className="media large-font home-page-header">
-            <div className="media-body">
-              <p className="media-heading large-font"><b>scene-by-scene navigation</b></p>
-              <span className="home-page-text">The stories created on Entwine are told across scenes. This allows the reader to transition through different key experiences chosen by the author. </span>
-            </div>
-            {/*<div className="media-right media-middle">
-              <img className="media-object" src="/images/stock-footage-old-man.jpg" />
-            </div>*/}
-          </div>
+          </Card>
         </div>
       </div>
-  </div>
+
+      <div className="row small-featured-stories feature-row">
+        <div className="col-md-3">
+          <Card>
+            <CardMedia
+              overlay={<CardTitle title="Featured Story" />}
+            >
+            <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+            </CardMedia>
+          </Card>
+          </div>
+          <div className="col-md-3">
+          <Card>
+            <CardMedia
+              overlay={<CardTitle title="Featured Story" />}
+            >
+              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+            </CardMedia>
+          </Card>
+        </div>
+        <div className="col-md-3">
+          <Card>
+            <CardMedia
+              overlay={<CardTitle title="Featured Story" />}
+            >
+              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+            </CardMedia>
+          </Card>
+        </div>
+        <div className="col-md-3">
+          <Card>
+            <CardMedia
+              overlay={<CardTitle title="Featured Story" />}
+            >
+              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+            </CardMedia>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </MuiThemeProvider>
 );
 
 export default Home;

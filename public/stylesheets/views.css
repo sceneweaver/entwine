@@ -1,11 +1,6 @@
 /* ----- ViewStory / ViewScene Styling ----- */
 
-.scenes-nav-title {
-  font-family: 'Playfair Display SC', serif;
-}
-
 .view-story-heading {
-  font-family: 'Playfair Display SC', serif;
   margin-top: 0;
 }
 
@@ -18,10 +13,6 @@
 
 .article-titles {
   margin-bottom: 40px;
-}
-
-.article-titles > h3 {
-  font-weight: bold;
 }
 
 .article-titles > h1 {
@@ -37,7 +28,6 @@
   margin-top: 5px;
   line-height: 2.875rem;
   font-size: 18px;
-  font-family: 'Sorts Mill Goudy', serif;
 }
 
 .scenes-nav {
@@ -179,7 +169,6 @@ input[type=range]:focus::-ms-fill-upper {
 
 .view-actors-desc {
   font-size: 16px;
-  font-family: 'Sorts Mill Goudy', serif;
 }
 
 /* ----- ViewScene Styling ----- */

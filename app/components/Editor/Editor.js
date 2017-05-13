@@ -27,6 +27,7 @@ class Editor extends Component {
           <input
             name="storyTitle"
             id="story-title-input"
+            className="title-font"
             type="text"
             placeholder="Title your story"
             onChange={this.props.onStoryTitleChange}

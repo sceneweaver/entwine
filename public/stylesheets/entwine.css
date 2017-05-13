@@ -43,6 +43,16 @@ html, body, #main {
   font-size: 1em;
 }
 
+.feature-row {
+  margin-bottom: 20px
+}
+
+.create-story-button {
+  width: 75%;
+  margin: 45px;
+  margin-top: 12px;
+  margin-bottom: 12px
+}
 /* ----- Editor Styling ----- */
 
 #title-row {
@@ -69,7 +79,6 @@ html, body, #main {
   border-bottom: solid 1.5px #c9c9c9;
   width: 100%;
   background-color: transparent;
-  font-family: 'Playfair Display SC', serif;
 }
 
 #editor-scenes-wrapper {
@@ -138,7 +147,6 @@ html, body, #main {
   font-size: 25px;
   width: 100%;
   margin-right: 20px;
-  font-family: 'Playfair Display SC', serif;
 }
 
 .editor-container {
@@ -203,7 +211,6 @@ html, body, #main {
 }
 
 .locations-box > p {
-  font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
 
@@ -218,7 +225,6 @@ html, body, #main {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  font-family: 'Nixie One', cursive;
 }
 
 .generated-map {
@@ -311,7 +317,6 @@ html, body, #main {
 }
 
 .actors-box > p {
-  font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
 
@@ -399,7 +404,6 @@ html, body, #main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Nixie One', cursive;
   font-size: 1.7em;
 }
 
@@ -452,11 +456,9 @@ html, body, #main {
   background-color: transparent;
   margin: 0px 20px;
   font-size: 16px;
-  font-family: 'Sorts Mill Goudy', serif;
 }
 
 .hero-box > p {
-  font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
 
@@ -471,7 +473,6 @@ html, body, #main {
 }
 
 .hero-viewer > p {
-  font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
 

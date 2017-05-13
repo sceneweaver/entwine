@@ -59,7 +59,7 @@ class ViewActors extends Component {
           {
             this.state.on ? (
               <div>
-                <h3 className="view-story-heading">{this.state.name}</h3>
+                <h3 className="view-story-heading title-font">{this.state.name}</h3>
                 <p className="view-actors-desc">{this.state.description}</p>
               </div>
             ) : (
