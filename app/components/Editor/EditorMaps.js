@@ -43,12 +43,12 @@ class EditorMaps extends Component {
         <div className="locations-box">
         {
           this.props.locations.length ?
-              <EditorMapsLocation
-                location={this.props.locations[0]}
-                index={0}
-                position={this.props.position}
-              />
-            : <p>No map yet for this scene. Add a new map!</p>
+            <EditorMapsLocation
+              location={this.props.locations[0]}
+              index={0}
+              position={this.props.position}
+            />
+          : <p>Each scene can either have a hero image or a map. Add a new map!</p>
         }
         </div>
 
@@ -56,6 +56,7 @@ class EditorMaps extends Component {
           this.props.locations.length ?
             <EditorMapModule
               position={this.props.position}
+              location={this.props.locations[0]}
             />
             : null
         }
