@@ -252,7 +252,7 @@ export default function reducer (state = {
       break;
 
     case SET_MAP:
-      newState.scenes[action.position].maps = newState.scenes[action.position].maps.concat([new MapModule(action.coords, action.style, action.zoom)]);
+      newState.scenes[action.position].maps = [new MapModule(action.coords, action.style, action.zoom)];
       break;
 
     case SET_HERO_QUERY:
@@ -308,7 +308,8 @@ export const generateMapLocations = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => {
-    return findPlaces(actorsArray)
+    if (!actorsArray[0]) return findPlaces([{name: 'Fullstack Academy'}]);
+    else return findPlaces(actorsArray);
   })
   .then(placesArr => {
     dispatch(setLocations(position, placesArr))

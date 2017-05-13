@@ -41,12 +41,12 @@ class Scene extends Component {
 
     this.props.setTimeout(() => {
       if (nextProps.maps && nextProps.maps.length) {
-      this.setState({
-        coords: nextProps.maps[0].coords.split(','),
-        style: nextProps.maps[0].style,
-        zoom: nextProps.maps[0].zoom
-      })
-    }
+        this.setState({
+          coords: nextProps.maps[0].coords.split(','),
+          style: nextProps.maps[0].style,
+          zoom: nextProps.maps[0].zoom
+        })
+      }
     }, 2001)
   }
 
