@@ -314,6 +314,7 @@ class EditorScene extends Component {
 
 								<button
 									className="btn btn-default module-btn"
+									name={this.props.whichScene}
 									onClick={this.props.onShowActors}
 								>
 									Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
@@ -389,21 +390,21 @@ const mapStateToProps = (state) => ({
 	whichModule: state.editor.scenes[state.editor.whichScene].whichModule
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
 	onShowActors(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-		dispatch(toggleActors(ownProps.position));
+		$(`#editorscene-wrapper-${+event.target.name}`).toggleClass("toggled");
+		dispatch(toggleActors());
 	},
 	onShowMaps(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-		dispatch(toggleMaps(ownProps.position));
+		$(`#editorscene-wrapper-${+event.target.name}`).toggleClass("toggled");
+		dispatch(toggleMaps());
 	},
 	onShowHero(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${ownProps.position}`).toggleClass("toggled");
-		dispatch(toggleHero(ownProps.position));
+		$(`#editorscene-wrapper-${+event.target.name}`).toggleClass("toggled");
+		dispatch(toggleHero());
 	},
 	onSceneTitleChange(event) {
 		event.preventDefault();

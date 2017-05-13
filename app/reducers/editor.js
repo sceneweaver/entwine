@@ -177,15 +177,15 @@ export default function reducer (state = {
       break;
 
     case TOGGLE_ACTORS:
-      newState.scenes[action.position].whichModule = 'actors';
+      newState.scenes[state.whichScene].whichModule = 'actors';
       break;
 
     case TOGGLE_MAPS:
-      newState.scenes[action.position].whichModule = 'maps';
+      newState.scenes[state.whichScene].whichModule = 'maps';
       break;
 
     case TOGGLE_HERO:
-      newState.scenes[action.position].whichModule = 'hero';
+      newState.scenes[state.whichScene].whichModule = 'hero';
       break;
 
     case ADD_SCENE:

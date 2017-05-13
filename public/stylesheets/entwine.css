@@ -85,7 +85,7 @@ html, body, #main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 20px;
+  padding: 20px;
 }
 
 #editor-scenes-menu-items-container {
