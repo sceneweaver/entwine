@@ -6,7 +6,7 @@ import EditorScene from './EditorScene';
 
 class Editor extends Component {
   componentWillUnmount() {
-    // when user navigates out of editor, remove title and locations in store
+    // when user navigates out of editor, remove title and locations from store
     this.props.editor.scenes.forEach((scene, idx) => {
       this.props.onDeleteLocation(idx);
     })

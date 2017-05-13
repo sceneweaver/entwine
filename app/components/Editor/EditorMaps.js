@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EditorMapModule from './EditorMapModule';
-import EditorMapsLocation from './EditorMapsLocation';
 
 /* ----- COMPONENT ----- */
 
@@ -10,6 +9,11 @@ class EditorMaps extends Component {
     this.state = {
       disableAdd: false
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.locations[0])
+    if (!nextProps.locations[0]) this.setState({disableAdd: false});
   }
 
   render() {
