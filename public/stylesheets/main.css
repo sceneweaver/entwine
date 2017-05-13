@@ -6,9 +6,17 @@ body {
   /*background: repeating-linear-gradient(45deg, #e3e3e3 0px, #e3e3e3 10px, #ccc 1px, #ccc 11px);*/
 }
 
-label, input, button, a, h1, h2, h3, h4, h5, h6 {
-  font-family: 'Nixie One', cursive;
+* {
+  font-family: 'Roboto', sans-serif;
 }
+
+input, .article-text *, .view-actors-desc, .editor-container * {
+  font-family: 'Sorts Mill Goudy', serif;
+}
+
+/*.title-font {
+
+}*/
 
 select {
   -webkit-appearance: menulist-button;

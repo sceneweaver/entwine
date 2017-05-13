@@ -88,9 +88,9 @@ class Scene extends Component {
         <div className="article-content col-md-4 col-md-offset-2">
 
           <div className="article-titles">
-            <h3 className="view-story-heading story">{this.props.storyTitle}</h3>
-            <h1 className="view-story-heading">{this.props.currScene.title}</h1>
-            <h4 className="view-story-heading">by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h4>
+            <h3 className="view-story-heading title-font story">{this.props.storyTitle}</h3>
+            <h1 className="view-story-heading title-font">{this.props.currScene.title}</h1>
+            <h4 className="view-story-heading title-font">by {this.props.user ? this.props.user.display_name || this.props.user.username : 'anonymous'}</h4>
           </div>
 
           <div
