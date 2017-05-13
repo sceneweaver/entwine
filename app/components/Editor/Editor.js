@@ -9,6 +9,14 @@ import EditorHero from './EditorHero';
 /* ----- COMPONENT ----- */
 
 class Editor extends Component {
+  componentWillUnmount() {
+    // when user navigates out of editor, remove title and locations from store
+    this.props.editor.scenes.forEach((scene, idx) => {
+      this.props.onDeleteLocation(idx);
+    })
+    this.props.changeStoryTitle('');
+  }
+
   render() {
     return (
       <div id="storyEditor" className="container">
@@ -99,7 +107,7 @@ class Editor extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { addScene, changeStoryTitle, submitStory } from '../../reducers/editor';
+import { addScene, changeStoryTitle, submitStory, deleteLocation} from '../../reducers/editor';
 import store from '../../store';
 import $ from 'jquery';
 
@@ -128,6 +136,12 @@ const mapDispatchToProps = dispatch => ({
       return alert('Please enter a title for your story.');
     }
     dispatch(submitStory());
+  },
+  onDeleteLocation(position) {
+    dispatch(deleteLocation(position));
+  },
+  changeStoryTitle(newTitle) {
+    dispatch(changeStoryTitle(newTitle))
   }
 });
 

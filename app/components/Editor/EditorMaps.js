@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EditorMapModule from './EditorMapModule';
-import EditorMapsLocation from './EditorMapsLocation';
 
 /* ----- COMPONENT ----- */
 
@@ -10,6 +9,11 @@ class EditorMaps extends Component {
     this.state = {
       disableAdd: false
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // if there are no locations, let the user add map
+    if (!nextProps.locations[0]) this.setState({disableAdd: false});
   }
 
   render() {
@@ -37,28 +41,14 @@ class EditorMaps extends Component {
               Add Map &nbsp; <span className="glyphicon glyphicon-plus" />
             </button>
           </div>
-
         </div>
-
-        <div className="locations-box">
-        {
-          this.props.locations.length ?
-              <EditorMapsLocation
-                location={this.props.locations[0]}
-                index={0}
+          {
+            this.props.locations.length ?
+              <EditorMapModule
                 position={this.props.position}
               />
-            : <p>No map yet for this scene. Add a new map!</p>
-        }
-        </div>
-
-        {
-          this.props.locations.length ?
-            <EditorMapModule
-              position={this.props.position}
-            />
-            : null
-        }
+              : <div className="locations-box"><p>Each scene can either have a hero image or a map. Add a new map!</p></div>
+          }
       </div>
     );
   }

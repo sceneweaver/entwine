@@ -31,14 +31,14 @@ const Routes = (props) => (
 
 /* -----------------    CONTAINER     ------------------ */
 
-import { setFakeState, fetchStory } from './reducers/displayState';
+import { fetchFakeStory, fetchStory } from './reducers/displayState';
 import { fetchStories } from './reducers/stories';
 
 const mapProps = null;
 
 const mapDispatch = dispatch => ({
   onFakeStoryEnter: () => {
-    dispatch(setFakeState());
+    dispatch(fetchFakeStory());
   },
   onRealStoryEnter: (nextRouterState) => {
     const storyId = nextRouterState.params.storyId;

@@ -26,12 +26,13 @@ const CHANGE_ACTOR = 'CHANGE_ACTOR';
 const ADD_ACTOR = 'ADD_ACTOR';
 const DELETE_ACTOR = 'DELETE_ACTOR';
 
-const SET_LOCATIONS = 'SET_LOCATIONS';
+const SET_LOCATION = 'SET_LOCATION';
 const ADD_LOCATION = 'ADD_LOCATION';
 const CHANGE_LOCATION = 'CHANGE_LOCATION';
 const DELETE_LOCATION = 'DELETE_LOCATION';
 
 const SET_MAP = 'SET_MAP';
+const DELETE_MAP = 'DELETE_MAP';
 
 const SET_HERO = 'SET_HERO';
 const SET_HERO_QUERY = 'SET_HERO_QUERY';
@@ -115,10 +116,10 @@ export const deleteActor = (position, actorIndex) => ({
   actorIndex
 })
 
-export const setLocations = (position, locations) => ({
-  type: SET_LOCATIONS,
+export const setLocation = (position, locationArr) => ({
+  type: SET_LOCATION,
   position,
-  locations
+  locationArr
 })
 
 export const addLocation = position => ({
@@ -126,10 +127,9 @@ export const addLocation = position => ({
   position
 })
 
-export const deleteLocation = (position, locationIndex) => ({
+export const deleteLocation = (position) => ({
   type: DELETE_LOCATION,
-  position,
-  locationIndex
+  position
 })
 
 export const changeLocation = (position, locationIndex, field, input) => ({
@@ -146,6 +146,11 @@ export const setMap = (position, coords, style, zoom) => ({
   coords,
   style,
   zoom
+})
+
+export const deleteMap = (position) => ({
+  type: DELETE_MAP,
+  position,
 })
 
 export const setHeroQuery = (position, heroQuery) => ({
@@ -247,8 +252,8 @@ export default function reducer (state = {
       newState.scenes[action.position].actors = [...firstHalfOfActors, ...secondHalfOfActors];
       break;
 
-    case SET_LOCATIONS:
-      newState.scenes[action.position].locations = action.locations;
+    case SET_LOCATION:
+      newState.scenes[action.position].locations = action.locationArr;
       break;
 
     case CHANGE_LOCATION:
@@ -264,13 +269,15 @@ export default function reducer (state = {
       break;
 
     case DELETE_LOCATION:
-      const firstHalfOfLocations = newState.scenes[action.position].locations.slice(0, +action.locationIndex)
-        , secondHalfOfLocations = newState.scenes[action.position].locations.slice(+action.locationIndex + 1);
-      newState.scenes[action.position].locations = [...firstHalfOfLocations, ...secondHalfOfLocations];
+      newState.scenes[action.position].locations = [];
       break;
 
     case SET_MAP:
       newState.scenes[action.position].maps = [new MapModule(action.coords, action.style, action.zoom)];
+      break;
+
+    case DELETE_MAP:
+      newState.scenes[action.position].maps = []
       break;
 
     case SET_HERO_QUERY:
@@ -295,8 +302,8 @@ import { browserHistory } from 'react-router';
 import { create } from './stories';
 import findProperNouns from '../../server/utils/findProperNouns';
 import findPlaces from '../../server/utils/findPlaces';
+import findSinglePlace from '../../server/utils/findSinglePlace';
 import findHeroImage from '../../server/utils/findHeroImage';
-import findPlaceCoords from '../../server/utils/findPlaceCoords';
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
@@ -330,13 +337,6 @@ export const generateMapLocations = position => (dispatch, getState) => {
     else return findPlaces(actorsArray);
   })
   .then(placesArr => {
-    dispatch(setLocations(position, placesArr))
+    dispatch(setLocation(position, placesArr))
   })
 };
-
-export const generateSingleMapLocation = (position, placeName) => (dispatch, getState) => {
-  return findPlaceCoords(placeName)
-  .then(placesArr => {
-    dispatch(setLocations(position, placesArr))
-  })
-}

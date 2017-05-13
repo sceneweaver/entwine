@@ -67,8 +67,9 @@ export const fetchStory = (id) => dispatch => {
     .catch(err => console.error(`Fetching story ${id} unsuccessful`, err));
 };
 
-export const setFakeState = () => dispatch => {
-  dispatch(setStory(featuredStory));
+export const fetchFakeStory = () => dispatch => {
+  axios.get(`/api/stories/`) // make random call to fake asynchronicity
+    .then(() => dispatch(setStory(featuredStory)));
 };
 
 export const fetchScene = position => (dispatch, getState) => {

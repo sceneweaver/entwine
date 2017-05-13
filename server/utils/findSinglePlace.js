@@ -2,16 +2,15 @@ import secrets from '../../secrets.json';
 
 let googleMapsClient = require('@google/maps').createClient({key: secrets.googlemaps});
 
-export default function findPlaces(nounsArr) {
+export default function findPlace(name) {
   let promArr = [];
 
-  nounsArr.forEach(noun => {
     let currentProm = new Promise((resolve, reject) => {
       googleMapsClient.geocode({
-        address: noun.name
+        address: name
       }, (err, response) => {
 
-        if (!err && response.json.status === 'OK') {
+       if (!err && response.json.status === 'OK') {
           let results = response.json.results[0],
           coords = results.geometry.location,
           style,
@@ -34,7 +33,7 @@ export default function findPlaces(nounsArr) {
         else zoom = 12;
 
           resolve({
-            name: noun.name,
+            name: name,
             coords: [response.json.results[0].geometry.location.lng, response.json.results[0].geometry.location.lat],
             style: style,
             zoom: zoom,
@@ -46,7 +45,6 @@ export default function findPlaces(nounsArr) {
     })
 
     promArr.push(currentProm);
-  });
 
   return Promise
     .all(promArr)

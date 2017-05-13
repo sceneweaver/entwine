@@ -10,9 +10,9 @@ class Scene extends Component {
   constructor() {
     super();
     this.state = {
-      coords: [-74.009160, 40.705076],
-      style: 'satellite',
-      zoom: 13,
+      coords: [],
+      style: '',
+      zoom: 1,
     }
   }
 
@@ -36,7 +36,7 @@ class Scene extends Component {
         coords: nextProps.maps[0].coords.split(','),
         style: nextProps.maps[0].style,
         zoom: zoom
-      })
+      });
     }
 
     this.props.setTimeout(() => {
@@ -47,7 +47,7 @@ class Scene extends Component {
           zoom: nextProps.maps[0].zoom
         })
       }
-    }, 2001)
+    }, 2000)
   }
 
   render() {
@@ -57,7 +57,7 @@ class Scene extends Component {
         <div className="scene-hero">
 
           {
-            this.props.maps && this.props.maps.length
+            this.state.style
             ? (<ReactMapboxGl
               style={`mapbox://styles/mapbox/${this.state.style}-v9`}
               accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
