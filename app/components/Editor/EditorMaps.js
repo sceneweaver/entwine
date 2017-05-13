@@ -40,13 +40,13 @@ class EditorMaps extends Component {
 
         </div>
 
-        <div className="locations-box">
+
         {
           this.props.locations.length ?
             null
-          : <p>Each scene can either have a hero image or a map. Add a new map!</p>
+          : <div className="locations-box"><p>Each scene can either have a hero image or a map. Add a new map!</p></div>
         }
-        </div>
+
 
         {
           this.props.locations.length ?
