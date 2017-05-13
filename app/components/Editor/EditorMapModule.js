@@ -34,6 +34,11 @@ class EditorMapModule extends Component {
         mapboxZoom: this.props.locations[0].zoom
       })
     }, 1000);
+
+    this.props.setTimeout(() => {
+      console.log("saving map!")
+      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
+    }, 1500);
   }
 
   // componentWillReceiveProps(nextProps){
@@ -89,11 +94,19 @@ class EditorMapModule extends Component {
   changeMapboxStyle(event) {
     event.preventDefault();
     this.setState({mapboxStyle: event.target.value})
+    this.props.setTimeout(() => {
+      console.log("saving map!")
+      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
+    }, 200);
   }
 
   changeMapboxZoom(event) {
     event.preventDefault();
     this.setState({mapboxZoom: event.target.value})
+    this.props.setTimeout(() => {
+      console.log("saving map!")
+      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
+    }, 1500);
   }
 
   render() {
@@ -145,7 +158,7 @@ class EditorMapModule extends Component {
 						</select>
 					</div>
 
-          <button onClick={this.props.onSaveMap.bind(this, this.props.position, this.state.mapboxStyle, this.props.locations[0].coords, this.state.mapboxZoom)}>Save Map</button>
+          <button onClick={this.props.onSaveMap.bind(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)}>Save Map</button>
 
         </div>
 

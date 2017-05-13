@@ -64,7 +64,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onFieldChange(locationIndex, field, event) {
-    console.log(event.target.value)
     this.setState({location: event.target.value})
     event.preventDefault();
     event.stopPropagation();

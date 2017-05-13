@@ -252,7 +252,7 @@ export default function reducer (state = {
       break;
 
     case SET_MAP:
-      newState.scenes[action.position].maps = newState.scenes[action.position].maps.concat([new MapModule(action.coords, action.style, action.zoom)]);
+      newState.scenes[action.position].maps = [new MapModule(action.coords, action.style, action.zoom)];
       break;
 
     case SET_HERO_QUERY:
