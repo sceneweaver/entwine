@@ -8,7 +8,6 @@ const Root = ({ children }) => (
     <div id="root-children-wrapper">
       { children }
     </div>
-    <Footer />
   </div>
 );
 
