@@ -42,19 +42,16 @@ export const setEditorScene = (whichScene) => ({
   whichScene
 })
 
-export const toggleActors = (position) => ({
+export const toggleActors = () => ({
   type: TOGGLE_ACTORS,
-  position,
 })
 
-export const toggleMaps = (position) => ({
+export const toggleMaps = () => ({
   type: TOGGLE_MAPS,
-  position
 })
 
-export const toggleHero = (position) => ({
+export const toggleHero = () => ({
   type: TOGGLE_HERO,
-  position
 })
 
 export const changeStoryTitle = input => ({

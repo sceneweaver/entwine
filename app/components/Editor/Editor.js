@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import EditorScene from './EditorScene';
 import EditorScenesMenuItem from './EditorScenesMenuItem';
+import EditorActors from './EditorActors';
+import EditorMaps from './EditorMaps';
+import EditorHero from './EditorHero';
 
 /* ----- COMPONENT ----- */
 
@@ -32,50 +35,58 @@ class Editor extends Component {
 
         </div>
 
-        <div id="editor-scenes-wrapper">
+        <div id={`editorscene-wrapper-${this.props.whichScene}`} className="editorscene-wrapper">
 
-          <div id="editor-scenes-menu">
+          <div className="editorscene-content-wrapper">
 
-            <div id="editor-scenes-menu-label">
-              <h4>Scenes</h4>
+            <div id="editor-scenes-menu">
+
+              <div id="editor-scenes-menu-label">
+                <h4>Scenes</h4>
+              </div>
+
+              <div id="editor-scenes-menu-items-container">
+                {
+                  this.props.scenes && this.props.scenes.map((scene, index) => (
+                    <EditorScenesMenuItem
+                      position={index}
+                      key={index}
+                      sceneTitle={scene.title}
+                    />
+                  ))
+                }
+              </div>
+
+              <div id="editor-scenes-menu-add">
+                <button
+                  className="btn btn-success titlerow-button"
+                  onClick={this.props.onAddScene}
+                >
+                  Add Scene <span className="glyphicon glyphicon-plus"></span>
+                </button>
+              </div>
+
             </div>
 
-            <div id="editor-scenes-menu-items-container">
-              {
-                this.props.scenes && this.props.scenes.map((scene, index) => (
-                  <EditorScenesMenuItem
-                    position={index}
-                    key={index}
-                    sceneTitle={scene.title}
-                  />
-                ))
-              }
-            </div>
-
-            <div id="editor-scenes-menu-add">
-              <button
-                className="btn btn-success titlerow-button"
-                onClick={this.props.onAddScene}
-              >
-                Add Scene <span className="glyphicon glyphicon-plus"></span>
-              </button>
-            </div>
+            <EditorScene
+              whichScene={this.props.whichScene}
+            />
 
           </div>
 
-          <EditorScene />
+          <div className="editorscene-sidebar-wrapper">
+            {
+              this.props.whichModule === 'maps'
+                ? <EditorMaps position={this.props.whichScene} />
+                : this.props.whichModule === 'actors'
+                  ? <EditorActors position={this.props.whichScene} />
+                  : this.props.whichModule === 'hero'
+                    ? <EditorHero position={this.props.whichScene} />
+                    : null
+            }
+          </div>
 
         </div>
-
-        {/*
-          this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
-            <EditorScene
-              position={scene.position}
-              key={scene.key}
-            />
-          )))
-            : null
-        */}
 
       </div>
     );
@@ -92,7 +103,9 @@ const mapStateToProps = state => ({
   editor: state.editor,
   storyTitle: state.editor.title,
   user: state.auth,
-  scenes: state.editor.scenes
+  scenes: state.editor.scenes,
+  whichScene: state.editor.whichScene,
+  whichModule: state.editor.scenes[state.editor.whichScene].whichModule
 });
 
 const mapDispatchToProps = dispatch => ({

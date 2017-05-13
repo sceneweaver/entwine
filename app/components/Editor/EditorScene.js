@@ -10,9 +10,6 @@ import {
 } from 'draft-js';
 
 import { stateToHTML } from 'draft-js-export-html';
-import EditorActors from './EditorActors';
-import EditorMaps from './EditorMaps';
-import EditorHero from './EditorHero';
 
 /* ----- COMPONENT STYLES & DRAFT.JS EDITOR UTILS ----- */
 
@@ -239,138 +236,110 @@ class EditorScene extends Component {
 		}
 
 		return (
-			<div className="editorscene-wrapper" id={`editorscene-wrapper-${this.props.whichScene}`}>
+			<div className="form-group editorscene-texteditor">
 
-				{/* ----- PAGE CONTENT ----- */}
+				<div className="editor-row">
 
-				<div className="editorscene-content-wrapper">
+					<input
+						className="editor-scene-title"
+						placeholder="Scene Title"
+						name={this.props.whichScene}
+						onChange={this.props.onSceneTitleChange}
+						value={this.props.title}
+					/>
 
-					<div className="form-group editorscene-texteditor">
+				</div>
 
-						<div className="editor-row">
+				<div className="editor-row">
 
-							<input
-								className="editor-scene-title"
-								placeholder="Scene Title"
-								name={this.props.whichScene}
-								onChange={this.props.onSceneTitleChange}
-								value={this.props.title}
-							/>
+					<div className="editor-right-align btn-group">
 
-						</div>
-
-						<div className="editor-row">
-
-							<div className="editor-right-align btn-group">
-
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onBoldClick.bind(this)}
-								>
-									<i className="fa fa-bold" />
-								</button>
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onItalicClick.bind(this)}
-								>
-									<i className="fa fa-italic" />
-								</button>
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onBlockQuoteClick.bind(this)}
-								>
-									<i className="fa fa-quote-right" />
-								</button>
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onUnorderedListClick.bind(this)}
-								>
-									<i className="fa fa-list-ul" />
-								</button>
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.onOrderedListClick.bind(this)}
-								>
-									<i className="fa fa-list-ol" />
-								</button>
-								{/* <button
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onBoldClick.bind(this)}
+						>
+							<i className="fa fa-bold" />
+						</button>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onItalicClick.bind(this)}
+						>
+							<i className="fa fa-italic" />
+						</button>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onBlockQuoteClick.bind(this)}
+						>
+							<i className="fa fa-quote-right" />
+						</button>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onUnorderedListClick.bind(this)}
+						>
+							<i className="fa fa-list-ul" />
+						</button>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.onOrderedListClick.bind(this)}
+						>
+							<i className="fa fa-list-ol" />
+						</button>
+						{/* <button
 									onMouseDown={this.addAudio}
 								>
 									Add Audio
                 </button> */}
-								<button
-									className="editor-btn btn btn-default"
-									onClick={this.addImage}
-								>
-									<i className="fa fa-file-image-o" />
-								</button>
-								{/* <button onMouseDown={this.addVideo} style={{ marginRight: 10 }}>
+						<button
+							className="editor-btn btn btn-default"
+							onClick={this.addImage}
+						>
+							<i className="fa fa-file-image-o" />
+						</button>
+						{/* <button onMouseDown={this.addVideo} style={{ marginRight: 10 }}>
 									Add Video
                 </button> */}
 
-							</div>
+					</div>
 
-							<div className="btn-group">
+					<div className="btn-group">
 
-								<button
-									className="btn btn-default module-btn"
-									name={this.props.whichScene}
-									onClick={this.props.onShowActors}
-								>
-									Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
-								</button>
+						<button
+							className="btn btn-default module-btn"
+							onClick={this.props.onShowActors}
+						>
+							Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
+						</button>
 
-								<button
-									className="btn btn-default module-btn"
-									name={this.props.whichScene}
-									onClick={this.props.onShowMaps}
-								>
-									Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
-								</button>
+						<button
+							className="btn btn-default module-btn"
+							onClick={this.props.onShowMaps}
+						>
+							Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
+						</button>
 
-								<button
-									className="btn btn-default module-btn"
-									name={this.props.whichScene}
-									onClick={this.props.onShowHero}
-								>
-									Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
-								</button>
+						<button
+							className="btn btn-default module-btn"
+							onClick={this.props.onShowHero}
+						>
+							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
+						</button>
 
-							</div>
-
-						</div>
-
-						{urlInput}
-
-						<div className="editor-container" onClick={this.focus}>
-							<Editor
-								blockRendererFn={mediaBlockRenderer}
-								editorState={this.state.editorState}
-								handleKeyCommand={this.handleKeyCommand}
-								onChange={this.onChange}
-								position={this.props.whichScene}
-								ref="editor"
-							/>
-						</div>
 					</div>
 
 				</div>
 
-				{/* ----- SIDEBAR ----- */}
+				{urlInput}
 
-				<div className="editorscene-sidebar-wrapper">
-					{
-						this.props.whichModule === 'maps'
-							? <EditorMaps position={this.props.whichScene} />
-							: this.props.whichModule === 'actors'
-								? <EditorActors position={this.props.whichScene} />
-								: this.props.whichModule === 'hero'
-									? <EditorHero position={this.props.whichScene} />
-									: null
-					}
+				<div className="editor-container" onClick={this.focus}>
+					<Editor
+						blockRendererFn={mediaBlockRenderer}
+						editorState={this.state.editorState}
+						handleKeyCommand={this.handleKeyCommand}
+						onChange={this.onChange}
+						position={this.props.whichScene}
+						ref="editor"
+					/>
 				</div>
-
-
 			</div>
 		);
 	}
@@ -390,20 +359,20 @@ const mapStateToProps = (state) => ({
 	whichModule: state.editor.scenes[state.editor.whichScene].whichModule
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
 	onShowActors(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${+event.target.name}`).toggleClass("toggled");
+		$(`#editorscene-wrapper-${ownProps.whichScene}`).toggleClass("toggled");
 		dispatch(toggleActors());
 	},
 	onShowMaps(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${+event.target.name}`).toggleClass("toggled");
+		$(`#editorscene-wrapper-${ownProps.whichScene}`).toggleClass("toggled");
 		dispatch(toggleMaps());
 	},
 	onShowHero(event) {
 		event.preventDefault();
-		$(`#editorscene-wrapper-${+event.target.name}`).toggleClass("toggled");
+		$(`#editorscene-wrapper-${ownProps.whichScene}`).toggleClass("toggled");
 		dispatch(toggleHero());
 	},
 	onSceneTitleChange(event) {
