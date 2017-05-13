@@ -29,6 +29,7 @@ const CHANGE_LOCATION = 'CHANGE_LOCATION';
 const DELETE_LOCATION = 'DELETE_LOCATION';
 
 const SET_MAP = 'SET_MAP';
+const DELETE_MAP = 'DELETE_MAP';
 
 const SET_HERO = 'SET_HERO';
 const SET_HERO_QUERY = 'SET_HERO_QUERY';
@@ -138,6 +139,11 @@ export const setMap = (position, coords, style, zoom) => ({
   coords,
   style,
   zoom
+})
+
+export const deleteMap = (position) => ({
+  type: DELETE_MAP,
+  position,
 })
 
 export const setHeroQuery = (position, heroQuery) => ({
@@ -250,6 +256,10 @@ export default function reducer (state = {
 
     case SET_MAP:
       newState.scenes[action.position].maps = [new MapModule(action.coords, action.style, action.zoom)];
+      break;
+
+    case DELETE_MAP:
+      newState.scenes[action.position].maps = []
       break;
 
     case SET_HERO_QUERY:

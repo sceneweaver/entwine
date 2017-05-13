@@ -8,7 +8,7 @@ class Editor extends Component {
   componentWillUnmount() {
     // when user navigates out of editor, remove title and locations in store
     this.props.editor.scenes.forEach((scene, idx) => {
-      this.props.deleteLocation(idx);
+      this.props.onDeleteLocation(idx);
     })
     this.props.changeStoryTitle('');
   }
@@ -86,7 +86,7 @@ const mapDispatchToProps = dispatch => ({
     }
     dispatch(submitStory());
   },
-  deleteLocation(position) {
+  onDeleteLocation(position) {
     dispatch(deleteLocation(position));
   },
   changeStoryTitle(newTitle) {

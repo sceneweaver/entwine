@@ -97,9 +97,7 @@ class EditorMapModule extends Component {
         else if (results.types.includes('administrative_area_level_3')) zoom = 8;
         else zoom = 12;
 
-        console.log("results", [coords.lng, coords.lat])
-        // google gives an object {lat: x, lng: y} -> reactmapboxgl takes it in the form
-        // of [lng, lat]
+        // google gives an object {lat: x, lng: y} -> reactmapboxgl takes it in the form of [lng, lat]
         this.setState({
           coords: [coords.lng, coords.lat],
           locationAddress: results.formatted_address,
@@ -162,6 +160,14 @@ class EditorMapModule extends Component {
 							<option value="1">1</option>  <option value="2">2</option>  <option value="3">3</option>  <option value="4">4</option>  <option value="5">5</option><option value="6">6</option>  <option value="7">7</option><option value="8">8</option>  <option value="9">9</option>  <option value="10">10</option>  <option value="11">11</option>  <option value="12">12</option>  <option value="13">13</option>  <option value="14">14</option>  <option value="15">15</option><option value="16">16</option>  <option value="17">17</option>  <option value="18">18</option>  <option value="19">19</option>  <option value="20">20</option>
 						</select>
 					</div>
+
+          <button
+            className="btn btn-default"
+            onClick={this.props.onDeleteLocation.bind(this)}
+          >
+            <span className="glyphicon glyphicon-trash" ></span>
+          </button>
+
         </div>
 
         <div className="generated-map">
@@ -198,7 +204,7 @@ class EditorMapModule extends Component {
 
 /* ----- CONTAINER ----- */
 import { connect } from 'react-redux';
-import { setMap, changeLocation, deleteLocation, setLocation } from '../../reducers/editor';
+import { setMap, changeLocation, deleteLocation, deleteMap, setLocation } from '../../reducers/editor';
 
 const mapStateToProps = (state, ownProps) => ({
   locations: state.editor.scenes[ownProps.position].locations,
@@ -220,10 +226,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   setLocation(position, locationArr) {
     dispatch(setLocation(position, locationArr));
   },
-  onDeleteLocation(locationIndex, event) {
+  onDeleteLocation(event) {
     event.preventDefault();
     event.stopPropagation();
-    dispatch(deleteLocation(ownProps.position, locationIndex));
+    dispatch(deleteLocation(ownProps.position));
+    dispatch(deleteMap(ownProps.position));
   },
 });
 
