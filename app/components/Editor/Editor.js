@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import EditorScene from './EditorScene';
+import EditorScenesMenuItem from './EditorScenesMenuItem';
 
 /* ----- COMPONENT ----- */
 
@@ -10,6 +11,15 @@ class Editor extends Component {
       <div id="storyEditor">
 
         <div className="title-row">
+
+          <button
+            className="btn btn-success titlerow-button"
+            onClick={this.props.onSubmitStory}
+          >
+            Publish Story  <span className="glyphicon glyphicon-share"></span>
+          </button>
+
+
           <input
             name="storyTitle"
             className="story-title-input"
@@ -18,24 +28,45 @@ class Editor extends Component {
             onChange={this.props.onStoryTitleChange}
             value={this.props.storyTitle}
           />
+
         </div>
 
-        <div className="title-row">
-          <button
-            className="btn btn-success titlerow-button"
-            onClick={this.props.onAddScene}
-          >
-            Add Scene <span className="glyphicon glyphicon-plus"></span>
-          </button>
-          <button
-            className="btn btn-success titlerow-button"
-            onClick={this.props.onSubmitStory}
-          >
-            Publish Story  <span className="glyphicon glyphicon-share"></span>
-          </button>
+        <div className="editor-scenes-wrapper">
+
+          <div className="editor-scenes-menu">
+
+            <div className="editor-scenes-menu-label">
+              Scenes
+            </div>
+
+            <div className="editor-scenes-menu-items-container">
+              {
+                this.props.scenes && this.props.scenes.map((scene, index) => (
+                  <EditorScenesMenuItem
+                    position={index}
+                    key={index}
+                    sceneTitle={scene.title}
+                  />
+                ))
+              }
+            </div>
+
+            <div className="editor-scenes-menu-add">
+              <button
+                className="btn btn-success titlerow-button"
+                onClick={this.props.onAddScene}
+              >
+                Add Scene <span className="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+
+          </div>
+
+          <EditorScene />
+
         </div>
 
-        {
+        {/*
           this.props.editor.scenes.length ? (this.props.editor.scenes.map(scene => (
             <EditorScene
               position={scene.position}
@@ -43,7 +74,7 @@ class Editor extends Component {
             />
           )))
             : null
-        }
+        */}
 
       </div>
     );
@@ -56,10 +87,11 @@ import { connect } from 'react-redux';
 import { addScene, changeStoryTitle, submitStory } from '../../reducers/editor';
 import store from '../../store';
 
-const mapStateToProps = store => ({
-  editor: store.editor,
-  storyTitle: store.editor.title,
-  user: store.auth
+const mapStateToProps = state => ({
+  editor: state.editor,
+  storyTitle: state.editor.title,
+  user: state.auth,
+  scenes: state.editor.scenes
 });
 
 const mapDispatchToProps = dispatch => ({

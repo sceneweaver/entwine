@@ -246,12 +246,6 @@ class EditorScene extends Component {
 				<div className="editorscene-content-wrapper">
 
 					<div className="editorscene-buttons btn-group-vertical">
-						<button
-							className="btn btn-default editorscene-delete-btn"
-							onClick={this.props.onDeleteScene}
-						>
-							<span className="glyphicon glyphicon-trash" ></span>
-						</button>
 
 						<button
 							className="btn btn-default module-btn"
