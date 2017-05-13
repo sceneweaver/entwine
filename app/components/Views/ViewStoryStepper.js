@@ -62,7 +62,13 @@ class ViewStoryStepper extends React.Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <div style={{maxWidth: 380, maxHeight: 400, margin: 'auto'}}>
+        <div
+          style={{
+            maxWidth: 380,
+            maxHeight: 400,
+            margin: 'auto',
+            marginTop: 10
+          }}>
           <Stepper
             activeStep={stepIndex}
             linear={false}
