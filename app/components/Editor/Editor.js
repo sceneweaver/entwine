@@ -12,7 +12,7 @@ class Editor extends Component {
         <div className="title-row">
           <input
             name="storyTitle"
-            className="story-title-input"
+            className="story-title-input title-font"
             type="text"
             placeholder="Title your story"
             onChange={this.props.onStoryTitleChange}

@@ -67,7 +67,6 @@ html, body, #main {
   width: 100%;
   margin-top: 20px;
   background-color: transparent;
-  font-family: 'Playfair Display SC', serif;
 }
 
 .publish-button {
@@ -106,7 +105,6 @@ html, body, #main {
   font-size: 25px;
   width: 50%;
   margin-right: 20px;
-  font-family: 'Playfair Display SC', serif;
 }
 
 .editor-container {
@@ -170,7 +168,6 @@ html, body, #main {
 }
 
 .locations-box > p {
-  font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
 
@@ -185,7 +182,6 @@ html, body, #main {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  font-family: 'Nixie One', cursive;
 }
 
 .generated-map {
@@ -278,7 +274,6 @@ html, body, #main {
 }
 
 .actors-box > p {
-  font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
 
@@ -366,7 +361,6 @@ html, body, #main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Nixie One', cursive;
   font-size: 1.7em;
 }
 
@@ -419,11 +413,9 @@ html, body, #main {
   background-color: transparent;
   margin: 0px 20px;
   font-size: 16px;
-  font-family: 'Sorts Mill Goudy', serif;
 }
 
 .hero-box > p {
-  font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
 
@@ -438,7 +430,6 @@ html, body, #main {
 }
 
 .hero-viewer > p {
-  font-family: 'Nixie One', cursive;
   margin-bottom: 0;
 }
 
