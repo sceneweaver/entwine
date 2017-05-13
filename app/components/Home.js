@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText, RaisedButton} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -27,7 +28,7 @@ const Home = () => (
             </CardMedia>
             <CardText style={{'font-size': 25}}>entwine allows content creators to quickly embed interactive maps, information about key characters, and data visualizations into their stories.</CardText>
             <div className="create-story-button">
-              <RaisedButton label="Create a Story Now" fullWidth={true} labelStyle={{'font-size': 22}}/>
+              <RaisedButton label="Create a Story Now" fullWidth={true} labelStyle={{'font-size': 22}} containerElement={<Link to="/editor"/>} />
             </div>
           </Card>
         </div>
