@@ -41,7 +41,7 @@ class EditorMapsLocation extends Component {
               type="text"
               className="location-name-field"
               value={this.props.name}
-              onChange={this.props.onFieldChange.bind(this, index)}
+              onChange={this.props.onFieldChange.bind(this, index, 'name')}
               onKeyPress={this.props.onChangeLocation.bind(this, index, null)}
             />
           </div>
@@ -64,17 +64,18 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onFieldChange(locationIndex, field, event) {
+    console.log(event.target.value)
+    this.setState({location: event.target.value})
     event.preventDefault();
     event.stopPropagation();
-    this.setState({location: event.target.value})
     dispatch(changeLocation(ownProps.position, locationIndex, field, event.target.value));
   },
   onChangeLocation(index, valueOnClick, event) {
-    console.log(valueOnClick, event.target.value)
     let value;
     if (valueOnClick) value = valueOnClick;
     else if (event.key === 'Enter') value = event.target.value;
     if (event.key === 'Enter' || valueOnClick) {
+      console.log(valueOnClick, event.target.value)
       event.preventDefault();
       event.stopPropagation();
       dispatch(generateSingleMapLocation(ownProps.position, value));
