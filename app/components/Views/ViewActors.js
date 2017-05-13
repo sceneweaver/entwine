@@ -15,6 +15,7 @@ class ViewActors extends Component {
     return (
       <div>
         <div className="view-actors-heads-box">
+
           {
             this.props.actors ? (
 
