@@ -85,7 +85,7 @@ html, body, #main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 20px 40px 0 0;
 }
 
 #editor-scenes-menu-items-container {
@@ -123,6 +123,7 @@ html, body, #main {
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .editor-scene-title {
@@ -134,7 +135,7 @@ html, body, #main {
   border-bottom: solid 1.5px #c9c9c9;
   background-color: transparent;
   font-size: 25px;
-  width: 50%;
+  width: 100%;
   margin-right: 20px;
   font-family: 'Playfair Display SC', serif;
 }

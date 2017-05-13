@@ -35,7 +35,8 @@ import { deleteScene, setEditorScene } from '../../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
 	position: ownProps.position,
-  sceneTitle: ownProps.sceneTitle
+  sceneTitle: ownProps.sceneTitle,
+  whichModule: ownProps.whichModule
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -52,6 +52,7 @@ class Editor extends Component {
                       position={index}
                       key={index}
                       sceneTitle={scene.title}
+                      whichModule={scene.whichModule}
                     />
                   ))
                 }
@@ -98,6 +99,7 @@ class Editor extends Component {
 import { connect } from 'react-redux';
 import { addScene, changeStoryTitle, submitStory } from '../../reducers/editor';
 import store from '../../store';
+import $ from 'jquery';
 
 const mapStateToProps = state => ({
   editor: state.editor,
@@ -111,6 +113,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onAddScene(event) {
     event.preventDefault();
+    $('.editorscene-wrapper').removeClass('toggled');
     dispatch(addScene());
   },
   onStoryTitleChange(event) {
