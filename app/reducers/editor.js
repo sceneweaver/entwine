@@ -370,23 +370,3 @@ export const generateRecommendations = position => (dispatch, getState) => {
     }
   });
 };
-
-
-// export const generateRecommendations = position => (dispatch, getState) => {
-//   const textBody = getState().editor.scenes[position].paragraphs[0];
-//   findProperNouns(textBody)
-//   .then(actorsArray => {
-//     console.log(actorsArray)
-//     if (actorsArray.length > 0) {
-//       dispatch(setActors(position, actorsArray));
-//       // dispatch(setRecommendations(position, 'actors'));
-//     }
-//     if (actorsArray[0]) return findPlaces(actorsArray);
-//   })
-//   .then(placesArr => {
-//     if (placesArr.length > 0) {
-//       dispatch(setLocation(position, placesArr));
-//       dispatch(setRecommendations(position, 'maps'));
-//     }
-//   });
-// };

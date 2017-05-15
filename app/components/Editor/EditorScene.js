@@ -324,7 +324,7 @@ class EditorScene extends Component {
 							className="btn btn-default module-btn"
 							onClick={this.props.onRecommendation.bind(this, this.props.whichScene)}
 						>
-							Recommend &nbsp; <span className="glyphicon glyphicon-picture"></span>
+							Recommend;
 						</button>
 
 					</div>
