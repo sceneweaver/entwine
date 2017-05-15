@@ -33,8 +33,8 @@ module.exports = {
   module: {
     rules: [{
       test: /jsx?$/,
-      exclude: /wikijs/,
-      // exclude: /(node_modules|bower_components)/,
+      // exclude: /wikijs/,  // use this for production deployment to enable minification
+      exclude: /(node_modules|bower_components)/,
       use: [{
         loader: 'babel-loader',
         options: {
@@ -45,14 +45,7 @@ module.exports = {
   },
   plugins: devMode
     ? [new LiveReloadPlugin({appendScriptTag: true}),
-    new BundleAnalyzerPlugin({openAnalyzer: false}),
-    // new webpack.optimize.UglifyJsPlugin({
-    //     compress: {
-    //         warnings: false
-    //     },
-    //     test: /jsx?$/
-    //   }),
-    ]
+    new BundleAnalyzerPlugin({openAnalyzer: false})]
     : [new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false
