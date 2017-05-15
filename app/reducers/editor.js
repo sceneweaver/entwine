@@ -37,6 +37,8 @@ const DELETE_MAP = 'DELETE_MAP';
 const SET_HERO = 'SET_HERO';
 const SET_HERO_QUERY = 'SET_HERO_QUERY';
 
+const SET_RECOMMENDATIONS = 'SET_RECOMMENDATIONS';
+
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -167,6 +169,12 @@ export const setHero = (position, imageObj) => ({
   heroPhotogURL: imageObj.heroPhotogURL
 })
 
+export const setRecommendations = (position, recString) => ({
+  type: SET_RECOMMENDATIONS,
+  position,
+  recString
+})
+
 /* ------------       REDUCERS     ------------------ */
 
 export default function reducer (state = {
@@ -289,6 +297,10 @@ export default function reducer (state = {
       newState.scenes[action.position].heroCredit = action.heroCredit;
       break;
 
+    case SET_RECOMMENDATIONS:
+      newState.scenes[action.position].recommendations = newState.scenes[action.position].recommendations.concat(action.recString);
+      break;
+
     default:
       return newState;
   }
@@ -337,18 +349,24 @@ export const generateMapLocations = position => (dispatch, getState) => {
     else return findPlaces(actorsArray);
   })
   .then(placesArr => {
-    dispatch(setLocation(position, placesArr))
-  })
+    dispatch(setLocation(position, placesArr));
+  });
 };
 
 export const generateRecommendations = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => {
-    dispatch(setActors(position, actorsArray));
+    if (actorsArray.length > 0) {
+      dispatch(setActors(position, actorsArray));
+      dispatch(setRecommendations(position, 'actors'));
+    }
     if (actorsArray[0]) return findPlaces(actorsArray);
   })
   .then(placesArr => {
-    dispatch(setLocation(position, placesArr));
-  })
-}
+    if (placesArr.length > 0) {
+      dispatch(setLocation(position, placesArr));
+      dispatch(setRecommendations(position, 'maps'));
+    }
+  });
+};
