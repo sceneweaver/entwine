@@ -102,7 +102,7 @@ class Scene extends Component {
 
 
         {
-          this.props.actors
+          this.props.actors.length
           ? (<div className="article-modules col-md-5 col-md-offset-1">
             <h4>IN THIS STORY</h4>
             <ViewActors />
