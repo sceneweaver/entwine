@@ -245,10 +245,6 @@ const mapDispatchToProps = (dispatch) => ({
 		event.preventDefault();
 		dispatch(setSceneHTML(content));
 	},
-	onRecommendation(position, event) {
-		event.preventDefault();
-		dispatch(generateRecommendations(position));
-	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorScene);
