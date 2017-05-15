@@ -7,7 +7,7 @@ export default class Actor {
     this.image = '';
     this.link = '';
   }
-  getWikiInfo() {
+  getWikiInfo() { //play with this -- if we can't refactor, write comments
     return wiki().page(this.name)
       .then(page => {
         if (!page) {
