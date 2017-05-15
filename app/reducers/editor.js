@@ -17,7 +17,6 @@ const SET_SCENE_HTML = 'SET_SCENE_HTML';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
 const DESELECT_MODULE = 'DESELECT_MODULE';
-
 const SHOW_MODULE = 'SHOW_MODULE';
 
 const SET_ACTORS = 'SET_ACTORS';
@@ -222,7 +221,7 @@ export default function reducer (state = {
             return scene;
         });
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
-      newState.whichScene = action.position - 1;
+      newState.whichScene = action.position - 1 > -1 ? action.position - 1 : 0;
       break;
 
     case SET_ACTORS:

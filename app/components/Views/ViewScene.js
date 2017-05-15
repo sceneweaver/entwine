@@ -58,28 +58,28 @@ class Scene extends Component {
 
           {
             this.state.style
-            ? (<ReactMapboxGl
-              style={`mapbox://styles/mapbox/${this.state.style}-v9`}
-              accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
-              zoom={[this.state.zoom]}
-              pitch={30}
-              center={this.state.coords}
-              containerStyle={{
-                height: "100%",
-                width: "auto"
-              }}>
+              ? (<ReactMapboxGl
+                style={`mapbox://styles/mapbox/${this.state.style}-v9`}
+                accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
+                zoom={[this.state.zoom]}
+                pitch={30}
+                center={this.state.coords}
+                containerStyle={{
+                  height: "100%",
+                  width: "auto"
+                }}>
               </ReactMapboxGl>)
-            : this.props.heroURL === '' ? null : (
-              <div className="scene-hero-img">
-                <div
-                  className="scene-hero-img-container"
-                  style={{ backgroundImage: `url(${this.props.heroURL})` }}
-                />
-                <div className="scene-hero-img-credit">
-                  <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+              : this.props.heroURL === '' ? null : (
+                <div className="scene-hero-img">
+                  <div
+                    className="scene-hero-img-container"
+                    style={{ backgroundImage: `url(${this.props.heroURL})` }}
+                  />
+                  <div className="scene-hero-img-credit">
+                    <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+                  </div>
                 </div>
-              </div>
-            )
+              )
 
           }
 
@@ -100,12 +100,16 @@ class Scene extends Component {
 
         </div>
 
-        <div className="article-modules col-md-5 col-md-offset-1">
 
-          <h4>IN THIS STORY</h4>
-          <ViewActors />
+        {
+          this.props.actors
+          ? (<div className="article-modules col-md-5 col-md-offset-1">
+            <h4>IN THIS STORY</h4>
+            <ViewActors />
+          </div>)
+          : null
+        }
 
-        </div>
       </div>
 
     );
