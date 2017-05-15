@@ -1,18 +1,19 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Story, Scene, Actor, SceneActor, Map, Promise} = db
+    , {User, Story, Scene, Actor, ScenesActors, ScenesMaps, Map, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
+    actors: actors(),
+    maps: maps(),
   }
-
   seeded.stories = stories(seeded)
   seeded.scenes = scenes(seeded)
-  seeded.actors = actors(seeded)
-  seeded.scenesactors = scenesactors(seeded)
+  seeded.scenesActors = scenesActors(seeded)
+  seeded.scenesMaps = scenesMaps(seeded)
 
   return Promise.props(seeded)
 }
@@ -45,12 +46,27 @@ const stories = seed(Story,
   })
 )
 
+const actors = seed(Actor, {
+  story1scene1actor1: {
+    id: 1,
+    name: 'Donald Trump',
+    description: 'The 45th and current President of the United States. Before entering politics he was a businessman and television personality. Trump was born and raised in Queens, New York City, and earned an economics degree from the Wharton School.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/1024px-Donald_Trump_official_portrait.jpg'
+  },
+})
+
+const maps = seed(Map, {
+  map1: {
+    id: 1,
+    coords: '37, 55',
+    zoom: 3,
+    style: 'satellite'
+  },
+})
+
 const scenes = seed(Scene,
-  // We're specifying a function here, rather than just a rows object.
-  // Using a function lets us receive the previously-seeded rows (the seed
-  // function does this wiring for us).
   ({stories}) => ({
-    story1scene1: {
+     story1scene1: {
       id: 1,
       story_id: stories.story1.id,
       title: 'Act I',
@@ -60,21 +76,8 @@ const scenes = seed(Scene,
   })
 )
 
-const actors = seed(Actor,
-  // We're specifying a function here, rather than just a rows object.
-  // Using a function lets us receive the previously-seeded rows (the seed
-  // function does this wiring for us).
-  ({scenes}) => ({
-    story1scene1actor1: {
-      id: 1,
-      name: 'Donald Trump',
-      description: 'The 45th and current President of the United States. Before entering politics he was a businessman and television personality. Trump was born and raised in Queens, New York City, and earned an economics degree from the Wharton School.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/1024px-Donald_Trump_official_portrait.jpg'
-    },
-  })
-)
 
-const scenesactors = seed(SceneActor,
+const scenesActors = seed(ScenesActors,
   // We're specifying a function here, rather than just a rows object.
   // Using a function lets us receive the previously-seeded rows (the seed
   // function does this wiring for us).
@@ -82,6 +85,18 @@ const scenesactors = seed(SceneActor,
     scene1actor1: {
       scene_id: scenes.story1scene1.id,
       actor_id: actors.story1scene1actor1.id,
+    },
+  })
+)
+
+const scenesMaps = seed(ScenesMaps,
+  // We're specifying a function here, rather than just a rows object.
+  // Using a function lets us receive the previously-seeded rows (the seed
+  // function does this wiring for us).
+  ({scenes, maps}) => ({
+    scene1actor1: {
+      scene_id: scenes.story1scene1.id,
+      map_id: maps.map1.id,
     },
   })
 )
@@ -155,4 +170,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, stories, actors, scenesactors})
+module.exports = Object.assign(seed, {users, stories, actors, scenesActors, scenesMaps})

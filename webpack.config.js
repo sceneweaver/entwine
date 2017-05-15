@@ -43,8 +43,8 @@ module.exports = {
     }]
   },
   plugins: devMode
-    ? [new LiveReloadPlugin({appendScriptTag: true, openAnalyzer: false}),
-    new BundleAnalyzerPlugin(),
+    ? [new LiveReloadPlugin({appendScriptTag: true}),
+    new BundleAnalyzerPlugin({openAnalyzer: false}),
     new webpack.optimize.UglifyJsPlugin({
 			compress: {
 				warnings: false,

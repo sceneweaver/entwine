@@ -19,6 +19,8 @@ const app = require('APP')
       Actor: require('./actor'),
       Scene: require('./scene'),
       Story: require('./story'),
+      ScenesActors: require('./scenesactors'),
+      ScenesMaps: require('./scenesmaps'),
     }
     , {mapValues} = require('lodash');
 
