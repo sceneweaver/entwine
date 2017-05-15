@@ -1,7 +1,9 @@
+import { EditorState } from 'draft-js';
 let key = 1;
 
 export default class Scene {
   constructor() {
+    this.editorState = EditorState.createEmpty();
     this.title = '';
     this.position = 0;
     this.paragraphs = [''];

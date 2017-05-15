@@ -12,7 +12,7 @@ const LiveReloadPlugin = require('webpack-livereload-plugin')
  * usable stack traces. Set to `true` if you want to speed up development.
  */
 
-    , USE_FAST_SOURCE_MAPS = false
+    , USE_FAST_SOURCE_MAPS = false;
 
 module.exports = {
   entry: './app/main.jsx',
@@ -54,12 +54,5 @@ module.exports = {
 			},
 		})
     ]
-    : [new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false,
-			},
-			output: {
-				comments: false,
-			},
-		})],
+    : [],
 };

@@ -11,12 +11,12 @@ const SET_EDITOR_SCENE = 'SET_EDITOR_SCENE';
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
+const SET_EDITOR_STATE = 'SET_EDITOR_STATE';
 const SET_SCENE_TEXT = 'SET_SCENE_TEXT';
 const SET_SCENE_HTML = 'SET_SCENE_HTML';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
 const DESELECT_MODULE = 'DESELECT_MODULE';
-
 const SHOW_MODULE = 'SHOW_MODULE';
 
 const SET_ACTORS = 'SET_ACTORS';
@@ -36,6 +36,7 @@ const SET_HERO = 'SET_HERO';
 const SET_HERO_QUERY = 'SET_HERO_QUERY';
 
 const SET_RECOMMENDATIONS = 'SET_RECOMMENDATIONS';
+const CLEAR_RECOMMENDATIONS = 'CLEAR_RECOMMENDATIONS';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -68,6 +69,11 @@ export const deleteScene = (position) => ({
   type: DELETE_SCENE,
   position
 });
+
+export const setEditorState = (editorState) => ({
+  type: SET_EDITOR_STATE,
+  editorState
+})
 
 export const setSceneTitle = (input) => ({
   type: SET_SCENE_TITLE,
@@ -164,6 +170,11 @@ export const setRecommendations = (position, recString) => ({
   type: SET_RECOMMENDATIONS,
   position,
   recString
+});
+
+export const clearRecommendations= (position) => ({
+  type: CLEAR_RECOMMENDATIONS,
+  position
 })
 
 /* ------------       REDUCERS     ------------------ */
@@ -199,6 +210,10 @@ export default function reducer (state = {
       newState.whichScene = newState.scenes.length - 1;
       break;
 
+    case SET_EDITOR_STATE:
+      newState.scenes[state.whichScene].editorState = action.editorState;
+      break;
+
     case DELETE_SCENE:
       const firstHalfOfScenes = newState.scenes.slice(0, +action.position)
           , secondHalfOfScenes = newState.scenes.slice(+action.position + 1).map(scene => {
@@ -206,7 +221,7 @@ export default function reducer (state = {
             return scene;
         });
       newState.scenes = [...firstHalfOfScenes, ...secondHalfOfScenes];
-      newState.whichScene = action.position - 1;
+      newState.whichScene = action.position - 1 > -1 ? action.position - 1 : 0;
       break;
 
     case SET_ACTORS:
@@ -284,6 +299,10 @@ export default function reducer (state = {
       newState.scenes[action.position].recommendations = newState.scenes[action.position].recommendations.concat(action.recString);
       break;
 
+    case CLEAR_RECOMMENDATIONS:
+      newState.scenes[action.position].recommendations = [];
+      break;
+
     default:
       return newState;
   }
@@ -337,6 +356,8 @@ export const generateMapLocations = position => (dispatch, getState) => {
 };
 
 export const generateRecommendations = position => (dispatch, getState) => {
+  if (getState().editor.scenes[position].recommendations)
+  dispatch(clearRecommendations(position));
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => {
