@@ -60,7 +60,6 @@
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
     "finalhandler": "^1.0.0",
-    "font-awesome": "^4.7.0",
     "homedir": "^0.6.0",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
@@ -118,8 +117,11 @@
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "supertest": "^3.0.0",
+    "uglify-es": "git://github.com/mishoo/UglifyJS2#harmony",
+    "uglifyjs-webpack-plugin": "^0.4.3",
     "volleyball": "^1.4.1",
     "webpack": "^2.2.1",
+    "webpack-bundle-analyzer": "^2.8.1",
     "webpack-livereload-plugin": "^0.10.0"
   }
 }

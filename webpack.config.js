@@ -1,6 +1,8 @@
 'use strict'
 
 const LiveReloadPlugin = require('webpack-livereload-plugin')
+    , BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+    , UglifyJSPlugin = require('uglifyjs-webpack-plugin')
     , devMode = require('.').isDevelopment
 
 /**
@@ -41,9 +43,34 @@ module.exports = {
     }]
   },
   plugins: devMode
-    ? [new LiveReloadPlugin({appendScriptTag: true})]
-    : [],
-  externals: {
-    'isomorphic-fetch': 'fetch'
-  }
+    ? [new LiveReloadPlugin({appendScriptTag: true}),
+    new BundleAnalyzerPlugin(),
+    new UglifyJSPlugin({
+      mangle: true,
+      compress: {
+        warnings: false, // Suppress uglification warnings
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+      },
+      exclude: [/\.min\.js$/gi] // skip pre-minified libs]
+      })]
+    : [new UglifyJSPlugin({
+      mangle: true,
+      compress: {
+        warnings: false, // Suppress uglification warnings
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+      },
+      exclude: [/\.min\.js$/gi] // skip pre-minified libs]
+      })],
 };
