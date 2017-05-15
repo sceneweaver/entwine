@@ -175,7 +175,7 @@ class EditorScene extends Component {
 
 					<input
 						className="editor-scene-title title-font"
-						placeholder="Scene Title"
+						placeholder={`Title Scene ${this.props.whichScene + 1}`}
 						name={this.props.whichScene}
 						onChange={this.props.onSceneTitleChange}
 						value={this.props.title}
