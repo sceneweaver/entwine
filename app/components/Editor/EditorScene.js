@@ -320,6 +320,13 @@ class EditorScene extends Component {
 							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
 						</button>
 
+						<button
+							className="btn btn-default module-btn"
+							onClick={this.props.onRecommendation.bind(this, this.props.position)}
+						>
+							Recommend &nbsp; <span className="glyphicon glyphicon-picture"></span>
+						</button>
+
 					</div>
 
 				</div>
@@ -351,7 +358,8 @@ const mapStateToProps = (state) => ({
 	whichScene: state.editor.whichScene,
 	title: state.editor.scenes[state.editor.whichScene].title,
 	text: state.editor.scenes[state.editor.whichScene].paragraphs[0],
-	whichModule: state.editor.scenes[state.editor.whichScene].whichModule
+	whichModule: state.editor.scenes[state.editor.whichScene].whichModule,
+	recommendations: state.editor.scenes[state.editor.whichScene].recommendations
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -396,6 +404,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSceneHTMLChange(content) {
 		event.preventDefault();
 		dispatch(setSceneHTML(content));
+	},
+	onRecommendation(position, event) {
+		event.preventDefault();
+		dispatch(generateRecommendations(0));
 	}
 });
 
