@@ -33,7 +33,8 @@ module.exports = {
   module: {
     rules: [{
       test: /jsx?$/,
-      exclude: /(node_modules|bower_components)/,
+      exclude: /wikijs/,
+      // exclude: /(node_modules|bower_components)/
       use: [{
         loader: 'babel-loader',
         options: {
@@ -46,13 +47,11 @@ module.exports = {
     ? [new LiveReloadPlugin({appendScriptTag: true}),
     new BundleAnalyzerPlugin({openAnalyzer: false}),
     new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false,
-			},
-			output: {
-				comments: false,
-			},
-		})
+        compress: {
+            warnings: false
+        },
+        test: /jsx?$/
+      }),
     ]
     : [],
 };
