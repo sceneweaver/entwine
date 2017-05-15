@@ -11,6 +11,7 @@ const SET_EDITOR_SCENE = 'SET_EDITOR_SCENE';
 const ADD_SCENE = 'ADD_SCENE';
 const DELETE_SCENE = 'DELETE_SCENE';
 
+const SET_EDITOR_STATE = 'SET_EDITOR_STATE';
 const SET_SCENE_TEXT = 'SET_SCENE_TEXT';
 const SET_SCENE_HTML = 'SET_SCENE_HTML';
 const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
@@ -68,6 +69,11 @@ export const deleteScene = (position) => ({
   type: DELETE_SCENE,
   position
 });
+
+export const setEditorState = (editorState) => ({
+  type: SET_EDITOR_STATE,
+  editorState
+})
 
 export const setSceneTitle = (input) => ({
   type: SET_SCENE_TITLE,
@@ -197,6 +203,10 @@ export default function reducer (state = {
       newScene.getPosition(newState.scenes.length);
       newState.scenes = [...newState.scenes, newScene];
       newState.whichScene = newState.scenes.length - 1;
+      break;
+
+    case SET_EDITOR_STATE:
+      newState.scenes[state.whichScene].editorState = action.editorState;
       break;
 
     case DELETE_SCENE:

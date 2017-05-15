@@ -16,7 +16,7 @@ import EditorSceneButtons from './EditorSceneButtons';
 /* ----- DRAFT.JS EDITOR UTILS ----- */
 
 const Image = (props) => {
-	return <img src={props.src} style={{media: {width: '100%'}}} />;
+	return <img src={props.src} style={{ media: { width: '100%' } }} />;
 };
 
 const Media = (props) => {
@@ -24,7 +24,7 @@ const Media = (props) => {
 		props.block.getEntityAt(0)
 	);
 	const { src } = entity.getData()
-			, type = entity.getType();
+		, type = entity.getType();
 	return type === 'img' ? <Image src={src} /> : null;
 };
 
@@ -52,7 +52,6 @@ class EditorScene extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			editorState: EditorState.createEmpty(),
 			showURLInput: false,
 			urlValue: '',
 			urlType: '',
@@ -76,17 +75,18 @@ class EditorScene extends Component {
 
 	onChange(editorState) {
 		// converts text to plaintext to allow actors / wiki module to parse correctly
-			let content = editorState.getCurrentContent()
-				, contentPlainText = content.getPlainText()
-				, contentHTML = stateToHTML(content, stateToHTMLOptions);
-			this.props.onSceneTextChange(contentPlainText);
-			this.props.onSceneHTMLChange(contentHTML);
-			// updates Draft JS editor state
-			this.setState({ editorState });
+		let content = editorState.getCurrentContent()
+			, contentPlainText = content.getPlainText()
+			, contentHTML = stateToHTML(content, stateToHTMLOptions);
+		this.props.onSceneTextChange(contentPlainText);
+		this.props.onSceneHTMLChange(contentHTML);
+		this.props.onEditorStateChange(editorState);
+		// updates Draft JS editor state
+		this.setState({ editorState });
 	}
 
 	_handleKeyCommand(command) {
-		const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+		const newState = RichUtils.handleKeyCommand(this.props.editorState, command);
 		if (newState) {
 			this.onChange(newState);
 			return 'handled';
@@ -95,23 +95,23 @@ class EditorScene extends Component {
 	}
 
 	_onBold() {
-		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+		this.onChange(RichUtils.toggleInlineStyle(this.props.editorState, 'BOLD'));
 	}
 
 	_onItalic() {
-		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
+		this.onChange(RichUtils.toggleInlineStyle(this.props.editorState, 'ITALIC'));
 	}
 
 	_onBlockQuote() {
-		this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'blockquote'));
+		this.onChange(RichUtils.toggleBlockType(this.props.editorState, 'blockquote'));
 	}
 
 	_onUnorderedList() {
-		this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'unordered-list-item'));
+		this.onChange(RichUtils.toggleBlockType(this.props.editorState, 'unordered-list-item'));
 	}
 
 	_onOrderedList() {
-		this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'ordered-list-item'));
+		this.onChange(RichUtils.toggleBlockType(this.props.editorState, 'ordered-list-item'));
 	}
 
 	_onAddImage() {
@@ -128,7 +128,7 @@ class EditorScene extends Component {
 		});
 	}
 
-	_onURLChange (event) {
+	_onURLChange(event) {
 		this.setState({
 			urlValue: event.target.value
 		});
@@ -142,7 +142,8 @@ class EditorScene extends Component {
 
 	_confirmMedia(event) {
 		event.preventDefault();
-		const { editorState, urlValue, urlType } = this.state
+		const { urlValue, urlType } = this.state
+			, editorState = this.props.editorState
 			, contentState = editorState.getCurrentContent()
 			, contentStateWithEntity = contentState.createEntity(
 				urlType,
@@ -175,7 +176,7 @@ class EditorScene extends Component {
 
 					<input
 						className="editor-scene-title title-font"
-						placeholder="Scene Title"
+						placeholder={`Title Scene ${this.props.whichScene + 1}`}
 						name={this.props.whichScene}
 						onChange={this.props.onSceneTitleChange}
 						value={this.props.title}
@@ -204,16 +205,22 @@ class EditorScene extends Component {
 					/> :
 					null}
 
-				<div className="editor-container" onClick={this.focus}>
-					<Editor
-						blockRendererFn={mediaBlockRenderer}
-						editorState={this.state.editorState}
-						handleKeyCommand={this.handleKeyCommand}
-						onChange={this.onChange}
-						position={this.props.position}
-						ref="editor"
-					/>
-				</div>
+				{this.props.editorState ?
+					<div
+						className="editor-container"
+						onClick={this.focus}
+					>
+						<Editor
+							blockRendererFn={mediaBlockRenderer}
+							editorState={this.props.editorState}
+							handleKeyCommand={this.handleKeyCommand}
+							onChange={this.onChange}
+							ref="editor"
+							position={this.props.position}
+						/>
+					</div> :
+					null}
+
 			</div>
 		);
 	}
@@ -222,9 +229,10 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { setSceneText, setSceneHTML, setSceneTitle } from '../../reducers/editor';
+import { setSceneText, setSceneHTML, setSceneTitle, setEditorState } from '../../reducers/editor';
 
 const mapStateToProps = (state) => ({
+	editorState: state.editor.scenes[state.editor.whichScene].editorState,
 	whichScene: state.editor.whichScene,
 	title: state.editor.scenes[state.editor.whichScene].title,
 	text: state.editor.scenes[state.editor.whichScene].paragraphs[0],
@@ -245,6 +253,9 @@ const mapDispatchToProps = (dispatch) => ({
 		event.preventDefault();
 		dispatch(setSceneHTML(content));
 	},
+	onEditorStateChange(editorState) {
+		dispatch(setEditorState(editorState));
+  },
 	onRecommendation(position, event) {
 		event.preventDefault();
 		dispatch(generateRecommendations(position));
