@@ -37,6 +37,7 @@ const SET_HERO = 'SET_HERO';
 const SET_HERO_QUERY = 'SET_HERO_QUERY';
 
 const SET_RECOMMENDATIONS = 'SET_RECOMMENDATIONS';
+const CLEAR_RECOMMENDATIONS = 'CLEAR_RECOMMENDATIONS';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -170,6 +171,11 @@ export const setRecommendations = (position, recString) => ({
   type: SET_RECOMMENDATIONS,
   position,
   recString
+});
+
+export const clearRecommendations= (position) => ({
+  type: CLEAR_RECOMMENDATIONS,
+  position
 })
 
 /* ------------       REDUCERS     ------------------ */
@@ -294,6 +300,10 @@ export default function reducer (state = {
       newState.scenes[action.position].recommendations = newState.scenes[action.position].recommendations.concat(action.recString);
       break;
 
+    case CLEAR_RECOMMENDATIONS:
+      newState.scenes[action.position].recommendations = [];
+      break;
+
     default:
       return newState;
   }
@@ -347,6 +357,8 @@ export const generateMapLocations = position => (dispatch, getState) => {
 };
 
 export const generateRecommendations = position => (dispatch, getState) => {
+  if (getState().editor.scenes[position].recommendations)
+  dispatch(clearRecommendations(position));
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => {

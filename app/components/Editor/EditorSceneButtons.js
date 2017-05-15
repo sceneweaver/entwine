@@ -69,6 +69,14 @@ class EditorSceneButtons extends Component {
             Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
           </button>
 
+          <button
+            className="btn btn-default module-btn"
+            onClick={this.props.onRecommendation.bind(this, this.props.whichScene)}
+          >
+            Recommend
+          </button>
+
+
         </div>
 
       </div>
@@ -80,7 +88,7 @@ class EditorSceneButtons extends Component {
 
 import { connect } from 'react-redux';
 import $ from 'jquery';
-import { deselectModule, showModule } from '../../reducers/editor';
+import { deselectModule, showModule, generateRecommendations } from '../../reducers/editor';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onToggleModule(module, event) {
@@ -92,6 +100,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
 			dispatch(showModule(module));
 		}
+	},
+  onRecommendation(position, event) {
+		event.preventDefault();
+		dispatch(generateRecommendations(position));
 	}
 });
 

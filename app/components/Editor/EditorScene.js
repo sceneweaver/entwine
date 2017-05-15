@@ -260,6 +260,7 @@ const mapDispatchToProps = (dispatch) => ({
 		event.preventDefault();
 		dispatch(generateRecommendations(position));
 	}
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorScene);
