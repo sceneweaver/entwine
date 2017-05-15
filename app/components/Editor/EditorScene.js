@@ -183,6 +183,7 @@ class EditorScene extends Component {
 
 				</div>
 
+
 				<EditorSceneButtons
 					onBold={this.onBold}
 					onItalic={this.onItalic}
@@ -227,7 +228,8 @@ const mapStateToProps = (state) => ({
 	whichScene: state.editor.whichScene,
 	title: state.editor.scenes[state.editor.whichScene].title,
 	text: state.editor.scenes[state.editor.whichScene].paragraphs[0],
-	whichModule: state.editor.scenes[state.editor.whichScene].whichModule
+	whichModule: state.editor.scenes[state.editor.whichScene].whichModule,
+	recommendations: state.editor.scenes[state.editor.whichScene].recommendations
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -242,6 +244,10 @@ const mapDispatchToProps = (dispatch) => ({
 	onSceneHTMLChange(content) {
 		event.preventDefault();
 		dispatch(setSceneHTML(content));
+	},
+	onRecommendation(position, event) {
+		event.preventDefault();
+		dispatch(generateRecommendations(position));
 	}
 });
 
