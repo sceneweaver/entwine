@@ -10,7 +10,7 @@ const Home = () => (
     <div className="home main-featured container">
       <div className="row feature-row">
         <div className="featured-card col-md-8">
-          <Card>
+          <Card containerElement={<Link to="stories/featured" />}>
             <CardMedia
               overlay={<CardTitle title="Featured Story" subtitle="James Comey's Conspicuous Independence" />}
             >
