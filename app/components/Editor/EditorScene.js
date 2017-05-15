@@ -14,58 +14,26 @@ import EditorSceneMediaInput from './EditorSceneMediaInput';
 import EditorSceneButtons from './EditorSceneButtons';
 
 
-/* ----- COMPONENT STYLES & DRAFT.JS EDITOR UTILS ----- */
-
-const styles = {
-	root: {
-		fontFamily: '\'Georgia\', serif',
-		padding: 20,
-		width: 600,
-	},
-	buttons: {
-		marginBottom: 10,
-	},
-	editor: {
-		border: '1px solid #ccc',
-		cursor: 'text',
-		minHeight: 80,
-		padding: 10,
-	},
-	button: {
-		marginTop: 10,
-		textAlign: 'center',
-	},
-	media: {
-		width: '100%',
-	},
-};
+/* ----- DRAFT.JS EDITOR UTILS ----- */
 
 const Image = (props) => {
-	return <img src={props.src} style={styles.media} />;
+	return <img src={props.src} style={{media: {width: '100%'}}} />;
 };
 
 const Media = (props) => {
 	const entity = props.contentState.getEntity(
 		props.block.getEntityAt(0)
 	);
-	const { src } = entity.getData();
-	const type = entity.getType();
-	let media;
-	if (type === 'img') {
-		media = <Image src={src} />;
-	}
-	return media;
+	const { src } = entity.getData()
+			, type = entity.getType();
+	return type === 'img' ? <Image src={src} /> : null;
 };
 
-function mediaBlockRenderer(block) {
-	if (block.getType() === 'atomic') {
-		return {
-			component: Media,
-			editable: false,
-		};
-	}
-	return null;
-}
+const mediaBlockRenderer = (block) => {
+	return block.getType() === 'atomic' ?
+		{ component: Media, editable: false }
+		: null;
+};
 
 let stateToHTMLOptions = {
 	blockRenderers: {
