@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 /* ----- COMPONENT ----- */
 
-class EditorScenesMenuItem extends Component {
+class EditorMenuItem extends Component {
   render() {
     return (
       <div className="editor-scene-menu-item">
@@ -54,5 +54,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditorScenesMenuItem);
+export default connect(mapStateToProps, mapDispatchToProps)(EditorMenuItem);
 

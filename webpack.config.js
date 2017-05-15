@@ -1,6 +1,8 @@
-'use strict'
+'use strict';
 
 const LiveReloadPlugin = require('webpack-livereload-plugin')
+    , BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+    , webpack = require('webpack')
     , devMode = require('.').isDevelopment
 
 /**
@@ -41,6 +43,8 @@ module.exports = {
     }]
   },
   plugins: devMode
-    ? [new LiveReloadPlugin({appendScriptTag: true})]
-    : []
+    ? [new LiveReloadPlugin({appendScriptTag: true}),
+    new BundleAnalyzerPlugin({openAnalyzer: false}),
+    ]
+    : [],
 };

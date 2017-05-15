@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import EditorScene from './EditorScene';
-import EditorScenesMenuItem from './EditorScenesMenuItem';
+import EditorMenuItem from './EditorMenuItem';
 import EditorActors from './EditorActors';
 import EditorMaps from './EditorMaps';
 import EditorHero from './EditorHero';
@@ -57,7 +57,7 @@ class Editor extends Component {
               <div id="editor-scenes-menu-items-container">
                 {
                   this.props.scenes && this.props.scenes.map((scene, index) => (
-                    <EditorScenesMenuItem
+                    <EditorMenuItem
                       position={index}
                       key={index}
                       sceneTitle={scene.title}
@@ -81,6 +81,7 @@ class Editor extends Component {
             <EditorScene
               whichScene={this.props.whichScene}
               whichModule={this.props.whichModule}
+              editorState={this.props.editorState}
             />
 
           </div>
@@ -112,7 +113,7 @@ import store from '../../store';
 import $ from 'jquery';
 
 const mapStateToProps = state => ({
-  editor: state.editor,
+  editorState: state.editor.scenes[state.editor.whichScene].editorState,
   storyTitle: state.editor.title,
   user: state.auth,
   scenes: state.editor.scenes,
