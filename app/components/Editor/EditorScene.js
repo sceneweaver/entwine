@@ -13,7 +13,6 @@ import { stateToHTML } from 'draft-js-export-html';
 import EditorSceneMediaInput from './EditorSceneMediaInput';
 import EditorSceneButtons from './EditorSceneButtons';
 
-
 /* ----- DRAFT.JS EDITOR UTILS ----- */
 
 const Image = (props) => {
