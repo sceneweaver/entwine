@@ -340,3 +340,15 @@ export const generateMapLocations = position => (dispatch, getState) => {
     dispatch(setLocation(position, placesArr))
   })
 };
+
+export const generateRecommendations = position => (dispatch, getState) => {
+  const textBody = getState().editor.scenes[position].paragraphs[0];
+  findProperNouns(textBody)
+  .then(actorsArray => {
+    dispatch(setActors(position, actorsArray));
+    if (actorsArray[0]) return findPlaces(actorsArray);
+  })
+  .then(placesArr => {
+    dispatch(setLocation(position, placesArr));
+  })
+}
