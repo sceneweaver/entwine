@@ -11,6 +11,8 @@ import {
 
 import { stateToHTML } from 'draft-js-export-html';
 
+import EditorSceneMediaInput from './EditorSceneMediaInput';
+
 /* ----- COMPONENT STYLES & DRAFT.JS EDITOR UTILS ----- */
 
 const styles = {
@@ -21,14 +23,6 @@ const styles = {
 	},
 	buttons: {
 		marginBottom: 10,
-	},
-	urlInputContainer: {
-		marginBottom: 10,
-	},
-	urlInput: {
-		fontFamily: '\'Georgia\', serif',
-		marginRight: 10,
-		padding: 3,
 	},
 	editor: {
 		border: '1px solid #ccc',
@@ -97,7 +91,7 @@ class EditorScene extends Component {
 		this.state = {
 			editorState: EditorState.createEmpty(),
 			showURLInput: false,
-			url: '',
+			urlValue: '',
 			urlType: '',
 			displayModule: false
 		};
@@ -194,30 +188,6 @@ class EditorScene extends Component {
 	}
 
 	render() {
-		let urlInput;
-		if (this.state.showURLInput) {
-			urlInput =
-				(<div className="editorscene-mediaurl-input" style={styles.urlInputContainer}>
-					<label>
-						Media URL: &nbsp;
-					</label>
-					<input
-						onChange={this.onURLChange}
-						ref="url"
-						style={styles.urlInput}
-						type="text"
-						value={this.state.urlValue}
-						onKeyDown={this.onURLInputKeyDown}
-					/>
-					<button
-						className="editor-btn btn btn-default"
-						onMouseDown={this.confirmMedia}
-					>
-						Add Media
-                </button>
-				</div>);
-		}
-
 		return (
 			<div className="form-group editorscene-texteditor">
 
@@ -302,7 +272,15 @@ class EditorScene extends Component {
 					</div>
 
 				</div>
-				{urlInput}
+
+				{this.state.showURLInput ?
+					<EditorSceneMediaInput
+						onURLChange={this.onURLChange}
+						onURLInputKeyDown={this.onURLInputKeyDown}
+						confirmMedia={this.confirmMedia}
+						urlValue={this.state.urlValue}
+					/> :
+					null }
 
 				<div className="editor-container" onClick={this.focus}>
 					<Editor

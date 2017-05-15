@@ -320,6 +320,6 @@ export const generateMapLocations = position => (dispatch, getState) => {
     else return findPlaces(actorsArray);
   })
   .then(placesArr => {
-    dispatch(setLocation(position, placesArr))
-  })
+    dispatch(setLocation(position, placesArr));
+  });
 };
