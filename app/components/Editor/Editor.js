@@ -81,6 +81,7 @@ class Editor extends Component {
             <EditorScene
               whichScene={this.props.whichScene}
               whichModule={this.props.whichModule}
+              editorState={this.props.editorState}
             />
 
           </div>
@@ -112,7 +113,7 @@ import store from '../../store';
 import $ from 'jquery';
 
 const mapStateToProps = state => ({
-  editor: state.editor,
+  editorState: state.editor.scenes[state.editor.whichScene].editorState,
   storyTitle: state.editor.title,
   user: state.auth,
   scenes: state.editor.scenes,
