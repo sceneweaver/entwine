@@ -246,11 +246,9 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(setSceneTitle(event.target.value));
 	},
 	onSceneTextChange(content) {
-		event.preventDefault();
 		dispatch(setSceneText(content));
 	},
 	onSceneHTMLChange(content) {
-		event.preventDefault();
 		dispatch(setSceneHTML(content));
 	},
 	onEditorStateChange(editorState) {

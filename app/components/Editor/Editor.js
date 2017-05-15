@@ -11,9 +11,9 @@ import EditorHero from './EditorHero';
 class Editor extends Component {
   componentWillUnmount() {
     // when user navigates out of editor, remove title and locations from store
-    this.props.editor.scenes.forEach((scene, idx) => {
+    this.props.scenes.forEach((scene, idx) => {
       this.props.onDeleteLocation(idx);
-    })
+    });
     this.props.changeStoryTitle('');
   }
 
