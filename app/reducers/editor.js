@@ -17,9 +17,7 @@ const SET_SCENE_TITLE = 'SET_SCENE_TITLE';
 
 const DESELECT_MODULE = 'DESELECT_MODULE';
 
-const SHOW_ACTORS = 'SHOW_ACTORS';
-const SHOW_MAPS = 'SHOW_MAPS';
-const SHOW_HERO = 'SHOW_HERO';
+const SHOW_MODULE = 'SHOW_MODULE';
 
 const SET_ACTORS = 'SET_ACTORS';
 const CHANGE_ACTOR = 'CHANGE_ACTOR';
@@ -43,59 +41,52 @@ const SET_HERO_QUERY = 'SET_HERO_QUERY';
 export const setEditorScene = (whichScene) => ({
   type: SET_EDITOR_SCENE,
   whichScene
-})
+});
 
 export const deselectModule = (position) => ({
   type: DESELECT_MODULE,
   position
-})
+});
 
-export const showActors = () => ({
-  type: SHOW_ACTORS,
-})
-
-export const showMaps = () => ({
-  type: SHOW_MAPS,
-})
-
-export const showHero = () => ({
-  type: SHOW_HERO,
-})
+export const showModule = (module) => ({
+  type: SHOW_MODULE,
+  module
+});
 
 export const changeStoryTitle = input => ({
   type: SET_STORY_TITLE,
   input
-})
+});
 
 export const addScene = () => ({
   type: ADD_SCENE,
-})
+});
 
 export const deleteScene = (position) => ({
   type: DELETE_SCENE,
   position
-})
+});
 
 export const setSceneTitle = (input) => ({
   type: SET_SCENE_TITLE,
   input
-})
+});
 
 export const setSceneText = (input) => ({
   type: SET_SCENE_TEXT,
   input
-})
+});
 
 export const setSceneHTML = (input) => ({
   type: SET_SCENE_HTML,
   input
-})
+});
 
 const setActors = (position, actors) => ({
   type: SET_ACTORS,
   position,
   actors
-})
+});
 
 export const changeActor = (position, actorIndex, field, input) => ({
   type: CHANGE_ACTOR,
@@ -103,34 +94,34 @@ export const changeActor = (position, actorIndex, field, input) => ({
   actorIndex,
   field,
   input
-})
+});
 
 export const addActor = position => ({
   type: ADD_ACTOR,
   position,
-})
+});
 
 export const deleteActor = (position, actorIndex) => ({
   type: DELETE_ACTOR,
   position,
   actorIndex
-})
+});
 
 export const setLocation = (position, locationArr) => ({
   type: SET_LOCATION,
   position,
   locationArr
-})
+});
 
 export const addLocation = position => ({
   type: ADD_LOCATION,
   position
-})
+});
 
 export const deleteLocation = (position) => ({
   type: DELETE_LOCATION,
   position
-})
+});
 
 export const changeLocation = (position, locationIndex, field, input) => ({
   type: CHANGE_LOCATION,
@@ -138,7 +129,7 @@ export const changeLocation = (position, locationIndex, field, input) => ({
   locationIndex,
   field,
   input
-})
+});
 
 export const setMap = (position, coords, style, zoom) => ({
   type: SET_MAP,
@@ -146,18 +137,18 @@ export const setMap = (position, coords, style, zoom) => ({
   coords,
   style,
   zoom
-})
+});
 
 export const deleteMap = (position) => ({
   type: DELETE_MAP,
   position,
-})
+});
 
 export const setHeroQuery = (position, heroQuery) => ({
   type: SET_HERO_QUERY,
   position,
   heroQuery
-})
+});
 
 export const setHero = (position, imageObj) => ({
   type: SET_HERO,
@@ -165,7 +156,7 @@ export const setHero = (position, imageObj) => ({
   heroURL: imageObj.heroURL,
   heroPhotog: imageObj.heroPhotog,
   heroPhotogURL: imageObj.heroPhotogURL
-})
+});
 
 /* ------------       REDUCERS     ------------------ */
 
@@ -189,16 +180,8 @@ export default function reducer (state = {
       newState.scenes[action.position].whichModule = null;
       break;
 
-    case SHOW_ACTORS:
-      newState.scenes[state.whichScene].whichModule = 'actors';
-      break;
-
-    case SHOW_MAPS:
-      newState.scenes[state.whichScene].whichModule = 'maps';
-      break;
-
-    case SHOW_HERO:
-      newState.scenes[state.whichScene].whichModule = 'hero';
+    case SHOW_MODULE:
+      newState.scenes[state.whichScene].whichModule = action.module;
       break;
 
     case ADD_SCENE:
@@ -337,6 +320,6 @@ export const generateMapLocations = position => (dispatch, getState) => {
     else return findPlaces(actorsArray);
   })
   .then(placesArr => {
-    dispatch(setLocation(position, placesArr))
-  })
+    dispatch(setLocation(position, placesArr));
+  });
 };
