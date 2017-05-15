@@ -61,12 +61,8 @@ const Media = (props) => {
 	const { src } = entity.getData();
 	const type = entity.getType();
 	let media;
-	if (type === 'audio') {
-		media = <Audio src={src} />;
-	} else if (type === 'img') {
+	if (type === 'img') {
 		media = <Image src={src} />;
-	} else if (type === 'video') {
-		media = <Video src={src} />;
 	}
 	return media;
 };
@@ -119,9 +115,7 @@ class EditorScene extends Component {
 		this.focus = () => this.refs.editor.focus();
 
 		this.onURLChange = event => this.setState({ urlValue: event.target.value });
-		this.addAudio = this._addAudio.bind(this);
 		this.addImage = this._addImage.bind(this);
-		this.addVideo = this._addVideo.bind(this);
 		this.confirmMedia = this._confirmMedia.bind(this);
 		this.onURLInputKeyDown = this._onURLInputKeyDown.bind(this);
 	}
@@ -167,7 +161,6 @@ class EditorScene extends Component {
 		}
 	}
 	_promptForMedia(type) {
-		const { editorState } = this.state;
 		this.setState({
 			showURLInput: true,
 			urlValue: '',
@@ -176,14 +169,8 @@ class EditorScene extends Component {
 			setTimeout(() => this.refs.url.focus(), 0);
 		});
 	}
-	_addAudio() {
-		this._promptForMedia('audio');
-	}
 	_addImage() {
 		this._promptForMedia('img');
-	}
-	_addVideo() {
-		this._promptForMedia('video');
 	}
 
 	onBoldClick() {
@@ -280,20 +267,12 @@ class EditorScene extends Component {
 						>
 							<i className="fa fa-list-ol" />
 						</button>
-						{/* <button
-									onMouseDown={this.addAudio}
-								>
-									Add Audio
-                </button> */}
 						<button
 							className="editor-btn btn btn-default"
 							onClick={this.addImage}
 						>
 							<i className="fa fa-file-image-o" />
 						</button>
-						{/* <button onMouseDown={this.addVideo} style={{ marginRight: 10 }}>
-									Add Video
-                </button> */}
 
 					</div>
 
@@ -301,21 +280,21 @@ class EditorScene extends Component {
 
 						<button
 							className="btn btn-default module-btn"
-							onClick={this.props.onToggleActors}
+							onClick={this.props.onToggleModule.bind(this, 'actors')}
 						>
 							Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
 						</button>
 
 						<button
 							className="btn btn-default module-btn"
-							onClick={this.props.onToggleMaps}
+							onClick={this.props.onToggleModule.bind(this, 'maps')}
 						>
 							Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
 						</button>
 
 						<button
 							className="btn btn-default module-btn"
-							onClick={this.props.onToggleHero}
+							onClick={this.props.onToggleModule.bind(this, 'hero')}
 						>
 							Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
 						</button>
@@ -344,8 +323,7 @@ class EditorScene extends Component {
 
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { deselectModule, showActors, showMaps, showHero, setSceneText, setSceneHTML, setSceneTitle } from '../../reducers/editor';
-import store from '../../store';
+import { deselectModule, showModule, setSceneText, setSceneHTML, setSceneTitle } from '../../reducers/editor';
 
 const mapStateToProps = (state) => ({
 	whichScene: state.editor.whichScene,
@@ -355,34 +333,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onToggleActors(event) {
+	onToggleModule(module, event) {
 		event.preventDefault();
-		if (ownProps.whichModule === 'actors') {
+		if (ownProps.whichModule === module) {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
 			dispatch(deselectModule(ownProps.whichScene));
 		} else {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
-			dispatch(showActors());
-		}
-	},
-	onToggleMaps(event) {
-		event.preventDefault();
-		if (ownProps.whichModule === 'maps') {
-			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
-			dispatch(deselectModule(ownProps.whichScene));
-		} else {
-			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
-			dispatch(showMaps());
-		}
-	},
-	onToggleHero(event) {
-		event.preventDefault();
-		if (ownProps.whichModule === 'hero') {
-			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
-			dispatch(deselectModule(ownProps.whichScene));
-		} else {
-			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
-			dispatch(showHero());
+			dispatch(showModule(module));
 		}
 	},
 	onSceneTitleChange(event) {
