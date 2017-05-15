@@ -229,7 +229,7 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { setSceneText, setSceneHTML, setSceneTitle, setEditorState } from '../../reducers/editor';
+import { setSceneText, setSceneHTML, setSceneTitle, setEditorState, generateRecommendations } from '../../reducers/editor';
 
 const mapStateToProps = (state) => ({
 	editorState: state.editor.scenes[state.editor.whichScene].editorState,
