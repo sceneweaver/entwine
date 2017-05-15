@@ -354,11 +354,21 @@ export const generateMapLocations = position => (dispatch, getState) => {
 };
 
 export const generateRecommendations = position => (dispatch, getState) => {
-  console.log(position);
   const textBody = getState().editor.scenes[position].paragraphs[0];
-  console.log(textBody)
   findProperNouns(textBody)
-  .then(actorsArray => dispatch(setActors(position, actorsArray)));
+  .then(actorsArray => {
+    if (actorsArray.length > 0) {
+      dispatch(setActors(position, actorsArray));
+      dispatch(setRecommendations(position, 'actors'));
+    }
+    if (actorsArray[0]) return findPlaces(actorsArray);
+  })
+  .then(placesArr => {
+    if (placesArr.length > 0) {
+      dispatch(setLocation(position, placesArr));
+      dispatch(setRecommendations(position, 'maps'));
+    }
+  });
 };
 
 

@@ -322,7 +322,7 @@ class EditorScene extends Component {
 
 						<button
 							className="btn btn-default module-btn"
-							onClick={this.props.onRecommendation.bind(this, this.props.position)}
+							onClick={this.props.onRecommendation.bind(this, this.props.whichScene)}
 						>
 							Recommend &nbsp; <span className="glyphicon glyphicon-picture"></span>
 						</button>
@@ -407,7 +407,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	},
 	onRecommendation(position, event) {
 		event.preventDefault();
-		dispatch(generateRecommendations(0));
+		dispatch(generateRecommendations(position));
 	}
 });
 
