@@ -17,6 +17,7 @@ export default class Scene {
     this.heroURL = '';
     this.heroPhotog = '';
     this.heroPhotogURL = '';
+    this.recommendations = [];
   }
   getPosition(index) {
     this.position = index;
