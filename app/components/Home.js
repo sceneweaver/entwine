@@ -13,7 +13,7 @@ const Home = () => (
           <RaisedButton containerElement={<Link to="stories/featured" />}>
             <Card >
               <CardMedia
-                overlay={<CardTitle title="Featured Story" subtitle="James Comey's Conspicuous Independence" style={{'text-align': 'left'}}/>}
+                overlay={<CardTitle title="Featured Story" subtitle="James Comey's Conspicuous Independence" style={{textAlign: 'left'}}/>}
               >
                 <img height="400px" src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
               </CardMedia>
@@ -26,7 +26,7 @@ const Home = () => (
             </CardMedia>
             <CardText style={{fontSize: 25}}>entwine allows content creators to quickly embed interactive maps, information about key characters, and data visualizations into their stories.</CardText>
             <div className="create-story-button">
-              <RaisedButton label="Create a Story Now" fullWidth={true} labelStyle={{'font-size': 22}} containerElement={<Link to="/editor"/>} />
+              <RaisedButton label="Create a Story Now" fullWidth={true} labelStyle={{fontSize: 22}} containerElement={<Link to="/editor"/>} />
             </div>
           </Card>
         </div>
