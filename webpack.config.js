@@ -45,6 +45,14 @@ module.exports = {
   plugins: devMode
     ? [new LiveReloadPlugin({appendScriptTag: true}),
     new BundleAnalyzerPlugin({openAnalyzer: false}),
+    new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false,
+			},
+			output: {
+				comments: false,
+			},
+		})
     ]
     : [],
 };
