@@ -7,7 +7,6 @@ const bcrypt = require('bcryptjs')
 module.exports = db => db.define('users', {
   username: {
     type: STRING,
-    unique: true,
     validate: {
       notEmpty: true,
       len: [4, 15]
