@@ -8,14 +8,14 @@ class EditorActors extends Component {
   render() {
     return (
       <div className="actors-module">
-        <div className="flexcontainer-module-header">
+        <div className="flexcontainer-module-header actors-module-header">
 
           <div className="module-collapse-btn">
             <button
               onClick={this.props.onHideActors}
               className="btn actors-module-btn"
             >
-              Collapse &nbsp; <span className="glyphicon glyphicon-menu-right"></span>
+              <i className="fa fa-minus" aria-hidden="true"></i>
             </button>
           </div>
 
@@ -24,15 +24,15 @@ class EditorActors extends Component {
           <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
-              className="btn actors-module-btn"
+              className="btn actors-module-btn actors-gen-btn"
             >
-              Generate Actors &nbsp; <span className="glyphicon glyphicon-refresh" />
+              Generate Actors &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
             </button>
             <button
               onClick={this.props.onAddActor}
-              className="btn actors-module-btn"
+              className="btn actors-module-btn actors-add-btn"
             >
-              Add Actor &nbsp; <span className="glyphicon glyphicon-plus" />
+              Add Actor &nbsp; <i className="fa fa-plus" aria-hidden="true"></i>
             </button>
           </div>
 

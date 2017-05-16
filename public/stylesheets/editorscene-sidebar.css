@@ -33,7 +33,7 @@
 .editorscene-sidebar-wrapper {
   z-index: 1000;
   position: fixed;
-  top: 0;
+  top: 0; /* REMEMBER TO EDIT THIS IF THE NAVBAR CHANGES SIZE */
   height: 100%;
   right: 50%;
   width: 0;

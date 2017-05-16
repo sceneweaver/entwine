@@ -8,12 +8,17 @@ class EditorActorItem extends Component {
       , index = this.props.index;
     return (<div className="actor-module-item">
 
-      <button
-        className="btn btn-default delete-actor-btn"
-        onClick={this.props.onDeleteActor.bind(this, index)}
-      >
-        <span className="glyphicon glyphicon-trash" ></span>
-      </button>
+      <div className="actor-image-container">
+
+        {actor.image ?
+          <div className="img-circle img-icon" style={{ backgroundImage: `url(${actor.image})` }} />
+          :
+          <div className="img-circle-letter img-icon" style={{ backgroundColor: '#0090FF' }} >
+            {actor.name[0]}
+          </div>
+        }
+
+      </div>
 
       <div className="actor-info">
 
@@ -25,6 +30,12 @@ class EditorActorItem extends Component {
             value={actor.name}
             onChange={this.props.onActorsChange.bind(this, index, 'name')}
           />
+          <button
+            className="btn btn-default actor-grab-image-btn"
+            onClick={this.props.onGrabImage.bind(this, index)}
+          >
+            <i className="fa fa-file-image-o" aria-hidden="true"></i>
+          </button>
         </div>
         <br />
         <div className="actor-desc-field-container">
@@ -38,24 +49,12 @@ class EditorActorItem extends Component {
         </div>
       </div>
 
-      <div className="actor-image-container">
-
-        {actor.image ?
-          <div className="img-circle img-icon" style={{ backgroundImage: `url(${actor.image})` }} />
-          :
-          <div className="img-circle-letter img-icon" style={{ backgroundColor: '#0090FF' }} >
-            {actor.name[0]}
-          </div>
-        }
-
-        <button
-          className="btn btn-default actor-grab-image-btn"
-          onClick={this.props.onGrabImage.bind(this, index)}
-        >
-          Grab Image &nbsp; <i className="fa fa-file-image-o" aria-hidden="true"></i>
-        </button>
-
-      </div>
+      <button
+        className="btn btn-default delete-actor-btn"
+        onClick={this.props.onDeleteActor.bind(this, index)}
+      >
+        <span className="glyphicon glyphicon-trash" ></span>
+      </button>
 
     </div>);
   }
