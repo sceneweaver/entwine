@@ -26,9 +26,8 @@ class Scene extends Component {
 
   componentWillReceiveProps(nextProps) {
     // to animate map, set initial zoom to something more zoomed out than the actual value
-    if (nextProps.maps && nextProps.maps.length) {
+    if (nextProps.maps.length) {
       if (!this.state.coords.length) {
-        console.log("got in here")
         let zoom = nextProps.maps[0].zoom;
         if (zoom > 12) zoom -= 9;
         else if (zoom > 6) zoom -= 3;
@@ -40,16 +39,6 @@ class Scene extends Component {
           zoom: zoom
         });
 
-        this.props.setTimeout(() => {
-          if (nextProps.maps && nextProps.maps.length) {
-            this.setState({
-              coords: nextProps.maps[0].coords.split(','),
-              style: nextProps.maps[0].style,
-              zoom: nextProps.maps[0].zoom
-            });
-          }
-        }, 2000);
-
       } else {
         this.setState({
           coords: nextProps.maps[0].coords.split(','),
@@ -57,27 +46,32 @@ class Scene extends Component {
           zoom: nextProps.maps[0].zoom
         });
       }
-    }
-
-    if (!nextProps.maps.length) {
+    } else {
       this.setState({
          coords: [],
          style: '',
          zoom: 1,
       });
     }
+  }
 
-
+  moveOnUp() {
+    if (this.state.zoom !== this.props.maps[0].zoom) {
+      this.setState({
+        coords: this.props.maps[0].coords.split(','),
+        style: this.props.maps[0].style,
+        zoom: this.props.maps[0].zoom
+      });
+    }
   }
 
   render() {
     return (
       <div className="col m10">
-
         <div className="scene-hero">
           {
-            this.state.style
-              ? (<ReactMapboxGl
+            this.state.style ? (
+              <ReactMapboxGl
                 style={`mapbox://styles/mapbox/${this.state.style}-v9`}
                 accessToken="pk.eyJ1IjoiZm91cmVzdGZpcmUiLCJhIjoiY2oyY2VnbTN2MDJrYTMzbzgxNGV0OWFvdyJ9.whTLmuoah_lfoQhC_abI5w"
                 zoom={[this.state.zoom]}
@@ -86,9 +80,11 @@ class Scene extends Component {
                 containerStyle={{
                   height: "100%",
                   width: "auto"
-                }}>
-              </ReactMapboxGl>)
-              : this.props.heroURL ? (
+                }}
+                onStyleLoad={this.moveOnUp.bind(this)}
+              />
+            ) : (
+              this.props.heroURL ? (
                 <div className="scene-hero-img">
                   <div
                     className="scene-hero-img-container"
@@ -98,10 +94,11 @@ class Scene extends Component {
                     <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
                   </div>
                 </div>
-              ) : null
-
+              ) : (
+                null
+              )
+            )
           }
-
         </div>
 
         <div className="article-content col m4">
@@ -119,18 +116,17 @@ class Scene extends Component {
 
         </div>
 
-
         {
-          this.props.actors.length
-          ? (<div className="article-modules col m5 offset-m4">
-            <h4>IN THIS STORY</h4>
-            <ViewActors />
-          </div>)
-          : null
+          this.props.actors.length ? (
+            <div className="article-modules col m5 offset-m4">
+              <h4>IN THIS STORY</h4>
+              <ViewActors />
+            </div>
+          ) : (
+            null
+          )
         }
-
       </div>
-
     );
   }
 }
