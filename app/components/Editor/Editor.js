@@ -19,29 +19,29 @@ class Editor extends Component {
 
   render() {
     return (
-      <div id="storyEditor" className="container">
+      <div id="story-editor">
 
-        <div id="title-row">
-
-          <button
-            className="btn btn-success"
-            id="publish-btn"
-            onClick={this.props.onSubmitStory}
-          >
-            Publish Story  <span className="glyphicon glyphicon-share"></span>
-          </button>
-
-
-          <input
-            name="storyTitle"
-            id="story-title-input"
-            className="title-font"
-            type="text"
-            placeholder="Title your story"
-            onChange={this.props.onStoryTitleChange}
-            value={this.props.storyTitle}
-          />
-
+        <div id="title-row" className="row">
+          <div className="col m1">
+            <button
+              className="btn btn-success"
+              id="publish-btn"
+              onClick={this.props.onSubmitStory}
+            >
+              Publish &nbsp; <span className="glyphicon glyphicon-share"></span>
+            </button>
+          </div>
+          <div className="col m10">
+            <input
+              name="storyTitle"
+              id="story-title-input"
+              className="title-font"
+              type="text"
+              placeholder="Title your story"
+              onChange={this.props.onStoryTitleChange}
+              value={this.props.storyTitle}
+            />
+          </div>
         </div>
 
         <div id={`editorscene-wrapper-${this.props.whichScene}`} className="editorscene-wrapper">

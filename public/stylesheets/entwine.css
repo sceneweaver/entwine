@@ -55,14 +55,19 @@ html, body, #main {
 }
 /* ----- Editor Styling ----- */
 
+#story-editor {
+  margin: 0 20px;
+}
+
 #title-row {
-  margin-top: 10px;
-  margin-bottom: 40px;
+  margin: 40px 0 0 0;
+  padding-bottom: 20px;
   display: inline-flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
   width: 100%;
+  border-bottom: 1px solid darkgray;
+  color: white;
 }
 
 #publish-btn {
@@ -70,6 +75,8 @@ html, body, #main {
   justify-content: flex-end;
   margin: 0;
   margin-right: 20px;
+  padding: 0 5px;
+  width: 100%
 }
 
 #story-title-input {
@@ -77,7 +84,7 @@ html, body, #main {
   text-indent: 7px;
   border: none;
   border-bottom: solid 1.5px #c9c9c9;
-  width: 100%;
+  width: 95%;
   background-color: transparent;
 }
 
