@@ -34,6 +34,19 @@ const mediaBlockRenderer = (block) => {
 		: null;
 };
 
+const recommendationString = (recArr) => {
+	let string = "We recommend using the ";
+
+	recArr.forEach((rec, i) => {
+		if (i === recArr.length - 1) {
+			string += ", and " + rec;
+		} else if (i === 0) {
+			string += " " + rec;
+		}
+		}
+	})
+}
+
 let stateToHTMLOptions = {
 	blockRenderers: {
 		atomic: (block) => {
@@ -220,7 +233,8 @@ class EditorScene extends Component {
 					null}
 
 					{this.props.recommendations.length > 0 ?
-						<p>We recommend trying out the</p>
+
+
 					: null}
 
 			</div>
