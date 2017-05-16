@@ -55,7 +55,6 @@ class Scene extends Component {
       <div className="col m10">
 
         <div className="scene-hero">
-
           {
             this.state.style
               ? (<ReactMapboxGl
@@ -69,7 +68,7 @@ class Scene extends Component {
                   width: "auto"
                 }}>
               </ReactMapboxGl>)
-              : this.props.heroURL === '' ? null : (
+              : this.props.heroURL ? (
                 <div className="scene-hero-img">
                   <div
                     className="scene-hero-img-container"
@@ -79,7 +78,7 @@ class Scene extends Component {
                     <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
                   </div>
                 </div>
-              )
+              ) : null
 
           }
 

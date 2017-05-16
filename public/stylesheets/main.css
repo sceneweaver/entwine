@@ -7,15 +7,19 @@ body {
 }
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 input, .article-text, .article-text *, .view-actors-desc, .editor-container * {
   font-family: 'Sorts Mill Goudy', serif;
 }
 
-.title-font {
-  font-family: 'Roboto', sans-serif;
+.location-name-field {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.title-font, .form-like {
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 select {
@@ -223,6 +227,21 @@ input.form-like[disabled] {
 
 /*.home {
   font-size: 22px; }*/
+
+
+/* commented out code can be enabled to modify media queries that bootstrap uses to calculate container width */
+
+/*@media (min-width: 1200px) {
+  .container {
+    width: 1170px; } }
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px; } }
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;  } }*/
 
 @media (max-width: 1400px) {
   .home {
