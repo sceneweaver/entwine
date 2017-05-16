@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import StoriesItems from './StoriesItems';
-import { addStory } from '../../reducers/stories';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -142,6 +141,6 @@ import { browserHistory } from 'react-router'
 
 const mapState = ({ users, stories, auth }) => ({ users, stories, currentUser: auth });
 
-const mapDispatch = { addStory };
+const mapDispatch = {};
 
 export default connect(mapState, mapDispatch)(StoryList);

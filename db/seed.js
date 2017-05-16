@@ -87,17 +87,23 @@ function seed(Model, rows) {
 }
 
 const users = seed(User, {
+  jacob: {
+    username: 'jake',
+    display_name: 'Jacob K',
+    email: 'jacob@omri.omri',
+    password: '123',
+  },
   Hannah_Beech: {
     username: 'hbeech',
     display_name: 'Hannah Beech, The New Yorker',
     email: 'hb@newyorker.com',
     password: '123',
   },
-  jacob: {
-    username: 'jake',
-    display_name: 'Jacob K',
-    email: 'jacob@omri.omri',
-    password: '123',
+  Fred_Kaplan: {
+    username: 'fkaplan',
+    display_name: 'Fred Kaplan, The New Yorker',
+    email: 'fk@newyorker.com',
+    password: '123'
   }
 })
 
@@ -111,6 +117,11 @@ const stories = seed(Story,
       title: `North Korea's Consistently Apocalyptic Propagandists`,
       user_id: users.Hannah_Beech.id
     },
+    Cecile: {
+      id: 2,
+      title: `Cécile McLorin Salvant's Timeless Jazz`,
+      user_id: users.Fred_Kaplan.id
+    }
   })
 )
 
@@ -137,6 +148,19 @@ const scenes = seed(Scene,
       postion: 2,
       heroURL: `https://images.unsplash.com/photo-1485287442400-90e0eaed3a60?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=9bf685e757c9280e393668d9fee3c1aa`,
       paragraphsHTML: [`<p>By North Korean standards, this latest propaganda onslaught was neither remarkable nor particularly bellicose. In 2014, a KCNA article quoted a person, identified as a North Korean steelworker, who characterized Barack Obama as a &quot;wicked black monkey.&quot; Another story likened South Korea's recently ousted President Park Geun-hye, who had taken a hard line against the North, to a &quot;vile prostitute serving the U.S.&quot; Yet another conservative former South Korean President, Lee Myung-bak, was described with &quot;sweats, snivels and tears all over his face.&quot; (KCNA has not critiqued Moon Jae-in, the victor in the May 9th South Korean Presidential elections, perhaps because of his softer stance toward the North.) If nothing else, Pyongyang's propaganda czars know how to exploit the bounty of a thesaurus.</p><p><br /></p><p>North Korea's rhetoric has remained on a war footing for decades, a reminder that even though the South and North laid down their guns after a <strong>1953 armistice</strong>, no enduring peace treaty was ever reached. Donald Trump may have warned Reuters on April 27th of a potential &quot;major, major conflict with North Korea,&quot; but, from the point of view of the Democratic People's Republic of Korea, the war never stopped. In a May 8th salvo, a Rodong Sinmun commentary accused Trump and his &quot;henchmen&quot; of pursuing a &quot;hostile&quot; North Korea policy that reflected a &quot;dull-witted and wild character.&quot; With South Korea's new President Moon adopting a conciliatory tone in his May 10th inaugural address, even expressing a willingness to visit Pyongyang, Rodong Sinmun attempted to pick apart the U.S.-South Korean relationship. &quot;The U.S. is going to flee from south Korea after igniting a nuclear war on the Korean peninsula,&quot; predicted a May 11th English-language editorial. &quot;This is the sinister intention of the U.S. vociferating about ‘solid alliance' with south Korea.&quot;</p>`]
+    },
+    CMS1: {
+      id: 4,
+      story_id: stories.Cecile.id,
+      position: 0,
+      paragraphsHTML: [`<p>On a Thursday evening a few months ago, a long line snaked along Seventh Avenue, outside the <em>Village Vanguard</em>, a cramped basement night club in Greenwich Village that jazz fans regard as a temple. The eight-thirty set was sold out, as were the ten-thirty set and nearly all the other shows that week. The people descending the club's narrow steps had come to hear a twenty-seven-year-old singer named <strong>Cécile McLorin Salvant</strong>. In its sixty years as a jazz club, the Vanguard has headlined few women and fewer singers of either gender. But Salvant, virtually unknown two years earlier, had built an avid following, winning a Grammy and several awards from critics, who praised her singing as &quot;singularly arresting&quot; and </p><blockquote>&quot;artistry of the highest class.&quot;</blockquote>`]
+    },
+    CMS2: {
+      id: 5,
+      story_id: stories.Cecile.id,
+      position: 1,
+      heroURL: `https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=f9835518115e48ae328a33890fc683d6`,
+      paragraphsHTML: [`<p>She and her trio—a pianist, a bassist, and a drummer, all men in their early thirties—emerged from the dressing lounge and took their places on a lit-up stage: the men in sharp suits, Salvant wearing a gold-colored Issey Miyake dress, enormous pink-framed glasses, and a wide, easy smile. She nodded to the crowd and took a few glances at the walls, which were crammed with photographs of jazz icons who had played there: Sonny Rollins cradling a tenor saxophone, Dexter Gordon gazing through a cloud of cigarette smoke, Charlie Haden plucking a bass with back-bent intensity. This was the first time Salvant had been booked at the club—for jazz musicians, a sign that they'd made it and a test of whether they'd go much farther. She seemed very happy to be there.</p><p><br /></p><p><br /></p><div><img src=\"https://jazzyoutoo.files.wordpress.com/2014/09/village-vanguard2.jpg\" /></div><p><br /></p><p><br /></p><p>The set opened with Irving Berlin's &quot;Let's Face the Music and Dance,&quot; and it was clear right away that the hype was justified. She sang with perfect intonation, elastic rhythm, an operatic range from thick lows to silky highs. She had emotional range, too, inhabiting different personas in the course of a song, sometimes even a phrase—delivering the lyrics in a faithful spirit while also commenting on them, mining them for unexpected drama and wit. Throughout the set, she ventured from the standard repertoire into off-the-beaten-path stuff like Bessie Smith's &quot;Sam Jones Blues,&quot; a funny, rowdy rebuke to a misbehaving husband, and &quot;Somehow I Never Could Believe,&quot; a song from &quot;Street Scene,&quot; an obscure opera by Kurt Weill and Langston Hughes. She unfolded Weill's tune, over ten minutes, as the saga of an entire life: a child's promise of bright days ahead, a love that blossoms and fades, babies who wrap &quot;a ring around a rosy&quot; and then move away. When she sang, &quot;It looks like something awful happens / in the kitchens / where women wash their dishes,&quot; her plaintive phrasing transformed a description of domestic obligation into genuine tragedy. A hush washed over the room.</p>`]
     }
   })
 );
@@ -225,6 +249,84 @@ const actors = seed(Actor, {
     name: `Reuters`,
     description: `Reuters /ˈrɔɪtərz/ is an international news agency headquartered in London, England. It is a division of Thomson Reuters.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Reuters-Building-30SC.JPG/1920px-Reuters-Building-30SC.JPG`
+  },
+  Seventh_Avenue: {
+    id: 15,
+    name: `Seventh Avenue`,
+    description: `Seventh Avenue – known as Adam Clayton Powell Jr. Boulevard north of Central Park – is a thoroughfare on the West Side of the borough of Manhattan in New York City. It is southbound below Central Park and a two-way street north of the park.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Times_Square_1-2.JPG/1920px-Times_Square_1-2.JPG`
+  },
+  Village_Vanguard: {
+    id: 16,
+    name: `Village Vanguard`,
+    description: `The Village Vanguard is a jazz club located at Seventh Avenue South in Greenwich Village, New York City.[1] The club was opened on February 22, 1935, by Max Gordon. `,
+    image: `https://upload.wikimedia.org/wikipedia/commons/c/c1/The_Village_Vanguard_at_night_1976.jpg`
+  },
+  Greenwich_Village: {
+    id: 17,
+    name: `Greenwich Village`,
+    description: `Greenwich Village,[note 1] often referred to by locals as simply "the Village", is a neighborhood on the west side of Lower Manhattan, New York City. `,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/West_4th_and_West_12th_Intersection.JPG/1920px-West_4th_and_West_12th_Intersection.JPG`,
+  },
+  CMS: {
+    id: 18,
+    name: `Cécile McLorin Salvant`,
+    description: `Cécile McLorin Salvant (born 1989) is an American jazz vocalist. She was the winner of the first prize in the Thelonious Monk International Jazz Competition in 2010, releasing her first album, Cecile, shortly thereafter.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/d/d1/C%C3%A9cile_McLorin_Salvant.jpg`,
+  },
+  Grammy: {
+    id: 19,
+    name: `Grammy Award`,
+    description: `A Grammy Award (originally called Gramophone Award), or Grammy, is an honor awarded by The Recording Academy to recognize outstanding achievement in the mainly English-language music industry.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ted_Jensen%27s_2002_Grammy.jpg/1920px-Ted_Jensen%27s_2002_Grammy.jpg`,
+  },
+  Issey_Miyake: {
+    id: 20,
+    name: `Issey Miyake`,
+    description: `Issey Miyake (三宅 一生? Miyake Issei[pronunciation?], born 22 April 1938) is a Japanese fashion designer. He is known for his technology-driven clothing designs.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Issey_Miyake_Tokyo_2016.jpg/440px-Issey_Miyake_Tokyo_2016.jpg`,
+  },
+  Sonny_Rollins: {
+    id: 21,
+    name: `Sonny Rollins`,
+    description: `Walter Theodore "Sonny" Rollins (born September 7, 1930) is an American jazz tenor saxophonist, widely recognized as one of the most important and influential jazz musicians.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/4/40/Sonny_Rollins_2011.jpg`,
+  },
+  Dexter_Gordon: {
+    id: 22,
+    name: `Dexter Gordon`,
+    description: `Dexter Gordon (February 27, 1923 – April 25, 1990) was an American jazz tenor saxophonist. He was among the earliest tenor players to adapt the bebop musical language`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/f/fa/Dexter_Gordon1.jpg`,
+  },
+  Charlie_Haden: {
+    id: 23,
+    name: `Charlie Haden`,
+    description: `Charles Edward "Charlie" Haden (August 6, 1937 – July 11, 2014) was an American jazz double bass player, bandleader, composer and educator known for his deep, warm sound, and whose career spanned more than fifty years.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/e/ed/Charlie_Haden_1981.jpg`,
+  },
+  Irving_Berlin: {
+    id: 24,
+    name: `Irving Berlin`,
+    description: `Irving Berlin (born Israel Isidore Baline; May 11, 1888 – September 22, 1989) was an American composer and lyricist, widely considered one of the greatest songwriters in American history. His music forms a great part of the Great American Songbook.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/d/da/BerlinPortrait1.jpg`,
+  },
+  Bessie_Smith: {
+    id: 25,
+    name: `Bessie Smith`,
+    description: `Bessie Smith (April 15, 1894 – September 26, 1937) was an American blues singer. Nicknamed the Empress of the Blues, she was the most popular female blues singer of the 1920s and 1930s.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg/1280px-Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg`,
+  },
+  Kurt_Weill: {
+    id: 26,
+    name: `Kurt Weill`,
+    description: `Kurt Julian Weill (March 2, 1900 – April 3, 1950) was a German composer, active from the 1920s in his native country, and in his later years in the United States. He was a leading composer for the stage who was best known for his fruitful collaborations with Bertolt Brecht.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/0/05/Bundesarchiv_Bild_146-2005-0119%2C_Kurt_Weill.jpg`,
+  },
+  Langston_Hughes: {
+    id: 27,
+    name: `Langston Hughes`,
+    description: `James Mercer Langston Hughes (February 1, 1902 – May 22, 1967) was an American poet, social activist, novelist, playwright, and columnist from Joplin, Missouri. He was one of the earliest innovators of the then-new literary art form called jazz poetry.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/2/21/Langston_Hughes_by_Carl_Van_Vechten_1936.jpg`,
   }
 })
 
@@ -324,6 +426,12 @@ const maps = seed(Map, {
     coords: `125.7625241, 39.0392193`,
     zoom: 12,
     style: `satellite`
+  },
+  Village_Vanguard_map: {
+    id: 3,
+    coords: `-74.00168649999999, 40.7360303`,
+    zoom: 17,
+    style: `outdoors`
   }
 })
 
@@ -339,6 +447,10 @@ const scenesMaps = seed(ScenesMaps,
     22: {
       scene_id: scenes.NK2.id,
       map_id: maps.Pyongyang_map.id
+    },
+    43: {
+      scene_id: scenes.CMS1.id,
+      map_id: maps.Village_Vanguard_map.id
     }
   })
 )
