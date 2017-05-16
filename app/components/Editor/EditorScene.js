@@ -81,8 +81,6 @@ class EditorScene extends Component {
 		this.props.onSceneTextChange(contentPlainText);
 		this.props.onSceneHTMLChange(contentHTML);
 		this.props.onEditorStateChange(editorState);
-		// updates Draft JS editor state
-		this.setState({ editorState });
 	}
 
 	_handleKeyCommand(command) {
