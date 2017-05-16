@@ -70,6 +70,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onHideMaps(event) {
     event.preventDefault();
     $(`#editorscene-wrapper-${ownProps.position}`).removeClass('toggled');
+    $('.editorscene-sidebar-bg').removeClass('toggled');
     dispatch(deselectModule(ownProps.position));
   },
   onAddMap(event) {

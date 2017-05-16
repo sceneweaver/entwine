@@ -30,6 +30,27 @@
     padding-right: 50%;
 }
 
+.editorscene-sidebar-bg {
+    background-color: transparent;
+    -webkit-transition: all 0.5sease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.editorscene-sidebar-bg.toggled {
+    background-color: rgba(0,0,0,0.4);
+    z-index: 500;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    -webkit-transition: all 0.5sease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
 .editorscene-sidebar-wrapper {
   z-index: 1000;
   position: fixed;

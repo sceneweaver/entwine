@@ -548,28 +548,30 @@ html, body, #main {
 /* ----- EditorHero Styling ----- */
 
 .hero-module {
-  background-color: #7CC6FE;
+  background-color: #ffc299;
   width: 100%;
+  color: white;
 }
 
 .hero-module-btn {
-  background-color: #0090FF;
+  background-color: #ff6600;
   margin: 10px;
   color: white;
 }
 
 .hero-module-header {
   margin: 0 20px;
-  border-bottom: 0.5px solid #0090FF;
+  border-bottom: 0.5px solid #ff6600;
 }
 
 .hero-box {
   width: 100%;
-  padding: 30px;
-  display: flex;
+  padding: 30px 45px;
+  display: inline-flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  align-content: center;
   text-align: center;
 }
 
