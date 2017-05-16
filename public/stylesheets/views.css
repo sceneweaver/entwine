@@ -45,6 +45,10 @@ nav ul a::active, a::hover {
   font-size: 18px;
 }
 
+.article-text img {
+  width: 100%;
+}
+
 .scenes-nav {
   position: fixed;
   z-index: 1;
