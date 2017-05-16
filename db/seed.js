@@ -152,15 +152,31 @@ const scenes = seed(Scene,
     CMS1: {
       id: 4,
       story_id: stories.Cecile.id,
+      title: `At the Village Vanguard`,
       position: 0,
-      paragraphsHTML: [`<p>On a Thursday evening a few months ago, a long line snaked along Seventh Avenue, outside the <em>Village Vanguard</em>, a cramped basement night club in Greenwich Village that jazz fans regard as a temple. The eight-thirty set was sold out, as were the ten-thirty set and nearly all the other shows that week. The people descending the club's narrow steps had come to hear a twenty-seven-year-old singer named <strong>Cécile McLorin Salvant</strong>. In its sixty years as a jazz club, the Vanguard has headlined few women and fewer singers of either gender. But Salvant, virtually unknown two years earlier, had built an avid following, winning a Grammy and several awards from critics, who praised her singing as &quot;singularly arresting&quot; and </p><blockquote>&quot;artistry of the highest class.&quot;</blockquote>`]
+      paragraphsHTML: [`<p>On a Thursday evening a few months ago, a long line snaked along Seventh Avenue, outside the <em>Village Vanguard</em>, a cramped basement night club in Greenwich Village that jazz fans regard as a temple. The eight-thirty set was sold out, as were the ten-thirty set and nearly all the other shows that week. The people descending the club's narrow steps had come to hear a twenty-seven-year-old singer named <strong>Cécile McLorin Salvant</strong>. In its sixty years as a jazz club, the Vanguard has headlined few women and fewer singers of either gender. But Salvant, virtually unknown two years earlier, had built an avid following, winning a Grammy and several awards from critics, who praised her singing as &quot;singularly arresting&quot; and</p><blockquote>&quot;artistry of the highest class.&quot;</blockquote>`]
     },
     CMS2: {
       id: 5,
       story_id: stories.Cecile.id,
+      title: `The Trio`,
       position: 1,
       heroURL: `https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=f9835518115e48ae328a33890fc683d6`,
       paragraphsHTML: [`<p>She and her trio—a pianist, a bassist, and a drummer, all men in their early thirties—emerged from the dressing lounge and took their places on a lit-up stage: the men in sharp suits, Salvant wearing a gold-colored Issey Miyake dress, enormous pink-framed glasses, and a wide, easy smile. She nodded to the crowd and took a few glances at the walls, which were crammed with photographs of jazz icons who had played there: Sonny Rollins cradling a tenor saxophone, Dexter Gordon gazing through a cloud of cigarette smoke, Charlie Haden plucking a bass with back-bent intensity. This was the first time Salvant had been booked at the club—for jazz musicians, a sign that they'd made it and a test of whether they'd go much farther. She seemed very happy to be there.</p><p><br /></p><p><br /></p><div><img src=\"https://jazzyoutoo.files.wordpress.com/2014/09/village-vanguard2.jpg\" /></div><p><br /></p><p><br /></p><p>The set opened with Irving Berlin's &quot;Let's Face the Music and Dance,&quot; and it was clear right away that the hype was justified. She sang with perfect intonation, elastic rhythm, an operatic range from thick lows to silky highs. She had emotional range, too, inhabiting different personas in the course of a song, sometimes even a phrase—delivering the lyrics in a faithful spirit while also commenting on them, mining them for unexpected drama and wit. Throughout the set, she ventured from the standard repertoire into off-the-beaten-path stuff like Bessie Smith's &quot;Sam Jones Blues,&quot; a funny, rowdy rebuke to a misbehaving husband, and &quot;Somehow I Never Could Believe,&quot; a song from &quot;Street Scene,&quot; an obscure opera by Kurt Weill and Langston Hughes. She unfolded Weill's tune, over ten minutes, as the saga of an entire life: a child's promise of bright days ahead, a love that blossoms and fades, babies who wrap &quot;a ring around a rosy&quot; and then move away. When she sang, &quot;It looks like something awful happens / in the kitchens / where women wash their dishes,&quot; her plaintive phrasing transformed a description of domestic obligation into genuine tragedy. A hush washed over the room.</p>`]
+    },
+    CMS3: {
+      id: 6,
+      story_id: stories.Cecile.id,
+      title: `Influences`,
+      position: 2,
+      paragraphsHTML: [`<p>Wynton Marsalis, who has twice hired Salvant to tour with his Jazz at Lincoln Center Orchestra, told me,</p><blockquote>&quot;You get a singer like this once in a generation or two.&quot;</blockquote><p>Salvant might not have reached this peak just yet, he said. But, he added, &quot;could Michael Jordan do all he would do in his third year? No, but you could tell what he was going to do. Cécile's the same way.&quot;</p><p><br /></p><p>It was only because of a series of flukes that she became a jazz singer at all. Cécile Sophie McLorin Salvant was born in Miami on August 28, 1989. She began piano lessons at four and joined a local choir at eight, all the while taking in the music that her mother played on the stereo—classical, jazz, pop, folk, Latin, Senegalese. At ten, she saw Charlotte Church, a pop-culture phenomenon just a few years older, singing opera on a TV show. &quot;This girl was making people cry with her singing,&quot; Salvant recalled, sitting in her apartment, a walkup on a block of brownstones in Harlem. &quot;I was attracted by how she could tap into emotions like that. I said, ‘I want to do that, too.' &quot;</p>`]
+    },
+    CMS4: {
+      id: 7,
+      story_id: stories.Cecile.id,
+      title: `Musical Upbringing`,
+      position: 3,
+      paragraphsHTML: [`{"<p>She grew up in a French-speaking household: her father, a doctor, is Haitian, and her mother, who heads an elementary school, is French. At eighteen, Cécile decided that she wanted to live in France, so she enrolled at the <em>Darius Milhaud Conservatory</em>, in Aix-en-Provence, and at a nearby prep school that offered courses in political science and law. Her mother, who came along to help her get settled, saw a listing for a class in jazz singing and suggested that Cécile sign up.</p><p><br /></p><div><img src=\"http://www.aixenprovencetourism.com/img.ashx?u=http://server.cominsit.odt.local/OpenData/Medias/48730/PATIO-41f30be7-fb0d-4a0a-ab01-be55864d5856_636075763581171953.jpg&amp;w=470&amp;h=325&amp;r=crop\" /></div><p><br /></p><p>&quot;I said, ‘O.K., whatever,' &quot; Cécile told me. &quot;I was passive—super passive.&quot; At an audition for the class, she sang &quot;Misty,&quot; which she knew from a Sarah Vaughan album that her mother often played. After she finished, the teacher, who'd been accompanying on piano, asked her to improvise. She didn't know what that meant, nor did she care. &quot;I didn't want to get into his class anyway,&quot; she recalled. &quot;I had poli-sci, law, classical voice—I didn't have time.&quot;</p><p><br /></p><p>But the teacher, a jazz musician named Jean-François Bonnel, was astonished by her singing. &quot;Cécile was something else,&quot; he wrote to me in an e-mail. &quot;She already had everything—the right time, the sense of rhythm, the right intonation, an incredible Sarah Vaughan type of voice&quot;—a pure bel canto, with exceptional range and precision. Two days later, Bonnel ran into her on the street and told her that he'd come ring her doorbell until she signed up for his class. &quot;I always obeyed my parents and my teachers,&quot; Salvant recalled, with a laugh. She enrolled, and found that she liked it. &quot;There were all these cool people with dreads and cigarettes,&quot; she said. &quot;It was very different from the classical-music program, with these precious girls, or the poli-sci school, which was full of rich kids from Saint-Tropez, very arrogant, politically on the right. I had nothing to say to those people. So I figured the jazz department would be like a good hobby—a place to make friends, like going to a community-theatre class.&quot;</p>`]
     }
   })
 );
@@ -327,6 +343,90 @@ const actors = seed(Actor, {
     name: `Langston Hughes`,
     description: `James Mercer Langston Hughes (February 1, 1902 – May 22, 1967) was an American poet, social activist, novelist, playwright, and columnist from Joplin, Missouri. He was one of the earliest innovators of the then-new literary art form called jazz poetry.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/2/21/Langston_Hughes_by_Carl_Van_Vechten_1936.jpg`,
+  },
+  Wynton_Marsalis: {
+    id: 28,
+    name: `Wynton Marsalis`,
+    description: `Wynton Learson Marsalis (born October 18, 1961) is a trumpeter, composer, teacher, music educator, and artistic director of Jazz at Lincoln Center in New York City, United States.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/d/da/Wynton_Marsalis_2009_09_13.jpg`
+  },
+  JLCO: {
+    id: 29,
+    name: `Jazz at Lincoln Center Orchestra`,
+    description: `The Jazz at Lincoln Center Orchestra (JLCO) is an American professional big band that is produced by Jazz at Lincoln Center, a major performing arts institution structured as a non-profit organization that is housed in its own facility at the Time Warner Center in Manhattan, New York.`,
+    image: `https://www.allaboutjazz.com/media/medium/c/1/b/ac5e092ca4a66272dd3ea1f7ca454.jpg`
+  },
+  MJ: {
+    id: 30,
+    name: `Michael Jordan`,
+    description: `Michael Jeffrey Jordan (born February 17, 1963), also known by his initials, MJ, is an American retired professional basketball player, businessman, and principal owner and chairman of the Charlotte Hornets.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg`
+  },
+  Miami: {
+    id: 31,
+    name: `Miami`,
+    description: `Miami (/maɪˈæmi/; Spanish pronunciation: [miˈami]) is a seaport city at the southeastern corner of the U.S. state of Florida and its Atlantic coast. As the seat of Miami-Dade County, the municipality is the principal, central, and the most populous city of the Miami metropolitan area and part of the second-most populous metropolis in the southeastern United States.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Miami_collage_20110330.jpg/1024px-Miami_collage_20110330.jpg`
+  },
+  Senegalese: {
+    id: 32,
+    name: `Senegalese`,
+    description: `Senegal (Listeni/ˌsɛnᵻˈɡɔːl, -ˈɡɑːl/; French: Sénégal), officially the Republic of Senegal (French: République du Sénégal [ʁepyblik dy seneɡal]), is a country in West Africa. Senegal is bordered by Mauritania in the north, Mali to the east, Guinea to the southeast, and Guinea-Bissau to the southwest.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Flag_of_Senegal.svg/900px-Flag_of_Senegal.svg.png`
+  },
+  Charlotte_Church: {
+    id: 33,
+    name: `Charlotte Church`,
+    description: `Charlotte Maria Church (born 21 February 1986) is a Welsh singer-songwriter, actress and television presenter. She rose to fame in childhood as a classical singer before branching into pop music in 2005.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/b/b2/Charlotte_Church_Focus_Wales_2013.jpg`
+  },
+  Harlem: {
+    id: 34,
+    name: `Harlem`,
+    description: `Harlem is a large neighborhood in the northern section of the New York City borough of Manhattan. Since the 1920s, Harlem has been known as a major African-American residential, cultural and business center. Originally a Dutch village, formally organized in 1658.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/a/a6/Harlem_04.jpg`
+  },
+  Sarah_Vaughan: {
+    id: 35,
+    name: `Sarah Vaughan`,
+    description: `Sarah Lois Vaughan (March 27, 1924 – April 3, 1990) was an American jazz singer, described by music critic Scott Yanow as having "one of the most wondrous voices of the 20th century."`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Sarah_Vaughan_-_William_P._Gottlieb_-_No._1.jpg/1280px-Sarah_Vaughan_-_William_P._Gottlieb_-_No._1.jpg`
+  },
+  Haitian: {
+    id: 36,
+    name: 'Haitian',
+    description: `Haiti, officially the Republic of Haiti (French: République d'Haïti; Haitian Creole: Repiblik Ayiti) and formerly called Hayti, is a country located on the island of Hispaniola in the Greater Antilles archipelago of the Caribbean Sea.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Flag_of_Haiti.svg/500px-Flag_of_Haiti.svg.png`
+  },
+  France: {
+    id: 37,
+    name: `France`,
+    description: `France, officially the French Republic, is a country with territory in western Europe and several overseas regions and territories. The European, or metropolitan, area of France extends from the Mediterranean Sea to the English Channel and the North Sea, and from the Rhine to the Atlantic Ocean.`,
+    image: `https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/900px-Flag_of_France.svg.png`
+  },
+  DMC: {
+    id: 38,
+    name: `Darius Milhaud Conservatory`,
+    description: `Listed since 1884 in the category of National Schools of Music and Dance, the Conservatory was awarded the label of Conservatoire à rayonnement Départemental (C.R.D.) in 2007, and was named after the great Aix composer Darius Milhaud in 1972.`,
+    image: `http://images.adsttc.com/media/images/53b4/f334/c07a/8037/7200/00a6/large_jpg/RH2266-0046.jpg?1404367656`
+  },
+  AeP: {
+    id: 39,
+    name: `Aix-en-Provence`,
+    description: `a city-commune in the south of France, about 30 km (19 mi) north of Marseille. It is in the region of Provence-Alpes-Côte d'Azur, in the department of Bouches-du-Rhône, of which it is a subprefecture.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Aix-en-Provence_20110930_12.jpg/2560px-Aix-en-Provence_20110930_12.jpg`
+  },
+  JFB: {
+    id: 40,
+    name: `Jean-François Bonnel`,
+    description: `Musical instructor of Cécile McLorin Salvant.`,
+    image: `http://www.jazzenprovence.com/wp-content/uploads/2012/10/musicien_bonnel_jean_franco.jpg`
+  },
+  Saint_Tropez: {
+    id: 41,
+    name: `Saint-Tropez`,
+    description: `a town, 100 kilometres (62 miles) west of Nice, in the Var department of the Provence-Alpes-Côte d'Azur region of southeastern France. It is also the principal town in the canton of Saint-Tropez.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Saint_Tropez_Ville.jpg/1920px-Saint_Tropez_Ville.jpg`
   }
 })
 
@@ -410,6 +510,114 @@ const scenesActors = seed(ScenesActors,
     314: {
       scene_id: scenes.NK3.id,
       actor_id: actors.Reuters.id
+    },
+    415: {
+      scene_id: scenes.CMS1.id,
+      actor_id: actors.Seventh_Avenue.id
+    },
+    416: {
+      scene_id: scenes.CMS1.id,
+      actor_id: actors.Village_Vanguard.id
+    },
+    417: {
+      scene_id: scenes.CMS1.id,
+      actor_id: actors.Greenwich_Village.id
+    },
+    418: {
+      scene_id: scenes.CMS1.id,
+      actor_id: actors.CMS.id
+    },
+    419: {
+      scene_id: scenes.CMS1.id,
+      actor_id: actors.Grammy.id
+    },
+    520: {
+      scene_id: scenes.CMS2.id,
+      actor_id: actors.Issey_Miyake.id
+    },
+    521: {
+      scene_id: scenes.CMS2.id,
+      actor_id: actors.Sonny_Rollins.id
+    },
+    522: {
+      scene_id: scenes.CMS2.id,
+      actor_id: actors.Dexter_Gordon.id
+    },
+    523: {
+      scene_id: scenes.CMS2.id,
+      actor_id: actors.Charlie_Haden.id
+    },
+    524: {
+      scene_id: scenes.CMS2.id,
+      actor_id: actors.Irving_Berlin.id
+    },
+    525: {
+      scene_id: scenes.CMS2.id,
+      actor_id: actors.Bessie_Smith.id
+    },
+    526: {
+      scene_id: scenes.CMS2.id,
+      actor_id: actors.Kurt_Weill.id
+    },
+    527: {
+      scene_id: scenes.CMS2.id,
+      actor_id: actors.Langston_Hughes.id
+    },
+    628: {
+      scene_id: scenes.CMS3.id,
+      actor_id: actors.Wynton_Marsalis.id
+    },
+    629: {
+      scene_id: scenes.CMS3.id,
+      actor_id: actors.JLCO.id
+    },
+    630: {
+      scene_id: scenes.CMS3.id,
+      actor_id: actors.MJ.id
+    },
+    631: {
+      scene_id: scenes.CMS3.id,
+      actor_id: actors.Miami.id
+    },
+    632: {
+      scene_id: scenes.CMS3.id,
+      actor_id: actors.Senegalese.id
+    },
+    633: {
+      scene_id: scenes.CMS3.id,
+      actor_id: actors.Charlotte_Church.id
+    },
+    634: {
+      scene_id: scenes.CMS3.id,
+      actor_id: actors.Harlem.id
+    },
+    735: {
+      scene_id: scenes.CMS4.id,
+      actor_id: actors.Sarah_Vaughan.id
+    },
+    736: {
+      scene_id: scenes.CMS4.id,
+      actor_id: actors.Haitian.id
+    },
+    737: {
+      scene_id: scenes.CMS4.id,
+      actor_id: actors.France.id
+    },
+    738: {
+      scene_id: scenes.CMS4.id,
+      actor_id: actors.DMC.id
+    },
+    739: {
+      scene_id: scenes.CMS4.id,
+      actor_id: actors.AeP.id
+    },
+    740: {
+      scene_id: scenes.CMS4.id,
+      actor_id: actors.JFB.id
+    },
+    741: {
+      scene_id: scenes.CMS4.id,
+      actor_id: actors.Saint_Tropez.id
     }
   })
 )
@@ -432,6 +640,18 @@ const maps = seed(Map, {
     coords: `-74.00168649999999, 40.7360303`,
     zoom: 17,
     style: `outdoors`
+  },
+  JLC_map: {
+    id: 4,
+    coords: `-73.9828793, 40.7686999`,
+    zoom: 14,
+    style: `outdoors`
+  },
+  France_map: {
+    id: 5,
+    coords: `5.4394361, 43.5256738`,
+    zoom: 8,
+    style: `outdoors`
   }
 })
 
@@ -451,6 +671,14 @@ const scenesMaps = seed(ScenesMaps,
     43: {
       scene_id: scenes.CMS1.id,
       map_id: maps.Village_Vanguard_map.id
+    },
+    64: {
+      scene_id: scenes.CMS3.id,
+      map_id: maps.JLC_map.id
+    },
+    75: {
+      scene_id: scenes.CMS4.id,
+      map_id: maps.France_map.id
     }
   })
 )
