@@ -26,7 +26,7 @@ class Scene extends Component {
 
   componentWillReceiveProps(nextProps) {
     // to animate map, set initial zoom to something more zoomed out than the actual value
-    if (nextProps.maps.length) {
+    if (nextProps.maps && nextProps.maps.length) {
       if (!this.state.coords.length) {
         let zoom = nextProps.maps[0].zoom;
         if (zoom > 12) zoom -= 9;
