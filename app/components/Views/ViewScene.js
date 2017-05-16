@@ -52,7 +52,7 @@ class Scene extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
+      <div className="col m10">
 
         <div className="scene-hero">
 
@@ -85,7 +85,7 @@ class Scene extends Component {
 
         </div>
 
-        <div className="article-content col-md-4 col-md-offset-2">
+        <div className="article-content col m4">
 
           <div className="article-titles">
             <h3 className="view-story-heading title-font story">{this.props.storyTitle}</h3>
@@ -103,7 +103,7 @@ class Scene extends Component {
 
         {
           this.props.actors.length
-          ? (<div className="article-modules col-md-5 col-md-offset-1">
+          ? (<div className="article-modules col m5 offset-m4">
             <h4>IN THIS STORY</h4>
             <ViewActors />
           </div>)

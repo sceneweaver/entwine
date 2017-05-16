@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
+import $ from 'jquery';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -12,40 +13,67 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-default">
-        <div className="container">
-          <div className="navbar-header">
-            <button
-              type="button"
-              className="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target=".navbar-collapse">
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-            </button>
-            <Link className="navbar-brand" to="/"><img src="/images/logo.png" /></Link>
-          </div>
-          <div className="collapse navbar-collapse">
-            <ul className="nav navbar-nav">
-              <li>
-                {/*<Link to="/users" activeClassName="active">users</Link>*/}
-              </li>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/editor">Create Story</Link>
-              </li>
-              <li>
-                <Link to="/stories" activeClassName="active">All Stories</Link>
-              </li>
-              <li>
-                <Link to="/stories/featured">Featured Story</Link>
-              </li>
-            </ul>
-            { this.props.currentUser ? this.renderLogout() : this.renderLoginSignup() }
-          </div>
+      <nav>
+        <div className="nav-wrapper">
+
+          <Link to="/" className="brand-logo center">
+            <img src="/images/logo.png" style={{ height: '50px' }} />
+            &nbsp; entwine
+          </Link>
+
+          <ul className="left hide-on-med-and-down">
+            <li>
+              <Link to="/editor">Create Story</Link>
+            </li>
+            <li>
+              <Link to="/stories">All Stories</Link>
+            </li>
+            <li>
+              <Link to="/stories/featured">Featured Story</Link>
+            </li>
+          </ul>
+
+          {this.props.currentUser ? this.renderLogout() : this.renderLoginSignup()}
+
+          <a
+            href="#"
+            data-activates="mobile-nav"
+            className="button-collapse"
+          >
+            <span className="glyphicon glyphicon-menu-hamburger"></span>
+          </a>
+
+          <ul className="side-nav" id="mobile-nav">
+            <li>
+              <Link to="/editor">Create Story</Link>
+            </li>
+            <li>
+              <Link to="/stories">All Stories</Link>
+            </li>
+            <li>
+              <Link to="/stories/featured">Featured Story</Link>
+            </li>
+
+            {
+              this.props.currentUser ?
+                (<div>
+                  <li>
+                    <Link to="/signup" activeClassName="active">Sign Up</Link>
+                  </li>
+                  <li>
+                    <Link to="/login" activeClassName="active">Log In</Link>
+                  </li>
+                </div>)
+                : (<li>
+                  <button
+                    className="navbar-btn btn btn-default"
+                    onClick={this.props.logout}>
+                    Log Out {name}
+                  </button>
+                </li>)
+            }
+
+          </ul>
         </div>
       </nav>
     );
@@ -53,31 +81,33 @@ class Navbar extends Component {
 
   renderLoginSignup() {
     return (
-      <ul className="nav navbar-nav navbar-right">
+      <ul className="right hide-on-med-and-down">
         <li>
-         <Link to="/signup" activeClassName="active">Sign Up</Link>
+          <Link to="/signup" activeClassName="active">Sign Up</Link>
         </li>
         <li>
           <Link to="/login" activeClassName="active">Log In</Link>
         </li>
       </ul>
+
     );
   }
 
   renderLogout() {
     const name = this.props.currentUser.display_name || this.props.currentUser.username || 'OAuth User';
     return (
-      <ul className="nav navbar-nav navbar-right">
+      <ul className="right hide-on-med-and-down">
         <li>
-        <button
-          className="navbar-btn btn btn-default"
-          onClick={this.props.logout}>
-          Log Out {name}
-        </button>
+          <button
+            className="navbar-btn btn btn-default"
+            onClick={this.props.logout}>
+            Log Out {name}
+          </button>
         </li>
       </ul>
     );
   }
+
 }
 
 /* -----------------    CONTAINER     ------------------ */

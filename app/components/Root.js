@@ -7,7 +7,7 @@ const Root = ({ children }) => (
   <div id="main">
     <Navbar />
     <div id="root-children-wrapper">
-      { children }
+      {children}
     </div>
   </div>
 );

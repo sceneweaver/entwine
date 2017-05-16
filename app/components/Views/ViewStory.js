@@ -9,9 +9,9 @@ import ViewScene from './ViewScene.js';
 class Story extends Component {
   render() {
     return (
-      <div className="story-wrapper">
+      <div className="story-wrapper row">
 
-          <div className="col-md-2 scenes-nav">
+          <div className="col m2 scenes-nav">
 
             <ViewStoryStepper />
 
