@@ -18,90 +18,6 @@ function seedEverything() {
   return Promise.props(seeded)
 }
 
-const users = seed(User, {
-  omri: {
-    username: 'omri',
-    display_name: 'Omri B',
-    email: 'omri@omri.omri',
-    password: '123',
-  },
-  jacob: {
-    username: 'jake',
-    display_name: 'Jacob K',
-    email: 'jacob@omri.omri',
-    password: '123',
-  }
-})
-
-const stories = seed(Story,
-  // We're specifying a function here, rather than just a rows object.
-  // Using a function lets us receive the previously-seeded rows (the seed
-  // function does this wiring for us).
-  ({users}) => ({
-    story1: {
-      id: 1,
-      title: `James Comey's Conspicuous Independence`,
-      user_id: users.jacob.id
-    },
-  })
-)
-
-const actors = seed(Actor, {
-  story1scene1actor1: {
-    id: 1,
-    name: 'Donald Trump',
-    description: 'The 45th and current President of the United States. Before entering politics he was a businessman and television personality. Trump was born and raised in Queens, New York City, and earned an economics degree from the Wharton School.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/1024px-Donald_Trump_official_portrait.jpg'
-  },
-})
-
-const maps = seed(Map, {
-  map1: {
-    id: 1,
-    coords: '37, 55',
-    zoom: 3,
-    style: 'satellite'
-  },
-})
-
-const scenes = seed(Scene,
-  ({stories}) => ({
-     story1scene1: {
-      id: 1,
-      story_id: stories.story1.id,
-      title: 'Act I',
-      position: 0,
-      paragraphsHTML: [`<p>On Tuesday, when Donald Trump abruptly dismissed the F.B.I. director, <strong>James Comey</strong>, his Administration insisted that he was merely following the recommendation of his Attorney General and Deputy Attorney General, the two most senior officials in the Justice Department.<br /><br /><blockquote>In a three-page memorandum attached to Comey's termination letter, the Deputy Attorney General, <strong>Rod J. Rosenstein</strong>, cited concern for the F.B.I.'s &quot;reputation and credibility.&quot;</blockquote>He said that the director had defied Justice Department policies and traditions and overstepped his authority in the way he handled the Hillary Clinton e-mail investigation.<br /><br />This was a puzzling assertion from the Trump Administration, not least because Trump is widely acknowledged to have reaped the benefits of Comey's actions on Election Day. After the F.B.I. director sent his letter to Congress, on October 28th, about the discovery of new Clinton e-mails and the Bureau's plans to assess them, Trump praised Comey for his &quot;guts&quot; and called the news &quot;bigger than Watergate.&quot;<br /><br />In the aftermath of Comey's firing, Democrats and some Republicans in Congress have proposed a far more credible explanation for Trump's action, accusing the President of trying to halt the F.B.I.'s investigation into Russian interference in the election and possible collusion with his campaign. Some of those legislators, as well as many critics in the press, have said that Trump has ignited a constitutional crisis, and they called for the appointment of an independent prosecutor to carry out the Russia investigation.<br /><br /><blockquote>Comey's dismissal came just as his Russia probe appeared to be widening.</blockquote>Just last week, the F.B.I. director went to Rosenstein, who had been in his job only for a few days, to ask for significantly more resources in order to accelerate the investigation, according to the Times. Tensions between the Trump Administration and Comey had been escalating already, and Trump's fury over the F.B.I.'s Russia probe remained full-throated. On Monday, Trump tweeted that the inquiry was a &quot;taxpayer funded charade.&quot;</p><br /><br /><blockquote>It is now clear that the aim of Rosenstein's memo was simply to provide a pretext for Comey's firing.</blockquote><br /><br /><p>White House officials may have thought it would be a persuasive rationale because Comey has come in for criticism from leaders of both political parties. Trump had been harboring a long list of grievances against the F.B.I. director, including his continued pursuit of the Russia probe. On Thursday, Trump confirmed in an interview with NBC News's Lester Holt that, even before he received the Deputy Attorney General's memo, he had already made up his mind to dismiss Comey. In the end, Comey's conspicuous independence—for so long, his greatest asset—proved his undoing, making him too grave a threat to Trump but also giving the President a plausible excuse to fire him.</p><br /><br />`],
-    },
-  })
-)
-
-
-const scenesActors = seed(ScenesActors,
-  // We're specifying a function here, rather than just a rows object.
-  // Using a function lets us receive the previously-seeded rows (the seed
-  // function does this wiring for us).
-  ({scenes, actors}) => ({
-    scene1actor1: {
-      scene_id: scenes.story1scene1.id,
-      actor_id: actors.story1scene1actor1.id,
-    },
-  })
-)
-
-const scenesMaps = seed(ScenesMaps,
-  // We're specifying a function here, rather than just a rows object.
-  // Using a function lets us receive the previously-seeded rows (the seed
-  // function does this wiring for us).
-  ({scenes, maps}) => ({
-    scene1actor1: {
-      scene_id: scenes.story1scene1.id,
-      map_id: maps.map1.id,
-    },
-  })
-)
-
-
 if (module === require.main) {
   db.didSync
     .then(() => db.sync({force: true}))
@@ -169,5 +85,263 @@ function seed(Model, rows) {
       })
   }
 }
+
+const users = seed(User, {
+  Hannah_Beech: {
+    username: 'hbeech',
+    display_name: 'Hannah Beech, The New Yorker',
+    email: 'hb@newyorker.com',
+    password: '123',
+  },
+  jacob: {
+    username: 'jake',
+    display_name: 'Jacob K',
+    email: 'jacob@omri.omri',
+    password: '123',
+  }
+})
+
+const stories = seed(Story,
+  // We're specifying a function here, rather than just a rows object.
+  // Using a function lets us receive the previously-seeded rows (the seed
+  // function does this wiring for us).
+  ({users}) => ({
+    NorthKorea: {
+      id: 1,
+      title: `North Korea's Consistently Apocalyptic Propagandists`,
+      user_id: users.Hannah_Beech.id
+    },
+  })
+)
+
+const scenes = seed(Scene,
+  ({stories}) => ({
+    NK1: {
+      id: 1,
+      story_id: stories.NorthKorea.id,
+      title: 'May 2nd',
+      position: 0,
+      paragraphsHTML: [`<p>On May 2nd, as a U.S. carrier-strike group cruised the waters off the Korean peninsula, anticipating that North Korea might soon conduct a sixth nuclear test, Pyongyang's propagandists were ready with an apocalyptic prediction. &quot;Our preemptive nuclear attacks will bring the provocateurs nothing but tragic consequences,&quot; an English-language commentary in Rodong Sinmun, the official paper of the Central Committee of the Workers' Party of Korea, warned. </p><blockquote>&quot;South Korea will be submerged in a sea of fire, Japan will be reduced to ashes, and the U.S. will collapse.&quot;</blockquote>`],
+    },
+    NK2: {
+      id: 2,
+      story_id: stories.NorthKorea.id,
+      title: `May 14th`,
+      position: 1,
+      paragraphsHTML: [`<p>On <em>May 14th</em>, Pyongyang test-fired at high trajectory a missile that soared for half an hour before plunging into waters between North Korea and Japan. No sea of fire engulfed South Korea; Japan and the U.S. remained very much intact. Still, the fact that the missile test occurred just days after the South had inaugurated a new President, Moon Jae-in, who had pledged to engage with the North, confirmed Pyongyang's impulse for provocation. This test marked a step up in the North's threats, something usually effected with words alone. Last month, the official Korean Central News Agency, or KCNA, had responded to U.S.-South Korean Navy drills by railing against the</p><p><br /></p><div><img src=\"http://i.ndtvimg.com/i/2016-06/uss-john-c-stennis-reuters_650x400_51465963337.jpg\" /></div><p><br /></p><p>&quot;U.S. imperialist aggressor forces and warmongers of the south Korean military.&quot; On April 27th, a North Korean-run Web site featured a nearly two-and-a-half-minute video in which a military target was superimposed over the White House and a blaze of fire engulfed the U.S. Capitol.</p>`]
+    },
+    NK3: {
+      id: 3,
+      story_id: stories.NorthKorea.id,
+      title: `North Korean Rhetoric`,
+      postion: 2,
+      heroURL: `https://unsplash.com/search/government?photo=cI01VxNX8ok`,
+      paragraphsHTML: [`<p>By North Korean standards, this latest propaganda onslaught was neither remarkable nor particularly bellicose. In 2014, a KCNA article quoted a person, identified as a North Korean steelworker, who characterized Barack Obama as a &quot;wicked black monkey.&quot; Another story likened South Korea's recently ousted President Park Geun-hye, who had taken a hard line against the North, to a &quot;vile prostitute serving the U.S.&quot; Yet another conservative former South Korean President, Lee Myung-bak, was described with &quot;sweats, snivels and tears all over his face.&quot; (KCNA has not critiqued Moon Jae-in, the victor in the May 9th South Korean Presidential elections, perhaps because of his softer stance toward the North.) If nothing else, Pyongyang's propaganda czars know how to exploit the bounty of a thesaurus.</p><p><br /></p><p>North Korea's rhetoric has remained on a war footing for decades, a reminder that even though the South and North laid down their guns after a <strong>1953 armistice</strong>, no enduring peace treaty was ever reached. Donald Trump may have warned Reuters on April 27th of a potential &quot;major, major conflict with North Korea,&quot; but, from the point of view of the Democratic People's Republic of Korea, the war never stopped. In a May 8th salvo, a Rodong Sinmun commentary accused Trump and his &quot;henchmen&quot; of pursuing a &quot;hostile&quot; North Korea policy that reflected a &quot;dull-witted and wild character.&quot; With South Korea's new President Moon adopting a conciliatory tone in his May 10th inaugural address, even expressing a willingness to visit Pyongyang, Rodong Sinmun attempted to pick apart the U.S.-South Korean relationship. &quot;The U.S. is going to flee from south Korea after igniting a nuclear war on the Korean peninsula,&quot; predicted a May 11th English-language editorial. &quot;This is the sinister intention of the U.S. vociferating about ‘solid alliance' with south Korea.&quot;</p>`]
+    }
+  })
+);
+
+const actors = seed(Actor, {
+  North_Korea_Actor: {
+    id: 1,
+    name: 'North Korea',
+    description: `North Korea, officially the Democratic People's Republic of Korea (DPRK  listen), is a country in East Asia constituting the northern part of the Korean Peninsula. Pyongyang is the nation's capital and largest city.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Flag_of_North_Korea.svg/1600px-Flag_of_North_Korea.svg.png`
+  },
+  Pyongyang: {
+    id: 2,
+    name: `Pyongyang`,
+    description: `Pyongyang is located on the Taedong River about 109 kilometres (68 mi) upstream from its mouth on the West Korea Sea and, according to preliminary results from the 2008 population census, has a population of 3,255,388.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/b/b1/Pyongyang_montage.png`
+  },
+  Rodong_Sinmun: {
+    id: 3,
+    name: `Rodong Sinmun`,
+    description: `A North Korean newspaper that is the official newspaper of the Central Committee of the Workers' Party of Korea. It was first published on November 1, 1945, as Chǒngro`,
+    image: `https://upload.wikimedia.org/wikipedia/en/3/30/Rodong_sinmun_frontpage.jpg`
+  },
+  Central_Committee: {
+    id: 4,
+    name: `Central Committee of the Workers' Party of Korea`,
+    description: `the leadership body of the Workers' Party of Korea (WPK). According to Party rules, the Central Committee directs the Party work between the Party Congresses. It is elected by the Party Congress itself, although Party conferences can be called to perform this duty as well. The current Central Committee, the 6th, was elected by the 6th WPK Congress in 1980.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Emblem_of_North_Korea.svg/330px-Emblem_of_North_Korea.svg.png`
+  },
+  South_Korea: {
+    id: 5,
+    name: `South Korea`,
+    description: `A sovereign state in East Asia, constituting the southern part of the Korean Peninsula. Officially, its territory consists of the whole Korean Peninsula and its adjacent islands, which are largely mountainous.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/900px-Flag_of_South_Korea.svg.png`
+  },
+  Japan: {
+    id: 6,
+    name: `Japan`,
+    description: `Located in the Pacific Ocean, it lies off the eastern coast of the Asian mainland, and stretches from the Sea of Okhotsk in the north to the East China Sea and Taiwan in the southwest.`,
+    image: `https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/900px-Flag_of_Japan.svg.png`
+  },
+  Moon: {
+    id: 7,
+    name: `Moon Jae-In`,
+    description: `The 12th and current President of South Korea. Formally, he is also considered the 19th President of South Korea based on the number of presidential terms in the country's history.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/2/21/Moon_Jae-in_May_2017.jpg`
+  },
+  KCNA: {
+    id: 8,
+    name: `Korean Central News Agency`,
+    description: `The Korean Central News Agency (KCNA) is the state news agency of North Korea that was established on December 5, 1946. The agency portrays the views of the North Korean government for foreign consumption.`,
+    image: `https://upload.wikimedia.org/wikipedia/en/4/43/Korean_Central_News_Agency_logo.png`
+  },
+  White_House: {
+    id: 9,
+    name: `White House`,
+    description: `The White House is the official residence and workplace of the President of the United States, located at 1600 Pennsylvania Avenue NW in Washington, D.C. It has been the residence of every U.S. president since John Adams in 1800.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/White_House_north_and_south_sides.jpg/1280px-White_House_north_and_south_sides.jpg`
+  },
+  Donald_Trump: {
+    id: 10,
+    name: `Donald Trump`,
+    description: `Donald John Trump (born June 14, 1946) is the 45th and current President of the United States. Before entering politics he was a businessman and television personality.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/1280px-Donald_Trump_official_portrait.jpg`
+  },
+  Barack_Obama: {
+    id: 11,
+    name: `Barack_Obama`,
+    description: `an American politician who served as the 44th President of the United States from 2009 to 2017. He is the first African American to have served as president. He previously served in the U.S. Senate representing Illinois from 2005 to 2008, and in the Illinois State Senate from 1997 to 2004.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/1280px-President_Barack_Obama.jpg`
+  },
+  Park: {
+    id: 12,
+    name: `Park Geun_hye`,
+    description: `a South Korean former politician who served as the 11th President of South Korea from 2013 to 2017.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/4/40/Park_Geun-hye_%288724400493%29_%28cropped%29.jpg`
+  },
+  Lee: {
+    id: 13,
+    name: `Lee Myung-bak`,
+    description: `South Korean politician and businessman who served as the 10th President of South Korea from 25 February 2008 to 25 February 2013. Before his election as president, he was the CEO of Hyundai Engineering and Construction, as well as the mayor of Seoul from 1 July 2002, to 30 June 2006. `,
+    image: `https://upload.wikimedia.org/wikipedia/commons/7/72/Sebasti%C3%A1n_Pi%C3%B1era_-_Lee_Myung-bak_%28cropped%29.jpg`
+  },
+  Reuters: {
+    id: 14,
+    name: `Reuters`,
+    description: `Reuters /ˈrɔɪtərz/ is an international news agency headquartered in London, England. It is a division of Thomson Reuters.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Reuters-Building-30SC.JPG/1920px-Reuters-Building-30SC.JPG`
+  }
+})
+
+const scenesActors = seed(ScenesActors,
+  // We're specifying a function here, rather than just a rows object.
+  // Using a function lets us receive the previously-seeded rows (the seed
+  // function does this wiring for us).
+  ({scenes, actors}) => ({
+    11: {
+      scene_id: scenes.NK1.id,
+      actor_id: actors.North_Korea_Actor.id,
+    },
+    12: {
+      scene_id: scenes.NK1.id,
+      actor_id: actors.Pyongyang.id,
+    },
+    13: {
+      scene_id: scenes.NK1.id,
+      actor_id: actors.Rodong_Sinmun.id,
+    },
+    14: {
+      scene_id: scenes.NK1.id,
+      actor_id: actors.Central_Committee.id,
+    },
+    15: {
+      scene_id: scenes.NK1.id,
+      actor_id: actors.South_Korea.id,
+    },
+    16: {
+      scene_id: scenes.NK1.id,
+      actor_id: actors.Japan.id,
+    },
+    21: {
+      scene_id: scenes.NK2.id,
+      actor_id: actors.North_Korea_Actor.id
+    },
+    26: {
+      scene_id: scenes.NK2.id,
+      actor_id: actors.Japan.id,
+    },
+    27: {
+      scene_id: scenes.NK2.id,
+      actor_id: actors.Moon.id
+    },
+    22: {
+      scene_id: scenes.NK2.id,
+      actor_id: actors.Pyongyang.id
+    },
+    28: {
+      scene_id: scenes.NK2.id,
+      actor_id: actors.KCNA.id
+    },
+    29: {
+      scene_id: scenes.NK2.id,
+      actor_id: actors.White_House.id
+    },
+    33: {
+      scene_id: scenes.NK3.id,
+      actor_id: actors.Rodong_Sinmun.id
+    },
+    310: {
+      scene_id: scenes.NK3.id,
+      actor_id: actors.Donald_Trump.id
+    },
+    311: {
+      scene_id: scenes.NK3.id,
+      actor_id: actors.Barack_Obama.id
+    },
+    312: {
+      scene_id: scenes.NK3.id,
+      actor_id: actors.Park.id
+    },
+    313: {
+      scene_id: scenes.NK3.id,
+      actor_id: actors.Lee.id
+    },
+    37: {
+      scene_id: scenes.NK3.id,
+      actor_id: actors.Moon.id
+    },
+    314: {
+      scene_id: scenes.NK3.id,
+      actor_id: actors.Reuters.id
+    }
+  })
+)
+
+const maps = seed(Map, {
+  North_Korea_Map: {
+    id: 1,
+    coords: `127.510093, 40.339852`,
+    zoom: 3,
+    style: 'light'
+  },
+  Pyongyang_map: {
+    id: 2,
+    coords: `125.7625241, 39.0392193`,
+    zoom: 12,
+    style: `satellite`
+  }
+})
+
+const scenesMaps = seed(ScenesMaps,
+  // We're specifying a function here, rather than just a rows object.
+  // Using a function lets us receive the previously-seeded rows (the seed
+  // function does this wiring for us).
+  ({scenes, maps}) => ({
+    11: {
+      scene_id: scenes.NK1.id,
+      map_id: maps.North_Korea_Map.id,
+    },
+    22: {
+      scene_id: scenes.NK2.id,
+      map_id: maps.Pyongyang_map.id
+    }
+  })
+)
+
 
 module.exports = Object.assign(seed, {users, stories, actors, scenesActors, scenesMaps})
