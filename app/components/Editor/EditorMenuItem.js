@@ -31,8 +31,6 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onSwitchScene(event) {
     event.preventDefault();
-    $('.editor-scene-menu-item').removeClass('active');
-    $(`#editor-scene-menu-item-${ownProps.position}`).addClass('active');
     $('.editorscene-wrapper').removeClass('toggled');
     dispatch(deselectModule(ownProps.position));
     dispatch(setEditorScene(ownProps.position));
