@@ -22,9 +22,9 @@ class EditorHero extends Component {
         </div>
 
         <div className="hero-box">
-          <label>
+          <h5>
             Keyword: &nbsp;
-            </label>
+            </h5>
           <input
             type="text"
             onChange={this.props.onHeroQueryChange}

@@ -487,7 +487,6 @@ html, body, #main {
 
 .hero-module {
   background-color: #7CC6FE;
-  padding: 30px;
   width: 100%;
 }
 
@@ -498,9 +497,8 @@ html, body, #main {
 }
 
 .hero-box {
-  background-color: #D1EBFF;
   width: 100%;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -513,6 +511,10 @@ html, body, #main {
   background-color: transparent;
   margin: 0px 20px;
   font-size: 16px;
+}
+
+.hero-box > h5 {
+  margin: 0;
 }
 
 .hero-box > p {
