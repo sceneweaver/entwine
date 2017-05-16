@@ -169,24 +169,41 @@ class EditorScene extends Component {
 	}
 
 	recommendationString(recArr) {
-	let string = "We recommend using the ";
+	let string = "We noticed you have ";
 
 	recArr.forEach((rec, i) => {
-		if (rec === 'actors')
+		let detected = '';
+		if (rec === 'actors') detected = 'characters';
+		if (rec === 'maps') detected = 'locations';
+
+		if (i === recArr.length - 1 && recArr.length > 1) {
+			string += " and " + detected;
+		} else if (i === 0) {
+			string += detected;
+		} else {
+			string += ", " + detected;
+		}
+
+		string += " we recommend using the ";
+
 		if (i === recArr.length - 1 && recArr.length > 1) {
 			string += " and " + rec;
 		} else if (i === 0) {
-			string += " " + rec;
+			string += rec;
 		} else {
 			string += ", " + rec;
 		}
+
+		if (recArr.length > 1) {
+			string += "  modules!";
+		} else {
+			string += " module!"
+		}
+
+		return string;
 	})
 
-	if (recArr.length > 1) {
-		string += " modules.";
-	} else {
-		string += " module."
-	}
+
 
 	return (
 		<p className="rec-string">{string}</p>
