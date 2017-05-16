@@ -6,14 +6,14 @@ class EditorHero extends Component {
   render() {
     return (
       <div className="hero-module">
-        <div className="flexcontainer-module-header">
+        <div className="flexcontainer-module-header hero-module-header">
 
           <div className="module-collapse-btn">
             <button
               onClick={this.props.onHideHero}
               className="btn hero-module-btn"
             >
-              Collapse &nbsp; <span className="glyphicon glyphicon-menu-right"></span>
+              <i className="fa fa-minus" aria-hidden="true"></i>
             </button>
           </div>
 
@@ -22,9 +22,9 @@ class EditorHero extends Component {
         </div>
 
         <div className="hero-box">
-          <label>
+          <h5>
             Keyword: &nbsp;
-            </label>
+            </h5>
           <input
             type="text"
             onChange={this.props.onHeroQueryChange}

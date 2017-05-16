@@ -19,14 +19,14 @@ class EditorMaps extends Component {
   render() {
     return (
       <div className="maps-module">
-        <div className="flexcontainer-module-header">
+        <div className="flexcontainer-module-header maps-module-header">
 
           <div className="module-collapse-btn">
             <button
               onClick={this.props.onHideMaps}
               className="btn maps-module-btn"
             >
-              Collapse &nbsp; <span className="glyphicon glyphicon-menu-right"></span>
+              <i className="fa fa-minus" aria-hidden="true"></i>
             </button>
           </div>
 

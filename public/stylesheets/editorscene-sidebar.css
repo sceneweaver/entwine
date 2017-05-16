@@ -14,7 +14,7 @@
   background-color: #FDFFFC;
   padding-left: 0;
   padding-right: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -33,8 +33,8 @@
 .editorscene-sidebar-wrapper {
   z-index: 1000;
   position: fixed;
-  top: 0;
-  height: 100%;
+  top: 0; /* REMEMBER TO EDIT THIS IF THE NAVBAR CHANGES SIZE */
+  height: 100vh;
   right: 50%;
   width: 0;
   margin-right: -50%;

@@ -100,21 +100,23 @@ class EditorMapModule extends Component {
           locationFormatted: results.formatted_address,
           mapboxZoom: zoom
         });
-
-        this.props.setTimeout(() => {
-
-          this.props.setLocation(this.props.position, [{
-            name: this.state.location,
-            coords: [coords.lng, coords.lat],
-            style: this.state.mapboxStyle,
-            zoom: zoom,
-          }]);
-
-          console.log("saving map!")
-          this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
-        }, 7000);
       }
     });
+  }
+  // had this function in earlier. Need to determine if it is still needed...
+  zoomStartFn() {
+    this.props.setLocation(this.props.position, [{
+      name: this.state.location,
+      coords: [this.state.coords.lng, this.state.coords.lat],
+      style: this.state.mapboxStyle,
+      zoom: this.state.mapboxZoom,
+    }]);
+    console.log('LOCATION SET!');
+  }
+
+  zoomEndFn() {
+      this.props.onSaveMap.call(this, this.props.position,  this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
+      console.log('MAP SAVED!');
   }
 
   render() {
@@ -122,7 +124,7 @@ class EditorMapModule extends Component {
       <div className="editor-map">
   			<div className="map-editor-header">
 					<div className="map-style">
-						<label> Map Style: &nbsp; </label>
+						<h5> Map Style: &nbsp; </h5>
 						<select
 							value={this.state.mapboxStyle}
 							onChange={this.changeMapboxStyle.bind(this)}
@@ -136,7 +138,7 @@ class EditorMapModule extends Component {
 					</div>
 
           <div>
-						<label> Location: &nbsp; </label>
+						<h5> Location: &nbsp; </h5>
 						 <input
               type="text"
               className="location-name-field"
@@ -147,7 +149,7 @@ class EditorMapModule extends Component {
 					</div>
 
 					<div className="map-zoom">
-						<label> Map Zoom: &nbsp; </label>
+						<h5> Map Zoom: &nbsp; </h5>
 						<select
 							value={this.state.mapboxZoom}
 							onChange={this.changeMapboxZoom.bind(this)}
@@ -177,8 +179,9 @@ class EditorMapModule extends Component {
                 position: 'relative',
                 height: '50vh',
                 width: 'auto',
-                display: 'flex'
-              }}>
+                display: 'flex'}}
+                onZoomEnd={this.zoomEndFn.bind(this)}
+              >
                 <div>
                   {/* Need to set position of inner canvas to relative */}
                   <Layer

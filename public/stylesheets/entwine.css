@@ -275,12 +275,55 @@ html, body, #main {
   color: #ffc04c;
   font-size: 100%;
 }
+/* ----- Editor Modules Styling ----- */
+
+.flexcontainer-module-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 45px 30px 30px 30px;
+  color: white;
+}
+
+.module-header {
+  margin: 0 20px;
+}
+
+.flex-self-right {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.module-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.module-btns {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
 /* ----- EditorMaps Styling ----- */
 
 .maps-module {
   background-color: #58D88C;
-  padding: 30px;
   width: 100%;
+}
+
+.maps-module-header {
+  margin: 0 20px;
+  border-bottom: 0.5px solid #37A36B;
 }
 
 .maps-module-btn {
@@ -289,7 +332,6 @@ html, body, #main {
 }
 
 .locations-box {
-  background-color: #84F4A7;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -313,6 +355,10 @@ html, body, #main {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+.map-editor-header > * > select {
+  display: inline;
 }
 
 .generated-map {
@@ -360,43 +406,35 @@ html, body, #main {
   border-bottom: 0.5px solid;
 }
 
-
 /* ----- EditorActors Styling ----- */
 
 .actors-module {
-  background-color: #7CC6FE;
-  padding: 30px;
   width: 100%;
+  background-color: #7CC6FE;
+  color: white;
+}
+
+.actors-module-header {
+  margin: 0 20px;
+  border-bottom: 0.5px solid #0090FF;
 }
 
 .actors-module-btn {
   background-color: #0090FF;
-  margin: 10px;
 }
 
-.flexcontainer-module-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 15px;
-  margin-bottom: 15px;
-  color: white;
+.actors-gen-btn {
+  margin-right: 20px;
 }
 
-.module-header {
-  margin-top: 0;
-  margin-bottom: 0;
+.actors-add-btn {
+  margin: 0;
 }
 
-.flex-self-right {
-  align-self: flex-end;
-}
 
 .actors-box {
-  background-color: #D1EBFF;
   width: 100%;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -410,20 +448,13 @@ html, body, #main {
 
 /* ----- EditorActorItem Styling ----- */
 
-.module-item {
-  display: flex;
+.actor-module-item {
+  display: inline-flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding: 20px;
-}
-
-.module-btns {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+  padding: 0 30px 30px 30px;
 }
 
 .delete-actor-btn {
@@ -443,31 +474,50 @@ html, body, #main {
 }
 
 .actor-name-field-container {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
-.actor-name-field-container > label {
-  margin-bottom: 0;
+.actor-name-field-container > h5 {
+  margin: 0;
+  margin-right: 20px;
 }
 
 .actor-name-field {
   width: 100%;
-  border-bottom: 0.5px solid;
+  border-bottom: 0.5px solid white !important;
+  margin: 0;
+  margin-bottom: 0 !important;
+  font-size: 1.5rem !important;
 }
 
 .actor-desc-field-container {
-  display: flex;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  margin-top: 10px;
 }
 
 .actor-desc-field {
-  border: 0.5px solid;
-  resize: none;
+  border: 0.5px solid white;
+  margin-right: 0;
   width: 100%;
+}
+
+.actor-image-container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.actor-grab-image-btn {
+  margin-left: 10px;
 }
 
 .img-icon {
@@ -488,18 +538,17 @@ html, body, #main {
   color: white;
   text-align: center;
   font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-size: 1.7em;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ----- EditorHero Styling ----- */
 
 .hero-module {
   background-color: #7CC6FE;
-  padding: 30px;
   width: 100%;
 }
 
@@ -509,29 +558,14 @@ html, body, #main {
   color: white;
 }
 
-.flexcontainer-module-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 15px;
-  margin-bottom: 15px;
-  color: white;
-}
-
-.module-header {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.flex-self-right {
-  align-self: flex-end;
+.hero-module-header {
+  margin: 0 20px;
+  border-bottom: 0.5px solid #0090FF;
 }
 
 .hero-box {
-  background-color: #D1EBFF;
   width: 100%;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -544,6 +578,10 @@ html, body, #main {
   background-color: transparent;
   margin: 0px 20px;
   font-size: 16px;
+}
+
+.hero-box > h5 {
+  margin: 0;
 }
 
 .hero-box > p {

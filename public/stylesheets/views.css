@@ -23,11 +23,12 @@ nav ul a::active, a::hover {
   position: relative;
   z-index: 2;
   background-color: rgba(255,255,255,0.8);
-  padding: 40px;
 }
 
 .article-titles {
   margin-bottom: 40px;
+  padding: 30px;
+  padding-bottom: 0;
 }
 
 .article-titles > h1 {
@@ -43,6 +44,8 @@ nav ul a::active, a::hover {
   margin-top: 5px;
   line-height: 2.875rem;
   font-size: 18px;
+  padding: 30px;
+  padding-top: 0;
 }
 
 .article-text img {
