@@ -115,10 +115,10 @@ export const deleteActor = (position, actorIndex) => ({
   actorIndex
 });
 
-export const setLocation = (position, locationArr) => ({
+export const setLocation = (position, locationObj) => ({
   type: SET_LOCATION,
   position,
-  locationArr
+  locationObj
 });
 
 export const addLocation = position => ({
@@ -259,7 +259,7 @@ export default function reducer (state = {
       break;
 
     case SET_LOCATION:
-      newState.scenes[action.position].locations = action.locationArr;
+      newState.scenes[action.position].locations = newState.scenes[action.position].locations.concat(action.locationObj);
       break;
 
     case CHANGE_LOCATION:
@@ -355,14 +355,13 @@ export const generateMapLocations = position => (dispatch, getState) => {
     if (!actorsArray[0]) return findPlaces([{name: 'Fullstack Academy'}]);
     else return findPlaces(actorsArray);
   })
-  .then(placesArr => {
-    dispatch(setLocation(position, placesArr));
+  .then(placeObj => { //was placesArr
+    dispatch(setLocation(position, placeObj));
   });
 };
 
 export const generateRecommendations = position => (dispatch, getState) => {
-  if (getState().editor.scenes[position].recommendations)
-  dispatch(clearRecommendations(position));
+  if (getState().editor.scenes[position].recommendations) dispatch(clearRecommendations(position));
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
   .then(actorsArray => {
@@ -372,9 +371,9 @@ export const generateRecommendations = position => (dispatch, getState) => {
     }
     if (actorsArray[0]) return findPlaces(actorsArray);
   })
-  .then(placesArr => {
-    if (placesArr.length > 0) {
-      dispatch(setLocation(position, placesArr));
+  .then(placeObj => {
+    if (placeObj.length > 0) {
+      dispatch(setLocation(position, placeObj));
       dispatch(setRecommendations(position, 'maps'));
     }
   });
