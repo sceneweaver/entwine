@@ -71,6 +71,8 @@ class EditorScene extends Component {
 		this.onURLChange = this._onURLChange.bind(this);
 		this.onURLInputKeyDown = this._onURLInputKeyDown.bind(this);
 		this.confirmMedia = this._confirmMedia.bind(this);
+
+		this.recommendationString = this.recommendationString.bind(this);
 	}
 
 	onChange(editorState) {
@@ -166,6 +168,30 @@ class EditorScene extends Component {
 		});
 	}
 
+	recommendationString(recArr) {
+	let string = "We recommend using the ";
+
+	recArr.forEach((rec, i) => {
+		if (i === recArr.length - 1) {
+			string += " and " + rec;
+		} else if (i === 0) {
+			string += " " + rec;
+		} else {
+			string += ", " + rec;
+		}
+	})
+
+	if (recArr.length > 1) {
+		string += " modules.";
+	} else {
+		string += " module."
+	}
+
+	return (
+		<p>{string}</p>
+	);
+}
+
 	render() {
 		return (
 			<div className="editorscene-texteditor">
@@ -218,6 +244,10 @@ class EditorScene extends Component {
 						/>
 					</div> :
 					null}
+
+					{this.props.recommendations.length > 0 ?
+						this.recommendationString(this.props.recommendations)
+					: null}
 
 			</div>
 		);

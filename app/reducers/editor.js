@@ -356,6 +356,7 @@ export const generateMapLocations = position => (dispatch, getState) => {
     else return findPlaces(actorsArray);
   })
   .then(placeObj => { //was placesArr
+    console.log(placeObj)
     dispatch(setLocation(position, placeObj));
   });
 };
@@ -363,18 +364,18 @@ export const generateMapLocations = position => (dispatch, getState) => {
 export const generateRecommendations = position => (dispatch, getState) => {
   if (getState().editor.scenes[position].recommendations) dispatch(clearRecommendations(position));
   const textBody = getState().editor.scenes[position].paragraphs[0];
+
   findProperNouns(textBody)
   .then(actorsArray => {
     if (actorsArray.length > 0) {
       dispatch(setActors(position, actorsArray));
       dispatch(setRecommendations(position, 'actors'));
     }
-    if (actorsArray[0]) return findPlaces(actorsArray);
+    if (actorsArray[0]) {
+      return findPlaces(actorsArray);}
   })
   .then(placeObj => {
-    if (placeObj.length > 0) {
-      dispatch(setLocation(position, placeObj));
-      dispatch(setRecommendations(position, 'maps'));
-    }
+    dispatch(setLocation(position, placeObj));
+    dispatch(setRecommendations(position, 'maps'));
   });
 };
