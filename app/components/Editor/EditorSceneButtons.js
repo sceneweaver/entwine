@@ -98,9 +98,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		event.preventDefault();
 		if (ownProps.whichModule === module) {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).removeClass('toggled');
+      $('.editorscene-sidebar-bg').removeClass('toggled');
 			dispatch(deselectModule(ownProps.whichScene));
 		} else {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
+      $('.editorscene-sidebar-bg').addClass('toggled');
 			dispatch(showModule(module));
 		}
 	},

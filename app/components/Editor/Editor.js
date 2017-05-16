@@ -89,6 +89,8 @@ class Editor extends Component {
 
           </div>
 
+          <div className="editorscene-sidebar-bg" />
+
           <div className="editorscene-sidebar-wrapper">
             {
               this.props.whichModule === 'maps'
@@ -126,6 +128,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onAddScene(event) {
     event.preventDefault();
+    $('.editorscene-sidebar-bg').removeClass('toggled');
     $('.editorscene-wrapper').removeClass('toggled');
     dispatch(addScene());
   },
