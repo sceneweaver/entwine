@@ -4,6 +4,10 @@ html, body, #main {
   flex-direction: column;
 }
 
+#root-children-wrapper {
+  height: 100%;
+}
+
 .story-wrapper {
   width: 100%;
   height: 100%;
@@ -56,17 +60,19 @@ html, body, #main {
 /* ----- Editor Styling ----- */
 
 #story-editor {
-  margin: 0 20px;
+  margin: 0;
+  height: 100%;
 }
 
 #title-row {
-  margin: 40px 0 0 0;
-  padding-bottom: 20px;
+  margin: 0;
+  padding: 40px 0 20px 0;
   display: inline-flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  border-bottom: 1px solid darkgray;
+  background-color: #64B6AC;
+  border-bottom: 0.5px solid #70ADA6;
   color: white;
 }
 
@@ -83,16 +89,22 @@ html, body, #main {
   font-size: 30px;
   text-indent: 7px;
   border: none;
-  border-bottom: solid 1.5px #c9c9c9;
+  border-bottom: solid 1.5px white;
+  color: white;
   width: 95%;
-  background-color: transparent;
+  background-color: transparent
 }
 
-#editor-scenes-wrapper {
+#story-title-input::placeholder {
+  color: white;
+};
+
+.editorscene-wrapper {
   width: 100%;
+  padding: 0 20px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start
 }
 
