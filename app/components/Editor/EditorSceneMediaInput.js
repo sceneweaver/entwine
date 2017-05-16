@@ -18,9 +18,9 @@ class EditorSceneMediaInput extends Component {
         className="editorscene-mediaurl-input"
         style={styles.urlInputContainer}
       >
-        <label>
+        <h4>
           Media URL: &nbsp;
-					</label>
+					</h4>
         <input
           onChange={this.props.onURLChange}
           ref="url"
