@@ -226,6 +226,7 @@ class EditorScene extends Component {
 					onAddImage={this.onAddImage}
 					whichScene={this.props.whichScene}
 					whichModule={this.props.whichModule}
+					recommendations={this.props.recommendations}
 				/>
 
 				{this.state.showURLInput ?

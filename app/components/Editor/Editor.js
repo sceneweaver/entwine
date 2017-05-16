@@ -30,11 +30,11 @@ class Editor extends Component {
         <div id="title-row" className="row">
           <div className="col m1">
             <button
-              className="btn btn-success"
+              className="btn"
               id="publish-btn"
               onClick={this.props.onSubmitStory}
             >
-              Publish &nbsp; <span className="glyphicon glyphicon-share"></span>
+              Publish &nbsp; <span className="fa fa-share-square-o fa-lg" aria-hidden="true"></span>
             </button>
           </div>
           <div className="col m10">
@@ -72,10 +72,10 @@ class Editor extends Component {
 
               <div id="editor-scenes-menu-add">
                 <button
-                  className="btn btn-success titlerow-button"
+                  className="btn titlerow-button"
                   onClick={this.props.onAddScene}
                 >
-                  Add Scene <span className="glyphicon glyphicon-plus"></span>
+                  Add Scene <span className="fa fa-plus"></span>
                 </button>
               </div>
 

@@ -111,7 +111,13 @@ html, body, #main {
   margin: 0;
   margin-right: 20px;
   padding: 0 5px;
-  width: 100%
+  width: 100%;
+  border-radius: 4px;
+  background-color: #74bcae
+}
+
+#publish-btn:hover {
+  background-color: #639b90
 }
 
 #story-title-input {
@@ -241,6 +247,11 @@ html, body, #main {
 .module-btn {
   width: 100px;
   align-self: flex-end;
+  background-color: white
+}
+
+.module-btn:hover {
+  background-color: #a0b9bc
 }
 
 .editorscene-mediaurl-input > input {
@@ -249,6 +260,17 @@ html, body, #main {
   background: transparent;
 }
 
+.draft-btns {
+  background-color: white
+}
+
+.draft-btns:hover {
+  background-color: #e9eae8
+}
+
+.highlighted-rec {
+  background-color: #ff4444
+}
 
 /* ----- EditorMaps Styling ----- */
 
