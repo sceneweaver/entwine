@@ -113,7 +113,6 @@ html, body, #main {
   padding: 0 5px;
   width: 100%;
   border-radius: 4px;
-  background-color: #74bcae
 }
 
 #publish-btn:hover {
@@ -269,9 +268,13 @@ html, body, #main {
 }
 
 .highlighted-rec {
-  background-color: #ff4444
+  background-color: #ffc04c
 }
 
+.rec-string {
+  color: #ffc04c;
+  font-size: 100%;
+}
 /* ----- EditorMaps Styling ----- */
 
 .maps-module {
