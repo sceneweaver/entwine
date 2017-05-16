@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 import EditorScene from './EditorScene';
 import EditorMenuItem from './EditorMenuItem';
@@ -17,44 +18,46 @@ class Editor extends Component {
     this.props.changeStoryTitle('');
   }
 
+  componentDidUpdate() {
+    $('.editor-scene-menu-item').removeClass('active');
+    $(`#editor-scene-menu-item-${this.props.whichScene}`).addClass('active');
+  }
+
   render() {
     return (
-      <div id="storyEditor" className="container">
+      <div id="story-editor">
 
-        <div id="title-row">
-
-          <button
-            className="btn btn-success"
-            id="publish-btn"
-            onClick={this.props.onSubmitStory}
-          >
-            Publish Story  <span className="glyphicon glyphicon-share"></span>
-          </button>
-
-
-          <input
-            name="storyTitle"
-            id="story-title-input"
-            className="title-font"
-            type="text"
-            placeholder="Title your story"
-            onChange={this.props.onStoryTitleChange}
-            value={this.props.storyTitle}
-          />
-
+        <div id="title-row" className="row">
+          <div className="col m1">
+            <button
+              className="btn btn-success"
+              id="publish-btn"
+              onClick={this.props.onSubmitStory}
+            >
+              Publish &nbsp; <span className="glyphicon glyphicon-share"></span>
+            </button>
+          </div>
+          <div className="col m10">
+            <input
+              name="storyTitle"
+              id="story-title-input"
+              className="title-font"
+              type="text"
+              placeholder="Title your story"
+              onChange={this.props.onStoryTitleChange}
+              value={this.props.storyTitle}
+            />
+          </div>
         </div>
 
         <div id={`editorscene-wrapper-${this.props.whichScene}`} className="editorscene-wrapper">
 
           <div className="editorscene-content-wrapper">
 
-            <div id="editor-scenes-menu">
+            <div id="editor-scene-menu">
 
-              <div id="editor-scenes-menu-label">
-                <h4>Scenes</h4>
-              </div>
-
-              <div id="editor-scenes-menu-items-container">
+              <div
+                id="editor-scene-menu-items-container" className="collection">
                 {
                   this.props.scenes && this.props.scenes.map((scene, index) => (
                     <EditorMenuItem
@@ -110,7 +113,6 @@ class Editor extends Component {
 import { connect } from 'react-redux';
 import { addScene, changeStoryTitle, submitStory, deleteLocation} from '../../reducers/editor';
 import store from '../../store';
-import $ from 'jquery';
 
 const mapStateToProps = state => ({
   editorState: state.editor.scenes[state.editor.whichScene].editorState,

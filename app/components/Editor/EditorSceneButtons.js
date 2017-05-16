@@ -52,21 +52,24 @@ class EditorSceneButtons extends Component {
             className="btn btn-default module-btn"
             onClick={this.props.onToggleModule.bind(this, 'actors')}
           >
-            Actors &nbsp; <span className="glyphicon glyphicon-user"></span>
+            Actors &nbsp; <i className="fa fa-user-circle" aria-hidden="true"></i>
+
           </button>
 
           <button
             className="btn btn-default module-btn"
             onClick={this.props.onToggleModule.bind(this, 'maps')}
           >
-            Map &nbsp; <span className="glyphicon glyphicon-globe"></span>
+            Map &nbsp; <i className="fa fa-globe" aria-hidden="true"></i>
+
           </button>
 
           <button
             className="btn btn-default module-btn"
             onClick={this.props.onToggleModule.bind(this, 'hero')}
           >
-            Hero &nbsp; <span className="glyphicon glyphicon-picture"></span>
+            Hero &nbsp; <i className="fa fa-picture-o" aria-hidden="true"></i>
+
           </button>
 
           <button

@@ -194,17 +194,25 @@ class EditorScene extends Component {
 
 	render() {
 		return (
-			<div className="editorscene-texteditor">
+			<div className="editor-scene-editor">
 
 				<div className="editor-row">
 
 					<input
-						className="editor-scene-title title-font"
+						id="editor-scene-title"
+						className="title-font"
 						placeholder={`Title Scene ${this.props.whichScene + 1}`}
 						name={this.props.whichScene}
 						onChange={this.props.onSceneTitleChange}
 						value={this.props.title}
 					/>
+
+					<button
+						className="btn btn-default editorscene-delete-btn"
+						onClick={this.props.onDeleteScene}
+					>
+						<span className="glyphicon glyphicon-trash" ></span>
+					</button>
 
 				</div>
 
@@ -257,7 +265,7 @@ class EditorScene extends Component {
 /* ----- CONTAINER ----- */
 
 import { connect } from 'react-redux';
-import { setSceneText, setSceneHTML, setSceneTitle, setEditorState, generateRecommendations } from '../../reducers/editor';
+import { deleteScene, setSceneText, setSceneHTML, setSceneTitle, setEditorState, generateRecommendations } from '../../reducers/editor';
 
 const mapStateToProps = (state) => ({
 	editorState: state.editor.scenes[state.editor.whichScene].editorState,
@@ -268,7 +276,14 @@ const mapStateToProps = (state) => ({
 	recommendations: state.editor.scenes[state.editor.whichScene].recommendations
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	onDeleteScene(event) {
+		event.preventDefault();
+		let allowDelete = confirm(`Are you sure you want to delete scene ${+ownProps.whichScene + 1}?`);
+		if (allowDelete) {
+			dispatch(deleteScene(+ownProps.whichScene));
+		}
+	},
 	onSceneTitleChange(event) {
 		event.preventDefault();
 		dispatch(setSceneTitle(event.target.value));
@@ -281,7 +296,7 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	onEditorStateChange(editorState) {
 		dispatch(setEditorState(editorState));
-  },
+	},
 	onRecommendation(position, event) {
 		event.preventDefault();
 		dispatch(generateRecommendations(position));
