@@ -48,9 +48,9 @@ class Editor extends Component {
 
           <div className="editorscene-content-wrapper">
 
-            <div id="editor-scenes-menu">
+            <div id="editor-scene-menu">
 
-              <div id="editor-scenes-menu-items-container">
+              <div id="editor-scene-menu-items-container" className="collection">
                 {
                   this.props.scenes && this.props.scenes.map((scene, index) => (
                     <EditorMenuItem

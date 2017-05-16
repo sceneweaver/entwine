@@ -108,7 +108,7 @@ html, body, #main {
   align-items: flex-start
 }
 
-#editor-scenes-menu {
+#editor-scene-menu {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -116,11 +116,12 @@ html, body, #main {
   margin-right: 40px;
 }
 
-#editor-scenes-menu-items-container {
+#editor-scene-menu-items-container {
   display: inline-flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center
+  justify-content: stretch;
+  align-items: center;
+  width: 100%;
 }
 
 /* ----- EditorScenesMenuItem styling ----- */
@@ -130,6 +131,14 @@ html, body, #main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border: 0.5px solid #5D737E;
+  width: 100%;
+  background-color: #ddfff7;
+}
+
+.editor-scene-menu-item.active {
+  background-color: #64b6ac;
+  color: white;
 }
 
 /* ----- EditorScene Styling ----- */

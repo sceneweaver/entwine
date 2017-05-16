@@ -5,16 +5,14 @@ import React, { Component } from 'react';
 class EditorMenuItem extends Component {
   render() {
     return (
-      <div className="editor-scene-menu-item">
-        <button
-          className="btn btn-default"
-          onClick={this.props.onSwitchScene}
-        >
-          <h4>Scene {this.props.position + 1}</h4>
-        </button>
-
+      <div
+        className="editor-scene-menu-item"
+        id={`editor-scene-menu-item-${this.props.position}`}
+        onClick={this.props.onSwitchScene}
+      >
+        <h4>Scene {this.props.position + 1}</h4>
       </div>
-    )
+    );
   }
 }
 
@@ -25,7 +23,7 @@ import { connect } from 'react-redux';
 import { setEditorScene, deselectModule } from '../../reducers/editor';
 
 const mapStateToProps = (store, ownProps) => ({
-	position: ownProps.position,
+  position: ownProps.position,
   sceneTitle: ownProps.sceneTitle,
   whichModule: ownProps.whichModule
 });
@@ -33,6 +31,8 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onSwitchScene(event) {
     event.preventDefault();
+    $('.editor-scene-menu-item').removeClass('active');
+    $(`#editor-scene-menu-item-${ownProps.position}`).addClass('active');
     $('.editorscene-wrapper').removeClass('toggled');
     dispatch(deselectModule(ownProps.position));
     dispatch(setEditorScene(ownProps.position));
