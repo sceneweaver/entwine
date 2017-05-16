@@ -109,7 +109,6 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   getNewScene(value, event) {
-    console.log(value);
     event.preventDefault();
     dispatch(fetchScene(value));
   }

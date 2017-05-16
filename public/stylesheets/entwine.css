@@ -33,6 +33,24 @@ html, body, #main {
   font-size: 1.6em;
 }
 
+.home-margin {
+  margin: 15px 30px
+}
+
+.main-featured {
+  /*max-height: 300px;*/
+}
+
+/*.card {
+  height: auto;
+}
+.card .card-content {
+  height: auto;
+}
+.card .card-action {
+  position: relative;
+}*/
+
 .home-page-header {
   font-family: 'Nixie One', cursive;
   font-size: 1.5em;
@@ -43,8 +61,8 @@ html, body, #main {
   font-size: 1em;
 }
 
-.featured-card {
-  height: 400px;
+.about-card {
+  min-height: 100%;
 }
 
 .about {

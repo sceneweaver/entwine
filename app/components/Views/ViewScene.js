@@ -27,27 +27,47 @@ class Scene extends Component {
   componentWillReceiveProps(nextProps) {
     // to animate map, set initial zoom to something more zoomed out than the actual value
     if (nextProps.maps && nextProps.maps.length) {
-      let zoom = nextProps.maps[0].zoom;
-      if (zoom > 12) zoom -= 9;
-      else if (zoom > 6) zoom -= 3;
-      else if (zoom > 2) zoom -= 2;
+      if (!this.state.coords.length) {
+        console.log("got in here")
+        let zoom = nextProps.maps[0].zoom;
+        if (zoom > 12) zoom -= 9;
+        else if (zoom > 6) zoom -= 3;
+        else if (zoom > 2) zoom -= 2;
 
-      this.setState({
-        coords: nextProps.maps[0].coords.split(','),
-        style: nextProps.maps[0].style,
-        zoom: zoom
-      });
-    }
+        this.setState({
+          coords: nextProps.maps[0].coords.split(','),
+          style: nextProps.maps[0].style,
+          zoom: zoom
+        });
 
-    this.props.setTimeout(() => {
-      if (nextProps.maps && nextProps.maps.length) {
+        this.props.setTimeout(() => {
+          if (nextProps.maps && nextProps.maps.length) {
+            this.setState({
+              coords: nextProps.maps[0].coords.split(','),
+              style: nextProps.maps[0].style,
+              zoom: nextProps.maps[0].zoom
+            });
+          }
+        }, 2000);
+
+      } else {
         this.setState({
           coords: nextProps.maps[0].coords.split(','),
           style: nextProps.maps[0].style,
           zoom: nextProps.maps[0].zoom
-        })
+        });
       }
-    }, 2000)
+    }
+
+    if (!nextProps.maps.length) {
+      this.setState({
+         coords: [],
+         style: '',
+         zoom: 1,
+      });
+    }
+
+
   }
 
   render() {
