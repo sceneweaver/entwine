@@ -15,11 +15,12 @@ import findProperNouns from '/findProperNouns';
 
 export default function recommendations(text) {
   let rec = "Recommend "
-  if (findProperNouns(text).length > 0) {
+  const nounsArr = findProperNouns(text)
+  if (nounsArr.length > 0) {
     rec += " actors"
   }
 
-  if (Array.isArray(findPlaces(text))) {
+  if (Array.isArray(findPlaces(nounsArr).coords)) {
     rec += " maps";
   }
 
