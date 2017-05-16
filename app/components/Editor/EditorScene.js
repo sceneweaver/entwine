@@ -172,7 +172,7 @@ class EditorScene extends Component {
 	let string = "We recommend using the ";
 
 	recArr.forEach((rec, i) => {
-		if (i === recArr.length - 1) {
+		if (i === recArr.length - 1 && recArr.length > 1) {
 			string += " and " + rec;
 		} else if (i === 0) {
 			string += " " + rec;
