@@ -20,7 +20,7 @@ export default function recommendations(text) {
     rec += " actors"
   }
 
-  if (finPlaces(nounsArr)) {
+  if (Array.isArray(findPlaces(nounsArr).coords)) {
     rec += " maps";
   }
 
