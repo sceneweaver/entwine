@@ -14,10 +14,10 @@ const Home = () => (
           <div className="card-image">
             <Link to="stories/featured">
               <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+              <span id="featured-text" className="card-title white-text">Featured Story: James Comey's Conspicuous Independence</span>
             </Link>
           </div>
           <div className="card-content lime lighten-5">
-            <span className="card-title">Card Title</span>
             <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
           </div>
         </div>

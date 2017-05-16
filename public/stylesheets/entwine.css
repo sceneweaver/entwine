@@ -41,6 +41,10 @@ html, body, #main {
   /*max-height: 300px;*/
 }
 
+.nav-wrapper {
+  margin: 0px 10px
+}
+
 /*.card {
   height: auto;
 }
@@ -50,6 +54,10 @@ html, body, #main {
 .card .card-action {
   position: relative;
 }*/
+
+#featured-text {
+  font-size: 40px
+}
 
 .home-page-header {
   font-family: 'Nixie One', cursive;
