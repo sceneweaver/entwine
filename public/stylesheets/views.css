@@ -1,7 +1,11 @@
 /* ----- ViewScene Styling ----- */
 
 nav {
-  z-index: 400;
+  z-index: 400
+}
+
+nav ul a {
+  font-size: 1.5rem
 }
 
 /* ----- ViewStory / ViewScene Styling ----- */

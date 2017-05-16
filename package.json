@@ -67,6 +67,7 @@
     "lodash": "^4.17.4",
     "mapbox-gl": "^0.37.0",
     "material-ui": "^0.18.0",
+    "materialize-css": "^0.98.2",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-github2": "^0.1.10",
