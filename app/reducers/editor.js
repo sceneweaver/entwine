@@ -306,8 +306,9 @@ import { browserHistory } from 'react-router';
 import { create } from './stories';
 import findProperNouns from '../../server/utils/findProperNouns';
 import findPlaces from '../../server/utils/findPlaces';
-import findSinglePlace from '../../server/utils/findSinglePlace';
 import findHeroImage from '../../server/utils/findHeroImage';
+
+import { convertToRaw } from 'draft-js';
 
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
@@ -322,9 +323,13 @@ export const generateHero = position => (dispatch, getState) => {
 };
 
 export const submitStory = (user) => (dispatch, getState) => {
+  const scenes = getState().editor.scenes;
+  scenes.forEach(scene => {
+    scene.editorState = null;
+  });
   return axios.post('/api/stories', {
     title: getState().editor.title,
-    scenes: getState().editor.scenes,
+    scenes,
     userId: getState().auth.id
   })
   .then(newStory => {
