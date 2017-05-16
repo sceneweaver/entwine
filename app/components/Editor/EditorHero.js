@@ -13,7 +13,7 @@ class EditorHero extends Component {
               onClick={this.props.onHideHero}
               className="btn hero-module-btn"
             >
-              Collapse &nbsp; <span className="glyphicon glyphicon-menu-right"></span>
+              <i className="fa fa-minus" aria-hidden="true"></i>
             </button>
           </div>
 

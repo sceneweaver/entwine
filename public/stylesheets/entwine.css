@@ -265,7 +265,6 @@ html, body, #main {
 
 .maps-module {
   background-color: #58D88C;
-  padding: 30px;
   width: 100%;
 }
 
@@ -275,7 +274,6 @@ html, body, #main {
 }
 
 .locations-box {
-  background-color: #84F4A7;
   padding: 20px;
   display: flex;
   flex-direction: row;
