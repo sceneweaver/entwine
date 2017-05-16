@@ -3,7 +3,6 @@ import secrets from '../../secrets.json';
 let googleMapsClient = require('@google/maps').createClient({key: secrets.googlemaps});
 
 export default function findPlaces(nounsArr) {
-  console.log("start findPlaces")
   let promArr = [];
 
   for (var i = 0; i < nounsArr.length; i++) {
@@ -40,7 +39,6 @@ export default function findPlaces(nounsArr) {
             style: style,
             zoom: zoom,
           });
-          console.log("NUM, ", i, " ", nounsArr[i])
         }
       })
     }).catch(error => {
@@ -49,7 +47,6 @@ export default function findPlaces(nounsArr) {
 
     return currentProm
       .then(location => {
-        console.log(location);
         return location;
       })
       .catch(error => {
