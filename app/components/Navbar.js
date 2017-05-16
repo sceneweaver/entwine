@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
+import $ from 'jquery';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -16,7 +17,7 @@ class Navbar extends Component {
         <div className="nav-wrapper">
 
           <Link to="/" className="brand-logo center">
-            <img src="/images/logo.png" style={{height: '50px'}}/>
+            <img src="/images/logo.png" style={{ height: '50px' }} />
             &nbsp; entwine
           </Link>
 
@@ -34,6 +35,45 @@ class Navbar extends Component {
 
           {this.props.currentUser ? this.renderLogout() : this.renderLoginSignup()}
 
+          <a
+            href="#"
+            data-activates="mobile-nav"
+            className="button-collapse"
+          >
+            <span className="glyphicon glyphicon-menu-hamburger"></span>
+          </a>
+
+          <ul className="side-nav" id="mobile-nav">
+            <li>
+              <Link to="/editor">Create Story</Link>
+            </li>
+            <li>
+              <Link to="/stories">All Stories</Link>
+            </li>
+            <li>
+              <Link to="/stories/featured">Featured Story</Link>
+            </li>
+
+            {
+              this.props.currentUser ?
+                (<div>
+                  <li>
+                    <Link to="/signup" activeClassName="active">Sign Up</Link>
+                  </li>
+                  <li>
+                    <Link to="/login" activeClassName="active">Log In</Link>
+                  </li>
+                </div>)
+                : (<li>
+                  <button
+                    className="navbar-btn btn btn-default"
+                    onClick={this.props.logout}>
+                    Log Out {name}
+                  </button>
+                </li>)
+            }
+
+          </ul>
         </div>
       </nav>
     );
@@ -67,6 +107,7 @@ class Navbar extends Component {
       </ul>
     );
   }
+
 }
 
 /* -----------------    CONTAINER     ------------------ */

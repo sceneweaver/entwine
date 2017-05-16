@@ -1,3 +1,9 @@
+/* ----- ViewScene Styling ----- */
+
+nav {
+  z-index: 400;
+}
+
 /* ----- ViewStory / ViewScene Styling ----- */
 
 .view-story-heading {
