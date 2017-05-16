@@ -5,38 +5,30 @@ import React, { Component } from 'react';
 class EditorActorItem extends Component {
   render() {
     const actor = this.props.actor
-        , index = this.props.index;
-    return (<div className="module-item">
+      , index = this.props.index;
+    return (<div className="actor-module-item">
 
-      <div className="module-btns">
-        <button
-          className="btn btn-default delete-actor-btn"
-          onClick={this.props.onDeleteActor.bind(this, index)}
-        >
-          <span className="glyphicon glyphicon-trash" ></span>
-        </button>
-        <button
-          className="btn btn-default"
-          onClick={this.props.onGrabImage.bind(this, index)}
-        >
-          <span className="glyphicon glyphicon-camera"></span>
-        </button>
-      </div>
+      <button
+        className="btn btn-default delete-actor-btn"
+        onClick={this.props.onDeleteActor.bind(this, index)}
+      >
+        <span className="glyphicon glyphicon-trash" ></span>
+      </button>
 
       <div className="actor-info">
 
         <div className="actor-name-field-container">
-          <label>Name:</label>
+          <h5>Name:</h5>
           <input
             type="text"
             className="actor-form-field actor-name-field"
             value={actor.name}
             onChange={this.props.onActorsChange.bind(this, index, 'name')}
           />
-         </div>
+        </div>
         <br />
         <div className="actor-desc-field-container">
-          <label>Description:</label>
+          <h5>Description:</h5>
           <textarea
             type="text"
             className="actor-form-field actor-desc-field"
@@ -46,13 +38,24 @@ class EditorActorItem extends Component {
         </div>
       </div>
 
-      {actor.image ?
-        <div className="img-circle img-icon" style={{ backgroundImage: `url(${actor.image})` }} />
-        :
-        <div className="img-circle-letter img-icon" style={{ backgroundColor: '#0090FF' }} >
+      <div className="actor-image-container">
+
+        {actor.image ?
+          <div className="img-circle img-icon" style={{ backgroundImage: `url(${actor.image})` }} />
+          :
+          <div className="img-circle-letter img-icon" style={{ backgroundColor: '#0090FF' }} >
             {actor.name[0]}
-        </div>
-      }
+          </div>
+        }
+
+        <button
+          className="btn btn-default actor-grab-image-btn"
+          onClick={this.props.onGrabImage.bind(this, index)}
+        >
+          Grab Image &nbsp; <i className="fa fa-file-image-o" aria-hidden="true"></i>
+        </button>
+
+      </div>
 
     </div>);
   }

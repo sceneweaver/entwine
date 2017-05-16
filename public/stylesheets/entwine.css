@@ -365,6 +365,15 @@ html, body, #main {
   padding: 20px;
 }
 
+.actor-module-item {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+}
+
 .module-btns {
   display: inline-flex;
   flex-direction: column;
@@ -389,31 +398,50 @@ html, body, #main {
 }
 
 .actor-name-field-container {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
-.actor-name-field-container > label {
-  margin-bottom: 0;
+.actor-name-field-container > h5 {
+  margin: 0;
+  margin-right: 20px;
 }
 
 .actor-name-field {
   width: 100%;
   border-bottom: 0.5px solid;
+  margin: 0;
+  margin-bottom: 0 !important;
+  font-size: 1.5rem !important;
 }
 
 .actor-desc-field-container {
-  display: flex;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  margin-top: 20px;
 }
 
 .actor-desc-field {
   border: 0.5px solid;
-  resize: none;
+  margin-right: 0;
   width: 100%;
+}
+
+.actor-image-container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.actor-grab-image-btn {
+  margin-top: 10px;
 }
 
 .img-icon {
@@ -434,10 +462,6 @@ html, body, #main {
   color: white;
   text-align: center;
   font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-size: 1.7em;
 }
 
