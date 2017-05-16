@@ -6,7 +6,7 @@ class EditorHero extends Component {
   render() {
     return (
       <div className="hero-module">
-        <div className="flexcontainer-module-header">
+        <div className="flexcontainer-module-header hero-module-header">
 
           <div className="module-collapse-btn">
             <button

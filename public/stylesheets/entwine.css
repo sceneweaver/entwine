@@ -268,6 +268,11 @@ html, body, #main {
   width: 100%;
 }
 
+.maps-module-header {
+  margin: 0 20px;
+  border-bottom: 0.5px solid #37A36B;
+}
+
 .maps-module-btn {
   background-color: #37A36B;
   margin: 10px;
@@ -297,6 +302,10 @@ html, body, #main {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+.map-editor-header > * > select {
+  display: inline;
 }
 
 .generated-map {
@@ -347,10 +356,14 @@ html, body, #main {
 /* ----- EditorActors Styling ----- */
 
 .actors-module {
-  padding: 0;
   width: 100%;
   background-color: #7CC6FE;
   color: white;
+}
+
+.actors-module-header {
+  margin: 0 20px;
+  border-bottom: 0.5px solid #0090FF;
 }
 
 .actors-module-btn {
@@ -365,10 +378,6 @@ html, body, #main {
   margin: 0;
 }
 
-.actors-module-header {
-  margin: 0 20px;
-  border-bottom: 0.5px solid #0090FF;
-}
 
 .actors-box {
   width: 100%;
@@ -494,6 +503,11 @@ html, body, #main {
   background-color: #0090FF;
   margin: 10px;
   color: white;
+}
+
+.hero-module-header {
+  margin: 0 20px;
+  border-bottom: 0.5px solid #0090FF;
 }
 
 .hero-box {

@@ -19,7 +19,7 @@ class EditorMaps extends Component {
   render() {
     return (
       <div className="maps-module">
-        <div className="flexcontainer-module-header">
+        <div className="flexcontainer-module-header maps-module-header">
 
           <div className="module-collapse-btn">
             <button
