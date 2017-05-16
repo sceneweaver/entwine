@@ -51,7 +51,7 @@ class Editor extends Component {
             <div id="editor-scenes-menu">
 
               <div id="editor-scenes-menu-label">
-                <h4>Scenes</h4>
+                <h5>SCENES</h5>
               </div>
 
               <div id="editor-scenes-menu-items-container">

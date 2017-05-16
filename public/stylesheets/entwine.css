@@ -113,7 +113,7 @@ html, body, #main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 40px 0 0;
+  margin-right: 40px;
 }
 
 #editor-scenes-menu-items-container {
@@ -141,7 +141,7 @@ html, body, #main {
   align-items: center;
 }
 
-.editorscene-texteditor {
+.editor-scene-editor {
   width: 60%;
 }
 
@@ -155,7 +155,7 @@ html, body, #main {
   width: 100%;
 }
 
-.editor-scene-title {
+#editor-scene-title {
   border: 1px solid #ddd;
   height: 35px;
   text-indent: 14px;
@@ -164,8 +164,9 @@ html, body, #main {
   border-bottom: solid 1.5px #c9c9c9;
   background-color: transparent;
   font-size: 25px;
-  width: 100%;
+  width: 80%;
   margin-right: 20px;
+  margin-bottom: 0;
 }
 
 .editor-container {
@@ -180,7 +181,7 @@ html, body, #main {
 }
 
 .editorscene-delete-btn {
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .editor-btns-left-align {
