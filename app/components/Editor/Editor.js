@@ -50,10 +50,6 @@ class Editor extends Component {
 
             <div id="editor-scenes-menu">
 
-              <div id="editor-scenes-menu-label">
-                <h5>SCENES</h5>
-              </div>
-
               <div id="editor-scenes-menu-items-container">
                 {
                   this.props.scenes && this.props.scenes.map((scene, index) => (
