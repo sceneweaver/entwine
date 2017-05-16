@@ -48,7 +48,7 @@ router.post('/', (req, res, next) => {
           {model: Actor},
           {model: Map}
         ]
-      }]
+      }, {model: User}]
     })
     .then(story => {
       res.status(201).json(story);

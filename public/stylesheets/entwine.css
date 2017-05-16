@@ -43,12 +43,23 @@ html, body, #main {
   font-size: 1em;
 }
 
+.featured-card {
+  height: 400px;
+}
+
+.about {
+  height: 400px;
+  display: flex;
+}
+
 .feature-row {
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  height: 400px;
 }
 
 .create-story-button {
   width: 75%;
+  height: 100%;
   margin: 45px;
   margin-top: 12px;
   margin-bottom: 12px

@@ -9,18 +9,18 @@ const Home = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
     <div className="home main-featured container">
       <div className="row feature-row">
-        <div className="featured-card col-md-8">
+        <div className="featured-card col-sm-12 col-md-8">
           <RaisedButton containerElement={<Link to="stories/featured" />}>
             <Card >
               <CardMedia
-                overlay={<CardTitle title="Featured Story" subtitle="James Comey's Conspicuous Independence" style={{textAlign: 'left'}}/>}
+                overlay={<CardTitle title="Featured Story: James Comey's Conspicuous Independence" subtitle="by Peter Elkind" style={{textAlign: 'left'}}/>}
               >
                 <img height="400px" src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
               </CardMedia>
             </Card>
           </RaisedButton>
         </div>
-        <div className="col-md-4 about">
+        <div className="about col-sm-12 col-md-4">
           <Card>
             <CardMedia>
             </CardMedia>
@@ -33,42 +33,28 @@ const Home = () => (
       </div>
 
       <div className="row small-featured-stories feature-row">
-        <div className="col-md-3">
-          <Card>
-            <CardMedia
-              overlay={<CardTitle title="Featured Story" />}
-            >
-            <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
-            </CardMedia>
-          </Card>
+        <div className="col-sm-12 col-md-6">
+            <RaisedButton containerElement={<Link to="stories/1" />}>
+              <Card>
+                <CardMedia
+                  overlay={<CardTitle title="North Korea's Apocalyptic Propagandists" subtitle="by Hannah Beech" style={{textAlign: 'left'}}/>}
+                >
+                <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+                </CardMedia>
+              </Card>
+            </RaisedButton>
           </div>
-          <div className="col-md-3">
-          <Card>
-            <CardMedia
-              overlay={<CardTitle title="Featured Story" />}
-            >
-              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
-            </CardMedia>
-          </Card>
-        </div>
-        <div className="col-md-3">
-          <Card>
-            <CardMedia
-              overlay={<CardTitle title="Featured Story" />}
-            >
-              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
-            </CardMedia>
-          </Card>
-        </div>
-        <div className="col-md-3">
-          <Card>
-            <CardMedia
-              overlay={<CardTitle title="Featured Story" />}
-            >
-              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
-            </CardMedia>
-          </Card>
-        </div>
+          <div className="col-sm-12 col-md-6">
+             <RaisedButton containerElement={<Link to="stories/featured" />}>
+              <Card>
+                <CardMedia
+                  overlay={<CardTitle title="Ai Wei Wei's Life Story" subtitle="by Emily Tseng" style={{textAlign: 'left'}}/>}
+                >
+                  <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+                </CardMedia>
+              </Card>
+             </RaisedButton>
+          </div>
       </div>
     </div>
   </MuiThemeProvider>
