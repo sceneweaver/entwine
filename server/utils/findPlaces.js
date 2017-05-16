@@ -41,10 +41,7 @@ export default function findPlaces(nounsArr) {
           });
         }
       })
-    }).catch(error => {
-      throw error;
     })
-
     return currentProm
       .then(location => {
         return location;
@@ -52,15 +49,17 @@ export default function findPlaces(nounsArr) {
       .catch(error => {
         throw error;
       })
+    }
+
     // promArr.push(currentProm);
   }
 
-  return Promise
-    .all(promArr)
-    .then(locationArr => {
-      return locationArr;
-    })
-    .catch(error => {
-      throw error;
-    })
-}
+  // return Promise
+  //   .all(promArr)
+  //   .then(locationArr => {
+  //     return locationArr;
+  //   })
+  //   .catch(error => {
+  //     throw error;
+  //   })
+// }

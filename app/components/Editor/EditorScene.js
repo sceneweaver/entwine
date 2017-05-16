@@ -219,6 +219,10 @@ class EditorScene extends Component {
 					</div> :
 					null}
 
+					{this.props.recommendations.length > 0 ?
+						<p>We recommend trying out the</p>
+					: null}
+
 			</div>
 		);
 	}
