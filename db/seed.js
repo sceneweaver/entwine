@@ -189,7 +189,7 @@ const scenes = seed(Scene,
       story_id: stories.Apple.id,
       position: 1,
       title: `Apple Park`,
-      heroURL: `https://images.unsplash.com/photo-1490129042164-5d8e61c1ca6c?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=215b5e778647874e0c96715f93592ee6`,
+      heroURL: `https://images.unsplash.com/photo-1434494243370-596416019a0d?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=915043a427ccba0b16881c7acd7a9f14`,
       paragraphsHTML: [`<p>On a crisp and clear March day, more than five years after Jobs' death, I'm seated next to <strong>Jonathan Ive</strong> in the back of a Jeep Wrangler as we prepare to tour the nearly completed <strong>Apple Park</strong>, the name recently bestowed on the campus that Jobs pitched to the Cupertino City Council in 2011. At 50, Apple's design chieftain still looks like the rugby player he once was, and he remains, despite fame, fortune, and a knighthood, the same soft-spoken Brit I met almost 20 years ago. We are both wearing white hard hats with a silver Apple logo above the brim; Ive's is personalized with &quot;Jony&quot; underneath the iconic symbol. Dan Whisenhunt, the company's head of facilities and a de facto manager of the project, comes with us. He too has a personalized hat. It is an active construction site on a tight deadline—the first occupants are supposedly moving in within 30 days of my visit, with 500 new employees arriving every week thereafter—and I felt a bit like one of the passengers on the first ride into Jurassic Park.</p><p><br /></p><p>We drive up North Tantau Avenue, past the buildings that will house employees not fortunate enough to sit in the campus's main headquarters, as well as the half-finished visitor's center. Only a few years ago, most of the space was a flat parking lot, but today huge berms—artificial hills—hug the road, blocking views of busy Wolfe Road and Interstate 280 and forming a rolling landscape with hundreds of trees, their roots half-buried in wooden boxes, ready for planting. We drive around campus and turn into the entrance of a tunnel that will take us to the Ring.</p><p><br /></p><div><img src=\"https://cdn.macrumors.com/article-new/2017/05/apple-park-skyline.jpg\" /></div><p><br /></p><p>Of course I've seen images of it, architectural equivalents of movie trailers for a much-awaited blockbuster. From the day Jobs presented to the Cupertino City Council, digital renderings of the Ring, as Apple calls the main building, have circulated widely. As construction progressed, enterprising drone pilots began flying their aircraft overhead, capturing aerial views in slickly edited YouTube videos accompanied by New Agey soundtracks. Amid all the fanboy anticipation, though, Apple has also taken some knocks for the scale and scope of the thing. Investors urging Apple to kick back more of its bounty to shareholders have questioned whether the reported $5 billion in construction costs should have gone into their own pockets instead of a workplace striving for history. And the campus's opening comes at a point when, despite stellar earnings results, Apple has not launched a breakout product since Jobs' death. Apple executives want us to know how cool its new campus is—that's why they invited me. But this has also led some people to sniff that too much of its mojo has been devoted to giant glass panels, custom-built door handles, and a 100,000-square-foot fitness and wellness center complete with a two-story yoga room covered in stone, from just the right quarry in Kansas, that's been carefully distressed, like a pair of jeans, to make it look like the stone at Jobs' favorite hotel in Yosemite.</p><p><br /></p><p>Inside the 755-foot tunnel, the white tiles along the wall gleam like a recently installed high-end bathroom; it's what the Lincoln Tunnel must have looked like the day it opened, before the first smudge of soot sullied its walls. And as we emerge into the light, the Ring comes into view. As the Jeep orbits it, the sun glistens off the building's curved glass surface. The &quot;canopies&quot;—white fins that protrude from the glass at every floor—give it an exotic, retro-­future feel, evoking illustrations from science fiction pulp magazines of the 1950s. Along the inner border of the Ring, there is a walkway where one can stroll the three-quarter-mile perimeter of the building unimpeded. It's a statement of openness, of free movement, that one might not have associated with Apple. And that's part of the point.</p><p><br /></p><p>We drive through an entrance that takes us under the building and into the courtyard before driving back out again. Since it's a ring, of course, there is no main lobby but rather nine entrances. Ive opts to take me in through the café, a massive atrium-like space ascending the entire four stories of the building. Once it's complete, it will hold as many as 4,000 people at once, split between the vast ground floor and the balcony dining areas. Along its exterior wall, the café has two massive glass doors that can be opened when it's nice outside, allowing people to dine al fresco.</p>`]
     },
     A3: {
@@ -214,10 +214,10 @@ const scenes = seed(Scene,
     A6: {
       story_id: stories.Apple.id,
       position: 5,
-      title: ``,
-      paragraphsHTML: [``]
-    },
-
+      title: `The Plan`,
+      heroURL: `https://qzprod.files.wordpress.com/2017/02/apple-campus-2-iphone-design.jpg?quality=80&strip=all`,
+      paragraphsHTML: [`<p>According to Walter Isaacson's biography of Jobs, there was another factor. When Jobs showed a drawing of the clover leaf to his son, Reed, the teenager commented that from the air, the building would look like male genitalia. The next day Jobs repeated the observation to the architects, warning them that from that point on, &quot;you're never going to be able to erase that vision from your mind.&quot; (Foster and Behling say they have no recollection of this.)</p><p><br /></p><p>By June 2010 it was a circle. No one takes full credit for the shape; all seem to feel it was inevitable all along. &quot;Steve dug it right away,&quot; Foster says.</p><p><br /></p><p>By that fall Whisenhunt had heard that a former HP campus in Cupertino might be available. The 100-acre plot was just north of Apple's planned site. What's more, it had deep meaning for Jobs. As a young teen he had talked his way into a summer job at HP, just at the time when its founders—Jobs' heroes—were walking that site and envisioning an office park cluster for their computer systems division. Now HP was contracting and no longer needed the space. Whisenhunt worked a deal, and Apple's project suddenly grew to 175 acres.</p><p><br /></p><p>Jobs had always insisted that most of the site be covered with trees; he even took the step of finding the perfect tree expert to create his corporate Arden. He loved the foliage at the Dish and found one of the arborists responsible. David Muffly, a cheerful, bearded fellow with a Lebowski-ish demeanor, was in a client's backyard in Menlo Park when he got the call to come to Jobs' office to talk trees. He was massively impressed with the Apple CEO's taste and knowledge. &quot;He had a better sense than most arborists,&quot; Muffly says. &quot;He could tell visually which trees looked like they had good structure.&quot; Jobs was adamant that the new campus house indigenous flora, and in particular he wanted fruit trees from the orchards he remembered from growing up in Northern California.</p><p><br /></p><p>Apple will ultimately plant almost 9,000 trees. Muffly was told that the landscape should be futureproof and that he should choose drought-tolerant varieties so his mini forest and meadows could survive a climate crisis. (As part of its ecological efforts to prevent such a crisis, Apple claims, its buildings will run solely on sustainable energy, most of it from solar arrays on the roofs.) Jobs' aims were not just aesthetic. He did his best thinking during walks and was especially inspired by ambling in nature, so he envisioned how Apple workers would do that too. &quot;Can you imagine doing your work in a national park?&quot; says Tim Cook, who succeeded Jobs as CEO in 2011. &quot;When I really need to think about something I'm struggling with, I get out in nature. We can do that now! It won't feel like Silicon Valley at all.&quot;</p><p><br /></p><p>Cook recalls the last time he discussed the campus with his boss and friend in the fall of 2011. &quot;It was actually the last time I spoke to him, the Friday before he passed away,&quot; Cook says. &quot;We were watching a movie, Remember the Titans. I loved it, but I was so surprised he liked that movie. I remember talking to him about the site then. It was something that gave him energy. I was joking with him that we were all worried about some things being difficult, but we were missing the most important one, the biggest challenge of all.&quot;</p><p><br /></p><p>Which was?</p><p><br /></p><p>&quot;Deciding which employees are going to sit in the main building&quot; and which would have to work in the outer buildings. &quot;And he just got a big laugh out of it.&quot;</p><p><br /></p><blockquote>ALL THAT WAS left for Apple to do was build it.</blockquote>`]
+    }
   })
 );
 
@@ -575,6 +575,36 @@ const actors = seed(Actor, {
     description: `Moebius, Möbius or Mobius may refer to:`,
     image: ``
   },
+  HP: {
+    name: `HP`,
+    description: `HP may refer to: Hewlett-Packard, a former technology corporation that split into two separate companies in 2015: Hewlett Packard Enterprise, an enterprise-focused product and service organization HP Inc., Hewlett-Packard's computer and printer busin`,
+    image: ``
+  },
+  Walter_Isaacson: {
+    name: `Walter Isaacson`,
+    description: `Walter Isaacson (born May 20, 1952) is an American writer and journalist. He is the President and CEO of the Aspen Institute, a nonpartisan educational and policy studies organization based in Washington, D.C. He has been the chairman and CEO of Cabl`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/7/78/Walter_Isaacson_VF_2012_Shankbone_2.JPG`
+  },
+  Lebowski: {
+    name: `The Big Lebowski`,
+    description: ``,
+    image: ``
+  },
+  Menlo: {
+    name: `Menlo Park`,
+    description: `Menlo Park may refer to: Menlo Park, New Jersey, an unincorporated community in the United States Menlo Park, California, a city in the United States Menlo Park, Pretoria, a suburb in South Africa Menlo Park (band), an alternative-rock band Menlo Par`,
+    image: ``
+  },
+  Tim_Cook: {
+    name: `Tim Cook`,
+    description: `Timothy Donald "Tim" Cook (born November 1, 1960) is an American business executive, industrial engineer and developer. Cook is the Chief Executive Officer of Apple Inc., previously serving as the company's Chief Operating Officer, under its founder `,
+    image: ``
+  },
+  Remember: {
+    name: `Remember the Titans`,
+    description: ``,
+    image: `https://upload.wikimedia.org/wikipedia/en/d/d1/Remember_the_titansposter.jpg`
+  }
 })
 
 const scenesActors = seed(ScenesActors,
@@ -897,6 +927,38 @@ const scenesActors = seed(ScenesActors,
     123: {
       scene_id: scenes.A5.id,
       actor_id: actors.Möbius.id
+    },
+    131: {
+      scene_id: scenes.A6.id,
+      actor_id: actors.HP.id
+    },
+    132: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Walter_Isaacson.id
+      },
+    133: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Dan_Whisenhunt.id
+      },
+    134: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Cupertino.id
+      },
+    135: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Lebowski.id
+      },
+    136: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Menlo.id
+      },
+    137: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Tim_Cook.id
+      },
+    138: {
+      scene_id: scenes.A6.id,
+      actor_id: actors.Remember.id
     }
   })
 )
@@ -926,6 +988,21 @@ const maps = seed(Map, {
     coords: `5.4394361, 43.5256738`,
     zoom: 8,
     style: `outdoors`
+  },
+  Cupertino_map: {
+    coords: `-122.0321823, 37.3229978`,
+    zoom: 12,
+    style: `light`
+  },
+  SF_map: {
+    coords: `-122.4194155, 37.7749295`,
+    zoom: 7,
+    style: `satellite`
+  },
+  Apple_map: {
+    coords: `-122.010984, 37.33502`,
+    zoom: 17,
+    style: `satellite`
   }
 })
 
@@ -953,6 +1030,18 @@ const scenesMaps = seed(ScenesMaps,
     75: {
       scene_id: scenes.CMS4.id,
       map_id: maps.France_map.id
+    },
+    1111: {
+      scene_id: scenes.A1.id,
+      map_id: maps.Cupertino_map.id
+    },
+    4242: {
+      scene_id: scenes.A4.id,
+      map_id: maps.SF_map.id
+    },
+    5353: {
+      scene_id: scenes.A5.id,
+      map_id: maps.Apple_map.id
     }
   })
 )
