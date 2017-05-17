@@ -167,10 +167,10 @@ export const setHero = (position, imageObj, heroUnsplash) => ({
   heroUnsplash
 });
 
-export const setRecommendations = (position, recArr) => ({
+export const setRecommendations = (position, rec) => ({
   type: SET_RECOMMENDATIONS,
   position,
-  recArr
+  rec
 });
 
 export const clearRecommendations= (position) => ({
@@ -299,7 +299,7 @@ export default function reducer (state = {
       break;
 
     case SET_RECOMMENDATIONS:
-      newState.scenes[action.position].recommendations = action.recArr;
+      newState.scenes[action.position].recommendations = newState.scenes[action.position].recommendations.concat(action.rec);
       break;
 
     case CLEAR_RECOMMENDATIONS:
@@ -360,7 +360,6 @@ export const generateMapLocations = position => (dispatch, getState) => {
     else return findPlaces(actorsArray);
   })
   .then(placeObj => { //was placesArr
-    console.log(placeObj)
     dispatch(setLocation(position, placeObj));
   });
 };
@@ -374,16 +373,16 @@ export const generateRecommendations = position => (dispatch, getState) => {
   .then(actorsArray => {
     if (actorsArray.length > 0) {
       dispatch(setActors(position, actorsArray));
-      recArr.push('actors');
+      dispatch(setRecommendations(position, 'actors'));
     }
     if (actorsArray[0]) {
-      return findPlaces(actorsArray);}
+      return findPlaces(actorsArray);
+    }
   })
   .then(placeObj => {
-    dispatch(setLocation(position, placeObj));
-    recArr.push('maps');
-  })
-  .then(() => {
-    dispatch(setRecommendations(position, recArr));
+      dispatch(setLocation(position, placeObj));
+      dispatch(setRecommendations(position, 'maps'));
   });
 };
+
+
