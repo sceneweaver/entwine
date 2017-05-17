@@ -367,21 +367,23 @@ export const generateMapLocations = position => (dispatch, getState) => {
 export const generateRecommendations = position => (dispatch, getState) => {
   if (getState().editor.scenes[position].recommendations) dispatch(clearRecommendations(position));
   const textBody = getState().editor.scenes[position].paragraphs[0];
-  let recArr = [];
 
   findProperNouns(textBody)
   .then(actorsArray => {
     if (actorsArray.length > 0) {
       dispatch(setActors(position, actorsArray));
       dispatch(setRecommendations(position, 'actors'));
-    }
-    if (actorsArray[0]) {
       return findPlaces(actorsArray);
     }
+    // if (actorsArray[0]) {
+    //   return findPlaces(actorsArray);
+    // }
   })
   .then(placeObj => {
-      dispatch(setLocation(position, placeObj));
-      dispatch(setRecommendations(position, 'maps'));
+      if (placeObj) {
+        dispatch(setLocation(position, placeObj));
+        dispatch(setRecommendations(position, 'maps'));
+      }
   });
 };
 
