@@ -12,9 +12,9 @@ class EditorHeroAdder extends Component {
   constructor() {
     super();
     this.state = {
-      heroURL: 'Insert header image URL',
-      heroPhotog: 'Insert photog\'s name',
-      heroPhotogURL: 'Insert her portfolio URL'
+      heroURL: '',
+      heroPhotog: '',
+      heroPhotogURL: ''
     };
     this.onUserHeroChange = this.onUserHeroChange.bind(this);
   }
@@ -36,6 +36,7 @@ class EditorHeroAdder extends Component {
             style={style.heroAdderInput}
             type="text"
             name="heroURL"
+            placeholder="Insert header image URL"
             value={this.state.heroURL}
             onChange={this.onUserHeroChange}
           />
@@ -47,6 +48,7 @@ class EditorHeroAdder extends Component {
             style={style.heroAdderInput}
             type="text"
             name="heroPhotog"
+            placeholder="Insert photographer's name"
             value={this.state.heroPhotog}
             onChange={this.onUserHeroChange}
           />
@@ -58,6 +60,7 @@ class EditorHeroAdder extends Component {
             style={style.heroAdderInput}
             type="text"
             name="heroPhotogURL"
+            placeholder="Insert photographer portfolio URL"
             value={this.state.heroPhotogURL}
             onChange={this.onUserHeroChange}
           />
