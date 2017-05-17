@@ -48,16 +48,6 @@ html, body, #main {
   color: white;
 }
 
-#publish-btn {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0;
-  margin-right: 20px;
-  padding: 0 5px;
-  width: 100%;
-  border-radius: 4px;
-}
-
 #publish-btn:hover {
   background-color: #639b90
 }
@@ -186,6 +176,10 @@ html, body, #main {
   margin-top: 10px;
 }
 
+#recommend-btn {
+  width: 150px;
+}
+
 .module-btn {
   width: 100px;
   align-self: flex-end;
@@ -215,7 +209,7 @@ html, body, #main {
 }
 
 .rec-string {
-  color: #ffc04c;
+  color: #dd9f2c;
   font-size: 100%;
 }
 /* ----- Editor Modules Styling ----- */
@@ -262,6 +256,7 @@ html, body, #main {
 .maps-module {
   background-color: #58D88C;
   width: 100%;
+  height: 100vh;
 }
 
 .maps-module-header {
@@ -302,6 +297,11 @@ html, body, #main {
 
 .map-editor-header > * > select {
   display: inline;
+}
+
+.map-editor-header .location-name-field {
+  margin: 0;
+  font-size: 16px;
 }
 
 .generated-map {
@@ -353,6 +353,7 @@ html, body, #main {
 
 .actors-module {
   width: 100%;
+  height: 100vh;
   background-color: #7CC6FE;
   color: white;
 }
@@ -436,6 +437,29 @@ html, body, #main {
   font-size: 1.5rem !important;
 }
 
+.actor-image-field-container {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.actor-image-field-container > h5 {
+  margin: 0;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+.actor-image-field {
+  width: 100%;
+  border-bottom: 0.5px solid white !important;
+  margin: 0;
+  margin-bottom: 0 !important;
+  font-size: 1.5rem !important;
+}
+
 .actor-desc-field-container {
   display: inline-flex;
   flex-direction: row;
@@ -492,6 +516,7 @@ html, body, #main {
 .hero-module {
   background-color: #ffc299;
   width: 100%;
+  height: 100vh;
   color: white;
 }
 
@@ -508,14 +533,58 @@ html, body, #main {
 
 .hero-box {
   width: 100%;
-  padding: 30px 45px;
+  padding: 15px 45px;
   display: inline-flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  align-content: center;
-  text-align: center;
 }
+
+.hero-generator {
+  display: inline-flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 30px;
+}
+
+.hero-generator-input {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.hero-generator-input > h4 {
+  margin-right: 10px;
+}
+
+.hero-generator-input > input {
+  color: white;
+  font-size: 1.5rem;
+  border-bottom: 0.5px solid white;
+}
+
+.hero-generator-input > input::-webkit-input-placeholder {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.hero-adder {
+  display: inline-flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 30px 20px 30px 40px;
+  border-left: 0.5px solid #ff6600;
+}
+
+.hero-adder-row {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.hero-adder-row > h4 {
+  margin-right: 10px;
+};
 
 .hero-box > input {
   border: 0.5px solid #c9c9c9;
@@ -533,8 +602,9 @@ html, body, #main {
 }
 
 .hero-viewer {
-  width: 100%;
-  padding: 30px;
+  margin: 0 20px;
+  border-top: 0.5px solid #ff6600;
+  padding: 30px 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

@@ -48,9 +48,9 @@ class Scene extends Component {
       }
     } else {
       this.setState({
-         coords: [],
-         style: '',
-         zoom: 1,
+        coords: [],
+        style: '',
+        zoom: 1,
       });
     }
   }
@@ -83,21 +83,27 @@ class Scene extends Component {
                 }}
                 onStyleLoad={this.moveOnUp.bind(this)}
               />
-            ) : (
-              this.props.heroURL ? (
-                <div className="scene-hero-img">
-                  <div
-                    className="scene-hero-img-container"
-                    style={{ backgroundImage: `url(${this.props.heroURL})` }}
-                  />
-                  <div className="unsplash">
-                    <h4><span>Photo by</span> <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+            ) : this.props.heroUnsplash ? (
+                  <div className="scene-hero-img">
+                    <div
+                      className="scene-hero-img-container"
+                      style={{ backgroundImage: `url(${this.props.heroURL})` }}
+                    />
+                    <div className="unsplash">
+                      <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                null
-              )
-            )
+                ) : this.props.heroURL ? (
+                      <div className="scene-hero-img">
+                        <div
+                          className="scene-hero-img-container"
+                          style={{ backgroundImage: `url(${this.props.heroURL})` }}
+                        />
+                        <div className="scene-hero-img-credit">
+                          <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a></h4>
+                        </div>
+                      </div>
+                    ) : null
           }
         </div>
 
@@ -123,8 +129,8 @@ class Scene extends Component {
               <ViewActors />
             </div>
           ) : (
-            null
-          )
+              null
+            )
         }
       </div>
     );

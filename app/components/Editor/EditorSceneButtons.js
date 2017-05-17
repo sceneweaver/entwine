@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 
 class EditorSceneButtons extends Component {
-  componentWillReceiveProps(nextProps) {
-    // if there are no locations, let the user add map
-    if (nextProps.recommendations) {
-      nextProps.recommendations.forEach(rec => {
-        $(`#${rec}.module-btn`).addClass('highlighted-rec')
-      })
-    }
-  }
-
   render() {
     return (
       <div className="editor-row">
@@ -85,10 +76,11 @@ class EditorSceneButtons extends Component {
           </button>
 
           <button
+            id="recommend-btn"
             className="btn module-btn grey-text text-darken-3"
             onClick={this.props.onRecommendation.bind(this, this.props.whichScene)}
           >
-            Recommend
+            Recommend &nbsp; <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
           </button>
 
 

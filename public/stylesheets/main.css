@@ -14,11 +14,7 @@ input, .article-text, .article-text *, .view-actors-desc, .editor-container * {
   font-family: 'Sorts Mill Goudy', serif;
 }
 
-.location-name-field {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-.title-font, .form-like {
+.title-font, .form-like, input.location-name-field, .hero-adder-row *, .hero-generator-input * {
   font-family: 'Source Sans Pro', sans-serif;
 }
 

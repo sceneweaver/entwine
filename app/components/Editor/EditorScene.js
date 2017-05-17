@@ -169,46 +169,54 @@ class EditorScene extends Component {
 	}
 
 	recommendationString(recArr) {
-	let string = "We noticed you have ";
+		let string = "We noticed you have ";
+		let secondHalf = ' We recommend using the ';
 
-	recArr.forEach((rec, i) => {
-		let detected = '';
-		if (rec === 'actors') detected = 'characters';
-		if (rec === 'maps') detected = 'locations';
+		recArr.forEach((rec, i) => {
+			let detected = '';
+			if (rec === 'actors') detected = 'characters';
+			if (rec === 'maps') detected = 'locations';
 
-		if (i === recArr.length - 1 && recArr.length > 1) {
-			string += " and " + detected;
-		} else if (i === 0) {
-			string += detected;
-		} else {
-			string += ", " + detected;
-		}
+			if (i === recArr.length - 1 && recArr.length > 1) {
+				string += " and " + detected;
+			} else if (i === 0) {
+				string += detected;
+			} else {
+				string += ", " + detected;
+			}
 
-		string += " we recommend using the ";
-
-		if (i === recArr.length - 1 && recArr.length > 1) {
-			string += " and " + rec;
-		} else if (i === 0) {
-			string += rec;
-		} else {
-			string += ", " + rec;
-		}
-
-		if (recArr.length > 1) {
-			string += "  modules!";
-		} else {
-			string += " module!"
-		}
+			if (i === recArr.length - 1 && recArr.length > 1) {
+				secondHalf += " and " + rec;
+			} else if (i === 0) {
+				secondHalf += rec;
+			} else {
+				secondHalf += ", " + rec;
+			}
 
 		return string;
 	})
 
-
+	string += "!" + secondHalf;
+	if (recArr.length > 1) {
+		string += "  modules!";
+	} else {
+		string += " module!"
+	}
 
 	return (
 		<p className="rec-string">{string}</p>
 	);
 }
+
+componentWillReceiveProps(nextProps) {
+		$(`.module-btn`).removeClass('highlighted-rec');
+
+    if (nextProps.recommendations.length > 0) {
+      nextProps.recommendations.forEach(rec => {
+        $(`#${rec}.module-btn`).addClass('highlighted-rec');
+      });
+    }
+  }
 
 	render() {
 		return (
@@ -256,6 +264,10 @@ class EditorScene extends Component {
 					/> :
 					null}
 
+				{this.props.recommendations.length > 0 ?
+					this.recommendationString(this.props.recommendations)
+				: null}
+
 				{this.props.editorState ?
 					<div
 						className="editor-container"
@@ -271,11 +283,6 @@ class EditorScene extends Component {
 						/>
 					</div> :
 					null}
-
-					{this.props.recommendations.length > 0 ?
-						this.recommendationString(this.props.recommendations)
-					: null}
-
 			</div>
 		);
 	}
