@@ -397,6 +397,7 @@ html, body, #main {
 .maps-module {
   background-color: #58D88C;
   width: 100%;
+  height: 100vh;
 }
 
 .maps-module-header {
@@ -493,6 +494,7 @@ html, body, #main {
 
 .actors-module {
   width: 100%;
+  height: 100vh;
   background-color: #7CC6FE;
   color: white;
 }
@@ -633,6 +635,7 @@ html, body, #main {
 .hero-module {
   background-color: #ffc299;
   width: 100%;
+  height: 100vh;
   color: white;
 }
 
@@ -652,11 +655,51 @@ html, body, #main {
   padding: 30px 45px;
   display: inline-flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  align-content: center;
-  text-align: center;
 }
+
+.hero-generator {
+  display: inline-flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.hero-generator-input {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.hero-generator-input > h4 {
+  margin-right: 10px;
+}
+
+.hero-generator-input > input {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.hero-generator-input > input::-webkit-input-placeholder {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.hero-adder {
+  display: inline-flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.hero-adder-row {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.hero-adder-row > h4 {
+  margin-right: 10px;
+};
 
 .hero-box > input {
   border: 0.5px solid #c9c9c9;

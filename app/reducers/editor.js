@@ -158,12 +158,13 @@ export const setHeroQuery = (position, heroQuery) => ({
   heroQuery
 });
 
-export const setHero = (position, imageObj) => ({
+export const setHero = (position, imageObj, heroUnsplash) => ({
   type: SET_HERO,
   position,
   heroURL: imageObj.heroURL,
   heroPhotog: imageObj.heroPhotog,
-  heroPhotogURL: imageObj.heroPhotogURL
+  heroPhotogURL: imageObj.heroPhotogURL,
+  heroUnsplash
 });
 
 export const setRecommendations = (position, recArr) => ({
@@ -292,7 +293,9 @@ export default function reducer (state = {
 
     case SET_HERO:
       newState.scenes[action.position].heroURL = action.heroURL;
-      newState.scenes[action.position].heroCredit = action.heroCredit;
+      newState.scenes[action.position].heroPhotog = action.heroPhotog;
+      newState.scenes[action.position].heroPhotogURL = action.heroPhotogURL;
+      newState.scenes[action.position].heroUnsplash = action.heroUnsplash;
       break;
 
     case SET_RECOMMENDATIONS:
@@ -327,9 +330,10 @@ export const generateActors = position => (dispatch, getState) => {
 };
 
 export const generateHero = position => (dispatch, getState) => {
-  const heroQuery = getState().editor.scenes[position].heroQuery;
+  const heroQuery = getState().editor.scenes[position].heroQuery
+      , heroUnsplash = true;
   findHeroImage(heroQuery)
-  .then(imageData => dispatch(setHero(position, imageData)));
+  .then(imageData => dispatch(setHero(position, imageData, heroUnsplash)));
 };
 
 export const submitStory = (user) => (dispatch, getState) => {
