@@ -23,6 +23,9 @@ class Navbar extends Component {
 
           <ul className="left hide-on-med-and-down">
             <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
               <Link to="/editor">Create Story</Link>
             </li>
             <li>

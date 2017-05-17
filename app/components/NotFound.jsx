@@ -6,13 +6,13 @@ const NotFound = props => {
   console.error('NotFound: %s not found (%o)', pathname, props)
   return (
     <div>
-      <h1>Sorry, I couldn't find <pre>{pathname}</pre></h1>
-      <p>The router gave me these props:</p>
+      <h1>Sorry, I couldn't find "{pathname}". Here's a 404.</h1>
+      <p>This is what I was trying to access:</p>
       <pre>
         {JSON.stringify(props, null, 2)}
       </pre>
       <p>Lost? <Link to="/">Here's a way home.</Link></p>
-      <cite>~ xoxo, bones.</cite>
+      <cite>~ xoxo, entwine.</cite>
     </div>
   )
 }
