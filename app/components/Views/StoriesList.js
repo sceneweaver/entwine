@@ -75,7 +75,7 @@ class StoryList extends React.Component {
             />
           </li>
         </ul>
-        <span className="glyphicon glyphicon-search" />
+        <i className="fa fa-search" aria-hidden="true"></i>
       </div>
     );
   }
@@ -114,7 +114,7 @@ class StoryList extends React.Component {
         <button
           type="submit"
           className="btn btn-warning btn-xs pull-right">
-          <span className="glyphicon glyphicon-plus" />
+          <i className="fa fa-plus" aria-hidden="true"></i>
         </button>
       </form>
     );

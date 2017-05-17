@@ -356,5 +356,6 @@ input.form-like[disabled] {
   .story-container p {
     margin: 20px 0; }
 
-
-
+.story-item .btn-warning {
+  width: 37px;
+}
