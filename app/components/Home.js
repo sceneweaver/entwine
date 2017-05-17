@@ -10,10 +10,10 @@ const Home = () => (
     <div className="row">
 
       <div className="col s12 m8 main-featured">
-        <div className="card hoverable">
+        <div className="hoverable">
           <div className="card-image">
             <Link to="stories/featured">
-              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
+              <img className="card-img-height" src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
               <span id="featured-text" className="card-title white-text">Featured Story: James Comey's Conspicuous Independence</span>
             </Link>
           </div>
