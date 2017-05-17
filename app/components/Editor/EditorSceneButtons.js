@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class EditorSceneButtons extends Component {
   componentWillReceiveProps(nextProps) {
     // if there are no locations, let the user add map
+    console.log("I have received props")
     if (nextProps.recommendations) {
       nextProps.recommendations.forEach(rec => {
         $(`#${rec}.module-btn`).addClass('highlighted-rec')
