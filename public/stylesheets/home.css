@@ -1,24 +1,11 @@
 /* ----- Home Page ----- */
 
-.home > .banner > h1 {
-  font-family: 'Nixie One', cursive;
-  font-size: 1.6em;
-}
-
 .home-margin {
   margin: 15px 30px
 }
 
-.main-featured {
-  /*max-height: 300px;*/
-}
-
-.card-img-height {
-  max-height: 350px;
-}
-
 .nav-wrapper {
-  margin: 0px 10px
+  margin: 0px 14px
 }
 
 .featured-card > div {
@@ -131,21 +118,6 @@
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 }
 
-.lead-row {
-  height: 400px;
-}
-
-.lead-width {
-  min-width: 800px;
-}
-
-.second-row {
-  height: 250px;
-}
-
-.second-width {
-  min-width: 650px;
-}
 
 .second-width > div {
   /*position: relative;*/
@@ -170,3 +142,158 @@
   padding: 10px;
 }
 
+@media (max-width: 3000px) {
+  .lead-row {
+    height: 500px;
+  }
+
+  .lead-width {
+    min-width: 1200px;
+  }
+
+  .second-row {
+    height: 325px;
+  }
+
+  .second-width {
+    min-width: 850px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .lead-row {
+    height: 425px;
+  }
+
+  .lead-width {
+    min-width: 800px;
+  }
+
+  .second-row {
+    height: 250px;
+  }
+
+  .second-width {
+    min-width: 650px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .lead-row {
+    height: 400px;
+  }
+
+  .lead-width {
+    min-width: 600px;
+  }
+
+  .second-row {
+    height: 250px;
+  }
+
+  .second-width {
+    min-width: 550px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .lead-row {
+    height: 400px;
+  }
+
+  .lead-width {
+    min-width: 475px;
+  }
+
+  .second-row {
+    height: 250px;
+  }
+
+  .second-width {
+    min-width: 425px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 688px) {
+  .lead-row {
+    height: 300px;
+  }
+
+  .lead-width {
+    min-width: 350px;
+  }
+
+  .second-row {
+    height: 200px;
+  }
+
+  .second-width {
+    min-width: 300px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .lead-row {
+    height: 300px;
+  }
+
+  .lead-width {
+    min-width: 175px;
+  }
+
+  .second-row {
+    height: 200px;
+  }
+
+  .second-width {
+    min-width: 175px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+}
