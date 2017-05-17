@@ -9,44 +9,50 @@ const Home = () => (
   <div className="home home-margin">
     <div className="row flex">
 
-      <Link to="stories/1">
-        <div className="lead-row featured-card hoverable" style={{backgroundImage: `url(http://ww2.kqed.org/mindshift/wp-content/uploads/sites/23/2014/04/jazz.jpg)`}}>
+      <Link to="stories/3">
+        <div className="lead-row lead-width featured-card hoverable" style={{backgroundImage: `url(https://www.wired.com/wp-content/uploads/2017/05/donut_opener.jpg)`}}>
           <div>
             <h1>
-              <b>Featured Story:</b> Cécile McLorin Salvant's Timeless Jazz
+              <b>Featured Story:</b> Apple's New Campus: An Exclusive Look Inside the Mothership
             </h1>
             <h2>
-              Fred Kaplan
+              Steven Levy
             </h2>
           </div>
         </div>
       </Link>
 
-      <div className="about-card hoverable">
-        <span> entwine allows content creators to quickly embed interactive maps, information about key characters, and data visualizations into their stories. </span>
+      <div className="lead-row flex-card flex-col hoverable" style={{backgroundColor: '#2d2d86', color: 'white'}}>
+        <h2> what is entwine? </h2>
+        <h3> entwine allows content creators to quickly embed interactive maps, information about key characters, and multiple scenes into their stories. </h3>
+        <div>
+          <Link to="/editor">
+            <div className="create-story-button"> Create a New Story </div>
+          </Link>
+        </div>
       </div>
 
     </div>
 
     <div className="row flex">
       <Link to="stories/2">
-        <div className="second-row featured-card hoverable" style={{backgroundImage: `url(https://images.unsplash.com/photo-1485287442400-90e0eaed3a60?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=9bf685e757c9280e393668d9fee3c1aa)`}}>
-          <div>
-            <h1>
-              <b>Featured Story:</b> Cécile McLorin Salvant's Timeless Jazz
-            </h1>
-            <h2>
-              Fred Kaplan
-            </h2>
-          </div>
-        </div>
+         <div className="second-row flex-card hoverable" style={{backgroundColor: '#732626'}}>
+            <div>
+              <h1>
+                <b>Featured Story:</b> North Korea's Apocalyptic Propagandists
+              </h1>
+              <h2>
+                Hannah Beech
+              </h2>
+            </div>
+         </div>
       </Link>
-
+{/*
       <div style={{backgroundColor: 'transparent', flex: 1}}>
-      </div>
+      </div>*/}
 
-      <Link to="stories/2">
-        <div className="second-row featured-card hoverable" style={{backgroundImage: `url(https://images.unsplash.com/photo-1485287442400-90e0eaed3a60?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=9bf685e757c9280e393668d9fee3c1aa)`}}>
+      <Link to="stories/1">
+        <div className="second-row second-width featured-card hoverable" style={{backgroundImage: `url(https://www.rented.com/content/images/2016/02/photo-1415201364774-f6f0bb35f28f.jpg)`}}>
           <div>
             <h1>
               <b>Featured Story:</b> Cécile McLorin Salvant's Timeless Jazz
