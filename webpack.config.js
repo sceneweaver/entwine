@@ -33,8 +33,7 @@ module.exports = {
   module: {
     rules: [{
       test: /jsx?$/,
-      // exclude: /wikijs/,  // use this for production deployment to enable minification
-      exclude: /(node_modules|bower_components)/,
+      exclude: devMode ? /(node_modules|bower_components)/ : /(wikijs|mapbox-gl)/,
       use: [{
         loader: 'babel-loader',
         options: {
@@ -46,7 +45,12 @@ module.exports = {
   plugins: devMode
     ? [new LiveReloadPlugin({appendScriptTag: true}),
     new BundleAnalyzerPlugin({openAnalyzer: false})]
-    : [new webpack.optimize.UglifyJsPlugin({
+    : [new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false
         },
