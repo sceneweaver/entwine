@@ -19,20 +19,20 @@ class EditorActors extends Component {
             </button>
           </div>
 
-          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Actors</h3>
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Characters</h3>
 
           <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
               className="btn actors-module-btn actors-gen-btn"
             >
-              Generate Actors &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
+              Generate Characters &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
             </button>
             <button
               onClick={this.props.onAddActor}
               className="btn actors-module-btn actors-add-btn"
             >
-              Add Actor &nbsp; <i className="fa fa-plus" aria-hidden="true"></i>
+              Add Character &nbsp; <i className="fa fa-plus" aria-hidden="true"></i>
             </button>
           </div>
 

@@ -176,7 +176,7 @@ html, body, #main {
   margin-top: 10px;
 }
 
-#recommend-btn {
+#recommend-btn, #characters-btn {
   width: 150px;
 }
 
@@ -299,9 +299,8 @@ html, body, #main {
   display: inline;
 }
 
-.map-editor-header .location-name-field {
-  margin: 0;
-  font-size: 16px;
+.map-editor-header > * > h5, input, select {
+  color: white;
 }
 
 .generated-map {
@@ -343,10 +342,12 @@ html, body, #main {
   margin-right: 10px;
 }
 
-.location-name-field {
+input.location-name-field {
   background: transparent;
   border: none;
-  border-bottom: 0.5px solid;
+  border-bottom: 0.5px solid white;
+  margin: 0;
+  font-size: 16px;
 }
 
 /* ----- EditorActors Styling ----- */
@@ -413,7 +414,7 @@ html, body, #main {
   background-color: transparent;
   margin: 0px 20px;
   font-size: 16px;
-  font-family: 'Sorts Mill Goudy', serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .actor-name-field-container {

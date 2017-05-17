@@ -49,11 +49,11 @@ class EditorSceneButtons extends Component {
         <div className="editor-btns-right-align btn-group">
 
           <button
+            id="characters-btn"
             className="btn module-btn grey-text text-darken-3"
             onClick={this.props.onToggleModule.bind(this, 'actors')}
-            id="actors"
           >
-            Actors &nbsp; <i className="fa fa-user-circle" aria-hidden="true"></i>
+            Characters &nbsp; <i className="fa fa-user-circle" aria-hidden="true" />
 
           </button>
 
@@ -62,7 +62,7 @@ class EditorSceneButtons extends Component {
             onClick={this.props.onToggleModule.bind(this, 'maps')}
             id="maps"
           >
-            Map &nbsp; <i className="fa fa-globe" aria-hidden="true"></i>
+            Map &nbsp; <i className="fa fa-globe" aria-hidden="true" />
 
           </button>
 
@@ -71,7 +71,7 @@ class EditorSceneButtons extends Component {
             onClick={this.props.onToggleModule.bind(this, 'hero')}
             id="hero"
           >
-            Hero &nbsp; <i className="fa fa-picture-o" aria-hidden="true"></i>
+            Hero &nbsp; <i className="fa fa-picture-o" aria-hidden="true" />
 
           </button>
 
@@ -80,7 +80,7 @@ class EditorSceneButtons extends Component {
             className="btn module-btn grey-text text-darken-3"
             onClick={this.props.onRecommendation.bind(this, this.props.whichScene)}
           >
-            Recommend &nbsp; <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
+            Recommend &nbsp; <i className="fa fa-lightbulb-o" aria-hidden="true" />
           </button>
 
 
