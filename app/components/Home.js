@@ -24,7 +24,7 @@ const Home = () => (
 
       <div className="lead-row flex-card flex-col hoverable" style={{backgroundColor: '#2d2d86', color: 'white'}}>
         <h2> what is entwine? </h2>
-        <h3> entwine allows users to create stories with interactive maps, information about key characters, and multiple scenes. </h3>
+        <h3> entwine is a smart publishing platform enabling anyone to create a beautiful, interactive story. </h3>
         <div className="create-story">
           <Link to="/editor">
             <div className="create-story-btn"> Create a New Story </div>
