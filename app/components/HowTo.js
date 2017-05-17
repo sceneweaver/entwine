@@ -10,6 +10,8 @@ import { browserHistory } from 'react-router';
 /* -----------------    COMPONENT     ------------------ */
 
 class HowTo extends React.Component {
+
+
   onStartClick() {
     browserHistory.push('/editor')
   }
