@@ -8,6 +8,23 @@
   margin: 0px 14px
 }
 
+.nav-wrapper a {
+  text-decoration: none;
+}
+
+.nav-wrapper a:visited {
+  color: #fff;
+}
+
+.nav-wrapper a:hover {
+  color: hotpink;
+}
+
+.nav-wrapper a:active {
+  color: lavender;
+}
+
+
 .featured-card > div {
   position: absolute;
   bottom: 0;

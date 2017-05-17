@@ -52,7 +52,7 @@ class EditorHero extends Component {
             ? (
               <div className="hero-image-container">
                 <img src={this.props.heroURL} />
-                <div className="unsplash">
+                <div className="hero-credit">
                   <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
                 </div>
               </div>
