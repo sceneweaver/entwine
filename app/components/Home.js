@@ -7,64 +7,23 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 
 const Home = () => (
   <div className="home home-margin">
-    <div className="row">
+    <div className="row flex">
 
-      <div className="col s12 m8 main-featured">
-        <div className="hoverable">
-          <div className="card-image">
-            <Link to="stories/featured">
-              <img className="card-img-height" src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
-              <span id="featured-text" className="card-title white-text">Featured Story: James Comey's Conspicuous Independence</span>
-            </Link>
-          </div>
-          <div className="card-content lime lighten-5">
-            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+      <Link to="stories/1">
+        <div className="featured-card hoverable" style={{backgroundImage: `url(https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=f9835518115e48ae328a33890fc683d6)`}}>
+          <div>
+            <h1>
+              <b>Featured Story:</b> Cécile McLorin Salvant's Timeless Jazz
+            </h1>
+            <h2>
+              Fred Kaplan
+            </h2>
           </div>
         </div>
-      </div>
+      </Link>
 
-      <div className="col s12 m4 about-card">
-        <div className="card hoverable blue-grey darken-1">
-          <div className="card-content white-text">
-            <span className="card-title">Card Title</span>
-            <p>entwine allows content creators to quickly embed interactive maps, information about key characters, and data visualizations into their stories.</p>
-          </div>
-          <div className="card-action">
-            <a href="#">This is a link</a>
-            <a href="#">This is a link</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div className="row">
-       <div className="col s12 m6">
-        <div className="card hoverable">
-          <div className="card-image">
-            <Link to="stories/1">
-              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
-            </Link>
-          </div>
-          <div className="card-content lime lighten-5">
-            <span className="card-title">Card Title</span>
-            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="col s12 m6">
-        <div className="card hoverable">
-          <div className="card-image">
-            <Link to="stories/1">
-              <img src="https://westernqueensland.files.wordpress.com/2014/05/new-york-sattelite-1.jpg" />
-            </Link>
-          </div>
-          <div className="card-content lime lighten-5">
-            <span className="card-title">Card Title</span>
-            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-          </div>
-        </div>
+      <div className="about-card hoverable">
+        <span> entwine allows content creators to quickly embed interactive maps, information about key characters, and data visualizations into their stories. </span>
       </div>
 
     </div>

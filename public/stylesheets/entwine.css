@@ -46,23 +46,23 @@ html, body, #main {
 }
 
 .card-img-height {
-  max-height: 400px;
+  max-height: 350px;
 }
 
 .nav-wrapper {
   margin: 0px 10px
 }
 
-.module {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/skyscrapers.jpg);
-  background-attachment: fixed;
-  width: 400px;
-  height: 300px;
+.featured-card {
+  height: 500px;
+  width: 850px;
+  background-attachment: scroll;
+  background-position: 100% 100%;
   position: relative;
   overflow: hidden;
-  margin: 20px;
+  border-radius: 4px;
 }
-.module > header {
+.featured-card > div {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -70,21 +70,21 @@ html, body, #main {
   padding: 20px 10px;
   background: inherit;
   background-attachment: fixed;
-  overflow: hidden;
 }
-.module > header::before {
+.featured-card > div::before {
   content: "";
   position: absolute;
-  top: -20px;
+  top: 0px;
   left: 0;
-  width: 200%;
-  height: 200%;
+  width: 125%;
+  height: 125%;
   background: inherit;
   background-attachment: fixed;
-  -webkit-filter: blur(4px);
-  filter: blur(4px);
+  -webkit-filter: blur(12px);
+  filter: blur(12px);
+  transform: scale(2) translateY(15px);
 }
-.module > header::after {
+/*.featured-card > div::after {
   content: "";
   position: absolute;
   top: 0;
@@ -92,8 +92,15 @@ html, body, #main {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.25)
+}*/
+.featured-card > div > h1 {
+  margin: 0;
+  color: white;
+  position: relative;
+  z-index: 1;
 }
-.module > header > h1 {
+
+.featured-card > div > h2 {
   margin: 0;
   color: white;
   position: relative;
@@ -128,13 +135,17 @@ html, body, #main {
   font-size: 1em;
 }
 
-.about-card {
-  min-height: 100%;
+.flex {
+  display: flex;
+  justify-content: space-between;
 }
 
-.about {
-  height: 400px;
-  display: flex;
+.about-card {
+  height: 500px;
+  padding: 24px;
+  border-radius: 4px;
+  background-color: lightgrey;
+  margin: 0px 20px;
 }
 
 .feature-row {
