@@ -652,7 +652,7 @@ html, body, #main {
 
 .hero-box {
   width: 100%;
-  padding: 30px 45px;
+  padding: 15px 45px;
   display: inline-flex;
   flex-direction: row;
   justify-content: space-around;
@@ -662,7 +662,8 @@ html, body, #main {
 .hero-generator {
   display: inline-flex;
   flex-direction: column;
-  width: 40%;
+  width: 50%;
+  padding: 30px;
 }
 
 .hero-generator-input {
@@ -678,6 +679,7 @@ html, body, #main {
 .hero-generator-input > input {
   color: white;
   font-size: 1.5rem;
+  border-bottom: 0.5px solid white;
 }
 
 .hero-generator-input > input::-webkit-input-placeholder {
@@ -688,7 +690,9 @@ html, body, #main {
 .hero-adder {
   display: inline-flex;
   flex-direction: column;
-  width: 40%;
+  width: 50%;
+  padding: 30px 20px 30px 40px;
+  border-left: 0.5px solid #ff6600;
 }
 
 .hero-adder-row {
@@ -717,8 +721,9 @@ html, body, #main {
 }
 
 .hero-viewer {
-  width: 100%;
-  padding: 30px;
+  margin: 0 20px;
+  border-top: 0.5px solid #ff6600;
+  padding: 30px 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

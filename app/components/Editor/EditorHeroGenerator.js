@@ -26,7 +26,7 @@ class EditorHeroGenerator extends Component {
           onClick={this.props.onGenerateHero}
           className="btn hero-module-btn"
         >
-          Generate Hero &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
+          Generate Header &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
         </button>
 
       </div>

@@ -49,7 +49,7 @@ class EditorActors extends Component {
                   position={this.props.position}
                 />
               );
-            })) : (<p>Generate actors to generate module</p>)
+            })) : (<p>Who are the characters in your story? <br /> Use our generator to find the key players in your piece and create informational blurbs for each.</p>)
           }
         </div>
       </div>
