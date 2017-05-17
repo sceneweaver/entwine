@@ -32,7 +32,7 @@ class Navbar extends Component {
               <Link to="/stories">All Stories</Link>
             </li>
             <li>
-              <Link to="/stories/featured">Featured Story</Link>
+              <Link to="/tutorial">Tutorial</Link>
             </li>
           </ul>
 
@@ -54,7 +54,7 @@ class Navbar extends Component {
               <Link to="/stories">All Stories</Link>
             </li>
             <li>
-              <Link to="/stories/featured">Featured Story</Link>
+              <Link to="/tutorial">Tutorial</Link>
             </li>
 
             {

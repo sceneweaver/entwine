@@ -8,6 +8,7 @@ import Signup from './components/Signup';
 import MapTest from './components/Views/Map';
 import StoriesList from './components/Views/StoriesList';
 import NotFound from './components/NotFound';
+import HowTo from './components/HowTo';
 
 import Editor from './components/Editor/Editor';
 import ViewStory from './components/Views/ViewStory';
@@ -20,7 +21,7 @@ const Routes = (props) => (
       <IndexRoute component={Home} />
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
-      <Route path="stories/featured" component={ViewStory} onEnter={props.onFakeStoryEnter} />
+      <Route path="tutorial" component={HowTo} />
       <Route path="stories/:storyId" component={ViewStory} onEnter={props.onRealStoryEnter} />
       <Route path="editor" component={Editor} />
       <Route path="stories" component={StoriesList} />
