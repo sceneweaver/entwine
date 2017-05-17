@@ -189,16 +189,6 @@ html, body, #main {
   color: white;
 }
 
-#publish-btn {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0;
-  margin-right: 20px;
-  padding: 0 5px;
-  width: 100%;
-  border-radius: 4px;
-}
-
 #publish-btn:hover {
   background-color: #639b90
 }
@@ -327,6 +317,10 @@ html, body, #main {
   margin-top: 10px;
 }
 
+#recommend-btn {
+  width: 150px;
+}
+
 .module-btn {
   width: 100px;
   align-self: flex-end;
@@ -443,6 +437,11 @@ html, body, #main {
 
 .map-editor-header > * > select {
   display: inline;
+}
+
+.map-editor-header .location-name-field {
+  margin: 0;
+  font-size: 16px;
 }
 
 .generated-map {

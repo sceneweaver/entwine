@@ -136,7 +136,8 @@ class EditorMapModule extends Component {
     return (
       <div className="editor-map">
   			<div className="map-editor-header">
-					<div className="map-style">
+
+          <div className="map-style">
 						<h5> Map Style: &nbsp; </h5>
 						<select
 							value={this.state.mapboxStyle}
