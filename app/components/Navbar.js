@@ -17,7 +17,7 @@ class Navbar extends Component {
         <div className="nav-wrapper">
 
           <Link to="/" className="brand-logo center">
-            <img src="/images/logo.png" style={{ height: '50px' }} />
+            <img src="/images/logo-transparent.png" style={{ height: '50px' }} />
             &nbsp; entwine
           </Link>
 
