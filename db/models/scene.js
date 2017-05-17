@@ -1,6 +1,6 @@
 'use strict';
 
-const { STRING, ARRAY, TEXT, INTEGER } = require('sequelize');
+const { STRING, ARRAY, TEXT, INTEGER, BOOLEAN } = require('sequelize');
 const sanitizeHtml = require('sanitize-html');
 
 module.exports = db => db.define('scenes', {
@@ -39,6 +39,10 @@ module.exports = db => db.define('scenes', {
   heroPhotogURL: {
     type: STRING,
     defaultValue: ''
+  },
+  heroUnsplash: {
+    type: BOOLEAN,
+    defaultValue: false
   }
 }, {
   defaultScope: {

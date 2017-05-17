@@ -36,7 +36,8 @@ export default function reducer(state = {
     maps: [],
     heroURL: '',
     heroPhotog: '',
-    heroPhotogURL: ''
+    heroPhotogURL: '',
+    heroUnsplash: false
   }
 }, action) {
   const newState = Object.assign({}, state);

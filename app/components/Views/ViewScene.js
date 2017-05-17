@@ -66,6 +66,7 @@ class Scene extends Component {
   }
 
   render() {
+    console.log("this.props", this.props);
     return (
       <div className="col m10">
         <div className="scene-hero">
@@ -89,7 +90,7 @@ class Scene extends Component {
                       className="scene-hero-img-container"
                       style={{ backgroundImage: `url(${this.props.heroURL})` }}
                     />
-                    <div className="unsplash">
+                    <div className="scene-hero-img-credit">
                       <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
                     </div>
                   </div>
@@ -151,7 +152,8 @@ const mapStateToProps = store => ({
   user: store.displayState.user,
   heroURL: store.displayState.currScene.heroURL,
   heroPhotog: store.displayState.currScene.heroPhotog,
-  heroPhotogURL: store.displayState.currScene.heroPhotogURL
+  heroPhotogURL: store.displayState.currScene.heroPhotogURL,
+  heroUnsplash: store.displayState.currScene.heroUnsplash
 });
 
 export default connect(mapStateToProps)(ReactTimeout(Scene));
