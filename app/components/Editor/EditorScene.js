@@ -209,8 +209,17 @@ class EditorScene extends Component {
 	);
 }
 
+componentWillReceiveProps(nextProps) {
+		$(`.module-btn`).removeClass('highlighted-rec');
+
+    if (nextProps.recommendations.length > 0) {
+      nextProps.recommendations.forEach(rec => {
+        $(`#${rec}.module-btn`).addClass('highlighted-rec');
+      });
+    }
+  }
+
 	render() {
-		console.log(this.props.recommendations)
 		return (
 			<div className="editor-scene-editor">
 

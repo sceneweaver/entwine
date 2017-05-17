@@ -356,7 +356,6 @@ export const generateMapLocations = position => (dispatch, getState) => {
     else return findPlaces(actorsArray);
   })
   .then(placeObj => { //was placesArr
-    console.log(placeObj)
     dispatch(setLocation(position, placeObj));
   });
 };
