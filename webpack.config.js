@@ -33,8 +33,7 @@ module.exports = {
   module: {
     rules: [{
       test: /jsx?$/,
-      exclude: /wikijs/,  // use this for production deployment to enable minification
-      // exclude: /(node_modules|bower_components)/,
+      exclude: devMode ? /(node_modules|bower_components)/ : /(wikijs|mapbox-gl)/,
       use: [{
         loader: 'babel-loader',
         options: {
