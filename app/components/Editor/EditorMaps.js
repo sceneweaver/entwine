@@ -26,7 +26,7 @@ class EditorMaps extends Component {
               onClick={this.props.onHideMaps}
               className="btn maps-module-btn"
             >
-              <i className="fa fa-minus" aria-hidden="true"></i>
+              Close
             </button>
           </div>
 

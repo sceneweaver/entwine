@@ -49,7 +49,7 @@ class EditorSceneButtons extends Component {
         <div className="editor-btns-right-align btn-group">
 
           <button
-            id="characters-btn"
+            id="actors"
             className="btn module-btn grey-text text-darken-3"
             onClick={this.props.onToggleModule.bind(this, 'actors')}
           >

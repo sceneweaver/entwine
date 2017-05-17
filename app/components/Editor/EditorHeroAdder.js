@@ -36,19 +36,19 @@ class EditorHeroAdder extends Component {
             style={style.heroAdderInput}
             type="text"
             name="heroURL"
-            placeholder="Insert header image URL"
+            placeholder="Insert custom image URL"
             value={this.state.heroURL}
             onChange={this.onUserHeroChange}
           />
         </div>
 
         <div className="hero-adder-row">
-          <h4>Photographer:</h4>
+          <h4>Name:</h4>
           <input
             style={style.heroAdderInput}
             type="text"
             name="heroPhotog"
-            placeholder="Insert photographer's name"
+            placeholder="Insert photographer name"
             value={this.state.heroPhotog}
             onChange={this.onUserHeroChange}
           />
@@ -60,7 +60,7 @@ class EditorHeroAdder extends Component {
             style={style.heroAdderInput}
             type="text"
             name="heroPhotogURL"
-            placeholder="Insert photographer portfolio URL"
+            placeholder="Insert photographer URL"
             value={this.state.heroPhotogURL}
             onChange={this.onUserHeroChange}
           />
