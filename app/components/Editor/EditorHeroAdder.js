@@ -4,6 +4,7 @@ const style = {
   heroAdderInput: {
     color: 'white',
     fontSize: '1.5rem',
+    borderBottom: '0.5px solid white'
   }
 }
 

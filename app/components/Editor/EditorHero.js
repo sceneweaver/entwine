@@ -20,13 +20,13 @@ class EditorHero extends Component {
             </button>
           </div>
 
-          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Hero Image</h3>
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Header Image</h3>
 
           <button
             className="btn hero-module-btn"
             onClick={this.props.onRemoveHero}
           >
-            REMOVE HERO &nbsp; <span className="glyphicon glyphicon-trash" ></span>
+            REMOVE HEADER &nbsp; <span className="glyphicon glyphicon-trash" ></span>
           </button>
 
         </div>
@@ -44,25 +44,28 @@ class EditorHero extends Component {
 
           {
             this.props.heroUnsplash
-            ? (
-              <div className="hero-image-container">
-                <img src={this.props.heroURL} />
-                <div className="hero-credit">
-                  <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+              ? (
+                <div className="hero-image-container">
+                  <img src={this.props.heroURL} />
+                  <div className="hero-credit">
+                    <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+                  </div>
                 </div>
-              </div>
-            )
-            : this.props.heroURL ? (
-              <div className="hero-image-container">
-                <img src={this.props.heroURL} />
-                <div className="hero-credit">
-                  <h5>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a></h5>
-                </div>
-              </div>
-            )
-              : (
-                <p>No hero set.</p>
               )
+              : this.props.heroURL ? (
+                <div className="hero-image-container">
+                  <img src={this.props.heroURL} />
+                  <div className="hero-credit">
+                    <h5>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a></h5>
+                  </div>
+                </div>
+              )
+                : (
+                  <div className="hero-image-container">
+                    <h3>Each scene can have either an interactive map or a header photo.</h3>
+                    <p>Use the generator above to grab a header-worthy image, or add your own. <br /> Make sure to credit your photographer!</p>
+                  </div>
+                )
           }
 
         </div>
