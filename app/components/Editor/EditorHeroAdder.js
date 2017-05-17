@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 
+const style = {
+  heroAdderInput: {
+    color: 'white',
+    fontSize: '1.5rem',
+  }
+}
+
 class EditorHeroAdder extends Component {
   constructor() {
     super();
     this.state = {
-      heroURL: '',
-      heroPhotog: '',
-      heroPhotogURL: ''
+      heroURL: 'Insert header image URL',
+      heroPhotog: 'Insert photog\'s name',
+      heroPhotogURL: 'Insert her portfolio URL'
     };
     this.onUserHeroChange = this.onUserHeroChange.bind(this);
   }
@@ -22,32 +29,35 @@ class EditorHeroAdder extends Component {
     return (
       <div className="hero-adder">
 
-        <div className="user-hero-row">
-          <h4>URL: &nbsp;</h4>
+        <div className="hero-adder-row">
+          <h4>URL:</h4>
           <input
+            style={style.heroAdderInput}
             type="text"
             name="heroURL"
-            placeholder="Insert image URL here"
+            value={this.state.heroURL}
             onChange={this.onUserHeroChange}
           />
         </div>
 
-        <div className="user-hero-row">
-          <h4>Photographer: &nbsp;</h4>
+        <div className="hero-adder-row">
+          <h4>Photographer:</h4>
           <input
+            style={style.heroAdderInput}
             type="text"
             name="heroPhotog"
-            placeholder="Insert photographer's name here"
+            value={this.state.heroPhotog}
             onChange={this.onUserHeroChange}
           />
         </div>
 
-        <div className="user-hero-row">
-          <h4>Credit: &nbsp;</h4>
+        <div className="hero-adder-row">
+          <h4>Credit:</h4>
           <input
+            style={style.heroAdderInput}
             type="text"
             name="heroPhotogURL"
-            placeholder="Link to photographer's website here"
+            value={this.state.heroPhotogURL}
             onChange={this.onUserHeroChange}
           />
         </div>

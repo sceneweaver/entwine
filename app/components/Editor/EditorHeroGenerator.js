@@ -17,6 +17,7 @@ class EditorHeroGenerator extends Component {
             type="text"
             onChange={this.props.onHeroQueryChange}
             value={this.props.heroQuery}
+            placeholder="Search for an image"
           />
 
         </div>
