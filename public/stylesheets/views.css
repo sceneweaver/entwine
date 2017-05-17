@@ -227,3 +227,7 @@ input[type=range]:focus::-ms-fill-upper {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.scene-hero-img-credit {
+  margin-left: 20px;
+}
