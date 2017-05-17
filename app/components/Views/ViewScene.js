@@ -94,7 +94,7 @@ class Scene extends Component {
                       <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
                     </div>
                   </div>
-                ) : this.props.heroURL ? (
+                ) : this.props.heroURL && this.props.heroURL !== 'Not found' ? (
                       <div className="scene-hero-img">
                         <div
                           className="scene-hero-img-container"
