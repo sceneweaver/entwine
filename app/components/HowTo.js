@@ -5,16 +5,23 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import BaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+import { browserHistory } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 
 class HowTo extends React.Component {
+  onStartClick() {
+    browserHistory.push('/editor')
+  }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(BaseTheme)}>
         <div>
           <AutoRotatingCarousel
-            label="Get started"
+            label="Got it"
+            autoplay={false}
+            onStart={this.onStartClick}
             open
           >
             <Slide
