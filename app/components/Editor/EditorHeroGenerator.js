@@ -6,14 +6,20 @@ class EditorHeroGenerator extends Component {
   render() {
     return (
       <div className="hero-generator">
-        <h4>
-          Keyword: &nbsp;
-            </h4>
-        <input
-          type="text"
-          onChange={this.props.onHeroQueryChange}
-          value={this.props.heroQuery}
-        />
+
+        <div className="hero-generator-input">
+
+          <h4>
+            Keyword: &nbsp;
+          </h4>
+
+          <input
+            type="text"
+            onChange={this.props.onHeroQueryChange}
+            value={this.props.heroQuery}
+          />
+
+        </div>
 
         <button
           onClick={this.props.onGenerateHero}
@@ -23,7 +29,7 @@ class EditorHeroGenerator extends Component {
         </button>
 
       </div>
-    )
+    );
   }
 }
 

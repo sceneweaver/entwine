@@ -32,13 +32,12 @@ class EditorHero extends Component {
         </div>
 
         <div className="hero-box">
-
-          <EditorHeroAdder />
-
           <EditorHeroGenerator
             position={this.props.position}
           />
-
+          <EditorHeroAdder
+            position={this.props.position}
+          />
         </div>
 
         <div className="hero-viewer">

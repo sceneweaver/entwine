@@ -569,10 +569,28 @@ html, body, #main {
   padding: 30px 45px;
   display: inline-flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  align-content: center;
-  text-align: center;
+}
+
+.hero-generator {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.hero-generator-input {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.hero-adder {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.user-hero-row {
+  display: inline-flex;
+  flex-direction: row
 }
 
 .hero-box > input {
