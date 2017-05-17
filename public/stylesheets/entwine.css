@@ -56,6 +56,7 @@ html, body, #main {
 .featured-card {
   height: 500px;
   min-width: 800px;
+  flex: 1;
   width: auto;
   background-attachment: scroll;
   background-position: 100% 100%;
@@ -63,6 +64,7 @@ html, body, #main {
   overflow: hidden;
   border-radius: 4px;
   margin: 0px 10px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 }
 .featured-card > div {
   position: absolute;
@@ -113,30 +115,6 @@ html, body, #main {
   box-sizing: border-box;
 }
 
-/*.card {
-  height: auto;
-}
-.card .card-content {
-  height: auto;
-}
-.card .card-action {
-  position: relative;
-}*/
-
-#featured-text {
-  font-size: 40px
-}
-
-.home-page-header {
-  font-family: 'Nixie One', cursive;
-  font-size: 1.5em;
-}
-
-.home-page-text {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 1em;
-}
-
 .flex {
   display: flex;
   justify-content: space-between;
@@ -148,6 +126,23 @@ html, body, #main {
   border-radius: 4px;
   background-color: lightgrey;
   margin: 0px 10px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
+}
+
+#featured-text {
+  font-size: 40px
+}
+
+
+
+.home-page-header {
+  font-family: 'Nixie One', cursive;
+  font-size: 1.5em;
+}
+
+.home-page-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1em;
 }
 
 .feature-row {
