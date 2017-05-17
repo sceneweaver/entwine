@@ -104,6 +104,12 @@ const users = seed(User, {
     display_name: 'Fred Kaplan, The New Yorker',
     email: 'fk@newyorker.com',
     password: '123'
+  },
+  Steven_Levy: {
+    username: 'slevy',
+    display_name: `Steven Levy, Wired`,
+    email: `slevy@wired.com`,
+    password: `123`
   }
 })
 
@@ -119,6 +125,10 @@ const stories = seed(Story,
     Cecile: {
       title: `Cécile McLorin Salvant's Timeless Jazz`,
       user_id: users.Fred_Kaplan.id
+    },
+    Apple: {
+      title: `One More Thing--Apple's New Campus: An Exclusive Look Inside the Mothership`,
+      user_id: users.Steven_Levy.id
     }
   })
 )
@@ -140,7 +150,7 @@ const scenes = seed(Scene,
     NK3: {
       story_id: stories.NorthKorea.id,
       title: `North Korean Rhetoric`,
-      postion: 2,
+      position: 2,
       heroURL: `https://images.unsplash.com/photo-1485287442400-90e0eaed3a60?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=9bf685e757c9280e393668d9fee3c1aa`,
       paragraphsHTML: [`<p>By North Korean standards, this latest propaganda onslaught was neither remarkable nor particularly bellicose. In 2014, a KCNA article quoted a person, identified as a North Korean steelworker, who characterized Barack Obama as a &quot;wicked black monkey.&quot; Another story likened South Korea's recently ousted President Park Geun-hye, who had taken a hard line against the North, to a &quot;vile prostitute serving the U.S.&quot; Yet another conservative former South Korean President, Lee Myung-bak, was described with &quot;sweats, snivels and tears all over his face.&quot; (KCNA has not critiqued Moon Jae-in, the victor in the May 9th South Korean Presidential elections, perhaps because of his softer stance toward the North.) If nothing else, Pyongyang's propaganda czars know how to exploit the bounty of a thesaurus.</p><p><br /></p><p>North Korea's rhetoric has remained on a war footing for decades, a reminder that even though the South and North laid down their guns after a <strong>1953 armistice</strong>, no enduring peace treaty was ever reached. Donald Trump may have warned Reuters on April 27th of a potential &quot;major, major conflict with North Korea,&quot; but, from the point of view of the Democratic People's Republic of Korea, the war never stopped. In a May 8th salvo, a Rodong Sinmun commentary accused Trump and his &quot;henchmen&quot; of pursuing a &quot;hostile&quot; North Korea policy that reflected a &quot;dull-witted and wild character.&quot; With South Korea's new President Moon adopting a conciliatory tone in his May 10th inaugural address, even expressing a willingness to visit Pyongyang, Rodong Sinmun attempted to pick apart the U.S.-South Korean relationship. &quot;The U.S. is going to flee from south Korea after igniting a nuclear war on the Korean peninsula,&quot; predicted a May 11th English-language editorial. &quot;This is the sinister intention of the U.S. vociferating about ‘solid alliance' with south Korea.&quot;</p>`]
     },
@@ -168,6 +178,45 @@ const scenes = seed(Scene,
       title: `Musical Upbringing`,
       position: 3,
       paragraphsHTML: [`<p>She grew up in a French-speaking household: her father, a doctor, is Haitian, and her mother, who heads an elementary school, is French. At eighteen, Cécile decided that she wanted to live in France, so she enrolled at the <em>Darius Milhaud Conservatory</em>, in Aix-en-Provence, and at a nearby prep school that offered courses in political science and law. Her mother, who came along to help her get settled, saw a listing for a class in jazz singing and suggested that Cécile sign up.</p><p><br /></p><div><img src=\"http://www.aixenprovencetourism.com/img.ashx?u=http://server.cominsit.odt.local/OpenData/Medias/48730/PATIO-41f30be7-fb0d-4a0a-ab01-be55864d5856_636075763581171953.jpg&amp;w=470&amp;h=325&amp;r=crop\" /></div><p><br /></p><p>&quot;I said, ‘O.K., whatever,' &quot; Cécile told me. &quot;I was passive—super passive.&quot; At an audition for the class, she sang &quot;Misty,&quot; which she knew from a Sarah Vaughan album that her mother often played. After she finished, the teacher, who'd been accompanying on piano, asked her to improvise. She didn't know what that meant, nor did she care. &quot;I didn't want to get into his class anyway,&quot; she recalled. &quot;I had poli-sci, law, classical voice—I didn't have time.&quot;</p><p><br /></p><p>But the teacher, a jazz musician named Jean-François Bonnel, was astonished by her singing. &quot;Cécile was something else,&quot; he wrote to me in an e-mail. &quot;She already had everything—the right time, the sense of rhythm, the right intonation, an incredible Sarah Vaughan type of voice&quot;—a pure bel canto, with exceptional range and precision. Two days later, Bonnel ran into her on the street and told her that he'd come ring her doorbell until she signed up for his class. &quot;I always obeyed my parents and my teachers,&quot; Salvant recalled, with a laugh. She enrolled, and found that she liked it. &quot;There were all these cool people with dreads and cigarettes,&quot; she said. &quot;It was very different from the classical-music program, with these precious girls, or the poli-sci school, which was full of rich kids from Saint-Tropez, very arrogant, politically on the right. I had nothing to say to those people. So I figured the jazz department would be like a good hobby—a place to make friends, like going to a community-theatre class.&quot;</p>`]
+    },
+    A1: {
+      story_id: stories.Apple.id,
+      position: 0,
+      title: `Origin Story`,
+      paragraphsHTML: [`<p>On <em>June 7, 2011</em>, a local businessman addressed a meeting of the Cupertino City Council. He had not been on the agenda, but his presence wasn't a total surprise. Earlier in the year the man had expressed his intention to attend a meeting in order to propose a new series of buildings along the city's northern border, but he hadn't felt up to it at the time. He was, as all of them knew, in dire health.</p><p><br /></p><p>Before the start of the meeting, Kris Wang, a Cupertino council­member, looked out the window at the back of the room and saw him walking toward the building. He moved with obvious difficulty, wearing the same outfit he had been seen in the day before when he'd introduced new products to the world—which is to say, the same outfit that anyone had ever seen him wear. When it was his turn to address the council, he walked to the podium. He began to speak, tentative at first before clicking into the conversational yet hypnotically compelling tone he used in keynotes.</p><p><br /></p><p>His company, he said, had &quot;grown like a weed.&quot; His workforce had increased significantly over a decade, coming to fill more than 100 buildings as workers created one blockbuster product after another. To consolidate his employees, he wanted to create a new campus, a verdant landscape where the border between nature and building would be blurred. Unlike other corporate campuses, which he found &quot;pretty boring,&quot; this would feature as its centerpiece a master structure, shaped like a circle, that would hold 12,000 employees. </p><blockquote>&quot;It's a pretty amazing building,&quot; he told them. &quot;It's a little like a spaceship landed.&quot;</blockquote><p>When Wang asked what benefit would come to Cupertino from this massive enterprise, the speaker had a slight edge to his voice as he explained, as if to a child, that it would enable the company to stay in the California township. Otherwise, it could sell off its current properties and take its people with it, maybe to someplace nearby, like Mountain View. That unpleasantness out of the way, the speaker was able to return to the subject of what he would create.</p><p><br /></p><p>&quot;I think we do have a shot,&quot; he told the council, &quot;of building the best office building in the world.&quot; What he didn't tell them—during what none of them could have known would be his last public appearance—is that he was not just planning a new campus for the company he cofounded, built, left, returned to, and ultimately saved from extinction. Through this new headquarters, <strong>Steve Jobs</strong> was planning the future of <strong>Apple</strong> itself—a future beyond him and, ultimately, beyond any of us.</p>`]
+    },
+    A2: {
+      story_id: stories.Apple.id,
+      position: 1,
+      title: `Apple Park`,
+      heroURL: `https://images.unsplash.com/photo-1434494243370-596416019a0d?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=915043a427ccba0b16881c7acd7a9f14`,
+      paragraphsHTML: [`<p>On a crisp and clear March day, more than five years after Jobs' death, I'm seated next to <strong>Jonathan Ive</strong> in the back of a Jeep Wrangler as we prepare to tour the nearly completed <strong>Apple Park</strong>, the name recently bestowed on the campus that Jobs pitched to the Cupertino City Council in 2011. At 50, Apple's design chieftain still looks like the rugby player he once was, and he remains, despite fame, fortune, and a knighthood, the same soft-spoken Brit I met almost 20 years ago. We are both wearing white hard hats with a silver Apple logo above the brim; Ive's is personalized with &quot;Jony&quot; underneath the iconic symbol. Dan Whisenhunt, the company's head of facilities and a de facto manager of the project, comes with us. He too has a personalized hat. It is an active construction site on a tight deadline—the first occupants are supposedly moving in within 30 days of my visit, with 500 new employees arriving every week thereafter—and I felt a bit like one of the passengers on the first ride into Jurassic Park.</p><p><br /></p><p>We drive up North Tantau Avenue, past the buildings that will house employees not fortunate enough to sit in the campus's main headquarters, as well as the half-finished visitor's center. Only a few years ago, most of the space was a flat parking lot, but today huge berms—artificial hills—hug the road, blocking views of busy Wolfe Road and Interstate 280 and forming a rolling landscape with hundreds of trees, their roots half-buried in wooden boxes, ready for planting. We drive around campus and turn into the entrance of a tunnel that will take us to the Ring.</p><p><br /></p><div><img src=\"https://cdn.macrumors.com/article-new/2017/05/apple-park-skyline.jpg\" /></div><p><br /></p><p>Of course I've seen images of it, architectural equivalents of movie trailers for a much-awaited blockbuster. From the day Jobs presented to the Cupertino City Council, digital renderings of the Ring, as Apple calls the main building, have circulated widely. As construction progressed, enterprising drone pilots began flying their aircraft overhead, capturing aerial views in slickly edited YouTube videos accompanied by New Agey soundtracks. Amid all the fanboy anticipation, though, Apple has also taken some knocks for the scale and scope of the thing. Investors urging Apple to kick back more of its bounty to shareholders have questioned whether the reported $5 billion in construction costs should have gone into their own pockets instead of a workplace striving for history. And the campus's opening comes at a point when, despite stellar earnings results, Apple has not launched a breakout product since Jobs' death. Apple executives want us to know how cool its new campus is—that's why they invited me. But this has also led some people to sniff that too much of its mojo has been devoted to giant glass panels, custom-built door handles, and a 100,000-square-foot fitness and wellness center complete with a two-story yoga room covered in stone, from just the right quarry in Kansas, that's been carefully distressed, like a pair of jeans, to make it look like the stone at Jobs' favorite hotel in Yosemite.</p><p><br /></p><p>Inside the 755-foot tunnel, the white tiles along the wall gleam like a recently installed high-end bathroom; it's what the Lincoln Tunnel must have looked like the day it opened, before the first smudge of soot sullied its walls. And as we emerge into the light, the Ring comes into view. As the Jeep orbits it, the sun glistens off the building's curved glass surface. The &quot;canopies&quot;—white fins that protrude from the glass at every floor—give it an exotic, retro-­future feel, evoking illustrations from science fiction pulp magazines of the 1950s. Along the inner border of the Ring, there is a walkway where one can stroll the three-quarter-mile perimeter of the building unimpeded. It's a statement of openness, of free movement, that one might not have associated with Apple. And that's part of the point.</p><p><br /></p><p>We drive through an entrance that takes us under the building and into the courtyard before driving back out again. Since it's a ring, of course, there is no main lobby but rather nine entrances. Ive opts to take me in through the café, a massive atrium-like space ascending the entire four stories of the building. Once it's complete, it will hold as many as 4,000 people at once, split between the vast ground floor and the balcony dining areas. Along its exterior wall, the café has two massive glass doors that can be opened when it's nice outside, allowing people to dine al fresco.</p>`]
+    },
+    A3: {
+      story_id: stories.Apple.id,
+      position: 2,
+      title: `The Site`,
+      heroURL: `https://images.unsplash.com/photo-1457803097035-3ace37af34a7?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=e2f148b3a8aab497c5ea54d34d451a9c`,
+      paragraphsHTML: [`<p>&quot;This might be a stupid question,&quot; I say. &quot;But why do you need a four-story glass door?&quot;</p><p><br /></p><blockquote>Ive raises an eyebrow. &quot;Well,&quot; he says. &quot;It depends how you define need, doesn't it?&quot;</blockquote><p>We go upstairs, and I take in the view. From planes descending to SFO, and even from drones that buzz the building from a hundred feet above it, the Ring looks like an ominous icon, an expression of corporate power, and a what-the-fuck oddity among the malls, highways, and more mundane office parks of suburban Silicon Valley. But peering out the windows and onto the vast hilly expanse of the courtyard, all of that peels away. It feels … peaceful, even amid the clatter and rumble of construction. It turns out that when you turn a skyscraper on its side, all of its bullying power dissipates into a humble serenity.</p><p><br /></p><p>For the next two hours, Ive and Whisenhunt walk me through other parts of the building and the grounds. They describe the level of attention devoted to every detail, the willingness to search the earth for the right materials, and the obstacles overcome to achieve perfection, all of which would make sense for an actual Apple consumer product, where production expenses could be amortized over millions of units. But the Ring is a 2.8-million-square-foot one-off, eight years in the making and with a customer base of 12,000. How can anyone justify this spectacular effort?</p><p><br /></p><p>&quot;It's frustrating to talk about this building in terms of absurd, large numbers,&quot; Ive says. &quot;It makes for an impressive statistic, but you don't live in an impressive statistic. While it is a technical marvel to make glass at this scale, that's not the achievement. The achievement is to make a building where so many people can connect and collaborate and walk and talk.&quot; The value, he argues, is not what went into the building. It's what will come out.</p>`]
+    },
+    A4: {
+      story_id: stories.Apple.id,
+      position: 3,
+      title: `The Design`,
+      paragraphsHTML: [`<p>A ring was not what Jobs had in mind when he first started talking about a new campus. Ive thinks it was around 2004 when he and his boss first began discussing a reimagined headquarters. &quot;I think it was in Hyde Park,&quot; he says. &quot;When we used to go to London together, we'd spend a lot of time in these parks. We began talking about a campus where your primary sense was that you were in parkland, with many elements that were almost collegiate—where the connection between what was built and a parkland was immediate, no matter where you were.&quot;</p><p><br /></p><p>The discussions continued and widened throughout the company, but it wasn't until 2009 that Apple was ready to actually move on the project. Though vacant land in Cupertino is rare, Apple had purchased 75 acres barely a mile from Infinite Loop, its current headquarters. The company began to seek out the right architectural firm to take on the task, and Jobs came to focus on Norman Foster, a Pritzker Prize winner whose commissions have included the Berlin Reichstag, the Hong Kong airport, and London's infamous &quot;Gherkin&quot; tower. Jobs called Foster in July 2009 and told him, in Foster's recollection, that Apple &quot;needed some help.&quot;</p><p><br /></p><p>Two months later Foster arrived in Cupertino and spent an entire day with Jobs, first at his office at Infinite Loop and later at his home in Palo Alto, and discovered that his new client had a remarkably detailed vision of the glass, steel, stone, and trees that would make up Apple's new home. As Jobs spoke, Foster furiously sketched in the A4 sketchbook he is never without, creating a &quot;word picture&quot; of what Jobs was envisioning. &quot;His touchstone was the quad at Stanford,&quot; Foster says, referring to the main part of the school's campus where low-slung academic buildings, arranged around large, leafy outdoor areas and designed with open-air pathways where one can walk along the structures' edges, offer the sensation of being both inside and out.</p><p><br /></p><div><img src=\"https://cdn.macrumors.com/article-new/2017/05/apple-park-sketch.jpg\" /></div><p><br /></p><p>Foster soon brought in reinforcements from his London-based firm, Foster + Partners, for the first of many meetings Jobs would have with a growing team of architects. Though he always professed to loathe nostalgia, Jobs based many of his ideas on his favorite features of the Bay Area of his youth. &quot;His briefing was all about California—his idealized California,&quot; says Stefan Behling, a Foster partner who became one of the project leads. The site Apple had bought was an industrial park, largely covered by asphalt, but Jobs envisioned hilly terrain, with sluices of walking paths. He again turned to Stanford for inspiration by evoking the Dish, a popular hiking area near the campus where rolling hills shelter a radio telescope.</p><p><br /></p><p>The meetings often lasted for five or six hours, consuming a significant amount of time in the last two years of Jobs' life. He could be scary when he swooped down on a detail he demanded. At one point, Behling recalls, Jobs discussed the walls he had in mind for the offices: &quot;He knew exactly what timber he wanted, but not just ‘I like oak' or ‘I like maple.' He knew it had to be quarter-­cut. It had to be cut in the winter, ideally in January, to have the least amount of sap and sugar content. We were all sitting there, architects with gray hair, going, ‘Holy shit!'&quot;</p>`]
+    },
+    A5: {
+      story_id: stories.Apple.id,
+      position: 4,
+      title: `Development`,
+      paragraphsHTML: [`<p>As with any Apple product, its shape would be determined by its function. This would be a workplace where people were open to each other and open to nature, and the key to that would be modular sections, known as pods, for work or collaboration. Jobs' idea was to repeat those pods over and over: pod for office work, pod for teamwork, pod for socializing, like a piano roll playing a Philip Glass composition. They would be distributed demo­cratically. Not even the CEO would get a suite or a similar incongruity. And while the company has long been notorious for internal secrecy, compartmentalizing its projects on a need-to-know basis, Jobs seemed to be proposing a more porous structure where ideas would be more freely shared across common spaces. Not totally open, of course—Ive's design studio, for instance, would be shrouded by translucent glass—but more open than Infinite Loop.</p><p><br /></p><p>&quot;At first, we had no idea what Steve was actually talking about with these pods. But he had it all mapped out: a space where you could concentrate one minute and then bump into another group of people in the next,&quot; Behling says. &quot;And how many restaurants should we have? One restaurant, a huge one, forcing everyone to get together. You have to be able to bump into each other.&quot; In part Jobs was expanding on a concept that he had developed while helping design the headquarters of another company he ran—Pixar—that nudged collaboration by forcing people to stroll longer than usual to the restrooms. (So involved was Jobs in that project that Pixar-­ites call the building &quot;Steve's Movie.&quot;) In this new project, Jobs was balancing an engineer's need for intense concentration with the brainstorming that unearths innovation.</p><p><br /></p><p>To accommodate the pods, the main building took the shape of a bloated clover leaf—people at Apple called it the propeller—with three lobes doing a Möbius around a center core. But over time Jobs realized that it wouldn't work. &quot;We have a crisis,&quot; he told the architects early in the spring of 2010. &quot;I think it is too tight on the inside and too wide on the outside.&quot; This launched weeks of overtime among Foster's 100-person team to figure out how to resolve the problem. (Their ranks would eventually reach 250.) In May, as he was sketching in his book, Foster wrote down a statement: &quot;On the way to a circle.&quot;</p>`]
+    },
+    A6: {
+      story_id: stories.Apple.id,
+      position: 5,
+      title: `The Plan`,
+      heroURL: `https://qzprod.files.wordpress.com/2017/02/apple-campus-2-iphone-design.jpg?quality=80&strip=all`,
+      paragraphsHTML: [`<p>According to Walter Isaacson's biography of Jobs, there was another factor. When Jobs showed a drawing of the clover leaf to his son, Reed, the teenager commented that from the air, the building would look like male genitalia. The next day Jobs repeated the observation to the architects, warning them that from that point on, &quot;you're never going to be able to erase that vision from your mind.&quot; (Foster and Behling say they have no recollection of this.)</p><p><br /></p><p>By June 2010 it was a circle. No one takes full credit for the shape; all seem to feel it was inevitable all along. &quot;Steve dug it right away,&quot; Foster says.</p><p><br /></p><p>By that fall Whisenhunt had heard that a former HP campus in Cupertino might be available. The 100-acre plot was just north of Apple's planned site. What's more, it had deep meaning for Jobs. As a young teen he had talked his way into a summer job at HP, just at the time when its founders—Jobs' heroes—were walking that site and envisioning an office park cluster for their computer systems division. Now HP was contracting and no longer needed the space. Whisenhunt worked a deal, and Apple's project suddenly grew to 175 acres.</p><p><br /></p><p>Jobs had always insisted that most of the site be covered with trees; he even took the step of finding the perfect tree expert to create his corporate Arden. He loved the foliage at the Dish and found one of the arborists responsible. David Muffly, a cheerful, bearded fellow with a Lebowski-ish demeanor, was in a client's backyard in Menlo Park when he got the call to come to Jobs' office to talk trees. He was massively impressed with the Apple CEO's taste and knowledge. &quot;He had a better sense than most arborists,&quot; Muffly says. &quot;He could tell visually which trees looked like they had good structure.&quot; Jobs was adamant that the new campus house indigenous flora, and in particular he wanted fruit trees from the orchards he remembered from growing up in Northern California.</p><p><br /></p><p>Apple will ultimately plant almost 9,000 trees. Muffly was told that the landscape should be futureproof and that he should choose drought-tolerant varieties so his mini forest and meadows could survive a climate crisis. (As part of its ecological efforts to prevent such a crisis, Apple claims, its buildings will run solely on sustainable energy, most of it from solar arrays on the roofs.) Jobs' aims were not just aesthetic. He did his best thinking during walks and was especially inspired by ambling in nature, so he envisioned how Apple workers would do that too. &quot;Can you imagine doing your work in a national park?&quot; says Tim Cook, who succeeded Jobs as CEO in 2011. &quot;When I really need to think about something I'm struggling with, I get out in nature. We can do that now! It won't feel like Silicon Valley at all.&quot;</p><p><br /></p><p>Cook recalls the last time he discussed the campus with his boss and friend in the fall of 2011. &quot;It was actually the last time I spoke to him, the Friday before he passed away,&quot; Cook says. &quot;We were watching a movie, Remember the Titans. I loved it, but I was so surprised he liked that movie. I remember talking to him about the site then. It was something that gave him energy. I was joking with him that we were all worried about some things being difficult, but we were missing the most important one, the biggest challenge of all.&quot;</p><p><br /></p><p>Which was?</p><p><br /></p><p>&quot;Deciding which employees are going to sit in the main building&quot; and which would have to work in the outer buildings. &quot;And he just got a big laugh out of it.&quot;</p><p><br /></p><blockquote>ALL THAT WAS left for Apple to do was build it.</blockquote>`]
     }
   })
 );
@@ -370,6 +419,191 @@ const actors = seed(Actor, {
     name: `Saint-Tropez`,
     description: `a town, 100 kilometres (62 miles) west of Nice, in the Var department of the Provence-Alpes-Côte d'Azur region of southeastern France. It is also the principal town in the canton of Saint-Tropez.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Saint_Tropez_Ville.jpg/1920px-Saint_Tropez_Ville.jpg`
+  },
+  Kris_Wang: {
+    name: `Kris Wang`,
+    description: `Kris Wang is an American politician and a former mayor of Cupertino, California.`,
+    image: ``
+  },
+  California: {
+    name: `California`,
+    description: `California (/ˌkælᵻˈfɔːrnjə, -ni.ə/ KAL-ə-FORN-yə, KAL-ə-FORN-ee-ə) is the most populous state in the United States and the third most extensive by area. Located on the western (Pacific Ocean) coast of the U.S., California is bordered by the other U.S`,
+    image: ``
+  },
+  Mountain_View: {
+    name: `Mountain View`,
+    description: `Mountain View may refer to any of the following places:`,
+    image: ``
+  },
+  Steve_Jobs: {
+    name: `Steve Jobs`,
+    description: `Steven Paul "Steve" Jobs (/ˈdʒɒbz/; February 24, 1955 – October 5, 2011) was an American entrepreneur, businessman, inventor, and industrial designer. He was the co-founder, chairman, and chief executive officer (CEO) of Apple Inc.; CEO and majority `,
+    image: `https://upload.wikimedia.org/wikipedia/commons/b/b9/Steve_Jobs_Headshot_2010-CROP.jpg`
+  },
+  Apple: {
+    name: `https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg`,
+    description: `The apple tree (Malus pumila, commonly and erroneously called Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown speci`,
+    image: ``
+  },
+  Jonathan_Ive: {
+    name: `Jonathan Ive`,
+    description: `Sir Jonathan Paul "Jony" Ive, KBE (born 27 February 1967), is a British industrial designer who is currently the Chief Design Officer (CDO) of Apple Inc. While working for a design firm in London he was asked by Apple, then a struggling company, to c`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/7/7d/Jonathan_Ive_%28OTRS%29.jpg`
+  },
+  Jeep: {
+    name: `Jeep Wrangler`,
+    description: `The Jeep Wrangler is a compact and mid-size (Wrangler Unlimited models) four-wheel drive off-road vehicle manufactured by Jeep, currently in its third generation. The Wrangler is arguably an indirect progression from the World War II Willys MB throug`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/a/a6/2008_Wrangler_JK_Unlimited_Sahara.jpg`
+  },
+  Apple_Park: {
+    name: `Apple Park`,
+    description: `Apple Park is the future headquarters of Apple Inc. in Cupertino, California. It is under construction and was expected to be completed by the end of 2017. Its research and development facility is already occupied with over 2000 people. It is going t`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/6/61/Apple_Campus_2_aerial_Aug_2016.jpg`
+  },
+  Jurassic: {
+    name: `Jurassic Park`,
+    description: `Jurassic Park is an American science fiction media franchise centered on a disastrous attempt to create a theme park of cloned dinosaurs. It began in 1990 when Universal Studios bought the rights to the novel by Michael Crichton before it was even pu`,
+    image: `https://upload.wikimedia.org/wikipedia/en/9/96/Jurassic_Park_logo.jpg`
+  },
+  YouTube: {
+    name: `YouTube`,
+    description: `YouTube is an American video-sharing website headquartered in San Bruno, California. The service was created by three former PayPal employees – Chad Hurley, Steve Chen, and Jawed Karim – in February 2005. Google bought the site in November 2006 for U`,
+    image: ``
+  },
+  New_Age: {
+    name: `New Age`,
+    description: `The New Age is a term applied to a range of spiritual or religious beliefs and practices that developed in Western nations during the 1970s. Precise scholarly definitions of the New Age differ in their emphasis, largely as a result of its highly ecle`,
+    image: ``
+  },
+  Kansas: {
+    name: `Kansas`,
+    description: `Kansas /ˈkænzəs/ is a U.S. state located in the Midwestern United States. Its capital is Topeka and its largest city is Wichita. Kansas is named after the Kansa Native American tribe, which inhabited the area. The tribe's name (natively kką:ze) is of`,
+    image: ``
+  },
+  Yosemite: {
+    name: `Yosemite`,
+    description: `Yosemite National Park (/joʊˈsɛmᵻti/ yoh-SEM-it-ee) is a national park spanning portions of Tuolumne, Mariposa and Madera counties in Northern California. The park, which is managed by the National Park Service, covers an area of 747,956 acres (1,168`,
+    image: ``
+  },
+  Lincoln_Tunnel: {
+    name: `Lincoln Tunnel`,
+    description: `The Lincoln Tunnel is an approximately 1.5-mile-long (2.4 km) set of three tunnels under the Hudson River, connecting Weehawken, New Jersey and Midtown Manhattan in New York City. An integral conduit within the New York Metropolitan Area, it was desi`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/1/12/Lincolntunnel.jpg`
+  },
+  SFO: {
+    name: `SFO`,
+    description: `San Francisco International Airport (IATA: SFO, ICAO: KSFO, FAA LID: SFO) is an international airport 13 miles (21 km) south of downtown San Francisco, California, United States, near Millbrae and San Bruno in unincorporated San Mateo County. It has `,
+    image: `https://upload.wikimedia.org/wikipedia/commons/c/c0/SFO_Logo.svg`
+  },
+  Silicon_Valley: {
+    name: `Silicon Valley`,
+    description: `Silicon Valley is a nickname for the southern portion of the San Francisco Bay Area, in the northern part of the U.S. state of California. The "valley" in its name refers to the Santa Clara Valley in Santa Clara County, which includes the city of San`,
+    image: ``
+  },
+  Dan_Whisenhunt: {
+    name: `Dan Whisenhunt`,
+    description: ``,
+    image: ``
+  },
+  Cupertino: {
+    name: `Cupertino`,
+    description: `Cupertino (/ˌkuːpərˈtiːnoʊ/ KOOP-ər-TEEN-oh) is a U.S. city in Santa Clara County, California, directly west of San Jose on the western edge of the Santa Clara Valley with portions extending into the foothills of the Santa Cruz Mountains. The populat`,
+    image: ``
+  },
+  Infinite_Loop: {
+    name: `Infinite Loop`,
+    description: `An infinite loop (or endless loop) is a sequence of instructions in a computer program which loops endlessly, either due to the loop having no terminating condition, having one that can never be met, or one that causes the loop to start over. In olde`,
+    image: ``
+  },
+  Hyde_Park: {
+    name: `Hyde Park`,
+    description: `Hyde Park may refer to:`,
+    image: ``
+  },
+  Norman_Foster: {
+    name: `Norman Foster`,
+    description: `Norman Robert Foster, Baron Foster of Thames Bank, OM, HonFREng (born 1 June 1935) is a British architect whose company, Foster + Partners, maintains an international design practice famous for high-tech architecture. He is one of Britain's most prol`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/a/a6/Norman_Foster_dresden_061110.jpg`
+  },
+  Pritzker: {
+    name: `Pritzker Prize`,
+    description: `The Pritzker Architecture Prize is awarded annually "to honor a living architect or architects whose built work demonstrates a combination of those qualities of talent, vision and commitment, which has produced consistent and significant contribution`,
+    image: `https://upload.wikimedia.org/wikipedia/en/f/f0/Medal_of_Pritzker_Architecture_Prize_%28front%29.gif`
+  },
+  Berlin: {
+    name: `Berlin Reichstag`,
+    description: ``,
+    image: ``
+  },
+  Hong_Kong: {
+    name: `Hong Kong`,
+    description: `Hong Kong, officially the Hong Kong Special Administrative Region of the People's Republic of China, is an autonomous territory on the Pearl River Delta of China. Macau lies across the delta to the west, and the province of Guangdong borders the terr`,
+    image: ``
+  },
+  Palo_Alto: {
+    name: `Palo Alto`,
+    description: `Palo Alto (/ˌpæloʊ ˈæltoʊ/ PAL-oh AL-toh; Spanish: [ˈpalo ˈalto]; from palo, literally "stick", colloquially "tree", and alto "tall"; meaning: "tall tree") is a charter city located in the northwest corner of Santa Clara County, California, in the Sa`,
+    image: ``
+  },
+  Foster_Partners: {
+    name: `Foster Partners`,
+    description: `Foster + Partners is a British international studio for architecture and integrated design, with headquarters in London. The practice is led by its founder and Chairman, Norman Foster, and has constructed many high-profile glass-and-steel buildings.`,
+    image: `https://upload.wikimedia.org/wikipedia/en/e/eb/Foster_and_Partners_logo.gif`
+  },
+  Stefan_Behling: {
+    name: `Stefan Behling`,
+    description: ``,
+    image: ``
+  },
+  Stanford: {
+    name: `Stanford`,
+    description: `Stanford University (Stanford; officially Leland Stanford Junior University) is a private research university in Stanford, California, adjacent to Palo Alto and between San Jose and San Francisco. Its 8,180-acre (12.8 sq mi; 33.1 km2) campus is one o`,
+    image: `https://upload.wikimedia.org/wikipedia/en/b/b7/Stanford_University_seal_2003.svg`
+  },
+  Phillip_Glass: {
+    name: `Phillip Glass`,
+    description: `Philip Morris Glass (born January 31, 1937) is an American composer. He is considered one of the most influential music makers of the late 20th century. Glass's compositions have been described as minimal music, similar to other "minimalist" composer`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/5/5b/Philip_Glass_018.jpg`
+  },
+  Pixar: {
+    name: `Pixar`,
+    description: ``,
+    image: `https://upload.wikimedia.org/wikipedia/commons/2/21/Pixaranimationstudios.jpg`
+  },
+  Möbius: {
+    name: `Möbius`,
+    description: `Moebius, Möbius or Mobius may refer to:`,
+    image: ``
+  },
+  HP: {
+    name: `HP`,
+    description: `HP may refer to: Hewlett-Packard, a former technology corporation that split into two separate companies in 2015: Hewlett Packard Enterprise, an enterprise-focused product and service organization HP Inc., Hewlett-Packard's computer and printer busin`,
+    image: ``
+  },
+  Walter_Isaacson: {
+    name: `Walter Isaacson`,
+    description: `Walter Isaacson (born May 20, 1952) is an American writer and journalist. He is the President and CEO of the Aspen Institute, a nonpartisan educational and policy studies organization based in Washington, D.C. He has been the chairman and CEO of Cabl`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/7/78/Walter_Isaacson_VF_2012_Shankbone_2.JPG`
+  },
+  Lebowski: {
+    name: `The Big Lebowski`,
+    description: ``,
+    image: ``
+  },
+  Menlo: {
+    name: `Menlo Park`,
+    description: `Menlo Park may refer to: Menlo Park, New Jersey, an unincorporated community in the United States Menlo Park, California, a city in the United States Menlo Park, Pretoria, a suburb in South Africa Menlo Park (band), an alternative-rock band Menlo Par`,
+    image: ``
+  },
+  Tim_Cook: {
+    name: `Tim Cook`,
+    description: `Timothy Donald "Tim" Cook (born November 1, 1960) is an American business executive, industrial engineer and developer. Cook is the Chief Executive Officer of Apple Inc., previously serving as the company's Chief Operating Officer, under its founder `,
+    image: ``
+  },
+  Remember: {
+    name: `Remember the Titans`,
+    description: ``,
+    image: `https://upload.wikimedia.org/wikipedia/en/d/d1/Remember_the_titansposter.jpg`
   }
 })
 
@@ -561,6 +795,170 @@ const scenesActors = seed(ScenesActors,
     741: {
       scene_id: scenes.CMS4.id,
       actor_id: actors.Saint_Tropez.id
+    },
+    81: {
+      scene_id: scenes.A1.id,
+      actor_id: actors.Cupertino.id
+    },
+    82: {
+      scene_id: scenes.A1.id,
+      actor_id: actors.Kris_Wang.id
+    },
+    83: {
+      scene_id: scenes.A1.id,
+      actor_id: actors.California.id
+    },
+    84: {
+      scene_id: scenes.A1.id,
+      actor_id: actors.Mountain_View.id
+    },
+    85: {
+      scene_id: scenes.A1.id,
+      actor_id: actors.Steve_Jobs.id
+    },
+    86: {
+      scene_id: scenes.A1.id,
+      actor_id: actors.Apple.id
+    },
+    91: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.Jonathan_Ive.id
+    },
+    92: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.Jeep.id
+    },
+    93: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.Apple_Park.id
+    },
+    94: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.Jurassic.id
+    },
+    95: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.YouTube.id
+    },
+    96: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.New_Age.id
+    },
+    97: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.Kansas.id
+    },
+    98: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.Yosemite.id
+    },
+    99: {
+      scene_id: scenes.A2.id,
+      actor_id: actors.Lincoln_Tunnel.id
+    },
+    101: {
+      scene_id: scenes.A3.id,
+      actor_id: actors.SFO.id
+    },
+    102: {
+      scene_id: scenes.A3.id,
+      actor_id: actors.Silicon_Valley.id
+    },
+    103: {
+      scene_id: scenes.A3.id,
+      actor_id: actors.Dan_Whisenhunt.id
+    },
+    104: {
+      scene_id: scenes.A3.id,
+      actor_id: actors.Apple.id
+    },
+    111: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Cupertino.id
+    },
+    112: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Infinite_Loop.id
+    },
+    113: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Hyde_Park.id
+    },
+    114: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Norman_Foster.id
+    },
+    115: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Pritzker.id
+    },
+    116: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Berlin.id
+    },
+    117: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Hong_Kong.id
+    },
+    118: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Palo_Alto.id
+    },
+    119: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Foster_Partners.id
+    },
+    1110: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Stefan_Behling.id
+    },
+    1111: {
+      scene_id: scenes.A4.id,
+      actor_id: actors.Stanford.id
+    },
+    121: {
+      scene_id: scenes.A5.id,
+      actor_id: actors.Phillip_Glass.id
+    },
+    122: {
+      scene_id: scenes.A5.id,
+      actor_id: actors.Pixar.id
+    },
+    123: {
+      scene_id: scenes.A5.id,
+      actor_id: actors.Möbius.id
+    },
+    131: {
+      scene_id: scenes.A6.id,
+      actor_id: actors.HP.id
+    },
+    132: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Walter_Isaacson.id
+      },
+    133: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Dan_Whisenhunt.id
+      },
+    134: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Cupertino.id
+      },
+    135: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Lebowski.id
+      },
+    136: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Menlo.id
+      },
+    137: {
+        scene_id: scenes.A6.id,
+        actor_id: actors.Tim_Cook.id
+      },
+    138: {
+      scene_id: scenes.A6.id,
+      actor_id: actors.Remember.id
     }
   })
 )
@@ -590,6 +988,21 @@ const maps = seed(Map, {
     coords: `5.4394361, 43.5256738`,
     zoom: 8,
     style: `outdoors`
+  },
+  Cupertino_map: {
+    coords: `-122.0321823, 37.3229978`,
+    zoom: 12,
+    style: `light`
+  },
+  SF_map: {
+    coords: `-122.4194155, 37.7749295`,
+    zoom: 7,
+    style: `satellite`
+  },
+  Apple_map: {
+    coords: `-122.010984, 37.33502`,
+    zoom: 17,
+    style: `satellite`
   }
 })
 
@@ -617,9 +1030,22 @@ const scenesMaps = seed(ScenesMaps,
     75: {
       scene_id: scenes.CMS4.id,
       map_id: maps.France_map.id
+    },
+    1111: {
+      scene_id: scenes.A1.id,
+      map_id: maps.Cupertino_map.id
+    },
+    4242: {
+      scene_id: scenes.A4.id,
+      map_id: maps.SF_map.id
+    },
+    5353: {
+      scene_id: scenes.A5.id,
+      map_id: maps.Apple_map.id
     }
   })
 )
 
+module.exports = Object.assign(seed, {users, stories, scenes, actors, maps, scenesActors, scenesMaps})
 
-module.exports = Object.assign(seed, {users, stories, actors, maps, scenesActors, scenesMaps})
+

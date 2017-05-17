@@ -100,6 +100,19 @@ class EditorMapModule extends Component {
           locationFormatted: results.formatted_address,
           mapboxZoom: zoom
         });
+
+         this.props.setTimeout(() => {
+
+          this.props.setLocation(this.props.position, [{
+            name: this.state.location,
+            coords: [coords.lng, coords.lat],
+            style: this.state.mapboxStyle,
+            zoom: zoom,
+          }]);
+
+          console.log("saving map!")
+          this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
+        }, 7000);
       }
     });
   }
@@ -180,7 +193,6 @@ class EditorMapModule extends Component {
                 height: '50vh',
                 width: 'auto',
                 display: 'flex'}}
-                onZoomEnd={this.zoomEndFn.bind(this)}
               >
                 <div>
                   {/* Need to set position of inner canvas to relative */}
