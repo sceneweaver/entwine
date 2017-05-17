@@ -138,7 +138,7 @@ class EditorMapModule extends Component {
   			<div className="map-editor-header">
 
           <div className="map-style">
-						<h5> Map Style: &nbsp; </h5>
+						<h4> Map Style: &nbsp; </h4>
 						<select
 							value={this.state.mapboxStyle}
 							onChange={this.changeMapboxStyle.bind(this)}
@@ -152,7 +152,7 @@ class EditorMapModule extends Component {
 					</div>
 
           <div>
-						<h5> Location: &nbsp; </h5>
+						<h4> Location: &nbsp; </h4>
 						 <input
               type="text"
               className="location-name-field"
@@ -163,7 +163,7 @@ class EditorMapModule extends Component {
 					</div>
 
 					<div className="map-zoom">
-						<h5> Map Zoom: &nbsp; </h5>
+						<h4> Map Zoom: &nbsp; </h4>
 						<select
 							value={this.state.mapboxZoom}
 							onChange={this.changeMapboxZoom.bind(this)}
