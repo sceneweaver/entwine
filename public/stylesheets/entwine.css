@@ -579,6 +579,29 @@ html, body, #main {
   font-size: 1.5rem !important;
 }
 
+.actor-image-field-container {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.actor-image-field-container > h5 {
+  margin: 0;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+.actor-image-field {
+  width: 100%;
+  border-bottom: 0.5px solid white !important;
+  margin: 0;
+  margin-bottom: 0 !important;
+  font-size: 1.5rem !important;
+}
+
 .actor-desc-field-container {
   display: inline-flex;
   flex-direction: row;
