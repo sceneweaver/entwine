@@ -169,7 +169,6 @@ class EditorScene extends Component {
 	}
 
 	recommendationString(recArr) {
-		console.log("I have run")
 		let string = "We noticed you have ";
 		let secondHalf = ' We recommend using the ';
 
