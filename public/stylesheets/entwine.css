@@ -250,7 +250,7 @@ html, body, #main {
 /* ----- EditorMaps Styling ----- */
 
 .maps-module {
-  background-color: #1a7015;
+  background-color: #11893c;
   width: 100%;
   height: 100vh;
 }
@@ -263,6 +263,11 @@ html, body, #main {
 .maps-module-btn {
   background-color: #29c92f;
   margin: 10px;
+}
+
+.maps-module button:hover{
+  background-color: #51dc56;
+  color: white;
 }
 
 .locations-box {
@@ -363,6 +368,11 @@ input.location-name-field {
 
 .actors-module-btn {
   background-color: #0090FF;
+}
+
+.actors-module button:hover{
+  background-color: #4eb2ff;
+  color: white;
 }
 
 .actors-gen-btn {
@@ -527,6 +537,11 @@ input.location-name-field {
 .hero-module-header {
   margin: 0 20px;
   border-bottom: 0.5px solid #ff6600;
+}
+
+.hero-module button:hover{
+  background-color: #ff954e;
+  color: white;
 }
 
 .hero-box {
