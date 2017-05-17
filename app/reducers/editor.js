@@ -166,10 +166,10 @@ export const setHero = (position, imageObj) => ({
   heroPhotogURL: imageObj.heroPhotogURL
 });
 
-export const setRecommendations = (position, recString) => ({
+export const setRecommendations = (position, recArr) => ({
   type: SET_RECOMMENDATIONS,
   position,
-  recString
+  recArr
 });
 
 export const clearRecommendations= (position) => ({
@@ -296,7 +296,7 @@ export default function reducer (state = {
       break;
 
     case SET_RECOMMENDATIONS:
-      newState.scenes[action.position].recommendations = newState.scenes[action.position].recommendations.concat(action.recString);
+      newState.scenes[action.position].recommendations = action.recArr;
       break;
 
     case CLEAR_RECOMMENDATIONS:
@@ -364,18 +364,22 @@ export const generateMapLocations = position => (dispatch, getState) => {
 export const generateRecommendations = position => (dispatch, getState) => {
   if (getState().editor.scenes[position].recommendations) dispatch(clearRecommendations(position));
   const textBody = getState().editor.scenes[position].paragraphs[0];
+  let recArr = [];
 
   findProperNouns(textBody)
   .then(actorsArray => {
     if (actorsArray.length > 0) {
       dispatch(setActors(position, actorsArray));
-      dispatch(setRecommendations(position, 'actors'));
+      recArr.push('actors');
     }
     if (actorsArray[0]) {
       return findPlaces(actorsArray);}
   })
   .then(placeObj => {
     dispatch(setLocation(position, placeObj));
-    dispatch(setRecommendations(position, 'maps'));
+    recArr.push('maps');
+  })
+  .then(() => {
+    dispatch(setRecommendations(position, recArr));
   });
 };
