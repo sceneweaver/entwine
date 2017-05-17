@@ -15,7 +15,7 @@ class EditorActors extends Component {
               onClick={this.props.onHideActors}
               className="btn actors-module-btn"
             >
-              <i className="fa fa-minus" aria-hidden="true"></i>
+              Close
             </button>
           </div>
 
@@ -26,13 +26,13 @@ class EditorActors extends Component {
               onClick={this.props.onRefreshActors}
               className="btn actors-module-btn actors-gen-btn"
             >
-              Generate Characters &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
+              Generate &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
             </button>
             <button
               onClick={this.props.onAddActor}
               className="btn actors-module-btn actors-add-btn"
             >
-              Add Character &nbsp; <i className="fa fa-plus" aria-hidden="true"></i>
+              Add New &nbsp; <i className="fa fa-plus" aria-hidden="true"></i>
             </button>
           </div>
 
