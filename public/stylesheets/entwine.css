@@ -268,14 +268,10 @@ html, body, #main {
 .locations-box {
   padding: 20px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
-}
-
-.locations-box > p {
-  margin-bottom: 0;
   color: white;
 }
 

@@ -4,7 +4,7 @@ import EditorMapModule from './EditorMapModule';
 /* ----- COMPONENT ----- */
 
 class EditorMaps extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       disableAdd: false
@@ -13,7 +13,7 @@ class EditorMaps extends Component {
 
   componentWillReceiveProps(nextProps) {
     // if there are no locations, let the user add map
-    if (!nextProps.locations[0]) this.setState({disableAdd: false});
+    if (!nextProps.locations[0]) this.setState({ disableAdd: false });
   }
 
   render() {
@@ -42,13 +42,16 @@ class EditorMaps extends Component {
             </button>
           </div>
         </div>
-          {
-            this.props.locations.length ?
-              <EditorMapModule
-                position={this.props.position}
-              />
-              : <div className="locations-box"><p>Each scene can either have a header image or a map. Add a new map!</p></div>
-          }
+        {
+          this.props.locations.length ?
+            <EditorMapModule
+              position={this.props.position}
+            />
+            : (<div className="locations-box">
+              <h3>Each scene can either have a header image or a map.</h3>
+              <p>Click Add Map above to generate a map from the locations in your story.</p>
+            </div>)
+        }
       </div>
     );
   }
@@ -74,7 +77,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(deselectModule(ownProps.position));
   },
   onAddMap(event) {
-    this.setState({disableAdd: true});
+    this.setState({ disableAdd: true });
     event.preventDefault();
     event.stopPropagation();
     dispatch(generateMapLocations(ownProps.position));
