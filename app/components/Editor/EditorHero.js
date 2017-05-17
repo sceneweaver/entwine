@@ -16,7 +16,7 @@ class EditorHero extends Component {
               onClick={this.props.onHideHero}
               className="btn hero-module-btn"
             >
-              <i className="fa fa-minus" aria-hidden="true"></i>
+              Close
             </button>
           </div>
 
