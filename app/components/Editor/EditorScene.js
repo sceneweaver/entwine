@@ -256,6 +256,10 @@ class EditorScene extends Component {
 					/> :
 					null}
 
+				{this.props.recommendations.length > 0 ?
+					this.recommendationString(this.props.recommendations)
+				: null}
+
 				{this.props.editorState ?
 					<div
 						className="editor-container"
@@ -271,11 +275,6 @@ class EditorScene extends Component {
 						/>
 					</div> :
 					null}
-
-					{this.props.recommendations.length > 0 ?
-						this.recommendationString(this.props.recommendations)
-					: null}
-
 			</div>
 		);
 	}
