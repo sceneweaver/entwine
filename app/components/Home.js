@@ -10,7 +10,7 @@ const Home = () => (
     <div className="row flex">
 
       <Link to="stories/1">
-        <div className="featured-card hoverable" style={{backgroundImage: `url(https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=f9835518115e48ae328a33890fc683d6)`}}>
+        <div className="lead-row featured-card hoverable" style={{backgroundImage: `url(http://ww2.kqed.org/mindshift/wp-content/uploads/sites/23/2014/04/jazz.jpg)`}}>
           <div>
             <h1>
               <b>Featured Story:</b> Cécile McLorin Salvant's Timeless Jazz
@@ -27,6 +27,40 @@ const Home = () => (
       </div>
 
     </div>
+
+    <div className="row flex">
+      <Link to="stories/2">
+        <div className="second-row featured-card hoverable" style={{backgroundImage: `url(https://images.unsplash.com/photo-1485287442400-90e0eaed3a60?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=9bf685e757c9280e393668d9fee3c1aa)`}}>
+          <div>
+            <h1>
+              <b>Featured Story:</b> Cécile McLorin Salvant's Timeless Jazz
+            </h1>
+            <h2>
+              Fred Kaplan
+            </h2>
+          </div>
+        </div>
+      </Link>
+
+      <div style={{backgroundColor: 'transparent', flex: 1}}>
+      </div>
+
+      <Link to="stories/2">
+        <div className="second-row featured-card hoverable" style={{backgroundImage: `url(https://images.unsplash.com/photo-1485287442400-90e0eaed3a60?ixlib=rb-0.3.5&q=100&fm=jpg&crop=entropy&cs=tinysrgb&s=9bf685e757c9280e393668d9fee3c1aa)`}}>
+          <div>
+            <h1>
+              <b>Featured Story:</b> Cécile McLorin Salvant's Timeless Jazz
+            </h1>
+            <h2>
+              Fred Kaplan
+            </h2>
+          </div>
+        </div>
+      </Link>
+
+    </div>
+
+
   </div>
 );
 
