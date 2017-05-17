@@ -215,7 +215,9 @@ const scenes = seed(Scene,
       story_id: stories.Apple.id,
       position: 5,
       title: `The Plan`,
-      heroURL: `https://qzprod.files.wordpress.com/2017/02/apple-campus-2-iphone-design.jpg?quality=80&strip=all`,
+      heroURL: `https://www.wired.com/wp-content/uploads/2017/05/donut_opener.jpg`,
+      heroPhotog: `Dan Winters`,
+      heroPhotogURL: `https://www.wired.com/wp-content/uploads/2017/05/donut_opener.jpg`,
       paragraphsHTML: [`<p>According to Walter Isaacson's biography of Jobs, there was another factor. When Jobs showed a drawing of the clover leaf to his son, Reed, the teenager commented that from the air, the building would look like male genitalia. The next day Jobs repeated the observation to the architects, warning them that from that point on, &quot;you're never going to be able to erase that vision from your mind.&quot; (Foster and Behling say they have no recollection of this.)</p><p><br /></p><p>By June 2010 it was a circle. No one takes full credit for the shape; all seem to feel it was inevitable all along. &quot;Steve dug it right away,&quot; Foster says.</p><p><br /></p><p>By that fall Whisenhunt had heard that a former HP campus in Cupertino might be available. The 100-acre plot was just north of Apple's planned site. What's more, it had deep meaning for Jobs. As a young teen he had talked his way into a summer job at HP, just at the time when its founders—Jobs' heroes—were walking that site and envisioning an office park cluster for their computer systems division. Now HP was contracting and no longer needed the space. Whisenhunt worked a deal, and Apple's project suddenly grew to 175 acres.</p><p><br /></p><p>Jobs had always insisted that most of the site be covered with trees; he even took the step of finding the perfect tree expert to create his corporate Arden. He loved the foliage at the Dish and found one of the arborists responsible. David Muffly, a cheerful, bearded fellow with a Lebowski-ish demeanor, was in a client's backyard in Menlo Park when he got the call to come to Jobs' office to talk trees. He was massively impressed with the Apple CEO's taste and knowledge. &quot;He had a better sense than most arborists,&quot; Muffly says. &quot;He could tell visually which trees looked like they had good structure.&quot; Jobs was adamant that the new campus house indigenous flora, and in particular he wanted fruit trees from the orchards he remembered from growing up in Northern California.</p><p><br /></p><p>Apple will ultimately plant almost 9,000 trees. Muffly was told that the landscape should be futureproof and that he should choose drought-tolerant varieties so his mini forest and meadows could survive a climate crisis. (As part of its ecological efforts to prevent such a crisis, Apple claims, its buildings will run solely on sustainable energy, most of it from solar arrays on the roofs.) Jobs' aims were not just aesthetic. He did his best thinking during walks and was especially inspired by ambling in nature, so he envisioned how Apple workers would do that too. &quot;Can you imagine doing your work in a national park?&quot; says Tim Cook, who succeeded Jobs as CEO in 2011. &quot;When I really need to think about something I'm struggling with, I get out in nature. We can do that now! It won't feel like Silicon Valley at all.&quot;</p><p><br /></p><p>Cook recalls the last time he discussed the campus with his boss and friend in the fall of 2011. &quot;It was actually the last time I spoke to him, the Friday before he passed away,&quot; Cook says. &quot;We were watching a movie, Remember the Titans. I loved it, but I was so surprised he liked that movie. I remember talking to him about the site then. It was something that gave him energy. I was joking with him that we were all worried about some things being difficult, but we were missing the most important one, the biggest challenge of all.&quot;</p><p><br /></p><p>Which was?</p><p><br /></p><p>&quot;Deciding which employees are going to sit in the main building&quot; and which would have to work in the outer buildings. &quot;And he just got a big laugh out of it.&quot;</p><p><br /></p><blockquote>ALL THAT WAS left for Apple to do was build it.</blockquote>`]
     }
   })
@@ -423,106 +425,106 @@ const actors = seed(Actor, {
   Kris_Wang: {
     name: `Kris Wang`,
     description: `Kris Wang is an American politician and a former mayor of Cupertino, California.`,
-    image: ``
+    image: `https://i.ytimg.com/vi/cw5F8EM-kKY/maxresdefault.jpg`
   },
   California: {
     name: `California`,
-    description: `California (/ˌkælᵻˈfɔːrnjə, -ni.ə/ KAL-ə-FORN-yə, KAL-ə-FORN-ee-ə) is the most populous state in the United States and the third most extensive by area. Located on the western (Pacific Ocean) coast of the U.S., California is bordered by the other U.S`,
-    image: ``
+    description: `the most populous state in the United States and the third most extensive by area. Located on the western (Pacific Ocean) coast of the U.S., California is bordered by the other U.S. states of Oregon, Nevada, and Arizona and shares an international border with the Mexican state of Baja California.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Flag_of_California.svg/900px-Flag_of_California.svg.png`
   },
   Mountain_View: {
     name: `Mountain View`,
-    description: `Mountain View may refer to any of the following places:`,
-    image: ``
+    description: `Mountain View is a city located in Santa Clara County, California, United States, named for its views of the Santa Cruz Mountains.`,
+    image: `https://upload.wikimedia.org/wikipedia/en/6/6f/Seal_of_Mountain_View%2C_CA.png`
   },
   Steve_Jobs: {
     name: `Steve Jobs`,
-    description: `Steven Paul "Steve" Jobs (/ˈdʒɒbz/; February 24, 1955 – October 5, 2011) was an American entrepreneur, businessman, inventor, and industrial designer. He was the co-founder, chairman, and chief executive officer (CEO) of Apple Inc.; CEO and majority `,
+    description: `An American entrepreneur, businessman, inventor, and industrial designer. He was the co-founder, chairman, and chief executive officer (CEO) of Apple Inc.; CEO and majority shareholder of Pixar; a member of The Walt Disney Company's board of directors following its acquisition of Pixar; and founder, chairman, and CEO of NeXT. Jobs and Apple co-founder Steve Wozniak are widely recognized as pioneers of the microcomputer revolution of the 1970s and 1980s.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/b/b9/Steve_Jobs_Headshot_2010-CROP.jpg`
   },
   Apple: {
-    name: `https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg`,
-    description: `The apple tree (Malus pumila, commonly and erroneously called Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown speci`,
-    image: ``
+    name: `Apple Inc.`,
+    description: `Apple is an American multinational technology company headquartered in Cupertino, California that designs, develops, and sells consumer electronics, computer software, and online services. The company's hardware products include the iPhone smartphone, the iPad tablet computer, the Mac personal computer, the iPod portable media player, the Apple smartwatch, and the Apple TV digital media player. `,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/170px-Apple_logo_black.svg.png`
   },
   Jonathan_Ive: {
     name: `Jonathan Ive`,
-    description: `Sir Jonathan Paul "Jony" Ive, KBE (born 27 February 1967), is a British industrial designer who is currently the Chief Design Officer (CDO) of Apple Inc. While working for a design firm in London he was asked by Apple, then a struggling company, to c`,
+    description: `Sir Jonathan Paul "Jony" Ive, KBE (born 27 February 1967), is a British industrial designer who is currently the Chief Design Officer (CDO) of Apple Inc. While working for a design firm in London he was asked by Apple, then a struggling company, to create a look for a new laptop. He took the design to Apple and was hired immediately. Ive oversees the Apple Industrial Design Group and also provides leadership and direction for Human Interface software teams across the company. Ive is the designer of many of Apple's hardware and software products.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/7/7d/Jonathan_Ive_%28OTRS%29.jpg`
   },
   Jeep: {
     name: `Jeep Wrangler`,
-    description: `The Jeep Wrangler is a compact and mid-size (Wrangler Unlimited models) four-wheel drive off-road vehicle manufactured by Jeep, currently in its third generation. The Wrangler is arguably an indirect progression from the World War II Willys MB throug`,
+    description: `The Jeep Wrangler is a compact and mid-size (Wrangler Unlimited models) four-wheel drive off-road vehicle manufactured by Jeep, currently in its third generation. The Wrangler is arguably an indirect progression from the World War II Willys MB.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/a/a6/2008_Wrangler_JK_Unlimited_Sahara.jpg`
   },
   Apple_Park: {
     name: `Apple Park`,
-    description: `Apple Park is the future headquarters of Apple Inc. in Cupertino, California. It is under construction and was expected to be completed by the end of 2017. Its research and development facility is already occupied with over 2000 people. It is going t`,
+    description: `Apple Park is the future headquarters of Apple Inc. in Cupertino, California. It is under construction and was expected to be completed by the end of 2017. Its research and development facility is already occupied with over 2000 people.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/6/61/Apple_Campus_2_aerial_Aug_2016.jpg`
   },
   Jurassic: {
     name: `Jurassic Park`,
-    description: `Jurassic Park is an American science fiction media franchise centered on a disastrous attempt to create a theme park of cloned dinosaurs. It began in 1990 when Universal Studios bought the rights to the novel by Michael Crichton before it was even pu`,
+    description: `Jurassic Park is an American science fiction media franchise centered on a disastrous attempt to create a theme park of cloned dinosaurs. It began in 1990 when Universal Studios bought the rights to the novel by Michael Crichton.`,
     image: `https://upload.wikimedia.org/wikipedia/en/9/96/Jurassic_Park_logo.jpg`
   },
   YouTube: {
     name: `YouTube`,
-    description: `YouTube is an American video-sharing website headquartered in San Bruno, California. The service was created by three former PayPal employees – Chad Hurley, Steve Chen, and Jawed Karim – in February 2005. Google bought the site in November 2006 for U`,
-    image: ``
+    description: `YouTube is an American video-sharing website headquartered in San Bruno, California. The service was created by three former PayPal employees – Chad Hurley, Steve Chen, and Jawed Karim – in February 2005. Google bought the site in November 2006.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/YouTube_logo_2015.svg/502px-YouTube_logo_2015.svg.png`
   },
   New_Age: {
     name: `New Age`,
-    description: `The New Age is a term applied to a range of spiritual or religious beliefs and practices that developed in Western nations during the 1970s. Precise scholarly definitions of the New Age differ in their emphasis, largely as a result of its highly ecle`,
-    image: ``
+    description: `The New Age is a term applied to a range of spiritual or religious beliefs and practices that developed in Western nations during the 1970s. Precise scholarly definitions of the New Age differ in their emphasis.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/0/08/Rainbow_Gathering_Bosnia_2007.JPG`
   },
   Kansas: {
     name: `Kansas`,
-    description: `Kansas /ˈkænzəs/ is a U.S. state located in the Midwestern United States. Its capital is Topeka and its largest city is Wichita. Kansas is named after the Kansa Native American tribe, which inhabited the area. The tribe's name (natively kką:ze) is of`,
-    image: ``
+    description: `Kansas /ˈkænzəs/ is a U.S. state located in the Midwestern United States. Its capital is Topeka and its largest city is Wichita. Kansas is named after the Kansa Native American tribe, which inhabited the area.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Flag_of_Kansas.svg/1920px-Flag_of_Kansas.svg.png`
   },
   Yosemite: {
     name: `Yosemite`,
-    description: `Yosemite National Park (/joʊˈsɛmᵻti/ yoh-SEM-it-ee) is a national park spanning portions of Tuolumne, Mariposa and Madera counties in Northern California. The park, which is managed by the National Park Service, covers an area of 747,956 acres (1,168`,
-    image: ``
+    description: `Yosemite National Park (/joʊˈsɛmᵻti/ yoh-SEM-it-ee) is a national park spanning portions of Tuolumne, Mariposa and Madera counties in Northern California. The park, which is managed by the National Park Service, covers an area of 747,956 acres.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg/1920px-Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`
   },
   Lincoln_Tunnel: {
     name: `Lincoln Tunnel`,
-    description: `The Lincoln Tunnel is an approximately 1.5-mile-long (2.4 km) set of three tunnels under the Hudson River, connecting Weehawken, New Jersey and Midtown Manhattan in New York City. An integral conduit within the New York Metropolitan Area, it was desi`,
+    description: `The Lincoln Tunnel is an approximately 1.5-mile-long (2.4 km) set of three tunnels under the Hudson River, connecting Weehawken, New Jersey and Midtown Manhattan in New York City. An integral conduit within the New York Metropolitan Area.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/1/12/Lincolntunnel.jpg`
   },
   SFO: {
     name: `SFO`,
-    description: `San Francisco International Airport (IATA: SFO, ICAO: KSFO, FAA LID: SFO) is an international airport 13 miles (21 km) south of downtown San Francisco, California, United States, near Millbrae and San Bruno in unincorporated San Mateo County. It has `,
+    description: `San Francisco International Airport (IATA: SFO, ICAO: KSFO, FAA LID: SFO) is an international airport 13 miles (21 km) south of downtown San Francisco, California, United States, near Millbrae and San Bruno in unincorporated San Mateo County.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/c/c0/SFO_Logo.svg`
   },
   Silicon_Valley: {
     name: `Silicon Valley`,
-    description: `Silicon Valley is a nickname for the southern portion of the San Francisco Bay Area, in the northern part of the U.S. state of California. The "valley" in its name refers to the Santa Clara Valley in Santa Clara County, which includes the city of San`,
-    image: ``
+    description: `Silicon Valley is a nickname for the southern portion of the San Francisco Bay Area, in the northern part of the U.S. state of California. The "valley" in its name refers to the Santa Clara Valley in Santa Clara County.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Siliconvalley.JPG/1280px-Siliconvalley.JPG`
   },
   Dan_Whisenhunt: {
     name: `Dan Whisenhunt`,
-    description: ``,
-    image: ``
+    description: `VP, Real Estate & Development for Apple Inc.`,
+    image: `https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/3/000/000/17c/0acf1a5.jpg`
   },
   Cupertino: {
     name: `Cupertino`,
-    description: `Cupertino (/ˌkuːpərˈtiːnoʊ/ KOOP-ər-TEEN-oh) is a U.S. city in Santa Clara County, California, directly west of San Jose on the western edge of the Santa Clara Valley with portions extending into the foothills of the Santa Cruz Mountains. The populat`,
-    image: ``
+    description: `Cupertino (/ˌkuːpərˈtiːnoʊ/ KOOP-ər-TEEN-oh) is a U.S. city in Santa Clara County, California, directly west of San Jose on the western edge of the Santa Clara Valley with portions extending into the foothills of the Santa Cruz Mountains.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Flag_of_Cupertino%2C_California.svg/531px-Flag_of_Cupertino%2C_California.svg.png`
   },
   Infinite_Loop: {
     name: `Infinite Loop`,
-    description: `An infinite loop (or endless loop) is a sequence of instructions in a computer program which loops endlessly, either due to the loop having no terminating condition, having one that can never be met, or one that causes the loop to start over. In olde`,
-    image: ``
+    description: `An infinite loop (or endless loop) is a sequence of instructions in a computer program which loops endlessly, either due to the loop having no terminating condition, having one that can never be met, or one that causes the loop to start over.`,
+    image: `https://yt3.ggpht.com/-4bKFy2yiw3g/AAAAAAAAAAI/AAAAAAAAAAA/wbj5hpz83HI/s900-c-k-no-mo-rj-c0xffffff/photo.jpg`
   },
   Hyde_Park: {
     name: `Hyde Park`,
-    description: `Hyde Park may refer to:`,
-    image: ``
+    description: `Hyde Park is a major park in Central London. It is the largest of four Royal Parks that form a chain from the entrance of Kensington Palace through Kensington Gardens and Hyde Park, via Hyde Park Corner and Green Park past the main entrance to Buckingham Palace. The park is divided by the Serpentine and the Long Water.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/8/87/Aerial_view_of_Hyde_Park.jpg`
   },
   Norman_Foster: {
     name: `Norman Foster`,
-    description: `Norman Robert Foster, Baron Foster of Thames Bank, OM, HonFREng (born 1 June 1935) is a British architect whose company, Foster + Partners, maintains an international design practice famous for high-tech architecture. He is one of Britain's most prol`,
+    description: `Norman Robert Foster, Baron Foster of Thames Bank, OM, HonFREng (born 1 June 1935) is a British architect whose company, Foster + Partners, maintains an international design practice famous for high-tech architecture.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/a/a6/Norman_Foster_dresden_061110.jpg`
   },
   Pritzker: {
@@ -532,18 +534,18 @@ const actors = seed(Actor, {
   },
   Berlin: {
     name: `Berlin Reichstag`,
-    description: ``,
-    image: ``
+    description: `A historic edifice in Berlin, Germany, constructed to house the Imperial Diet (German: Reichstag), of the German Empire. It was opened in 1894 and housed the Diet until 1933, when it was severely damaged after it was set on fire. After World War II, the building fell into disuse; the parliament of the German Democratic Republic (the Volkskammer) met in the Palast der Republik in East Berlin, while the parliament of the Federal Republic of Germany (the Bundestag) met in the Bundeshaus in Bonn.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Berlin_reichstag_west_panorama_2.jpg/1920px-Berlin_reichstag_west_panorama_2.jpg`
   },
   Hong_Kong: {
     name: `Hong Kong`,
-    description: `Hong Kong, officially the Hong Kong Special Administrative Region of the People's Republic of China, is an autonomous territory on the Pearl River Delta of China. Macau lies across the delta to the west, and the province of Guangdong borders the terr`,
-    image: ``
+    description: `Hong Kong, officially the Hong Kong Special Administrative Region of the People's Republic of China, is an autonomous territory on the Pearl River Delta of China. Macau lies across the delta to the west, and the province of Guangdong borders the territory.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Flag_of_Hong_Kong.svg/900px-Flag_of_Hong_Kong.svg.png`
   },
   Palo_Alto: {
     name: `Palo Alto`,
-    description: `Palo Alto (/ˌpæloʊ ˈæltoʊ/ PAL-oh AL-toh; Spanish: [ˈpalo ˈalto]; from palo, literally "stick", colloquially "tree", and alto "tall"; meaning: "tall tree") is a charter city located in the northwest corner of Santa Clara County, California, in the Sa`,
-    image: ``
+    description: `Palo Alto (/ˌpæloʊ ˈæltoʊ/ PAL-oh AL-toh; Spanish: [ˈpalo ˈalto]; from palo, literally "stick", colloquially "tree", and alto "tall"; meaning: "tall tree") is a charter city located in the northwest corner of Santa Clara County, California.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/9/96/Downtownpacom.JPG`
   },
   Foster_Partners: {
     name: `Foster Partners`,
@@ -552,57 +554,57 @@ const actors = seed(Actor, {
   },
   Stefan_Behling: {
     name: `Stefan Behling`,
-    description: ``,
-    image: ``
+    description: `Stefan Behling is head of Studio 4 and a member of the Design Board. He has responsibility for an international portfolio of projects, varying in scale from strategic masterplans to a wide range of educational, commercial, residential and cultural buildings. He has a Diploma in Architecture from the University of Aachen (RWTH) and joined Foster Associates in 1987.`,
+    image: `http://www.fosterandpartners.com/media/325/img4b.jpg`
   },
   Stanford: {
     name: `Stanford`,
-    description: `Stanford University (Stanford; officially Leland Stanford Junior University) is a private research university in Stanford, California, adjacent to Palo Alto and between San Jose and San Francisco. Its 8,180-acre (12.8 sq mi; 33.1 km2) campus is one o`,
+    description: `Stanford University (Stanford; officially Leland Stanford Junior University) is a private research university in Stanford, California, adjacent to Palo Alto and between San Jose and San Francisco.`,
     image: `https://upload.wikimedia.org/wikipedia/en/b/b7/Stanford_University_seal_2003.svg`
   },
   Phillip_Glass: {
     name: `Phillip Glass`,
-    description: `Philip Morris Glass (born January 31, 1937) is an American composer. He is considered one of the most influential music makers of the late 20th century. Glass's compositions have been described as minimal music, similar to other "minimalist" composer`,
+    description: `Philip Morris Glass (born January 31, 1937) is an American composer. He is considered one of the most influential music makers of the late 20th century. Glass's compositions have been described as minimal music, similar to other "minimalist" composers`,
     image: `https://upload.wikimedia.org/wikipedia/commons/5/5b/Philip_Glass_018.jpg`
   },
   Pixar: {
     name: `Pixar`,
-    description: ``,
+    description: `an American computer animation film studio based in Emeryville, California that is a subsidiary of The Walt Disney Company. Pixar began in 1979 as the Graphics Group, part of the Lucasfilm computer division, before its spin-out as a corporation in 1986, with funding by Apple Inc. co-founder Steve Jobs, who became the majority shareholder.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/2/21/Pixaranimationstudios.jpg`
   },
   Möbius: {
     name: `Möbius`,
-    description: `Moebius, Möbius or Mobius may refer to:`,
-    image: ``
+    description: `The Möbius strip or Möbius band, also spelled Mobius or Moebius, is a surface with only one side (when embedded in 3-dimensional Euclidean space) and only one boundary. The Möbius strip has the mathematical property of being non-orientable. It can be realized as a ruled surface. It was discovered independently by the German mathematicians August Ferdinand Möbius and Johann Benedict Listing in 1858.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/d/d9/M%C3%B6bius_strip.jpg`
   },
   HP: {
     name: `HP`,
-    description: `HP may refer to: Hewlett-Packard, a former technology corporation that split into two separate companies in 2015: Hewlett Packard Enterprise, an enterprise-focused product and service organization HP Inc., Hewlett-Packard's computer and printer busin`,
-    image: ``
+    description: `HP Inc. (also known simply as HP and stylized as hp) is an American technology company. HP is the legal successor of Hewlett-Packard, after the corporate spin-off of Hewlett Packard Enterprise on November 11, 2015.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/100px-HP_logo_2012.svg.png`
   },
   Walter_Isaacson: {
     name: `Walter Isaacson`,
-    description: `Walter Isaacson (born May 20, 1952) is an American writer and journalist. He is the President and CEO of the Aspen Institute, a nonpartisan educational and policy studies organization based in Washington, D.C. He has been the chairman and CEO of Cabl`,
+    description: `Walter Isaacson (born May 20, 1952) is an American writer and journalist. He is the President and CEO of the Aspen Institute, a nonpartisan educational and policy studies organization based in Washington, D.C.`,
     image: `https://upload.wikimedia.org/wikipedia/commons/7/78/Walter_Isaacson_VF_2012_Shankbone_2.JPG`
   },
   Lebowski: {
     name: `The Big Lebowski`,
-    description: ``,
-    image: ``
+    description: `The Big Lebowski is a 1998 American crime comedy film written, produced, and directed by Joel and Ethan Coen. It stars Jeff Bridges as Jeffrey "The Dude" Lebowski, a Los Angeles slacker and avid bowler. He is assaulted as a result of mistaken identity, after which The Dude learns that a millionaire also named Jeffrey Lebowski was the intended victim.`,
+    image: `https://upload.wikimedia.org/wikipedia/en/3/35/Biglebowskiposter.jpg`
   },
   Menlo: {
     name: `Menlo Park`,
-    description: `Menlo Park may refer to: Menlo Park, New Jersey, an unincorporated community in the United States Menlo Park, California, a city in the United States Menlo Park, Pretoria, a suburb in South Africa Menlo Park (band), an alternative-rock band Menlo Par`,
-    image: ``
+    description: `Menlo Park is a city at the eastern edge of San Mateo County, in the San Francisco Bay Area of California, in the United States. It is bordered by San Francisco Bay on the north and east; East Palo Alto, Palo Alto, and Stanford to the south; Atherton, North Fair Oaks, and Redwood City to the west. Menlo Park is one of the most educated cities in the state of California and the United States, with nearly 70% of its residents having earned a degree.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/3/30/Menlo_Park_California_Logo.gif`
   },
   Tim_Cook: {
     name: `Tim Cook`,
-    description: `Timothy Donald "Tim" Cook (born November 1, 1960) is an American business executive, industrial engineer and developer. Cook is the Chief Executive Officer of Apple Inc., previously serving as the company's Chief Operating Officer, under its founder `,
-    image: ``
+    description: `Timothy Donald "Tim" Cook (born November 1, 1960) is an American business executive, industrial engineer and developer. Cook is the Chief Executive Officer of Apple Inc., previously serving as the company's Chief Operating Officer, under its founder Steve Jobs.`,
+    image: `https://upload.wikimedia.org/wikipedia/commons/d/d5/Tim_Cook_2009_cropped.jpg`
   },
   Remember: {
     name: `Remember the Titans`,
-    description: ``,
+    description: `Remember the Titans is a 2000 American sports film produced by Jerry Bruckheimer and directed by Boaz Yakin. The screenplay, written by Gregory Allen Howard, is based on the true story of African-American coach Herman Boone, portrayed by Denzel Washington, and his attempt to integrate the T. C. Williams High School football team in Alexandria, Virginia, in 1971. Will Patton portrays Bill Yoast, Boone's assistant coach. Real-life athletes Gerry Bertier and Julius Campbell are portrayed by Ryan Hurst and Wood Harris, respectively.`,
     image: `https://upload.wikimedia.org/wikipedia/en/d/d1/Remember_the_titansposter.jpg`
   }
 })
