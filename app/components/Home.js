@@ -24,10 +24,10 @@ const Home = () => (
 
       <div className="lead-row flex-card flex-col hoverable" style={{backgroundColor: '#2d2d86', color: 'white'}}>
         <h2> what is entwine? </h2>
-        <h3> entwine allows content creators to quickly embed interactive maps, information about key characters, and multiple scenes into their stories. </h3>
-        <div>
+        <h3> entwine allows you to create stories with interactive maps, information about key characters, and multiple scenes. </h3>
+        <div className="create-story">
           <Link to="/editor">
-            <div className="create-story-button"> Create a New Story </div>
+            <div className="create-story-btn"> Create a New Story </div>
           </Link>
         </div>
       </div>
@@ -36,10 +36,10 @@ const Home = () => (
 
     <div className="row flex">
       <Link to="stories/2">
-         <div className="second-row flex-card hoverable" style={{backgroundColor: '#732626'}}>
+         <div className="second-row flex-card hoverable" style={{background: 'linear-gradient(141deg, #602020 15%, #993333 51%, #cc6666 82%)'}}>
             <div>
               <h1>
-                <b>Featured Story:</b> North Korea's Apocalyptic Propagandists
+                <b>Featured Story:</b> North Korea's Consistently Apocalyptic Propagandists
               </h1>
               <h2>
                 Hannah Beech

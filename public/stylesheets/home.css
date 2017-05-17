@@ -26,9 +26,10 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 20px 10px;
+  padding: 24px 20px;
+  /*padding: 50px;*/
   background: inherit;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
 }
 .featured-card > div::before {
   content: "";
@@ -86,25 +87,6 @@
   box-sizing: border-box;
 }
 
-.lead-row {
-  height: 400px;
-}
-
-.lead-width {
-  min-width: 800px;
-}
-
-.second-row {
-  height: 250px;
-}
-
-.second-width {
-  min-width: 650px;
-}
-
-.second-width > div {
-  position: relative;
-}
 
 .featured-card {
   flex-grow: 1;
@@ -137,7 +119,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
 }
 
 .flex-card {
@@ -150,33 +131,42 @@
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 }
 
-#featured-text {
-  font-size: 40px
-}
-
-
-
-.home-page-header {
-  font-family: 'Nixie One', cursive;
-  font-size: 1.5em;
-}
-
-.home-page-text {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 1em;
-}
-
-.feature-row {
-  margin-bottom: 20px;
+.lead-row {
   height: 400px;
 }
 
-.create-story-button {
+.lead-width {
+  min-width: 800px;
+}
+
+.second-row {
+  height: 250px;
+}
+
+.second-width {
+  min-width: 650px;
+}
+
+.second-width > div {
+  /*position: relative;*/
+  background-size: cover;
+}
+
+.second-width > div::before {
+  transform: scale(1.2) translateY(15px);
+}
+
+.create-story {
   width: 75%;
-  height: 100%;
-  margin: 45px;
-  margin-top: 12px;
+  align-self: center;
+  margin-top: 40px;
   margin-bottom: 12px;
   background-color: #19194d;
-  color: white;
 }
+
+.create-story-btn {
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
