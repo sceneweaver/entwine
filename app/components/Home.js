@@ -13,7 +13,7 @@ const Home = () => (
         <div className="lead-row lead-width featured-card hoverable" style={{backgroundImage: `url(https://www.wired.com/wp-content/uploads/2017/05/donut_opener.jpg)`}}>
           <div>
             <h1>
-              <b>Featured Story:</b> Apple's New Campus: An Exclusive Look Inside the Mothership
+              <b>Featured Story:</b> Apple's New Campus: A Look Inside the Mothership
             </h1>
             <h2>
               Steven Levy

@@ -994,7 +994,7 @@ const maps = seed(Map, {
   Cupertino_map: {
     coords: `-122.0321823, 37.3229978`,
     zoom: 12,
-    style: `light`
+    style: `outdoors`
   },
   SF_map: {
     coords: `-122.4194155, 37.7749295`,

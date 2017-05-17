@@ -90,8 +90,8 @@ class Scene extends Component {
                     className="scene-hero-img-container"
                     style={{ backgroundImage: `url(${this.props.heroURL})` }}
                   />
-                  <div className="scene-hero-img-credit">
-                    <h4>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
+                  <div className="unsplash">
+                    <h4><span>Photo by</span> <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a> / <a href="http://unsplash.com">Unsplash</a></h4>
                   </div>
                 </div>
               ) : (
@@ -119,7 +119,7 @@ class Scene extends Component {
         {
           this.props.actors.length ? (
             <div className="article-modules col m5 offset-m4">
-              <h4>IN THIS STORY</h4>
+              <h4>IN THIS SCENE</h4>
               <ViewActors />
             </div>
           ) : (
