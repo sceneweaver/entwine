@@ -47,7 +47,7 @@ class EditorMaps extends Component {
               <EditorMapModule
                 position={this.props.position}
               />
-              : <div className="locations-box"><p>Each scene can either have a hero image or a map. Add a new map!</p></div>
+              : <div className="locations-box"><p>Each scene can either have a header image or a map. Add a new map!</p></div>
           }
       </div>
     );

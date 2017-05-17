@@ -69,9 +69,9 @@ class EditorSceneButtons extends Component {
           <button
             className="btn module-btn grey-text text-darken-3"
             onClick={this.props.onToggleModule.bind(this, 'hero')}
-            id="hero"
+            id="header-btn"
           >
-            Hero &nbsp; <i className="fa fa-picture-o" aria-hidden="true" />
+            Header Image &nbsp; <i className="fa fa-picture-o" aria-hidden="true" />
 
           </button>
 
