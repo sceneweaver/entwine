@@ -102,7 +102,7 @@ class Navbar extends Component {
       <ul className="right hide-on-med-and-down">
         <li>
           <button
-            className="navbar-btn btn btn-default"
+            className="navbar-btn logout btn btn-default"
             onClick={this.props.logout}>
             Log Out {name}
           </button>

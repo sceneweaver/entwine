@@ -245,11 +245,11 @@ input.form-like[disabled] {
 
 @media (max-width: 1023px) {
   .home {
-    font-size: 10px; } }
+    font-size: 14px; } }
 
 @media (max-width: 511px) {
   .home {
-    font-size: 6px; } }
+    font-size: 10px; } }
 
 .banner {
   margin: 0 0 0;
@@ -352,5 +352,6 @@ input.form-like[disabled] {
   .story-container p {
     margin: 20px 0; }
 
-
-
+.story-item .btn-warning {
+  width: 37px;
+}
