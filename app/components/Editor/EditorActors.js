@@ -49,7 +49,9 @@ class EditorActors extends Component {
                   position={this.props.position}
                 />
               );
-            })) : (<p>Who are the characters in your story? <br /> Use our generator to find the key players in your piece and create informational blurbs for each.</p>)
+            })) : (<div>
+              <h3>Who are the characters in your story?</h3> <p>Use our generator to find the key players in your piece and create informational blurbs for each.</p>
+            </div>)
           }
         </div>
       </div>
