@@ -375,9 +375,9 @@ export const generateRecommendations = position => (dispatch, getState) => {
       dispatch(setRecommendations(position, 'actors'));
       return findPlaces(actorsArray);
     }
-    // if (actorsArray[0]) {
-    //   return findPlaces(actorsArray);
-    // }
+    if (actorsArray[0]) {
+      return findPlaces(actorsArray);
+    }
   })
   .then(placeObj => {
       if (placeObj) {
