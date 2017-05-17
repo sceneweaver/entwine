@@ -39,7 +39,7 @@
 }
 
 .editorscene-sidebar-bg.toggled {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.5);
     z-index: 500;
     position: fixed;
     top: 0;

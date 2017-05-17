@@ -52,20 +52,28 @@ class EditorHero extends Component {
                   </div>
                 </div>
               )
-              : this.props.heroURL ? (
-                <div className="hero-image-container">
-                  <img src={this.props.heroURL} />
-                  <div className="hero-credit">
-                    <h5>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a></h5>
-                  </div>
-                </div>
-              )
-                : (
+              : this.props.heroURL && this.props.heroURL !== 'Not found'
+                ? (
                   <div className="hero-image-container">
-                    <h3>Each scene can have either an interactive map or a header photo.</h3>
-                    <p>Use the generator above to grab a header-worthy image, or add your own. <br /> Make sure to credit your photographer!</p>
+                    <img src={this.props.heroURL} />
+                    <div className="hero-credit">
+                      <h5>Photo by <a href={this.props.heroPhotogURL}>{this.props.heroPhotog}</a></h5>
+                    </div>
                   </div>
                 )
+                : this.props.heroURL === 'Not found'
+                  ? (
+                    <div className="hero-image-container">
+                      <h3>No image found.</h3>
+                      <p>Try another keyword!</p>
+                    </div>
+                  )
+                  : (
+                    <div className="hero-image-container">
+                      <h3>Each scene can have either an interactive map or a header photo.</h3>
+                      <p>Use the generator above to grab a header-worthy image, or add your own. <br /> Make sure to credit your photographer!</p>
+                    </div>
+                  )
           }
 
         </div>
