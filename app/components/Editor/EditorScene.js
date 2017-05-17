@@ -15,6 +15,12 @@ import EditorSceneButtons from './EditorSceneButtons';
 
 /* ----- DRAFT.JS EDITOR UTILS ----- */
 
+const style = {
+	blackText: {
+		color: 'black',
+	}
+}
+
 const Image = (props) => {
 	return <img src={props.src} style={{ media: { width: '100%' } }} />;
 };
@@ -225,6 +231,7 @@ componentWillReceiveProps(nextProps) {
 				<div className="editor-row">
 
 					<input
+						style={style.blackText}
 						id="editor-scene-title"
 						className="title-font"
 						placeholder={`Title Scene ${this.props.whichScene + 1}`}
