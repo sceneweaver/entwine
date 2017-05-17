@@ -254,18 +254,18 @@ html, body, #main {
 /* ----- EditorMaps Styling ----- */
 
 .maps-module {
-  background-color: #58D88C;
+  background-color: #1a7015;
   width: 100%;
   height: 100vh;
 }
 
 .maps-module-header {
   margin: 0 20px;
-  border-bottom: 0.5px solid #37A36B;
+  border-bottom: 0.5px solid #29c92f;
 }
 
 .maps-module-btn {
-  background-color: #37A36B;
+  background-color: #29c92f;
   margin: 10px;
 }
 
@@ -355,7 +355,7 @@ input.location-name-field {
 .actors-module {
   width: 100%;
   height: 100vh;
-  background-color: #7CC6FE;
+  background-color: #0c5e9b;
   color: white;
 }
 
@@ -515,7 +515,7 @@ input.location-name-field {
 /* ----- EditorHero Styling ----- */
 
 .hero-module {
-  background-color: #ffc299;
+  background-color: #BA2C2C;
   width: 100%;
   height: 100vh;
   color: white;
