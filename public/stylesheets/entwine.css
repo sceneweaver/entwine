@@ -176,12 +176,8 @@ html, body, #main {
   margin-top: 10px;
 }
 
-#recommend-btn, #characters-btn {
-  width: 150px;
-}
-
 .module-btn {
-  width: 100px;
+  width: 150px;
   align-self: flex-end;
   background-color: white
 }
@@ -280,6 +276,7 @@ html, body, #main {
 
 .locations-box > p {
   margin-bottom: 0;
+  color: white;
 }
 
 .editor-map {
@@ -299,7 +296,7 @@ html, body, #main {
   display: inline;
 }
 
-.map-editor-header > * > h5, input, select {
+.map-editor-header > * > h4, input, select {
   color: white;
 }
 

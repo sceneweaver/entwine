@@ -18,6 +18,19 @@ input, .article-text, .article-text *, .view-actors-desc, .editor-container * {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+
 select {
   -webkit-appearance: menulist-button;
   background-color: transparent;
