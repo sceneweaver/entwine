@@ -563,3 +563,8 @@ html, body, #main {
   margin: 0px;
   font-size: 15px;
 }
+
+/* Sign up / Log in styling */
+.signin-container input, .signin-container label {
+  font-size: 15px;
+}
