@@ -1,4 +1,4 @@
-## entwine
+# entwine
 
 entwine is a content management system that changes how we create and tell stories on the web. users can easily publish stories on our platform, incorporating interactive maps, chat heads, and hero images.
 
