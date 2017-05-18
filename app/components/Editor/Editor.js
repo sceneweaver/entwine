@@ -17,12 +17,10 @@ class Editor extends Component {
     });
     this.props.changeStoryTitle('');
   }
-
   componentDidUpdate() {
     $('.editor-scene-menu-item').removeClass('active');
     $(`#editor-scene-menu-item-${this.props.whichScene}`).addClass('active');
   }
-
   render() {
     return (
       <div id="story-editor">
@@ -34,7 +32,8 @@ class Editor extends Component {
               id="publish-btn"
               onClick={this.props.onSubmitStory}
             >
-              Publish &nbsp; <span className="fa fa-share-square-o fa-lg" aria-hidden="true"></span>
+              Publish &nbsp;
+              <span className="fa fa-share-square-o fa-lg" aria-hidden="true" />
             </button>
           </div>
           <div className="col m10">
@@ -51,13 +50,9 @@ class Editor extends Component {
         </div>
 
         <div id={`editorscene-wrapper-${this.props.whichScene}`} className="editorscene-wrapper">
-
           <div className="editorscene-content-wrapper">
-
             <div id="editor-scene-menu">
-
-              <div
-                id="editor-scene-menu-items-container" className="collection">
+              <div id="editor-scene-menu-items-container" className="collection">
                 {
                   this.props.scenes && this.props.scenes.map((scene, index) => (
                     <EditorMenuItem
@@ -69,42 +64,40 @@ class Editor extends Component {
                   ))
                 }
               </div>
-
               <div id="editor-scenes-menu-add">
                 <button
                   className="btn titlerow-button"
                   onClick={this.props.onAddScene}
                 >
-                  Add Scene <span className="fa fa-plus"></span>
+                  Add Scene <span className="fa fa-plus" />
                 </button>
               </div>
-
             </div>
-
             <EditorScene
               whichScene={this.props.whichScene}
               whichModule={this.props.whichModule}
               editorState={this.props.editorState}
             />
-
           </div>
-
           <div className="editorscene-sidebar-bg" />
-
           <div className="editorscene-sidebar-wrapper">
             {
-              this.props.whichModule === 'maps'
-                ? <EditorMaps position={this.props.whichScene} />
-                : this.props.whichModule === 'actors'
-                  ? <EditorActors position={this.props.whichScene} />
-                  : this.props.whichModule === 'hero'
-                    ? <EditorHero position={this.props.whichScene} />
-                    : null
+              this.props.whichModule === 'maps' ? (
+                <EditorMaps position={this.props.whichScene} />
+              ) : (
+                this.props.whichModule === 'actors' ? (
+                  <EditorActors position={this.props.whichScene} />
+                ) : (
+                  this.props.whichModule === 'hero' ? (
+                    <EditorHero position={this.props.whichScene} />
+                  ) : (
+                    null
+                  )
+                )
+              )
             }
           </div>
-
         </div>
-
       </div>
     );
   }
