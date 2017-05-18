@@ -2,14 +2,14 @@
 
 entwine is a content management system that changes how we create and tell stories on the web. users can easily publish stories on our platform, incorporating interactive maps, chat heads, and hero images.
 
-#### our technology stack: 
-##### core
+## technology stack: 
+### core
 * node.js
 * express
 * react-redux
 * postgreSQL / sequelize
 
-##### key additional modules
+### key additional modules
 * mapbox-gl / react-mapbox-gl
 * google maps geocoding
 * wikijs
