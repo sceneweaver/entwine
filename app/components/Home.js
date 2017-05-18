@@ -35,7 +35,7 @@ const Home = () => (
     </div>
 
     <div className="row flex">
-      <Link to="stories/2">
+      <Link to="stories/1">
          <div className="second-row flex-card hoverable" style={{background: 'linear-gradient(141deg, #602020 15%, #993333 51%, #cc6666 82%)'}}>
             <div>
               <h1>
@@ -51,7 +51,7 @@ const Home = () => (
       <div style={{backgroundColor: 'transparent', flex: 1}}>
       </div>*/}
 
-      <Link to="stories/1">
+      <Link to="stories/2">
         <div className="second-row second-width featured-card hoverable" style={{backgroundImage: `url(https://www.rented.com/content/images/2016/02/photo-1415201364774-f6f0bb35f28f.jpg)`}}>
           <div>
             <h1>
