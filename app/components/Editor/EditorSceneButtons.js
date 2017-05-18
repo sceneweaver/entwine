@@ -96,6 +96,7 @@ class EditorSceneButtons extends Component {
 import { connect } from 'react-redux';
 import $ from 'jquery';
 import { deselectModule, showModule, generateRecommendations } from '../../reducers/editor';
+import ReactTimeout from 'react-timeout';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onToggleModule(module, event) {
@@ -107,7 +108,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		} else {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
       $('.editorscene-sidebar-bg').addClass('toggled');
-			dispatch(showModule(module));
+			this.props.setTimeout(() => dispatch(showModule(module)), 501);
 		}
 	},
   onRecommendation(position, event) {
@@ -116,4 +117,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	}
 });
 
-export default connect(null, mapDispatchToProps)(EditorSceneButtons);
+export default connect(null, mapDispatchToProps)(ReactTimeout(EditorSceneButtons));
