@@ -26,7 +26,7 @@ class EditorMaps extends Component {
               onClick={this.props.onHideMaps}
               className="btn maps-module-btn"
             >
-              <i className="fa fa-minus" aria-hidden="true"></i>
+              Close
             </button>
           </div>
 
@@ -47,7 +47,10 @@ class EditorMaps extends Component {
               <EditorMapModule
                 position={this.props.position}
               />
-              : <div className="locations-box"><p>Each scene can either have a hero image or a map. Add a new map!</p></div>
+              : (<div className="locations-box">
+              <h3>Each scene can either have a header image or a map.</h3>
+              <p>Click Add Map above to generate a map from the locations in your story.</p>
+            </div>)
           }
       </div>
     );

@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 
 /* -----------------    COMPONENT     ------------------ */
 
-class Login extends React.Component {
+export class Login extends React.Component {
   constructor(props) {
     super(props);
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
@@ -84,7 +84,7 @@ class Login extends React.Component {
 /* -----------------    CONTAINER     ------------------ */
 
 import { connect } from 'react-redux';
-import { login } from '../reducers/auth';
+import { login } from 'APP/app/reducers/auth';
 
 const mapState = () => ({ message: 'Log in' });
 

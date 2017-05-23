@@ -136,7 +136,7 @@ const mapDispatchToProps = dispatch => ({
     event.preventDefault();
     dispatch(changeStoryTitle(event.target.value));
   },
-  onSubmitStory(user, event) {
+  onSubmitStory(event) {
     event.preventDefault();
     if (!store.getState().editor.title) {
       return alert('Please enter a title for your story.');

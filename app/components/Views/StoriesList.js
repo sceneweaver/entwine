@@ -64,7 +64,7 @@ class StoryList extends React.Component {
             />
           </li>
           <li>
-            <span>by</span>
+            <span style={{color: 'white', fontSize: 15}}>by</span>
           </li>
           <li>
             <input
@@ -75,7 +75,7 @@ class StoryList extends React.Component {
             />
           </li>
         </ul>
-        <i className="fa fa-search" aria-hidden="true"></i>
+        <i style={{color: 'white'}} className="fa fa-search" aria-hidden="true"></i>
       </div>
     );
   }

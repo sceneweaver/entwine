@@ -34,6 +34,7 @@ const DELETE_MAP = 'DELETE_MAP';
 
 const SET_HERO = 'SET_HERO';
 const SET_HERO_QUERY = 'SET_HERO_QUERY';
+const NOTIFY_NO_HERO = 'NOTIFY_NO_HERO';
 
 const SET_RECOMMENDATIONS = 'SET_RECOMMENDATIONS';
 const CLEAR_RECOMMENDATIONS = 'CLEAR_RECOMMENDATIONS';
@@ -167,6 +168,11 @@ export const setHero = (position, imageObj, heroUnsplash) => ({
   heroUnsplash
 });
 
+export const notifyNoHero = (position) => ({
+  type: NOTIFY_NO_HERO,
+  position
+});
+
 export const setRecommendations = (position, rec) => ({
   type: SET_RECOMMENDATIONS,
   position,
@@ -298,6 +304,13 @@ export default function reducer (state = {
       newState.scenes[action.position].heroUnsplash = action.heroUnsplash;
       break;
 
+    case NOTIFY_NO_HERO:
+      newState.scenes[action.position].heroURL = 'Not found';
+      newState.scenes[action.position].heroPhotog = '';
+      newState.scenes[action.position].heroPhotogURL = '';
+      newState.scenes[action.position].heroUnsplash = false;
+      break;
+
     case SET_RECOMMENDATIONS:
       newState.scenes[action.position].recommendations = newState.scenes[action.position].recommendations.concat(action.rec);
       break;
@@ -321,8 +334,6 @@ import findProperNouns from '../../server/utils/findProperNouns';
 import findPlaces from '../../server/utils/findPlaces';
 import findHeroImage from '../../server/utils/findHeroImage';
 
-import { convertToRaw } from 'draft-js';
-
 export const generateActors = position => (dispatch, getState) => {
   const textBody = getState().editor.scenes[position].paragraphs[0];
   findProperNouns(textBody)
@@ -333,7 +344,13 @@ export const generateHero = position => (dispatch, getState) => {
   const heroQuery = getState().editor.scenes[position].heroQuery
       , heroUnsplash = true;
   findHeroImage(heroQuery)
-  .then(imageData => dispatch(setHero(position, imageData, heroUnsplash)));
+  .then(res => {
+    if (res) {
+      dispatch(setHero(position, res, heroUnsplash));
+    } else {
+      dispatch(notifyNoHero(position));
+    }
+  });
 };
 
 export const submitStory = (user) => (dispatch, getState) => {
@@ -367,21 +384,23 @@ export const generateMapLocations = position => (dispatch, getState) => {
 export const generateRecommendations = position => (dispatch, getState) => {
   if (getState().editor.scenes[position].recommendations) dispatch(clearRecommendations(position));
   const textBody = getState().editor.scenes[position].paragraphs[0];
-  let recArr = [];
 
   findProperNouns(textBody)
   .then(actorsArray => {
     if (actorsArray.length > 0) {
       dispatch(setActors(position, actorsArray));
       dispatch(setRecommendations(position, 'actors'));
+      return findPlaces(actorsArray);
     }
     if (actorsArray[0]) {
       return findPlaces(actorsArray);
     }
   })
   .then(placeObj => {
-      dispatch(setLocation(position, placeObj));
-      dispatch(setRecommendations(position, 'maps'));
+      if (placeObj) {
+        dispatch(setLocation(position, placeObj));
+        dispatch(setRecommendations(position, 'maps'));
+      }
   });
 };
 

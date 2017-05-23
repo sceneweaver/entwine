@@ -49,11 +49,11 @@ class EditorSceneButtons extends Component {
         <div className="editor-btns-right-align btn-group">
 
           <button
+            id="actors"
             className="btn module-btn grey-text text-darken-3"
             onClick={this.props.onToggleModule.bind(this, 'actors')}
-            id="actors"
           >
-            Actors &nbsp; <i className="fa fa-user-circle" aria-hidden="true"></i>
+            Characters &nbsp; <i className="fa fa-user-circle" aria-hidden="true" />
 
           </button>
 
@@ -62,16 +62,16 @@ class EditorSceneButtons extends Component {
             onClick={this.props.onToggleModule.bind(this, 'maps')}
             id="maps"
           >
-            Map &nbsp; <i className="fa fa-globe" aria-hidden="true"></i>
+            Map &nbsp; <i className="fa fa-globe" aria-hidden="true" />
 
           </button>
 
           <button
             className="btn module-btn grey-text text-darken-3"
             onClick={this.props.onToggleModule.bind(this, 'hero')}
-            id="hero"
+            id="header-btn"
           >
-            Hero &nbsp; <i className="fa fa-picture-o" aria-hidden="true"></i>
+            Header Image &nbsp; <i className="fa fa-picture-o" aria-hidden="true" />
 
           </button>
 
@@ -80,7 +80,7 @@ class EditorSceneButtons extends Component {
             className="btn module-btn grey-text text-darken-3"
             onClick={this.props.onRecommendation.bind(this, this.props.whichScene)}
           >
-            Recommend &nbsp; <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
+            Recommend &nbsp; <i className="fa fa-lightbulb-o" aria-hidden="true" />
           </button>
 
 
@@ -96,6 +96,7 @@ class EditorSceneButtons extends Component {
 import { connect } from 'react-redux';
 import $ from 'jquery';
 import { deselectModule, showModule, generateRecommendations } from '../../reducers/editor';
+import ReactTimeout from 'react-timeout';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onToggleModule(module, event) {
@@ -107,7 +108,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		} else {
 			$(`#editorscene-wrapper-${ownProps.whichScene}`).addClass('toggled');
       $('.editorscene-sidebar-bg').addClass('toggled');
-			dispatch(showModule(module));
+			this.props.setTimeout(() => dispatch(showModule(module)), 501);
 		}
 	},
   onRecommendation(position, event) {
@@ -116,4 +117,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	}
 });
 
-export default connect(null, mapDispatchToProps)(EditorSceneButtons);
+export default connect(null, mapDispatchToProps)(ReactTimeout(EditorSceneButtons));

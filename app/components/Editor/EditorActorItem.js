@@ -2,18 +2,23 @@ import React, { Component } from 'react';
 
 /* ----- COMPONENT ----- */
 
-class EditorActorItem extends Component {
-  render() {
-    const actor = this.props.actor
-      , index = this.props.index;
-    return (
+const EditorActorItem = props => {
+  const actor = props.actor
+    , index = props.index;
+  return (
     <div className="actor-module-item">
       <div className="actor-image-container">
         {
           actor.image ? (
-            <div className="img-circle img-icon" style={{ backgroundImage: `url(${actor.image})` }} />
+            <div
+              className="img-circle img-icon"
+              style={{ backgroundImage: `url(${actor.image})` }}
+            />
           ) : (
-            <div className="img-circle-letter img-icon" style={{ backgroundColor: '#0090FF' }} >
+            <div
+              className="img-circle-letter img-icon"
+              style={{ backgroundColor: '#0090FF' }}
+            >
               {actor.name[0]}
             </div>
           )
@@ -27,7 +32,7 @@ class EditorActorItem extends Component {
             type="text"
             className="actor-form-field actor-name-field"
             value={actor.name}
-            onChange={this.props.onActorsChange.bind(this, index, 'name')}
+            onChange={props.onActorsChange.bind(this, index, 'name')}
           />
         </div>
         <br />
@@ -37,13 +42,13 @@ class EditorActorItem extends Component {
             type="text"
             className="actor-form-field actor-image-field"
             value={actor.image}
-
+            onChange={props.onActorsChange.bind(this, index, 'image')}
           />
           <button
             className="btn btn-default actor-grab-image-btn"
-            onClick={this.props.onGrabImage.bind(this, index)}
+            onClick={props.onGrabImage.bind(this, index)}
           >
-            <i className="fa fa-file-image-o" aria-hidden="true"></i>
+            <i className="fa fa-file-image-o" aria-hidden="true" />
           </button>
         </div>
         <div className="actor-desc-field-container">
@@ -52,21 +57,22 @@ class EditorActorItem extends Component {
             type="text"
             className="actor-form-field actor-desc-field"
             value={actor.description}
-            onChange={this.props.onActorsChange.bind(this, index, 'description')}
+            onChange={props.onActorsChange.bind(this, index, 'description')}
           />
         </div>
       </div>
 
       <button
         className="btn btn-default delete-actor-btn"
-        onClick={this.props.onDeleteActor.bind(this, index)}
+        onClick={props.onDeleteActor.bind(this, index)}
       >
-        <span className="glyphicon glyphicon-trash" ></span>
+        <span className="glyphicon glyphicon-trash" />
       </button>
 
-    </div>);
-  }
-}
+    </div>
+  );
+};
+
 
 /* ----- CONTAINER ----- */
 

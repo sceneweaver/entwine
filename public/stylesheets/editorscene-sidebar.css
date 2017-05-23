@@ -39,7 +39,7 @@
 }
 
 .editorscene-sidebar-bg.toggled {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.5);
     z-index: 500;
     position: fixed;
     top: 0;
@@ -57,7 +57,7 @@
   top: 0; /* REMEMBER TO EDIT THIS IF THE NAVBAR CHANGES SIZE */
   height: 100vh;
   right: 50%;
-  width: 0;
+  width: 50%;
   margin-right: -50%;
   overflow-y: auto;
   -webkit-transition: all 0.5sease;

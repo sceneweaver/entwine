@@ -15,24 +15,24 @@ class EditorActors extends Component {
               onClick={this.props.onHideActors}
               className="btn actors-module-btn"
             >
-              <i className="fa fa-minus" aria-hidden="true"></i>
+              Close
             </button>
           </div>
 
-          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Actors</h3>
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Characters</h3>
 
           <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
               className="btn actors-module-btn actors-gen-btn"
             >
-              Generate Actors &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
+              Generate &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
             </button>
             <button
               onClick={this.props.onAddActor}
               className="btn actors-module-btn actors-add-btn"
             >
-              Add Actor &nbsp; <i className="fa fa-plus" aria-hidden="true"></i>
+              Add New &nbsp; <i className="fa fa-plus" aria-hidden="true"></i>
             </button>
           </div>
 
@@ -49,7 +49,9 @@ class EditorActors extends Component {
                   position={this.props.position}
                 />
               );
-            })) : (<p>Who are the characters in your story? <br /> Use our generator to find the key players in your piece and create informational blurbs for each.</p>)
+            })) : (<div>
+              <h3>Who are the characters in your story?</h3> <p>Use our generator to find the key players in your piece and create informational blurbs for each.</p>
+            </div>)
           }
         </div>
       </div>
