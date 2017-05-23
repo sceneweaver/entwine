@@ -103,7 +103,7 @@ class StoryList extends React.Component {
                 <option value="" disabled>(select an author)</option>
                 {
                   this.props.users.map(user => (
-                    <option key={user.id} value={user.id}>{user.name}</option>
+                    <option key={user.id} value={user.id}>{user.username}</option>
                   ))
                 }
               </select>
