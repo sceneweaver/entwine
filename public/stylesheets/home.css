@@ -154,6 +154,11 @@
   .second-width {
     min-width: 850px;
   }
+
+  .create-story-btn {
+    padding: 23px;
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 1500px) {
@@ -171,6 +176,11 @@
 
   .second-width {
     min-width: 650px;
+  }
+
+  .create-story-btn {
+    padding: 18px;
+    font-size: 20px;
   }
 }
 
@@ -202,6 +212,11 @@
   h3 {
     font-size: 22px;
   }
+
+  .create-story-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -231,6 +246,11 @@
 
   h3 {
     font-size: 18px;
+  }
+
+  .create-story-btn {
+    padding: 12px;
+    font-size: 14px;
   }
 }
 

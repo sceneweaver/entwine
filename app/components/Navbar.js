@@ -31,9 +31,9 @@ class Navbar extends Component {
             <li>
               <Link to="/stories">All Stories</Link>
             </li>
-            <li>
+            {/*<li>
               <Link to="/tutorial">Tutorial</Link>
-            </li>
+            </li>*/}
           </ul>
 
           {this.props.currentUser ? this.renderLogout() : this.renderLoginSignup()}

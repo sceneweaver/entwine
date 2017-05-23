@@ -38,11 +38,11 @@ class Home extends Component {
             </div>
           </Link>
 
-          <div className="lead-row flex-card flex-col hoverable" style={{backgroundColor: '#2d2d86', color: 'white'}}>
+          <div className="lead-row flex-card flex-col" style={{backgroundColor: '#2d2d86', color: 'white'}}>
             <h2> what is entwine? </h2>
             <h3> entwine allows users to create stories with interactive maps, information about key characters, and multiple scenes. </h3>
             <div className="create-story">
-              <div onClick={this.onTutorialClick.bind(this)} className="create-story-btn"> Tutorial: Create Your Own Story! </div>
+                <div className="create-story-btn hoverable" onClick={this.onTutorialClick.bind(this)}> Tutorial: Create Your Own Story! </div>
               {/*<Link to="/editor">
                 <div className="create-story-btn"> Create a New Story </div>
               </Link>*/}
