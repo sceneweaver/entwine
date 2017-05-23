@@ -9,11 +9,10 @@ import { browserHistory } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 
-class HowTo extends React.Component {
-
+class Tutorial extends React.Component {
 
   onStartClick() {
-    browserHistory.push('/editor')
+    browserHistory.push('/')
   }
 
   render() {
@@ -64,4 +63,4 @@ const mapState = () => ({});
 
 const mapDispatch = {};
 
-export default connect(mapState, mapDispatch)(HowTo);
+export default connect(mapState, mapDispatch)(Tutorial);
