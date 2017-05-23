@@ -24,4 +24,5 @@ entwine is a content management system that changes how we create and tell stori
 ## local setup instructions
 * `npm run build-dev` and `npm run start-dev` for webpack build and server start
 * `npm run seed` to seed database
+* `npm test` to run all tests (mocha, chai, sinon, enzyme)
 
