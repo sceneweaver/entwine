@@ -30,7 +30,7 @@ describe('<Login />', () => {
     const submit = root.find('[type="submit"]')
     expect(submit).to.have.length(1)
   })
-
+})
 // Need to refactor to work with new Login component
 //   describe('when submitted', () => {
 //     const login = spy()

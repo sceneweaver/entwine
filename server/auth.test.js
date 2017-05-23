@@ -4,7 +4,7 @@ const db = require('APP/db'), {User} = db
 const app = require('./start')
 
 const alice = {
-  username: 'alice@secrets.org',
+  username: 'alicealicealice',
   password: '12345'
 }
 
@@ -15,7 +15,7 @@ describe('/api/auth', () => {
 
   beforeEach('create a user', () =>
     User.create({
-      email: alice.username,
+      username: alice.username,
       password: alice.password
     })
   )
@@ -59,7 +59,7 @@ describe('/api/auth', () => {
           .set('Accept', 'application/json')
           .expect(200)
           .then(res => expect(res.body).to.contain({
-            email: alice.username
+            username: alice.username
           }))
       )
     })
