@@ -39,7 +39,7 @@ class Home extends Component {
             </div>
           </Link>
 
-          <div className="lead-row flex-card flex-col hoverable" style={{backgroundColor: '#2d2d86', color: 'white'}}>
+          <div className="lead-row flex-card flex-col" style={{backgroundColor: '#2d2d86', color: 'white'}}>
             <h2> what is entwine? </h2>
             <h3> entwine is a smart publishing platform enabling anyone to create a beautiful, interactive story. </h3>
             <div className="create-story">
