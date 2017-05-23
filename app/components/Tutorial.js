@@ -12,11 +12,11 @@ import { browserHistory } from 'react-router';
 class Tutorial extends React.Component {
 
   onStartClick() {
-    browserHistory.push('/editor')
+    browserHistory.push('/editor');
   }
 
   render() {
-    let tutorialbg = '#4d194d'
+    let tutorialbg = '#4d194d';
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(BaseTheme)}>
         <div>
@@ -30,29 +30,29 @@ class Tutorial extends React.Component {
               media={<img></img>}
               mediaBackgroundStyle={{backgroundSize: 'cover', backgroundImage: `url(APP/public/images/tutorial-1.png)`}}
               contentStyle={{ backgroundColor: tutorialbg }}
-              title="Write your first scene"
-              subtitle="Articles written with entwine have multiple scenes, which are like chapters. As you're writing, you can use the rich text buttons above to add bold or block quote styling to your text. Keyboard shorcuts like ctrl-z (pc) or cmd-z (mac) work as well."
+              title="Step 1: Write your first scene"
+              subtitle="Articles can have multiple sections (aka scenes). Add bold or blockquote styling to text using the buttons above. Common keyboard shortcuts like ctrl-z or cmd-z will also work."
             />
             <Slide
               media={<img></img>}
-              mediaBackgroundStyle={{backgroundSize: 'cover', backgroundImage: `url(https://www.rented.com/content/images/2016/02/photo-1415201364774-f6f0bb35f28f.jpg)`}}
+              mediaBackgroundStyle={{backgroundSize: 'cover', backgroundImage: `url(APP/public/images/tutorial-2.png)`}}
               contentStyle={{ backgroundColor: tutorialbg }}
-              title="Ever wanted to be popular?"
-              subtitle="Well just mix two colors and your are good to go!"
+              title="Step 2: Add Characters"
+              subtitle="Once you've written something, click on the Characters button. Then, press generate to add key characters to your story. You can edit descriptions or add images manually."
             />
             <Slide
-              media={<img src="http://www.icons101.com/icon_png/size_256/id_76704/Google_Settings.png" />}
-              mediaBackgroundStyle={{ backgroundColor: green400 }}
+              media={<img></img>}
+              mediaBackgroundStyle={{backgroundSize: 'cover', backgroundImage: `url(APP/public/images/tutorial-3.png)`}}
               contentStyle={{ backgroundColor: tutorialbg }}
-              title="May the force be with you"
-              subtitle="The Force is a metaphysical and ubiquitous power in the Star Wars universe."
+              title="Step 3: Add a Map or a Header Image"
+              subtitle="Each scene can have either a header or a map. In the header module, type in a keyword on the left and search for an image to use, or use your own on the right."
             />
              <Slide
-              media={<img src="http://www.icons101.com/icon_png/size_256/id_80975/GoogleInbox.png" />}
-              mediaBackgroundStyle={{ backgroundColor: blue400 }}
+              media={<img></img>}
+              mediaBackgroundStyle={{backgroundSize: 'cover', backgroundImage: `url(APP/public/images/tutorial-4.png)`}}
               contentStyle={{ backgroundColor: tutorialbg }}
-              title="Ever wanted to be popular?"
-              subtitle="Well just mix two colors and your are good to go!"
+              title="Step 4: Add More Scenes and Publish!"
+              subtitle="After you finish all of your scenes, title your story as well as each scene. Click publish on top left to see your completed story!"
             />
           </AutoRotatingCarousel>
         </div>
