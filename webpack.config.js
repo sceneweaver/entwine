@@ -33,7 +33,7 @@ module.exports = {
   module: {
     rules: [{
       test: /jsx?$/,
-      exclude: devMode ? /(node_modules|bower_components)/ : /(wikijs|mapbox-gl)/,
+      exclude: devMode ? /(node_modules|bower_components)/ : /(wikijs|mapbox-gl|material-auto-rotating-carousel)/,
       use: [{
         loader: 'babel-loader',
         options: {
