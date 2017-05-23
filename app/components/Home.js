@@ -4,12 +4,26 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText, RaisedBut
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import Tutorial from './Tutorial';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTutorialOpen: false
+    };
+  }
+
+  onTutorialClick() {
+    this.setState({isTutorialOpen: !this.state.isTutorialOpen})
+  }
+
   render() {
     return (
       <div className="home home-margin">
         <div className="row flex">
+
+        {this.state.isTutorialOpen ? <Tutorial /> : null}
 
           <Link to="stories/3">
             <div className="lead-row lead-width featured-card hoverable" style={{backgroundImage: `url(https://www.wired.com/wp-content/uploads/2017/05/donut_opener.jpg)`}}>
@@ -28,9 +42,11 @@ class Home extends Component {
             <h2> what is entwine? </h2>
             <h3> entwine allows users to create stories with interactive maps, information about key characters, and multiple scenes. </h3>
             <div className="create-story">
-              <Link to="/editor">
+              <div onClick={this.onTutorialClick.bind(this)} className="create-story-btn"> Tutorial: Create Your Own Story! </div>
+              {/*<Link to="/editor">
                 <div className="create-story-btn"> Create a New Story </div>
-              </Link>
+              </Link>*/}
+
             </div>
           </div>
 
