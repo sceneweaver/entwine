@@ -8,7 +8,6 @@ import {
   Step,
   Stepper,
   StepButton,
-  StepContent,
 } from 'material-ui';
 
 /* ----- COMPONENT ----- */

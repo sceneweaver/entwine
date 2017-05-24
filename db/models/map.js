@@ -1,6 +1,6 @@
 'use strict';
 
-const { STRING, TEXT, INTEGER } = require('sequelize');
+const { STRING, INTEGER } = require('sequelize');
 
 module.exports = db => db.define('maps', {
   coords: {
@@ -16,5 +16,5 @@ module.exports = db => db.define('maps', {
 
 module.exports.associations = (Map, {Scene, Story}) => {
   Map.belongsTo(Story);
-  Map.belongsTo(Scene, { through: "ScenesMaps" })
-}
+  Map.belongsTo(Scene, { through: 'ScenesMaps' });
+};

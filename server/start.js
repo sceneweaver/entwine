@@ -1,12 +1,12 @@
-'use strict'
+'use strict';
 
-const path = require('path')
-const express = require('express')
-const bodyParser = require('body-parser')
-const {resolve} = require('path')
-const passport = require('passport')
-const PrettyError = require('pretty-error')
-const finalHandler = require('finalhandler')
+const path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const {resolve} = require('path');
+const passport = require('passport');
+const PrettyError = require('pretty-error');
+const finalHandler = require('finalhandler');
 // PrettyError docs: https://www.npmjs.com/package/pretty-error
 
 // Bones has a symlink from node_modules/APP to the root of the app.
@@ -14,23 +14,23 @@ const finalHandler = require('finalhandler')
 // saying require('APP/whatever').
 //
 // This next line requires our root index.js:
-const pkg = require('APP')
+const pkg = require('APP');
 
-const app = express()
+const app = express();
 
 if (!pkg.isProduction && !pkg.isTesting) {
   // Logging middleware (dev only)
-  app.use(require('volleyball'))
+  app.use(require('volleyball'));
 }
 
 // Pretty error prints errors all pretty.
-const prettyError = new PrettyError
+const prettyError = new PrettyError;
 
 // Skip events.js and http.js and similar core node files.
-prettyError.skipNodeFiles()
+prettyError.skipNodeFiles();
 
 // Skip all the trace lines about express' core and sub-modules.
-prettyError.skipPackage('express')
+prettyError.skipPackage('express');
 
 module.exports = app
   // Session middleware - compared to express-session (which is what's used in the Auther workshop), cookie-session stores sessions in a cookie, rather than some other type of session store.
@@ -58,11 +58,11 @@ module.exports = app
   // any requests with an extension (.js, .css, etc.) turn into 404
   .use((req, res, next) => {
     if (path.extname(req.path).length) {
-      const err = new Error('Not found')
-      err.status = 404
-      next(err)
+      const err = new Error('Not found');
+      err.status = 404;
+      next(err);
     } else {
-      next()
+      next();
     }
   })
 
@@ -73,9 +73,9 @@ module.exports = app
   // https://github.com/expressjs/express/blob/master/lib/application.js#L162
   // https://github.com/pillarjs/finalhandler/blob/master/index.js#L172
   .use((err, req, res, next) => {
-    console.error(prettyError.render(err))
-    finalHandler(req, res)(err)
-  })
+    console.error(prettyError.render(err));
+    finalHandler(req, res)(err);
+  });
 
 if (module === require.main) {
   // Start listening only if we're the main module.
@@ -84,13 +84,13 @@ if (module === require.main) {
   const server = app.listen(
     pkg.port,
     () => {
-      console.log(`--- Started HTTP Server for ${pkg.name} ---`)
-      const { address, port } = server.address()
-      const host = address === '::' ? 'localhost' : address
-      const urlSafeHost = host.includes(':') ? `[${host}]` : host
-      console.log(`Listening on http://${urlSafeHost}:${port}`)
+      console.log(`--- Started HTTP Server for ${pkg.name} ---`);
+      const { address, port } = server.address();
+      const host = address === '::' ? 'localhost' : address;
+      const urlSafeHost = host.includes(':') ? `[${host}]` : host;
+      console.log(`Listening on http://${urlSafeHost}:${port}`);
     }
-  )
+  );
 }
 
 // This check on line 64 is only starting the server if this file is being run directly by Node, and not required by another file.

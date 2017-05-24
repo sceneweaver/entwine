@@ -39,10 +39,10 @@ export default function findPlace(name) {
             zoom: zoom,
           });
         }
-      })
+      });
     }).catch(error => {
       throw error;
-    })
+    });
 
     promArr.push(currentProm);
 
@@ -53,5 +53,5 @@ export default function findPlace(name) {
     })
     .catch(error => {
       throw error;
-    })
+    });
 }

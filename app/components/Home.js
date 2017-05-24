@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText, RaisedButton} from 'material-ui';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import {Link} from 'react-router';
 import Tutorial from './Tutorial';
 
 class Home extends Component {
@@ -16,7 +12,7 @@ class Home extends Component {
 
   // method currently not being used, but will allow for on-page toggling of tutorial carousel in future releases
   onTutorialClick() {
-    this.setState({isTutorialOpen: !this.state.isTutorialOpen})
+    this.setState({isTutorialOpen: !this.state.isTutorialOpen});
   }
 
   render() {

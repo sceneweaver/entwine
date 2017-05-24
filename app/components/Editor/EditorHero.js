@@ -20,13 +20,13 @@ class EditorHero extends Component {
             </button>
           </div>
 
-          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Header Image</h3>
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + ' '} >> Header Image</h3>
 
           <button
             className="btn hero-module-btn"
             onClick={this.props.onRemoveHero}
           >
-            REMOVE HEADER &nbsp; <span className="glyphicon glyphicon-trash" ></span>
+            REMOVE HEADER &nbsp; <span className="glyphicon glyphicon-trash"  />
           </button>
 
         </div>
@@ -111,7 +111,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onHideHero(event) {
     event.preventDefault();
-    $(`#editorscene-wrapper-${ownProps.position}`).removeClass("toggled");
+    $(`#editorscene-wrapper-${ownProps.position}`).removeClass('toggled');
     $('.editorscene-sidebar-bg').removeClass('toggled');
     dispatch(deselectModule(ownProps.position));
   }

@@ -27,7 +27,7 @@ const app = require('APP')
 module.exports = db => {
   // Create actual model classes by calling each meta model with the
   // database.
-  const models = mapValues(metaModels, defineModel => defineModel(db))
+  const models = mapValues(metaModels, defineModel => defineModel(db));
 
   /*
   At this point, all our models have been created. We just need to
@@ -47,9 +47,9 @@ module.exports = db => {
   */
   Object.keys(metaModels)
     .forEach(name => {
-      const {associations} = metaModels[name]
+      const {associations} = metaModels[name];
       if (typeof associations === 'function') {
-        debug('associating model %s', name)
+        debug('associating model %s', name);
         // Metamodel::associations(self: Model, others: {[name: String]: Model}) -> ()
         //
         // Associate self with others.

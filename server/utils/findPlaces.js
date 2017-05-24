@@ -40,15 +40,15 @@ export default function findPlaces(nounsArr) {
             zoom: zoom,
           });
         }
-      })
-    })
+      });
+    });
     return currentProm
       .then(location => {
         return location;
       })
       .catch(error => {
         throw error;
-      })
+      });
     }
 
     // promArr.push(currentProm);

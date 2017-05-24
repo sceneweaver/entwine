@@ -2,7 +2,6 @@
 
 const AUTHENTICATED = 'AUTHENTICATED';
 const SET = 'SET_CURRENT_USER';
-const CREATE = 'CREATE_USER';
 
 /* ---------------<   ACTION CREATORS   >------------------- */
 
@@ -17,7 +16,7 @@ export const set = user => ({ type: SET, user });
 
 const initialState = {
   user: {}
-}
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -37,7 +36,7 @@ export const login = (username, password) => dispatch => {
   return axios.post('/api/auth/login/local', { username, password })
     .then(() => dispatch(whoami()))
     .catch(() => dispatch(whoami()));
-}
+};
 
 // Logging out
 export const logout = () => dispatch =>

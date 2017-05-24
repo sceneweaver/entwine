@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import $ from 'jquery';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -40,7 +39,7 @@ class Navbar extends Component {
             data-activates="mobile-nav"
             className="button-collapse"
           >
-            <span className="glyphicon glyphicon-menu-hamburger"></span>
+            <span className="glyphicon glyphicon-menu-hamburger" />
           </a>
 
           <ul className="side-nav" id="mobile-nav">

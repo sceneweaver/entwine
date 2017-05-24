@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
+import { Link, browserHistory } from 'react-router';
 import StoriesItems from './StoriesItems';
 
 /* -----------------    COMPONENT     ------------------ */
@@ -75,7 +74,7 @@ class StoryList extends React.Component {
             />
           </li>
         </ul>
-        <i style={{color: 'white'}} className="fa fa-search" aria-hidden="true"></i>
+        <i style={{color: 'white'}} className="fa fa-search" aria-hidden="true" />
       </div>
     );
   }
@@ -114,7 +113,7 @@ class StoryList extends React.Component {
         <button
           type="submit"
           className="btn btn-warning btn-xs pull-right">
-          <i className="fa fa-plus" aria-hidden="true"></i>
+          <i className="fa fa-plus" aria-hidden="true" />
         </button>
       </form>
     );
@@ -131,13 +130,12 @@ class StoryList extends React.Component {
   }
 
   onSubmit() {
-    browserHistory.push('/editor')
+    browserHistory.push('/editor');
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
-
-import { browserHistory } from 'react-router'
+import { connect } from 'react-redux';
 
 const mapState = ({ users, stories, auth }) => ({ users, stories, currentUser: auth });
 

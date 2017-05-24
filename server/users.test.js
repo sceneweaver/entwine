@@ -1,13 +1,13 @@
 const request = require('supertest')
     , {expect} = require('chai')
     , db = require('APP/db')
-    , app = require('./start')
+    , app = require('./start');
 
 /* global describe it before afterEach */
 
 describe('/api/users', () => {
-  before('Await database sync', () => db.didSync)
-  afterEach('Clear the tables', () => db.truncate({ cascade: true }))
+  before('Await database sync', () => db.didSync);
+  afterEach('Clear the tables', () => db.truncate({ cascade: true }));
 
   describe('GET /:id', () =>
     describe('when not logged in', () =>
@@ -15,7 +15,7 @@ describe('/api/users', () => {
         request(app)
           .get(`/api/users/1`)
           .expect(401)
-      )))
+      )));
 
   describe('POST', () =>
     describe('when not logged in', () => {
@@ -26,7 +26,7 @@ describe('/api/users', () => {
             email: 'beth@secrets.org',
             password: '12345'
           })
-          .expect(201))
+          .expect(201));
 
       it('redirects to the user it just made', () =>
         request(app)
@@ -38,6 +38,6 @@ describe('/api/users', () => {
           .redirects(1)
           .then(res => expect(res.body).to.contain({
             email: 'eve@interloper.com'
-          })))
-    }))
-})
+          })));
+    }));
+});

@@ -22,5 +22,5 @@ module.exports = db => db.define('actors', {
 
 module.exports.associations = (Actor, {Scene, Story}) => {
   Actor.belongsTo(Story);
-  Actor.belongsTo(Scene, { through: 'ScenesActors' })
-}
+  Actor.belongsTo(Scene, { through: 'ScenesActors' });
+};

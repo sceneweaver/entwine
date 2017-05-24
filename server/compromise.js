@@ -1,10 +1,7 @@
 'use strict';
 
 const router = require('express').Router()
-  , HttpError = require('./utils/HttpError')
-  , db = require('APP/db')
-  , Scene = db.model('scenes')
-  , nlp = require('compromise')
+  , nlp = require('compromise');
 
 module.exports = router;
 
@@ -28,7 +25,7 @@ router.post('/nouns', (req, res, next) => {
     }
   }
   res.send(results);
-})
+});
 
 router.post('/places', (req, res, next) => {
   const text = req.body.textBody;
@@ -39,9 +36,9 @@ router.post('/places', (req, res, next) => {
   places.forEach(place => {
     results.push({
       name: place,
-      latitude: "",
-      longitude: ""
-    })
-  })
+      latitude: '',
+      longitude: ''
+    });
+  });
   res.send(results);
-})
+});

@@ -19,7 +19,7 @@ const style = {
 	blackText: {
 		color: 'black',
 	}
-}
+};
 
 const Image = (props) => {
 	return <img src={props.src} style={{ media: { width: '100%' } }} />;
@@ -175,7 +175,7 @@ class EditorScene extends Component {
 	}
 
 	recommendationString(recArr) {
-		let string = "We noticed you have ";
+		let string = 'We noticed you have ';
 		let secondHalf = ' We recommend using the ';
 
 		recArr.forEach((rec, i) => {
@@ -184,29 +184,29 @@ class EditorScene extends Component {
 			if (rec === 'maps') detected = 'locations';
 
 			if (i === recArr.length - 1 && recArr.length > 1) {
-				string += " and " + detected;
+				string += ' and ' + detected;
 			} else if (i === 0) {
 				string += detected;
 			} else {
-				string += ", " + detected;
+				string += ', ' + detected;
 			}
 
 			if (i === recArr.length - 1 && recArr.length > 1) {
-				secondHalf += " and " + rec;
+				secondHalf += ' and ' + rec;
 			} else if (i === 0) {
 				secondHalf += rec;
 			} else {
-				secondHalf += ", " + rec;
+				secondHalf += ', ' + rec;
 			}
 
 		return string;
-	})
+	});
 
-	string += "!" + secondHalf;
+	string += '!' + secondHalf;
 	if (recArr.length > 1) {
-		string += "  modules!";
+		string += '  modules!';
 	} else {
-		string += " module!"
+		string += ' module!';
 	}
 
 	return (
@@ -244,7 +244,7 @@ componentWillReceiveProps(nextProps) {
 						className="btn btn-default editorscene-delete-btn"
 						onClick={this.props.onDeleteScene}
 					>
-						<span className="glyphicon glyphicon-trash" ></span>
+						<span className="glyphicon glyphicon-trash"  />
 					</button>
 
 				</div>

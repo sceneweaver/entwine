@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
-module.exports = db => db.define('ScenesActors', {})
+module.exports = db => db.define('ScenesActors', {});
 
 module.exports.associations = (ScenesActors, {Scene, Actor}) => {
-  ScenesActors.belongsTo(Scene)
-  ScenesActors.belongsTo(Actor)
-}
+  ScenesActors.belongsTo(Scene);
+  ScenesActors.belongsTo(Actor);
+};

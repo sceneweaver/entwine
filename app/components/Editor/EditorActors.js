@@ -19,20 +19,20 @@ class EditorActors extends Component {
             </button>
           </div>
 
-          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + " "} >> Characters</h3>
+          <h3 className="module-header">{this.props.sceneTitle ? this.props.sceneTitle : 'Scene ' + (+this.props.position + 1).toString() + ' '} >> Characters</h3>
 
           <div className="flex-self-right">
             <button
               onClick={this.props.onRefreshActors}
               className="btn actors-module-btn actors-gen-btn"
             >
-              Generate &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
+              Generate &nbsp; <i className="fa fa-refresh" aria-hidden="true" />
             </button>
             <button
               onClick={this.props.onAddActor}
               className="btn actors-module-btn actors-add-btn"
             >
-              Add New &nbsp; <i className="fa fa-plus" aria-hidden="true"></i>
+              Add New &nbsp; <i className="fa fa-plus" aria-hidden="true" />
             </button>
           </div>
 
@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onHideActors(event) {
     event.preventDefault();
-    $(`#editorscene-wrapper-${ownProps.position}`).removeClass("toggled");
+    $(`#editorscene-wrapper-${ownProps.position}`).removeClass('toggled');
     $('.editorscene-sidebar-bg').removeClass('toggled');
     dispatch(deselectModule(ownProps.position));
   }

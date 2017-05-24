@@ -1,20 +1,19 @@
 import axios from 'axios';
-import querystring from 'querystring';
 
 /* -----------------    ACTIONS     ------------------ */
 
-const GET_NOUNS = 'GET_NOUNS'
+const GET_NOUNS = 'GET_NOUNS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const getNouns = nouns => ({ type: GET_NOUNS, nouns })
+const getNouns = nouns => ({ type: GET_NOUNS, nouns });
 
 /* ------------       REDUCERS     ------------------ */
 
 export default function reducer (nouns = {
   nouns: []
 }, action) {
-  const newState = Object.assign({}, nouns)
+  const newState = Object.assign({}, nouns);
   switch (action.type) {
     case GET_NOUNS:
       newState.nouns = action.nouns;
@@ -22,7 +21,6 @@ export default function reducer (nouns = {
     default:
       return nouns;
   }
-
   return newState;
 }
 
@@ -34,6 +32,6 @@ export const fetchNouns = (text) => dispatch => {
        .catch(err => console.error(err));
 };
 
-export const setNouns = (nounsArr) => dispatch => {
-  axios.post('api/actors/bulk', {nounsArr})
-}
+export const setNouns = (nounsArr) => (dispatch) => {
+  axios.post('api/actors/bulk', {nounsArr});
+};

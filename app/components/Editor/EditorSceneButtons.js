@@ -87,7 +87,7 @@ class EditorSceneButtons extends Component {
         </div>
 
       </div>
-    )
+    );
   }
 }
 

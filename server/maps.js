@@ -3,8 +3,7 @@
 const router = require('express').Router()
     , HttpError = require('./utils/HttpError')
     , db = require('APP/db')
-    , Map = db.model('maps')
-    , Scene = db.model('scenes');
+    , Map = db.model('maps');
 
 module.exports = router;
 
@@ -46,7 +45,7 @@ router.get('/:storyId/:sceneId', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   Map.findOne(req.map)
   .then(map => {
-    res.json(map)
+    res.json(map);
   })
   .catch(next);
 });
@@ -54,11 +53,11 @@ router.get('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   Map.create(req.body)
   .then(createdMap => {
-    createdMap.setScene(req.params.sceneId)
+    createdMap.setScene(req.params.sceneId);
     res.status(201).json(createdMap);
   })
   .catch(next);
-})
+});
 // edit an map
 router.put('/:id', (req, res, next) => {
   req.map.update(req.body)

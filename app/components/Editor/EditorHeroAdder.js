@@ -6,7 +6,7 @@ const style = {
     fontSize: '1.5rem',
     borderBottom: '0.5px solid white'
   }
-}
+};
 
 class EditorHeroAdder extends Component {
   constructor() {
@@ -20,8 +20,8 @@ class EditorHeroAdder extends Component {
   }
   onUserHeroChange (event) {
     event.preventDefault();
-    console.log("event.target.name", event.target.name);
-    console.log("event.target.value", event.target.value);
+    console.log('event.target.name', event.target.name);
+    console.log('event.target.value', event.target.value);
      this.setState({
       [event.target.name]: event.target.value
     });
@@ -70,11 +70,11 @@ class EditorHeroAdder extends Component {
           className="btn hero-module-btn"
           onClick={this.props.onSaveHero.bind(this, this.state)}
         >
-          Save Image &nbsp; <i className="fa fa-floppy-o" aria-hidden="true"></i>
+          Save Image &nbsp; <i className="fa fa-floppy-o" aria-hidden="true" />
         </button>
 
       </div>
-    )
+    );
   }
 }
 
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     event.stopPropagation();
     const heroUnsplash = false;
-    console.log("currState", currState);
+    console.log('currState', currState);
     dispatch(setHero(ownProps.position, currState, heroUnsplash));
   }
 });

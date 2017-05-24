@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 // bcrypt docs: https://www.npmjs.com/package/bcrypt
 const bcrypt = require('bcryptjs')
-    , {STRING, VIRTUAL} = require('sequelize')
+    , {STRING, VIRTUAL} = require('sequelize');
 
 module.exports = db => db.define('users', {
   username: {
@@ -36,19 +36,19 @@ module.exports = db => db.define('users', {
   instanceMethods: {
     // This method is a Promisified bcrypt.compare
     authenticate(plaintext) {
-      return bcrypt.compare(plaintext, this.password_digest)
+      return bcrypt.compare(plaintext, this.password_digest);
     }
   }
-})
+});
 
 module.exports.associations = (User, {OAuth}) => {
-  User.hasOne(OAuth)
-}
+  User.hasOne(OAuth);
+};
 
 function setEmailAndPassword(user) {
-  user.email = user.email && user.email.toLowerCase()
-  if (!user.password) return Promise.resolve(user)
+  user.email = user.email && user.email.toLowerCase();
+  if (!user.password) return Promise.resolve(user);
 
   return bcrypt.hash(user.get('password'), 10)
-    .then(hash => user.set('password_digest', hash))
+    .then(hash => user.set('password_digest', hash));
 }

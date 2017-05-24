@@ -34,7 +34,7 @@ class Editor extends Component {
               id="publish-btn"
               onClick={this.props.onSubmitStory}
             >
-              Publish &nbsp; <span className="fa fa-share-square-o fa-lg" aria-hidden="true"></span>
+              Publish &nbsp; <span className="fa fa-share-square-o fa-lg" aria-hidden="true" />
             </button>
           </div>
           <div className="col m10">
@@ -75,7 +75,7 @@ class Editor extends Component {
                   className="btn titlerow-button"
                   onClick={this.props.onAddScene}
                 >
-                  Add Scene <span className="fa fa-plus"></span>
+                  Add Scene <span className="fa fa-plus" />
                 </button>
               </div>
 
@@ -147,7 +147,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(deleteLocation(position));
   },
   changeStoryTitle(newTitle) {
-    dispatch(changeStoryTitle(newTitle))
+    dispatch(changeStoryTitle(newTitle));
   }
 });
 

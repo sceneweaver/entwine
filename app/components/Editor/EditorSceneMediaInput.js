@@ -9,7 +9,7 @@ const styles = {
     marginRight: 10,
     padding: 3,
   },
-}
+};
 
 class EditorSceneMediaInput extends Component {
   render() {

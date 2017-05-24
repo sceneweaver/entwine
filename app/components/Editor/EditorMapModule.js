@@ -22,25 +22,25 @@ class EditorMapModule extends Component {
   }
 
   componentDidMount() {
-    console.log("mounting map!")
+    console.log('mounting map!');
     this.setState({
       coords: this.props.locations[0].coords,
       mapboxStyle: this.props.locations[0].style,
       mapboxZoom: this.props.locations[0].zoom
-    })
+    });
 
     this.props.setTimeout(() => {
-      console.log("saving map!")
-      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
+      console.log('saving map!');
+      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
     }, 1500);
   }
 
   changeMapboxStyle(event) {
     event.preventDefault();
-    this.setState({mapboxStyle: event.target.value})
+    this.setState({mapboxStyle: event.target.value});
     this.props.setTimeout(() => {
-      console.log("saving map!")
-      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
+      console.log('saving map!');
+      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
 
       this.props.setLocation(this.props.position, [{
         name: this.props.locations[0].name,
@@ -53,10 +53,10 @@ class EditorMapModule extends Component {
 
   changeMapboxZoom(event) {
     event.preventDefault();
-    this.setState({mapboxZoom: event.target.value})
+    this.setState({mapboxZoom: event.target.value});
     this.props.setTimeout(() => {
-      console.log("saving map!")
-      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
+      console.log('saving map!');
+      this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
 
       this.props.setLocation(this.props.position, [{
         name: this.props.locations[0].name,
@@ -110,8 +110,8 @@ class EditorMapModule extends Component {
             zoom: zoom,
           }]);
 
-          console.log("saving map!")
-          this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom)
+          console.log('saving map!');
+          this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
         }, 7000);
       }
     });
@@ -135,7 +135,7 @@ class EditorMapModule extends Component {
   render() {
     return (
       <div className="editor-map">
-  			<div className="map-editor-header">
+        <div className="map-editor-header">
 
           <div className="map-style">
 						<h4> Map Style: &nbsp; </h4>
@@ -176,7 +176,7 @@ class EditorMapModule extends Component {
             className="btn btn-default"
             onClick={this.props.onDeleteLocation.bind(this)}
           >
-            <span className="glyphicon glyphicon-trash" ></span>
+            <span className="glyphicon glyphicon-trash"  />
           </button>
 
         </div>
@@ -201,11 +201,11 @@ class EditorMapModule extends Component {
                     type="symbol"
                     id="marker"
                     layout={{
-                    "icon-image": 'marker-15'
+                    'icon-image': 'marker-15'
                   }}>
-                    <Feature coordinates={this.state.coords}/>
+                    <Feature coordinates={this.state.coords} />
                   </Layer>
-                  <Marker coordinates={this.state.coords} anchor="bottom"/>
+                  <Marker coordinates={this.state.coords} anchor="bottom" />
                 </div>
               </ReactMapboxGl>
             </div> : null
@@ -231,7 +231,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setMap(position, coordsStr, style, zoom));
   },
   onFieldChange(locationIndex, field, event) {
-    this.setState({location: event.target.value})
+    this.setState({location: event.target.value});
     event.preventDefault();
     event.stopPropagation();
     dispatch(changeLocation(ownProps.position, locationIndex, field, event.target.value));
