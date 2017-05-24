@@ -7,7 +7,7 @@ entwine is a content management system that changes how we create and tell stori
 * node.js
 * express
 * react-redux
-* postgreSQL / sequelize
+* postgreSQL database via sequelize
 
 ### key additional modules
 * mapbox-gl / react-mapbox-gl
