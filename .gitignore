@@ -1,19 +1,12 @@
-# project-specific folders and files
-build/
-
-# installed packages (better: `npm install` / `bower install`)
-node_modules
-bower_components
-
-# webpack bundles, which should be created on use
-bundle.js
-bundle.js.map
-
 # Ignore all node_modules
 node_modules/*
 
 # ...except the symlink to ourselves.
 !node_modules/APP
+
+# webpack bundles, which should be created on use
+bundle.js
+bundle.js.map
 
 # NPM errors
 npm-debug.log
@@ -31,6 +24,9 @@ Thumbs.db
 *.log
 *.sqlite
 
+# api secrets
+secrets.json
+
 # Vim swap files
 *.sw?
 
@@ -41,8 +37,3 @@ Thumbs.db
 # repos / submodules
 .git
 .svn
-
-# secrets
-secrets.json
-cert.pem
-key.pem
