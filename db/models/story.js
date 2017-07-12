@@ -18,20 +18,20 @@ module.exports = db => db.define('stories', {
       this.setDataValue('tags', tags);
     }
   }
-}, {
-  defaultScope: {
-    include: [{
-      model: db.model('scenes'),
-    }, {
-      model: db.model('users'),
-    }],
-    order: [
-      [db.model('scenes'), 'position', 'ASC']
-    ]
-  }
 });
 
 module.exports.associations = (Story, {User, Scene, Actor, Map}) => {
+  Story.addScope('defaultScope', {
+    include: [{
+      model: Scene,
+    }, {
+      model: User,
+    }],
+    order: [
+      [Scene, 'position', 'ASC']
+    ]
+  }, { override: true });
+
   Story.belongsTo(User);
   Story.hasMany(Scene);
   Story.hasMany(Actor);

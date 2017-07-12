@@ -66,7 +66,6 @@ class Scene extends Component {
   }
 
   render() {
-    console.log("this.props", this.props);
     return (
       <div className="col m10">
         <div className="scene-hero">

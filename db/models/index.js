@@ -5,24 +5,24 @@
 // to get access to the User model.
 
 const app = require('APP')
-    , debug = require('debug')(`${app.name}:models`)
-    // Our model files export functions that take a database and return
-    // a model. We call these functions "meta models" (they are models of
-    // models).
-    //
-    // This lets us avoid cyclic dependencies, which can be hard to reason
-    // about.
-    , metaModels = {
-      OAuth: require('./oauth'),
-      User: require('./user'),
-      Map: require('./map'),
-      Actor: require('./actor'),
-      Scene: require('./scene'),
-      Story: require('./story'),
-      ScenesActors: require('./scenesactors'),
-      ScenesMaps: require('./scenesmaps'),
-    }
-    , {mapValues} = require('lodash');
+  , debug = require('debug')(`${app.name}:models`)
+  // Our model files export functions that take a database and return
+  // a model. We call these functions "meta models" (they are models of
+  // models).
+  //
+  // This lets us avoid cyclic dependencies, which can be hard to reason
+  // about.
+  , metaModels = {
+    Scene: require('./scene'),
+    OAuth: require('./oauth'),
+    User: require('./user'),
+    Map: require('./map'),
+    Actor: require('./actor'),
+    Story: require('./story'),
+    ScenesActors: require('./scenesactors'),
+    ScenesMaps: require('./scenesmaps'),
+  }
+  , { mapValues } = require('lodash');
 
 module.exports = db => {
   // Create actual model classes by calling each meta model with the
@@ -47,7 +47,7 @@ module.exports = db => {
   */
   Object.keys(metaModels)
     .forEach(name => {
-      const {associations} = metaModels[name];
+      const { associations } = metaModels[name];
       if (typeof associations === 'function') {
         debug('associating model %s', name);
         // Metamodel::associations(self: Model, others: {[name: String]: Model}) -> ()

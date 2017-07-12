@@ -20,8 +20,6 @@ class EditorHeroAdder extends Component {
   }
   onUserHeroChange (event) {
     event.preventDefault();
-    console.log('event.target.name', event.target.name);
-    console.log('event.target.value', event.target.value);
      this.setState({
       [event.target.name]: event.target.value
     });
@@ -88,7 +86,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault();
     event.stopPropagation();
     const heroUnsplash = false;
-    console.log('currState', currState);
     dispatch(setHero(ownProps.position, currState, heroUnsplash));
   }
 });

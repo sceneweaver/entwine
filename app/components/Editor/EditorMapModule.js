@@ -22,7 +22,6 @@ class EditorMapModule extends Component {
   }
 
   componentDidMount() {
-    console.log('mounting map!');
     this.setState({
       coords: this.props.locations[0].coords,
       mapboxStyle: this.props.locations[0].style,
@@ -30,7 +29,6 @@ class EditorMapModule extends Component {
     });
 
     this.props.setTimeout(() => {
-      console.log('saving map!');
       this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
     }, 1500);
   }
@@ -39,7 +37,6 @@ class EditorMapModule extends Component {
     event.preventDefault();
     this.setState({mapboxStyle: event.target.value});
     this.props.setTimeout(() => {
-      console.log('saving map!');
       this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
 
       this.props.setLocation(this.props.position, [{
@@ -55,7 +52,6 @@ class EditorMapModule extends Component {
     event.preventDefault();
     this.setState({mapboxZoom: event.target.value});
     this.props.setTimeout(() => {
-      console.log('saving map!');
       this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
 
       this.props.setLocation(this.props.position, [{
@@ -110,7 +106,6 @@ class EditorMapModule extends Component {
             zoom: zoom,
           }]);
 
-          console.log('saving map!');
           this.props.onSaveMap.call(this, this.props.position, this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
         }, 7000);
       }
@@ -124,12 +119,10 @@ class EditorMapModule extends Component {
       style: this.state.mapboxStyle,
       zoom: this.state.mapboxZoom,
     }]);
-    console.log('LOCATION SET!');
   }
 
   zoomEndFn() {
       this.props.onSaveMap.call(this, this.props.position,  this.state.mapboxStyle, this.state.coords, this.state.mapboxZoom);
-      console.log('MAP SAVED!');
   }
 
   render() {

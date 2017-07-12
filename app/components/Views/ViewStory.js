@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import ViewStorySlider from './ViewStorySlider.js';
 import ViewStoryStepper from './ViewStoryStepper.js';
 import ViewScene from './ViewScene.js';
 
